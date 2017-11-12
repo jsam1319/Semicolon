@@ -1,5 +1,7 @@
 package kr.or.kosta.semicolon.goods.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
 
@@ -41,11 +44,14 @@ public class GoodsController {
 	 * @Method Name : goods
 	 * @param model : 상품 정보를 저장하기 위한 model
 	 */
-	@RequestMapping(value = "/goods", method = RequestMethod.GET)
-	public void goods(Model model) {
-		model.addAttribute("list", goodsService.listAll());
+/*	@RequestMapping(value = "/goods", method = RequestMethod.GET)
+	public void goods(Params params, Model model) {
+		
+		List<Goods> list = goodsService.listAll(params);
+		
+		model.addAttribute("list", list);
 	}
-	
+	*/
 	
 	@RequestMapping(value = "/goods", method = RequestMethod.POST)
 	public String success(Goods goods, RedirectAttributes rttr) {

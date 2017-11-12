@@ -2,6 +2,7 @@ package kr.or.kosta.semicolon.goods.dao;
 
 import java.util.List;
 
+import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 
 /**
@@ -16,12 +17,18 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 10.      kosta         최초 생성
- *
+ * 2017. 11. 11.	  연주				1차 수정
  *
  */
 public interface GoodsDao {
 	
-	public List<Goods> listAll();
+	public List<Goods> listall();
 	
 	public int insert(Goods goods);
+	
+	public Goods select(int goodsNo) throws Exception;
+	
+	public List<Goods> listAll(Params params) throws Exception;
+	
+	public int listCount() throws Exception;
 }

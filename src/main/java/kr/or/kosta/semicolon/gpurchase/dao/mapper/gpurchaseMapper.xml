@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao">
+
+	<insert id="insert" parameterType="Gpurchase">
+		<selectKey keyProperty="gpurchaseNo" resultType="int" order="BEFORE">
+			SELECT SEQ_GPURCHASE.nextval as gpurchaseNo from dual
+		</selectKey>
+		INSERT INTO gpurchase 
+		            (gpurchase_no, 
+		             goods_no, 
+		             min, 
+		             end_date, 
+		             start_date, 
+		             price) 
+		VALUES      (#{gpurchaseNo}, 
+		             #{goodsNo}, 
+		             #{min}, 
+		             #{endDate}, 
+		             #{startDate}, 
+		             #{price})
+	</insert>
+
+ 
+	<select id="listall" resultType="Gpurchase">
+		SELECT gpurchase_no                      AS gpurchaseNo, 
+		       goods_no                          AS goodsNo, 
+		       min, 
+		       To_char(end_date, 'yyyy-MM-DD')   endDate, 
+		       To_char(start_date, 'yyyy-MM-DD') startDate, 
+		       price, 
+		       status 
+		FROM   gpurchase 
+		ORDER  BY gpurchase_no DESC
+	</select>
+	 
+	
+	<select id="select" parameterType="int" resultType="Gpurchase">
+		SELECT gpurchase_no                      AS gpurchaseNo, 
+		       goods_no                          AS goodsNo, 
+		       min, 
+		       To_char(end_date, 'yyyy-MM-DD')   AS endDate, 
+		       To_char(start_date, 'yyyy-MM-DD') AS startDate, 
+		       price, 
+		       status 
+		FROM   gpurchase 
+		WHERE  gpurchase_no = #{gpurchaseNo} 
+	</select>
+	
+ 	<update id="update" parameterType="Gpurchase">
+		UPDATE gpurchase 
+		<set>
+			<if test="min != null">min = #{min},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="startDate != null">start_date = #{startDate},</if>
+			<if test="endDate != null">end_date = #{endDate},</if>
+			<if test="status != null">status = #{status}</if>
+		</set>
+		WHERE  gpurchase_no = #{gpurchaseNo} 
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE gpurchase 
+		WHERE  gpurchase_no = #{gpurchaseNo} 
+	</delete>
+	
+	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+		SELECT gpurchaseno, 
+		       goodsno, 
+		       min, 
+		       enddate, 
+		       startdate, 
+		       price, 
+		       status 
+		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+		               gpurchaseno, 
+		               goodsno, 
+		               min, 
+		               enddate, 
+		               startdate, 
+		               price, 
+		               status 
+		        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
+		                       goods_no                          goodsNo, 
+		                       min, 
+		                       To_char(end_date, 'yyyy-MM-DD')   endDate, 
+		                       To_char(start_date, 'yyyy-MM-DD') startDate, 
+		                       price, 
+		                       status 
+		                FROM   gpurchase 
+		                
+		                <if test="productOrder != null">
+		                	<choose>
+		                		<when test="productOrder == 'newProduct'">
+		                			ORDER BY gpurchase_no DESC
+		                		</when>
+		                		<when test="productOrder == 'lowPrice'">
+		                			ORDER BY price ASC
+		                		</when>
+		                		<when test="productOrder == 'highPrice'">
+		                			ORDER BY price DESC
+		                		</when>
+		                		<when test="productOrder == 'endDate'">
+		                			ORDER BY end_date ASC
+		                		</when>
+		                		<!-- 
+		                		<when test="productOrder == 'deadline'">
+		                		
+		                		</when>
+		                		 -->
+		                	</choose>
+		                </if>
+		                )) 
+		WHERE  page = #{page}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		SELECT Count(gpurchase_no) count 
+		FROM   gpurchase
+	</select>
+	
+</mapper>

@@ -27,8 +27,53 @@
 			)
 	</insert>
 
-	<select id="listAll" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
-		SELECT * FROM goods
+
+	<select id="listall" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+		SELECT goods_no AS goodsNo, 
+		       name, 
+		       price, 
+		       detail, 
+		       front_img AS frontImg 
+		FROM goods
 	</select>
+	 
+	
+	<select id="select" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+		SELECT goods_no AS goodsNo, 
+		       name, 
+		       price, 
+		       detail, 
+		       front_img AS frontImg 
+		FROM   goods
+		WHERE  goods_no = #{goodsNo}
+	</select>
+	
+	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+		SELECT goodsno, 
+		       NAME, 
+		       price, 
+		       detail, 
+		       frontimg 
+		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+		               goodsno, 
+		               NAME, 
+		               price, 
+		               detail, 
+		               frontimg 
+		        FROM   (SELECT goods_no  goodsNo, 
+		                       NAME, 
+		                       price, 
+		                       detail, 
+		                       front_img frontImg 
+		                FROM   goods 
+		                ORDER  BY goods_no DESC)) 
+		WHERE  page = #{page}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		SELECT Count(goods_no) count 
+		FROM   goods
+	</select>
+	
 
 </mapper>
