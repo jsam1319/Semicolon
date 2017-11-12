@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kosta.semicolon.goods.dao.GoodsDao">
+
+	<insert id="insert" parameterType="kr.or.kosta.semicolon.goods.domain.Goods">
+		<selectKey resultType="int" keyProperty="goodsNo" order="BEFORE" >	
+			SELECT SEQ_GOODS.nextval FROM DUAL
+		</selectKey>
+
+		INSERT INTO goods
+			(
+				goods_no,
+				name,
+				price,
+				detail,
+				front_img
+			)
+			VALUES 
+			(
+				#{goodsNo},
+				#{name},
+				#{price},
+				#{detail},
+				#{frontImg}
+			)
+	</insert>
+
+	<select id="listAll" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+		SELECT * FROM goods
+	</select>
+
+</mapper>
