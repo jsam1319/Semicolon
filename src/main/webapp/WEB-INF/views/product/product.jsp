@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-sm-5 col-md-4 col-lg-5 information-entry">
           <div class="product-preview-box">
-            <div class="swiper-container product-preview-swiper"
+            <div class="swiper-container product-preview-swiper slider"
               data-autoplay="0" data-loop="1" data-speed="500"
               data-center="0" data-slides-per-view="1">
               <div class="swiper-wrapper">
@@ -43,19 +43,11 @@
                       data-zoom="/resources/img/ex/dog-zoom.png" />
                   </div>
                 </div>
-                <div class="swiper-slide">
-                  <div class="product-zoom-image">
-                    <img src="/resources/img/ex/totoro.jpg" alt=""
-                      data-zoom="/resources/img/ex/totoro-zoom.png" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-zoom-image">
-                    <img src="/resources/img/ex/totoro2.jpg" alt=""
-                      data-zoom="/resources/img/ex/totoro2-zoom.png" />
-                  </div>
-                </div>
               </div>
+
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
@@ -67,40 +59,10 @@
                 <div class="zoom-area"></div>
               </div>
             </div>
-            <div class="swiper-hidden-edges">
-              <div class="swiper-container product-thumbnails-swiper"
-                data-autoplay="0" data-loop="0" data-speed="500"
-                data-center="0" data-slides-per-view="responsive"
-                data-xs-slides="3" data-int-slides="3"
-                data-sm-slides="3" data-md-slides="4" data-lg-slides="4"
-                data-add-slides="4">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide selected">
-                    <div class="paddings-container">
-                      <img src="/resources/img/ex/cat.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="paddings-container">
-                      <img src="/resources/img/ex/dog.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="paddings-container">
-                      <img src="/resources/img/ex/totoro.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="paddings-container">
-                      <img src="/resources/img/ex/totoro2.jpg" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="pagination"></div>
-              </div>
-            </div>
           </div>
         </div>
+
+        <!-- 상품 정보 -->
         <div class="col-sm-7 col-md-4 information-entry">
           <div class="product-detail-box">
             <h1 class="product-title">${goods.name}</h1>
@@ -123,7 +85,6 @@
               </div>
               <div class="rating-number">25 Reviews</div>
             </div>
-            <div class="product-description detail-info-entry">${goods.detail}</div>
             <div class="price detail-info-entry">
               <div class="current">￦ ${gpurchase.price}</div>
             </div>
@@ -152,7 +113,6 @@
               <div class="entry number-plus">&nbsp;</div>
             </div>
             <div class="detail-info-entry">
-              <!--   <a class="button style-10">Add to cart</a> -->
               <a class="button style-10"><i class="fa fa-heart"></i>
                 Buy</a>
               <div class="clear"></div>
@@ -164,19 +124,14 @@
             </div>
           </div>
         </div>
+        <!-- /.상품 정보 -->
+
+
         <div class="clear visible-xs visible-sm"></div>
+
+        <!-- Side 추천 상품 정보 -->
         <div class="col-md-4 col-lg-3 information-entry product-sidebar">
           <div class="row">
-            <div class="col-md-12">
-              <div class="information-blocks production-logo">
-                <div class="background">
-                  <div class="logo">
-                    <img src="/resources/img/production-logo.png" alt="" />
-                  </div>
-                  <a href="#">Review this producent</a>
-                </div>
-              </div>
-            </div>
             <div class="col-md-12">
               <div class="information-blocks">
                 <div class="information-entry products-list">
@@ -184,7 +139,7 @@
                     products</h3>
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-1.jpg"></a>
+                      src="img/product-image-inline-1.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -200,7 +155,7 @@
 
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-2.jpg"></a>
+                      src="img/product-image-inline-2.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -216,7 +171,7 @@
 
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-3.jpg"></a>
+                      src="img/product-image-inline-3.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -234,25 +189,20 @@
             </div>
           </div>
         </div>
+        <!-- /.Side 추천 상품 정보 -->
       </div>
     </div>
+    <div class="clear"></div>
 
+    <div id="productInfo1"></div>
     <div class="information-blocks">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <div>
-            <div>
-              <ul class="nav navbar-nav">
-                <li><a href="#productInfo1">상세 정보</a></li>
-                <li><a href="#productInfo2">제품 리뷰</a></li>
-                <li><a href="#productInfo3">구매유의사항</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div id="productInfo1" class="container-fluid">
+      <div>
+        <a class="button style-14" href="#productInfo1">상세 정보</a> <a
+          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
+          class="button style-40" href="#productInfo3">유의 사항</a>
+      </div>
+      <div class="inline-product-entry">
+        ${goods.detail}
         <h1>Section 1</h1>
         <p>Try to scroll this section and look at the navigation bar
           while scrolling! Try to scroll this section and look at the
@@ -260,17 +210,39 @@
         <p>Try to scroll this section and look at the navigation bar
           while scrolling! Try to scroll this section and look at the
           navigation bar while scrolling!</p>
-      </div>
-      <div id="productInfo2" class="container-fluid">
-        <h1>Section 2</h1>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
         <p>Try to scroll this section and look at the navigation bar
           while scrolling! Try to scroll this section and look at the
           navigation bar while scrolling!</p>
       </div>
-      <div id="productInfo3" class="container-fluid">
+      <div id="productInfo2"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
+          class="button style-14" href="#productInfo2">상품 리뷰</a> <a
+          class="button style-40" href="#productInfo3">유의 사항</a>
+      </div>
+      <div class="inline-product-entry">
+        <h1>Enter Reviews</h1>
+        <p>리뷰</p>
+        <p>리뷰~~</p>
+        <p>리뷰~~~~</p>
+      </div>
+      <div id="productInfo3"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div id="productInfo1">
+        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
+          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
+          class="button style-14" href="#productInfo3">유의 사항</a>
+      </div>
+      <div class="inline-product-entry">
         <h1>Section 3</h1>
         <p>Try to scroll this section and look at the navigation bar
           while scrolling! Try to scroll this section and look at the
@@ -278,35 +250,17 @@
         <p>Try to scroll this section and look at the navigation bar
           while scrolling! Try to scroll this section and look at the
           navigation bar while scrolling!</p>
+        <p>Try to scroll this section and look at the navigation bar
+          while scrolling! Try to scroll this section and look at the
+          navigation bar while scrolling!</p>
       </div>
-
     </div>
-
-
   </div>
 
   <div class="clear"></div>
 
-
   <br>
   <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <script src="/resources/js/jquery-2.1.3.min.js"></script>
-  <script src="/resources/js/idangerous.swiper.min.js"></script>
-  <script src="/resources/js/global.js"></script>
-
-  <!-- custom scrollbar -->
-  <script src="/resources/js/jquery.mousewheel.js"></script>
-  <script src="/resources/js/jquery.jscrollpane.min.js"></script>
-
-  <script src="/resources/css/bootstrap.min.css"></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  
+  <script src="/resources/js/product.js"></script>
 </body>
