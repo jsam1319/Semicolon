@@ -14,13 +14,15 @@
 		             min, 
 		             end_date, 
 		             start_date, 
-		             price) 
+		             price,
+		             likecnt) 
 		VALUES      (#{gpurchaseNo}, 
 		             #{goodsNo}, 
 		             #{min}, 
 		             #{endDate}, 
 		             #{startDate}, 
-		             #{price})
+		             #{price},
+		             #{likeCnt})
 	</insert>
 
  
@@ -31,12 +33,12 @@
 		       To_char(end_date, 'yyyy-MM-DD')   endDate, 
 		       To_char(start_date, 'yyyy-MM-DD') startDate, 
 		       price, 
-		       status 
+		       status,
+		       likecnt							AS likeCnt 
 		FROM   gpurchase 
 		ORDER  BY gpurchase_no DESC
 	</select>
 	 
-	
 	<select id="select" parameterType="int" resultType="Gpurchase">
 		SELECT gpurchase_no                      AS gpurchaseNo, 
 		       goods_no                          AS goodsNo, 
@@ -44,7 +46,8 @@
 		       To_char(end_date, 'yyyy-MM-DD')   AS endDate, 
 		       To_char(start_date, 'yyyy-MM-DD') AS startDate, 
 		       price, 
-		       status 
+		       status,
+		       likecnt 
 		FROM   gpurchase 
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</select>
@@ -57,6 +60,7 @@
 			<if test="startDate != null">start_date = #{startDate},</if>
 			<if test="endDate != null">end_date = #{endDate},</if>
 			<if test="status != null">status = #{status}</if>
+			<if test="likeCnt != null">likecnt = #{likeCnt}</if>
 		</set>
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</update>
@@ -73,7 +77,8 @@
 		       enddate, 
 		       startdate, 
 		       price, 
-		       status 
+		       status,
+		       likecnt 
 		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
 		               gpurchaseno, 
 		               goodsno, 
@@ -81,14 +86,16 @@
 		               enddate, 
 		               startdate, 
 		               price, 
-		               status 
+		               status,
+		               likecnt 
 		        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
 		                       goods_no                          goodsNo, 
 		                       min, 
 		                       To_char(end_date, 'yyyy-MM-DD')   endDate, 
 		                       To_char(start_date, 'yyyy-MM-DD') startDate, 
 		                       price, 
-		                       status 
+		                       status,
+		                       likecnt 
 		                FROM   gpurchase 
 		                
 		                <if test="productOrder != null">
@@ -105,11 +112,9 @@
 		                		<when test="productOrder == 'endDate'">
 		                			ORDER BY end_date ASC
 		                		</when>
-		                		<!-- 
 		                		<when test="productOrder == 'deadline'">
-		                		
+		                			ORDER BY likecnt DESC
 		                		</when>
-		                		 -->
 		                	</choose>
 		                </if>
 		                )) 

@@ -1,10 +1,20 @@
 package kr.or.kosta.semicolon.common;
 
 /**
- * 여러개의 요청파라메터들을 저장(포장)하기 위한 JavaBean
- * {사용자 선택페이지, 검색유형, 검색값, 한페이지에 출력하는 행의 갯수, 페이지 번호 등}
- *  
- * @author 김기정
+ * 
+ * @packgename   kr.or.kosta.semicolon.common
+ * @filename         Params.java
+ * @author          박연주
+ * @since            2017. 11. 13.
+ * @see			여러 요청 파라미터들을 저장하기 위한 JavaBean
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 13.      kosta         최초 생성
+ *
+ *
  */
 public class Params {
 	private int page;         /** 사용자 요청 페이지 */
@@ -15,7 +25,7 @@ public class Params {
 	private String productOrder;
 	
 	public Params() {
-		this(1, null, null, 10, 5, "newProduct");
+		this(1, null, null, 16, 5, "newProduct");
 	}
 	
 	public Params(int page, String type, String value, int pageSize, int pageNum, String productOrder) {

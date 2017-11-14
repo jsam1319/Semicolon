@@ -44,10 +44,21 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	
 	@Override
-	public Gpurchase select(int gpurchaseNo) throws Exception {
-		return gpdao.select(gpurchaseNo);
+	public Map<String, Object> select(int gpurchaseNo) throws Exception {
+		Gpurchase gpurchase = new Gpurchase();
+		gpurchase = gpdao.select(gpurchaseNo);
+		
+		Goods goods = new Goods();
+		goods = goodsDao.select(gpurchase.getGoodsNo());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("gpurchase", gpurchase);
+		map.put("goods", goods);
+		
+		return map;
 	}
 	
+	/*
 	@Override
 	public Map<String, Object> listall() throws Exception {
 		List<Gpurchase> gplist = gpdao.listall();
@@ -59,7 +70,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		return map;
 	}
-	
+	*/
 	
 	@Override
 	public Map<String, Object> listAll(Params params) throws Exception {

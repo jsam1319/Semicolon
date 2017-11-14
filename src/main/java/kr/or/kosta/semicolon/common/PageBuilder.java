@@ -4,10 +4,22 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * 페이징 계산 및 페이지 번호(1|2|3|4|5....) 출력을 각각의 JSP에서 처리하지 않고,
- * 재사용할 수 있도록 유틸리티 클래스 정의
- * @author 김기정
+ * 
+ * @packgename   kr.or.kosta.semicolon.common
+ * @filename         PageBuilder.java
+ * @author          박연주
+ * @since            2017. 11. 13.
+ * @see			페이징 계산 및 페이지 번호 출력 재사용을 위한 유틸리티 클래스
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 12.      kosta         최초 생성
+ *
+ *
  */
+
 public class PageBuilder {
 	
 	private Params params;            /** 요청 파라메터 */

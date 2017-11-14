@@ -22,15 +22,17 @@ public class Goods {
 	private int price;
 	private String detail;
 	private String frontImg;
+	private String toggleImg;
 	
 	public Goods() {}
 	
-	public Goods(int goodsNo, String name, int price, String detail, String frontImg) {
+	public Goods(int goodsNo, String name, int price, String detail, String frontImg, String toggleImg) {
 		this.goodsNo = goodsNo;
 		this.name = name;
 		this.price = price;
 		this.detail = detail;
 		this.frontImg = frontImg;
+		this.toggleImg = toggleImg;
 	}
 
 	public int getGoodsNo() {
@@ -73,10 +75,19 @@ public class Goods {
 		this.frontImg = frontImg;
 	}
 
+	public String getToggleImg() {
+		return toggleImg;
+	}
+
+	public void setToggleImg(String toggleImg) {
+		this.toggleImg = toggleImg;
+	}
+
 	@Override
 	public String toString() {
 		return "Goods [goodsNo=" + goodsNo + ", name=" + name + ", price=" + price + ", detail=" + detail
-				+ ", frontImg=" + frontImg + "]";
+				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + "]";
 	}
+
 	
 }

@@ -1,7 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <body class="style-10">
-
+<style>
+.moreView {
+font-size:80px;
+color: black;
+text-align: center;
+}
+</style>
 	<!-- LOADER -->
 	<div id="loader-wrapper">
 		<div class="bubbles">
@@ -24,15 +30,16 @@
 							<div class="entry">
 								<div class="inline-text">Sort by</div>
 								<div class="simple-drop-down">
-									<select id="productOrder" onchange="window.location='http://localhost/product/list?productOrder='+this.value;">
-										<option>ㅡ</option>
-										<option value='newProduct'>신상품</option>
+									<select id="productOrder">
+										<option value='newProduct' selected>신상품</option>
 										<option value='endDate'>끝나는날짜</option>
 										<option value='deadline'>마감인원</option>
 										<option value='lowPrice'>낮은가격</option>
 										<option value='highPrice'>높은가격</option>
 									</select>
 								</div>
+                
+                
 								<div class="sort-button"></div>
 							</div>
 							<div class="entry">
@@ -43,129 +50,22 @@
 									<i class="fa fa-list"></i>
 								</div>
 							</div>
-							<div class="entry">
-								<div class="inline-text">Show</div>
-								<div class="simple-drop-down" style="width: 75px;">
-									<select id="pageSize" onchange="window.location='http://localhost/product/list?pageSize=' + this.value;">
-										<option>ㅡ</option>
-										<option value="12">12</option>
-										<option value="20">20</option>
-										<option value="32">32</option>
-										<option value="40">40</option>
-										<option value="all">all</option>
-									</select>
-								</div>
-								<div class="inline-text">per page</div>
-							</div>
 						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="row shop-grid grid-view">
+					<div class="row shop-grid grid-view researchView">
 
 						<!-- Product List -->
-						<c:forEach items="${gplist}" var="gpurchase">
-							<c:forEach items="${glist}" var="goods">
-								<c:if test="${gpurchase.goodsNo eq goods.goodsNo}">
-									<div class="col-md-3 col-sm-4 shop-grid-item">
-										<div class="product-slide-entry shift-image">
-											<div class="product-image">
-												<img src="${pageContext.request.contextPath}/img/totoro.jpg" alt="totoro" /> <img
-													src="img/totoro.jpg" alt="image" />
-												<div class="bottom-line left-attached">
-													<a class="bottom-line-a square"><i
-														class="fa fa-shopping-cart"></i></a> <a
-														class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-													<a class="bottom-line-a square"><i
-														class="fa fa-retweet"></i></a> <a class="bottom-line-a square"><i
-														class="fa fa-expand"></i></a>
-												</div>
-											</div>
-											<a class="tag" href="#">Enter Company Name </a> <a class="title"
-												href="product?gpurchaseNo=${gpurchase.gpurchaseNo}">${goods.name}
-											</a>
-											<div class="rating-box">
-												<div class="star">
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="star">
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="star">
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="star">
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="star">
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="reviews-number">25 reviews</div>
-											</div>
-											<div class="article-container style-1">
-												<p>${goods.detail}</p>
-											</div>
-											<div class="price">
-												<div class="current">${gpurchase.price}</div>
-												<i class="fa fa-heart"></i>
-											</div>
-											<div class="list-buttons">
-												<a class="button style-10">Add to cart</a> <a
-													class="button style-11"><i class="fa fa-heart"></i> Add
-													to Wishlist</a>
-											</div>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</c:forEach>
+						
 					</div>
-					
-					
 					
 					<div class="page-selector">
-						<div class="description">Showing: 1-3 of 16</div>
-
-						<div class="pages-box">
-							<c:if test="${pageBuilder.isShowFirst()}">
-								<a href="${pageBuilder.getQueryString(1)}" class="square-button"><i
-									class="fa fa-angle-double-left"></i></a>
-							</c:if>
-
-							<c:if test="${pageBuilder.isShowPrevious()}">
-								<a
-									href="${pageBuilder.getQueryString(pageBuilder.getPreviousStartPage())}"
-									class="square-button"><i class="fa fa-angle-left"></i></a>
-							</c:if>
-
-							<c:forEach var="i" begin="${pageBuilder.currentStartPage }"
-								end="${pageBuilder.currentEndPage}" varStatus="status">
-								<c:choose>
-									<c:when test="${i==params.page}">
-										<a class="square-button active">${i}</a>
-									</c:when>
-									<c:otherwise>
-										<a href="${pageBuilder.getQueryString(i)}"
-											class="square-button">${i}</a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-
-							<c:if test="${pageBuilder.isShowNext()}">
-								<a
-									href="${pageBuilder.getQueryString(pageBuilder.getNextStartPage())}"
-									class="square-button"><i class="fa fa-angle-right"></i></a>
-							</c:if>
-
-							<c:if test="${pageBuilder.isShowLast()}">
-								<a
-									href="${pageBuilder.getQueryString(pageBuilder.getTotalPageCount())}"
-									class="square-button"><i class="fa fa-angle-double-right"></i></a>
-							</c:if>
-						</div>
-						<div class="clear"></div>
-					</div>
-					
+                       <center>   <a class="moreView"><i class="fa fa-angle-down"></i></a>   </center>
+                       <div class="pages-box">
+                                    <a href="#" class="square-button"><i class="fa fa-angle-up"></i></a>
+                       </div>
+                                <div class="clear"></div>
+                            </div>
 				</div>
 				<div
 					class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
@@ -582,15 +482,16 @@
 		</div>
 	</div>
 
-	<script src="js/jquery-2.1.3.min.js"></script>
-	<script src="js/idangerous.swiper.min.js"></script>
-	<script src="js/global.js"></script>
+	<script src="/resources/js/jquery-2.1.3.min.js"></script>
+	<script src="/resources/js/idangerous.swiper.min.js"></script>
+	<script src="/resources/js/global.js"></script>
 
 	<!-- custom scrollbar -->
-	<script src="js/jquery.mousewheel.js"></script>
-	<script src="js/jquery.jscrollpane.min.js"></script>
+	<script src="/resources/js/jquery.mousewheel.js"></script>
+	<script src="/resources/js/jquery.jscrollpane.min.js"></script>
 
 	<!-- range slider -->
-	<script src="js/jquery-ui.min.js"></script>
-
+	<script src="/resources/js/jquery-ui.min.js"></script>
+  
+    <script src="/resources/js/research.js"></script>
 </body>

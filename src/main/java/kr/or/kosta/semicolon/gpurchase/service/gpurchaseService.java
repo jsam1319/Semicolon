@@ -10,9 +10,9 @@ public interface gpurchaseService {
 	
 	public void insert(Gpurchase gpurchase) throws Exception;
 	
-	public Map<String, Object> listall() throws Exception;
+//	public Map<String, Object> listall() throws Exception;
 	
-	public Gpurchase select(int gpurchaseNo) throws Exception;
+	public Map<String, Object> select(int gpurchaseNo) throws Exception;
 	
 	public void update(Gpurchase gpurchase) throws Exception;
 	
