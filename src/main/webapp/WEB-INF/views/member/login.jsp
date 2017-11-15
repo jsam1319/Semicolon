@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 	.information-blocks {
@@ -14,8 +15,8 @@
                         <div class="article-container style-1">
                             <h3>Registered Customers</h3>
                         </div>
-                      	   <form action="/member/login" method="post" class="form">
-                            <label>Email Address</label> <input class="simple-field"
+                         <form action="/member/login" method="post" class="form">
+                            <label>ID</label> <input class="simple-field"
                                 type="text" name="id" placeholder="Enter Email Address" value="" /> <label>Password</label>
                             <input class="simple-field" type="password"
                                 name="password" placeholder="Enter Password" value="" />
@@ -26,12 +27,8 @@
 	                            <div class="col-sm-6">
 	                            <p class="text-right"><button type="submit" class="button style-10" style=""> LOGIN </button></p>
 	                          	</div>
-                          	</div><%-- ./row --%>
-                        </form>
-                        
-                        <form>
-                        
-                        </form>
+                          	</div><%--./row--%>
+                        </form> 
                     </div>
                 </div>	
                 <div class="col-sm-6 information-entry">
@@ -54,4 +51,3 @@
           <div></div>
         
 </body>
-</html>

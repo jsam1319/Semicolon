@@ -6,7 +6,7 @@
 
        <insert id="insert" parameterType="Member">
         <selectKey  keyProperty="memberNo" order="BEFORE" resultType="int">    
-            SELECT SEQ_MEMBER.nextval FROM DUAL
+            SELECT SEQ_MEMBER.nextval  as memberNo FROM DUAL
         </selectKey>
 
         INSERT INTO member
@@ -21,9 +21,8 @@
                 phone,
                 age,
                 gender,
-                app_token,
-                session_id,
-                session_limit
+                private_encoded,
+                public_encoded
             )
             VALUES 
             (
@@ -37,13 +36,11 @@
                 #{phone},
                 #{age},
                 #{gender},
-                #{appToken},
-                #{sessionId},
-                #{sessionLimit}
+                #{privateEncoded},
+                #{publicEncoded}
             )
     </insert>
-
-
+    
     <select id="listAll" resultType="Member">
         SELECT  member_no    AS     "memberNo",
                 id,
@@ -58,7 +55,9 @@
                 gender,
                 app_token     AS  "appToken",
                 session_id	  AS  "sessionId",
-                session_limit AS  "sessionLimit"
+                session_limit AS  "sessionLimit",
+                private_encoded	AS	"privateEncoded",
+                public_encoded	AS	"publicEncoded"
         FROM member
     </select>
     
@@ -76,7 +75,9 @@
                 gender,
                 app_token     AS  "appToken",
                 session_id	  AS  "sessionId",
-                session_limit AS  "sessionLimit"
+                session_limit AS  "sessionLimit",
+                private_encoded	AS	"privateEncoded",
+                public_encoded	AS	"publicEncoded"
         FROM member
         WHERE id = #{value}
     </select>
@@ -88,7 +89,7 @@
                 address = #{address},
                 name = #{name},
                 postcode = #{postcode},
-                phone = #{phone}
+                phone = #{phone}	
     </update>
     
     <delete id="delete" parameterType="String">
@@ -96,7 +97,7 @@
         WHERE  id = #{value} 
     </delete>
     
-    <select id="isMember" parameterType="Member" resultType="Member">
+     <select id="isMember" parameterType="Member" resultType="Member">
          SELECT  member_no    AS     "memberNo",
                 id,
                 password,    
@@ -110,13 +111,15 @@
                 gender,
                 app_token     AS  "appToken",
                 session_id	  AS  "sessionId",
-                session_limit AS  "sessionLimit"
+                session_limit AS  "sessionLimit",
+                private_encoded	AS	"privateEncoded",
+                public_encoded	AS	"publicEncoded"
         FROM member
         WHERE id = #{id} 
         AND password = #{password}
-    </select>
+    </select> 
     
-    <select id="readLogin" parameterType="string" resultType="Member">
+     <select id="readLogin" parameterType="string" resultType="Member">
         SELECT  id,
                 password,    
         FROM   member
@@ -131,4 +134,31 @@
         WHERE  id = #{id}
     </update>
     
+    <select id="isId" parameterType="String" resultType="String">
+    	SELECT id
+		FROM   member 
+		WHERE  id = #{value} 
+    </select>
+    
+    <select id="selectById" parameterType="String" resultType="Member">
+    	SELECT  member_no    AS     "memberNo",
+                id,
+                password,    
+                email,        
+                address,        
+                name,        
+                postcode,    
+                phone,        
+                regdate,
+                age,
+                gender,
+                app_token     	AS  "appToken",
+                session_id	  	AS  "sessionId",
+                session_limit 	AS  "sessionLimit",
+                private_encoded	AS	"privateEncoded",
+                public_encoded	AS	"publicEncoded"
+        FROM	member
+        WHERE	id = #{value}
+    </select>
+        
 </mapper>

@@ -7,16 +7,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.kosta.semicolon.member.domain.Member;
 import kr.or.kosta.semicolon.member.service.MemberService;
 
+
 /**
- * @packgename kr.or.kosta.semicolon.member.controller
+ * @packgename    kr.or.kosta.semicolon.member.controller
+ * 
+ *   DATE          AUTHOR         NOTE
+ * --------        -----------    ---------------------------------------
+ * 2017. 11. 15.      박주연    최초 생성
+ *
+ *
  */
 
 @Controller
@@ -51,10 +63,9 @@ public class MemberController {
 	 */
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void login(Member member, Model model, HttpServletRequest request) {
+	public void login(Member member, Model model) {
 		Member mem = memberService.isMember(member);
-		logger.debug("login post  mem:" + mem);
-		logger.debug("autoLogin:" + member.getAutoLogin());
+		
 		if (mem != null) {
 			model.addAttribute("mem", mem);
 			model.addAttribute("autologin", member.getAutoLogin());
@@ -96,5 +107,53 @@ public class MemberController {
 		return "/member/regist";
 	}
 	
-
+	
+	/**
+	 * <pre>
+	 * 1. 개      요 	: 회원가입 처리 메소드
+	 * 2. 처리내용      : 회원들의 정보를 받아 회원가입을 처리한다
+	 * </pre>
+	 * 
+	 * @Method Name : memberGet
+	 */
+	@RequestMapping(value="/regist", method = RequestMethod.POST)
+	public String regist(Member member, Model model) {
+		logger.debug("regist member:"+member);
+		if(memberService.insert(member) == 1) {
+			model.addAttribute("id",member.getId());
+			return "/member/result";
+		}
+		return "/member/regist";
+	}
+	
+	@RequestMapping(value="/result", method=RequestMethod.GET)
+	public String loginResult() {
+		return "/member/result";
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개      요 	: id 중복체크
+	 * 2. 처리내용      : 사용자가 입력한 id가 중복된 값인지 확인한다 
+	 * </pre>
+	 * 
+	 * @Method Name : memberGet
+	 */
+	@RequestMapping(value="/regist/{id}", method=RequestMethod.GET)
+	public ResponseEntity<String> checkId(@PathVariable("id") String id) {
+		ResponseEntity<String> response = null;
+		String result = memberService.isId(id);
+		try {
+			if(result == null) {
+				response = new ResponseEntity<String>("possible", HttpStatus.OK);
+			}
+			else {
+				response = new ResponseEntity<String>("impossible", HttpStatus.OK);
+			}
+		}catch(Exception e) {
+			response = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return response;
+	}
 }

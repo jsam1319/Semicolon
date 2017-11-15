@@ -1,11 +1,17 @@
 package kr.or.kosta.semicolon.member.domain;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 /**
- * @packgename	kr.or.kosta.semicolon.member.domain
+ * @packgename			kr.or.kosta.semicolon.member.domain
  * @filename			Member.java
- * @author 			JaeHyun
+ * @author 				박주연
  * @since				2017. 11. 8.
  * @see					Member 테이블의 Damain 클래스
  *
@@ -13,11 +19,12 @@ import java.util.Date;
  * 
  *   DATE		  AUTHOR		 NOTE
  * --------		-----------	---------------------------------------
- * 2017. 11. 8.		JaeHyun	최초 생성
- *
+ * 2017. 11. 8.		JaeHyun		최초 생성
+ * 2017. 11. 14		박주연		authorities 추가
+ * 2017. 11. 15		박주연		isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled, publicEncoded, privateEncoded 추가
  *
  */
-public class Member {
+public class Member implements UserDetails{
 
 	int memberNo;
 	String id;
@@ -34,6 +41,13 @@ public class Member {
 	String sessionId;
 	Date sessionLimit;
 	String autoLogin ;
+	boolean isAccountNonExpired; //계정만료되었는지
+	boolean isAccountNonLocked; //계정 잠겼는지
+	boolean isCredentialsNonExpired;//패스워드 만료되었는지
+	boolean isEnabled;//계정 활성화 되었는지
+	String publicEncoded;
+	String privateEncoded;
+	
 	static Date date = new Date(System.currentTimeMillis());
 	
 	/** 생성자 */
@@ -188,11 +202,61 @@ public class Member {
 	}
 
 	@Override
+	public String getUsername() {
+		return id;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return isAccountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return isAccountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return isCredentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public String getPublicEncoded() {
+		return publicEncoded;
+	}
+
+	public void setPublicEncoded(String publicEncoded) {
+		this.publicEncoded = publicEncoded;
+	}
+
+	public String getPrivateEncoded() {
+		return privateEncoded;
+	}
+
+	public void setPrivateEncoded(String privateEncoded) {
+		this.privateEncoded = privateEncoded;
+	}
+
+	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", id=" + id + ", password=" + password + ", email=" + email
 				+ ", address=" + address + ", name=" + name + ", postcode=" + postcode + ", phone=" + phone
 				+ ", regdate=" + regdate + ", age=" + age + ", gender=" + gender + ", appToken=" + appToken
-				+ ", sessionId=" + sessionId + ", sessionLimit=" + sessionLimit + ", autoLogin=" + autoLogin + "]";
+				+ ", sessionId=" + sessionId + ", sessionLimit=" + sessionLimit + ", autoLogin=" + autoLogin
+				+ ", isAccountNonExpired=" + isAccountNonExpired + ", isAccountNonLocked=" + isAccountNonLocked
+				+ ", isCredentialsNonExpired=" + isCredentialsNonExpired + ", isEnabled=" + isEnabled
+				+ ", publicEncoded=" + publicEncoded + ", privateEncoded="
+				+ privateEncoded + "]";
 	}
-
 }
