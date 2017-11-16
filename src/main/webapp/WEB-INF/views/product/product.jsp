@@ -16,7 +16,7 @@
     <div class="clear"></div>
   </div>
 
-  <div class="content-push">
+  <div class="content-push container">
 
     <div class="breadcrumb-box">
       <a href="#">Home</a> <a href="#">Shop</a> <a href="#">T-shirts</a>
@@ -139,7 +139,7 @@
                     products</h3>
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="img/product-image-inline-1.jpg"></a>
+                      src="/resources/img/product-image-inline-1.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -155,7 +155,7 @@
 
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="img/product-image-inline-2.jpg"></a>
+                      src="/resources/img/product-image-inline-2.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -171,7 +171,7 @@
 
                   <div class="inline-product-entry">
                     <a href="#" class="image"><img alt=""
-                      src="img/product-image-inline-3.jpg"></a>
+                      src="/resources/img/product-image-inline-3.jpg"></a>
                     <div class="content">
                       <div class="cell-view">
                         <a href="#" class="title">Pullover Batwing
@@ -202,17 +202,73 @@
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
       <div class="inline-product-entry">
-        ${goods.detail}
-        <h1>Section 1</h1>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
+      
+      <div class="wishlist-entry">
+      <div class="column-1">
+        <div class="comment">
+          <a class="comment-image" href="#"><img src="/resources/img/comment-1.jpg" alt="" /></a>
+          <div class="comment-content">
+            <div class="comment-title"><span>아이디</span> Posted 1시간전, 2015-11-15</div>
+            <div class="rating-box">
+              <div class="star">
+                  <i class="fa fa-star"></i>
+               </div>
+               <div class="star">
+                  <i class="fa fa-star"></i>
+               </div>
+               <div class="star">
+                  <i class="fa fa-star"></i>
+               </div>
+               <div class="star">
+                  <i class="fa fa-star"></i>
+               </div>
+               <div class="star">
+                  <i class="fa fa-star"></i>
+               </div>
+             </div>
+            <div class="comment-text">코트가 시원하고 좋네요!~!! 별점 5점 드립니다!! 굳굳ㅎ </div>
+          </div>
+        </div>
+        </div>
+        <div class="column-2">
+           <a class="button style-14">더보기</a>
+           <a class="remove-button"><i class="fa fa-times"></i></a>
+         </div> 
+         </div>
+        
+        <div class="wishlist-entry">
+          <div class="column-1">
+            <div class="comment">
+              <a class="comment-image" href="#"><img src="/resources/img/comment-1.jpg" alt="" /></a>
+              <div class="comment-content">
+                <div class="comment-title"><span>아이디</span> Posted 02:12, 2015-11-13</div>
+                <div class="rating-box">
+                  <div class="star">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="star">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="star">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="star">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="star">
+                    <i class="fa fa-star-half-o"></i>
+                  </div>
+                </div>
+                <div class="comment-text">코트는 역시 시원해~ 별점 4점!!ㅎㅎ </div>
+              </div>
+            </div>
+          </div>
+        <div class="column-2">
+           <a class="button style-14">더보기</a>
+           <a class="remove-button"><i class="fa fa-times"></i></a>
+         </div> 
+       </div>
+          
       </div>
       <div id="productInfo2"></div>
       <br>
@@ -225,36 +281,45 @@
           class="button style-14" href="#productInfo2">상품 리뷰</a> <a
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
+      
       <div class="inline-product-entry">
-        <h1>Enter Reviews</h1>
-        <p>리뷰</p>
-        <p>리뷰~~</p>
-        <p>리뷰~~~~</p>
+      
+      <form method="post">
+        <div class="row">
+        <div class=" col-md-8">
+            <label>리뷰 작성<span>*</span></label>
+            <textarea class="simple-field" style="resize: none;" id="content" name="content" placeholder="Your message content (required)"></textarea>
+        </div>
+        <div class="col-md-4">
+            <div style="margin-top: 10%"> <input type="file"> </div>
+            
+            <div id="targetType" style="margin-top: 10%"></div>
+            <div id="targetType-hint" class="input hint"></div>
+
+            <div class="button style-10" style="margin-top: 10%">리뷰 작성<input type="submit" value=""> </div>
+        </div>
       </div>
+      </form>
+      
+      </div>
+      
       <div id="productInfo3"></div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      
       <div id="productInfo1">
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
           class="button style-14" href="#productInfo3">유의 사항</a>
       </div>
       <div class="inline-product-entry">
-        <h1>Section 3</h1>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
-        <p>Try to scroll this section and look at the navigation bar
-          while scrolling! Try to scroll this section and look at the
-          navigation bar while scrolling!</p>
-      </div>
-    </div>
+       유의유의
+     </div>
+   </div>
   </div>
 
   <div class="clear"></div>
@@ -263,4 +328,46 @@
   <br>
   
   <script src="/resources/js/product.js"></script>
+  <script src="/resources/js/jquery.raty.js"></script>
+  
+  
+  <script>
+  $(function() {
+	  
+	    $('#targetType').raty({
+	    	  cancel     : true,
+	    	  target     : '#targetType-hint',
+	    	  targetType : 'score'
+	    	});
+	    
+	    $('#targetType').raty({
+	    	  mouseover: function(score, evt) {
+	    	    alert(score);
+	    	    var scorepoint = score;
+	    	    
+	    	    var reviewContent = $("#content").val();
+	    	    
+	    	    $.ajax({
+	    	        type:'post',
+	    	        url:'/product/',
+	    	        headers: { 
+	    	              "Content-Type": "application/json",
+	    	              "X-HTTP-Method-Override": "POST" },
+	    	        dataType:'text',
+	    	        data: JSON.stringify({bno:bno, replyer:replyer, replytext:replytext}),
+	    	        success:function(result){
+	    	          console.log("result: " + result);
+	    	          if(result == 'success'){
+	    	            alert("등록 되었습니다.");
+	    	            replyPage = 1;
+	    	            getPage("/replies/"+bno+"/"+replyPage );
+	    	            replyerObj.val("");
+	    	            replytextObj.val("");
+	    	          }
+	    	      }});
+	    	    
+	    	  }
+	    	});
+  });
+  </script>
 </body>
