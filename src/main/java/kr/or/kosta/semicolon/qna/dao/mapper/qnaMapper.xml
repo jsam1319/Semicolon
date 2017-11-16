@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.qna.dao.QnaDao">
+    
+    <!-- 상품문의 생성 -->                    
+	<insert id="insert" parameterType="Qna">
+        <selectKey  keyProperty="qnaNo" order="BEFORE" resultType="int">    
+            SELECT SEQ_QNA.nextval FROM DUAL
+        </selectKey>
+
+        INSERT INTO qna
+            (
+                qna_no,
+                goods_no,
+                member_no,
+                title,
+                content)
+            VALUES 
+            (
+                #{qnaNo},
+                #{goodsNo},
+                #{memberNo},
+                #{title},
+                #{content}
+             )
+    </insert>
+
+	<!-- 상품문의 상세보기 --> 
+	<select id="select" parameterType="int" resultType="Qna">
+		SELECT qna_no		qnaNo,
+               goods_no		goodsNo,
+               member_no	memberNo,
+               title,
+               content,
+               TO_CHAR(regdate, 'YYYY-MM-DD')		regdate 
+		FROM   qna 
+		WHERE  qna_no = #{value} 
+	</select>
+	
+	<!-- 상품문의 수정 -->
+    <update id="modify">
+    	UPDATE qna 
+		SET    goods_no = #{goodsNo}, 
+		       title = #{title},
+		       content = #{content},
+		       regdate = sysdate
+		WHERE  qna_no = #{qnaNo}
+    </update>
+    
+    <!-- 상품문의 답변 -->
+    <update id="update">
+    	UPDATE qna 
+		SET    status = 1, 
+		       answer_content = #{answerContent} 
+		WHERE  qna_no = #{qnaNo}
+    </update>
+    
+    <!-- 전체 상품문의 -->
+    <select id="allList" resultType="Qna">
+		SELECT qna_no		qnaNo,
+               goods_no		goodsNo,
+               member_no	memberNo,
+               title		title,
+               content		content,
+               answer_content	answerContent,
+               status,
+               TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:ss')		regdate 
+		FROM   qna
+		ORDER  BY regdate DESC
+		           
+	</select>
+	
+	<!-- 전체 상품문의 -->
+    <select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Qna">
+		SELECT qnano, 
+		       goodsno, 
+		       memberno, 
+		       title, 
+		       content, 
+		       answercontent, 
+		       status, 
+		       regdate 
+		FROM   (SELECT Ceil(rownum / 5) request_page, 
+		               qnano, 
+		               goodsno, 
+		               memberno, 
+		               title, 
+		               content, 
+		               answercontent, 
+		               status, 
+		               regdate 
+		        FROM   (SELECT qna_no				qnaNo, 
+		                       goods_no				goodsNo, 
+		                       member_no			memberNo, 
+		                       title, 
+		                       content, 
+		                       answer_content		answerContent, 
+		                       status, 
+		                       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate 
+		                FROM   qna 
+		                ORDER  BY regdate DESC)) 
+		WHERE  request_page = #{page}
+		           
+	</select>
+	
+	<select id="listCount" resultType="int">
+		SELECT Count(qna_no) count 
+		FROM   qna
+	</select>
+                        
+</mapper>                        
