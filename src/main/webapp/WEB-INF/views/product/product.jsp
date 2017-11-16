@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <!-- 상품 정보 -->
+        <!-- ìí ì ë³´ -->
         <div class="col-sm-7 col-md-4 information-entry">
           <div class="product-detail-box">
             <h1 class="product-title">${goods.name}</h1>
@@ -86,7 +86,7 @@
               <div class="rating-number">25 Reviews</div>
             </div>
             <div class="price detail-info-entry">
-              <div class="current">￦ ${gpurchase.price}</div>
+              <div class="current">ï¿¦ ${gpurchase.price}</div>
             </div>
             <div class="size-selector detail-info-entry">
               <div class="detail-info-entry-title">Size</div>
@@ -124,11 +124,11 @@
             </div>
           </div>
         </div>
-        <!-- /.상품 정보 -->
+        <!-- /.ìí ì ë³´ -->
         
         <div class="clear visible-xs visible-sm"></div>
 
-        <!-- Side 추천 상품 정보 -->
+        <!-- Side ì¶ì² ìí ì ë³´ -->
         <div class="col-md-4 col-lg-3 information-entry product-sidebar">
           <div class="row">
             <div class="col-md-12">
@@ -188,7 +188,7 @@
             </div>
           </div>
         </div>
-        <!-- /.Side 추천 상품 정보 -->
+        <!-- /.Side ì¶ì² ìí ì ë³´ -->
       </div>
     </div>
     <div class="clear"></div>
@@ -196,9 +196,9 @@
     <div id="productInfo1"></div>
     <div class="information-blocks">
       <div>
-        <a class="button style-14" href="#productInfo1">상세 정보</a> <a
-          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-40" href="#productInfo3">유의 사항</a>
+        <a class="button style-14" href="#productInfo1">ìì¸ ì ë³´</a> <a
+          class="button style-40" href="#productInfo2">ìí ë¦¬ë·°</a> <a
+          class="button style-40" href="#productInfo3">ì ì ì¬í­</a>
       </div>
       <div class="inline-product-entry">
         ${goods.detail}
@@ -220,15 +220,15 @@
       <br>
       <br>
       <div>
-        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
-          class="button style-14" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-40" href="#productInfo3">유의 사항</a>
+        <a class="button style-40" href="#productInfo1">ìì¸ ì ë³´</a> <a
+          class="button style-14" href="#productInfo2">ìí ë¦¬ë·°</a> <a
+          class="button style-40" href="#productInfo3">ì ì ì¬í­</a>
       </div>
       <div class="inline-product-entry">
         <h1>Enter Reviews</h1>
-        <p>리뷰</p>
-        <p>리뷰~~</p>
-        <p>리뷰~~~~</p>
+        <p>ë¦¬ë·°</p>
+        <p>ë¦¬ë·°~~</p>
+        <p>ë¦¬ë·°~~~~</p>
       </div>
       <div id="productInfo3"></div>
       <br>
@@ -237,9 +237,9 @@
       <br>
       <br>
       <div id="productInfo1">
-        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
-          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-14" href="#productInfo3">유의 사항</a>
+        <a class="button style-40" href="#productInfo1">ìì¸ ì ë³´</a> <a
+          class="button style-40" href="#productInfo2">ìí ë¦¬ë·°</a> <a
+          class="button style-14" href="#productInfo3">ì ì ì¬í­</a>
       </div>
       <div class="inline-product-entry">
         <h1>Section 3</h1>

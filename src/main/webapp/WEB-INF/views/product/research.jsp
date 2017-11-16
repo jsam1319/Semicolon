@@ -26,11 +26,11 @@
                 <div class="inline-text">Sort by</div>
                 <div class="simple-drop-down">
                   <select id="productOrder">
-                    <option value='newProduct' selected>신상품</option>
-                    <option value='endDate'>끝나는날짜</option>
-                    <option value='deadline'>마감인원</option>
-                    <option value='lowPrice'>낮은가격</option>
-                    <option value='highPrice'>높은가격</option>
+                    <option value='newProduct' selected>ì ìí</option>
+                    <option value='endDate'>ëëëë ì§</option>
+                    <option value='deadline'>ë§ê°ì¸ì</option>
+                    <option value='lowPrice'>ë®ìê°ê²©</option>
+                    <option value='highPrice'>ëìê°ê²©</option>
                   </select>
                 </div>
               </div>
