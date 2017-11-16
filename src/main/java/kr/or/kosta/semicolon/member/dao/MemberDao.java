@@ -2,9 +2,6 @@ package kr.or.kosta.semicolon.member.dao;
 
 import java.util.Date;
 import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-
 import kr.or.kosta.semicolon.member.domain.Member;
 
 /**

@@ -81,8 +81,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		Cookie cookies[] = request.getCookies();
 		
-		if (session.getAttribute("login") != null) {
-			session.removeAttribute("login");
+		if (session.getAttribute("no") != null) {
+			session.removeAttribute("no");
 		}
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {

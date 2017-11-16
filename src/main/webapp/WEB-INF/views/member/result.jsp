@@ -15,7 +15,7 @@
                         <div class="article-container style-1">
                             <h3>!WELCOME!</h3>
                             <br><br><br>
-                            <p>${login.id}님 환영합니다.<p>
+                            <p>${id}님 환영합니다.<p>
                             <p>저희 사이트에 가입해주셔서 진심으로 감사드립니다.</p>
                             <p>행복한 하루되세요 :)</p>
                         </div>

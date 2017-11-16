@@ -33,7 +33,7 @@ import kr.or.kosta.semicolon.member.service.MemberService;
  *
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-    private static final String LOGIN = "login";
+    private static final String LOGIN = "no";
     
     Logger logger = Logger.getLogger(LoginInterceptor.class);
     
@@ -71,17 +71,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     	 
         HttpSession session = request.getSession();
         Member member = (Member) modelAndView.getModel().get("mem");
+
        logger.debug("postHandle");
-        logger.debug("member:"+member);
-        
+       logger.debug("member:"+member);
+
         
         if(member != null) {
             logger.debug("login성공");
-            session.setAttribute(LOGIN, member);
+            session.setAttribute(LOGIN, member.getMemberNo());
             
             //자동 로그인 체크시
             if(modelAndView.getModel().get("autologin") != null) {
-//            	logger.debug("자동로그인처리");
+            	logger.debug("자동로그인처리");
                 String sessionId = session.getId();
                 int days = 60 * 60 * 24 * 14; //14일간 저장
                 Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * days));
@@ -107,7 +108,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if(referer != null) {
 				response.sendRedirect(referer);
 			} else { //인덱스 페이지로
-				if(modelAndView.getModel().get("result").equals("result")) {
+				if((String)modelAndView.getModel().get("result") != null) {
 					response.sendRedirect("/member/result");
 				}
 				else {

@@ -3,11 +3,6 @@ package kr.or.kosta.semicolon.member.domain;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 /**
  * @packgename			kr.or.kosta.semicolon.member.domain
  * @filename			Member.java
@@ -24,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * 2017. 11. 15		박주연		isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled, publicEncoded, privateEncoded 추가
  *
  */
-public class Member implements UserDetails{
+public class Member{
 
 	
 	int memberNo; /** 회원번호 */
@@ -42,10 +37,6 @@ public class Member implements UserDetails{
 	String sessionId; /** 세션 아이디 */
 	Date sessionLimit; /** 세션 만료되는 날짜 */
 	String autoLogin ; /** 자동로그인이 선택되었는지 확인하는 변수 */
-	boolean isAccountNonExpired; /** 계정 만료 되었는지 확인하는 변수 */
-	boolean isAccountNonLocked; /** 계정 잠겼는지 확인하는 변수 */
-	boolean isCredentialsNonExpired; /** 패스워드 만료되었는지 확인하는 변수 */
-	boolean isEnabled; /** 계정활성화 되었는지 확인하는 변수 */
 	String publicEncoded; /** publicKey 인코딩 변수 */
 	String privateEncoded; /** privateKey 인코딩 변수  */
 	
@@ -202,37 +193,6 @@ public class Member implements UserDetails{
 		this.autoLogin = autoLogin;
 	}
 
-	@Override
-	public String getUsername() {
-		return id;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return isAccountNonExpired;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return isAccountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return isCredentialsNonExpired;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public String getPublicEncoded() {
 		return publicEncoded;
 	}
@@ -255,9 +215,9 @@ public class Member implements UserDetails{
 				+ ", address=" + address + ", name=" + name + ", postcode=" + postcode + ", phone=" + phone
 				+ ", regdate=" + regdate + ", age=" + age + ", gender=" + gender + ", appToken=" + appToken
 				+ ", sessionId=" + sessionId + ", sessionLimit=" + sessionLimit + ", autoLogin=" + autoLogin
-				+ ", isAccountNonExpired=" + isAccountNonExpired + ", isAccountNonLocked=" + isAccountNonLocked
-				+ ", isCredentialsNonExpired=" + isCredentialsNonExpired + ", isEnabled=" + isEnabled
-				+ ", publicEncoded=" + publicEncoded + ", privateEncoded="
-				+ privateEncoded + "]";
+				+ ", publicEncoded=" + publicEncoded + ", privateEncoded=" + privateEncoded + "]";
 	}
+
+
+	
 }
