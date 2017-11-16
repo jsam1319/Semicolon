@@ -52,6 +52,13 @@
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</select>
 	
+	<select id="selectGoodsNo" parameterType="int" resultType="int">
+		SELECT goods_no 
+		FROM   gpurchase 
+		WHERE  gpurchase_no = #{gpurchaseNo}
+	</select>
+	
+	<!-- 
  	<update id="update" parameterType="Gpurchase">
 		UPDATE gpurchase 
 		<set>
@@ -64,6 +71,19 @@
 		</set>
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</update>
+ -->
+ 
+ 	<update id="updateCntP" parameterType="int">
+ 		UPDATE gpurchase 
+		SET    likecnt = likecnt + 1 
+		WHERE  gpurchase_no = #{gpurchaseNo}
+ 	</update>
+ 	
+ 	<update id="updateCntM" parameterType="int">
+ 		UPDATE gpurchase 
+		SET    likecnt = likecnt - 1 
+		WHERE  gpurchase_no = #{gpurchaseNo}
+ 	</update>
 
 	<delete id="delete" parameterType="int">
 		DELETE gpurchase 

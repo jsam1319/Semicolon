@@ -21,7 +21,6 @@ public class Gpurchase {
 	int goodsNo;
 	int min;
 	int price;
-	int likeCnt;
 	String startDate;
 	String endDate;
 	String status;
@@ -29,15 +28,14 @@ public class Gpurchase {
 	public Gpurchase() {}
 	
 	public Gpurchase(int goodsNo, int min, int price, String startDate, String endDate) {
-		this(0, goodsNo, min, price, 0, startDate, endDate, null);
+		this(0, goodsNo, min, price, startDate, endDate, null);
 	}
 
-	public Gpurchase(int gpurchaseNo, int goodsNo, int min, int price, int likeCnt, String startDate, String endDate, String status) {
+	public Gpurchase(int gpurchaseNo, int goodsNo, int min, int price, String startDate, String endDate, String status) {
 		this.gpurchaseNo = gpurchaseNo;
 		this.goodsNo = goodsNo;
 		this.min = min;
 		this.price = price;
-		this.likeCnt = likeCnt;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
@@ -75,14 +73,6 @@ public class Gpurchase {
 		this.price = price;
 	}
 
-	public int getLikeCnt() {
-		return likeCnt;
-	}
-
-	public void setLikeCnt(int likeCnt) {
-		this.likeCnt = likeCnt;
-	}
-
 	public String getStartDate() {
 		return startDate;
 	}
@@ -109,11 +99,9 @@ public class Gpurchase {
 
 	@Override
 	public String toString() {
-		return "Gpurchase [gpurchaseNo=" + gpurchaseNo + ", goodsNo=" + goodsNo + ", min=" + min + ", price=" + price
-				+ ", likeCnt=" + likeCnt + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status
-				+ "]";
+		return "gpurchase [gpurchaseNo=" + gpurchaseNo + ", goodsNo=" + goodsNo + ", min=" + min + ", price=" + price
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status + "]";
 	}
-
 	
 	
 	

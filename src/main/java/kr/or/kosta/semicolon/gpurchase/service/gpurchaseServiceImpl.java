@@ -58,6 +58,11 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return map;
 	}
 	
+	@Override
+	public int selectGoodsNo(int gpurchaseNo) throws Exception {
+		return gpdao.selectGoodsNo(gpurchaseNo);
+	}
+	
 	/*
 	@Override
 	public Map<String, Object> listall() throws Exception {
@@ -83,12 +88,12 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		return map;
 	}
-	
+	/*
 	@Override
 	public void update(Gpurchase gpurchase) throws Exception {
 		gpdao.update(gpurchase);
 	}
-	
+	*/
 	@Override
 	public void delete(int gpurchaseNo) throws Exception {
 		gpdao.delete(gpurchaseNo);
@@ -103,4 +108,15 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	public int listCount() throws Exception {
 		return gpdao.listCount();
 	}
+	
+	@Override
+	public void updateCntP(int gpurchaseNo) throws Exception {
+		gpdao.updateCntP(gpurchaseNo);
+	}
+	
+	@Override
+	public void updateCntM(int gpurchaseNo) throws Exception {
+		gpdao.updateCntM(gpurchaseNo);
+	}
+	
 }
