@@ -11,3 +11,4 @@ public interface MemberSizeService {
 	public void delete(int no);
 	public List<MemberSize> listAll();
 }
+//테스트요

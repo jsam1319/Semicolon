@@ -11,7 +11,7 @@ import kr.or.kosta.semicolon.membersize.domain.MemberSize;
 
 @Service
 public class MemberSizeServiceImpl implements MemberSizeService {
-
+//테스트요
 	@Inject
 	MemberSizeDao sizeDao;
 	

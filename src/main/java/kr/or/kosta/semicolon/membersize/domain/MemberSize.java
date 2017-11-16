@@ -15,6 +15,8 @@ package kr.or.kosta.semicolon.membersize.domain;
  *
  *
  */
+
+//테스트요
 public class MemberSize {
 	
 	private int memberNo; /** 회원번호 */

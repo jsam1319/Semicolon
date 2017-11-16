@@ -19,6 +19,8 @@ import kr.or.kosta.semicolon.membersize.domain.MemberSize;
  *
  *
  */
+
+//테스트요
 public interface MemberSizeDao {
 	public int insert(MemberSize size);
 	public MemberSize select(int no);
