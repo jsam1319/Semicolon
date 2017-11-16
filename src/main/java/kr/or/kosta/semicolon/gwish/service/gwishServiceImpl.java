@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.gwish.dao.gwishDao;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
-
+ 
 /**
  * @packgename   kr.or.kosta.semicolon.gwish.service
  * @filename         gwishServiceImpl.java

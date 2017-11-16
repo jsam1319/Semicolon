@@ -1,7 +1,7 @@
 package kr.or.kosta.semicolon.gwish.dao;
 
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
-
+ 
 public interface gwishDao {
 	
 	public void insert(Gwish gwish) throws Exception;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.common.PageBuilder;
 import kr.or.kosta.semicolon.common.Params;
@@ -76,7 +77,6 @@ public class GpurchaseController {
 	@RequestMapping(value="/research/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> researchList(Params params, Model model, @PathVariable("page") int page, @RequestParam(value="productOrder", defaultValue="newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController research 접근");
-		
 		
 		ResponseEntity<Map<String, Object>> entity = null;
 		try {
@@ -181,8 +181,6 @@ public class GpurchaseController {
 		
 		return entity;
 	}
-	
-	
 	
 	
 	

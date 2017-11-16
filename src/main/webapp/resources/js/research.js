@@ -6,9 +6,9 @@ $(document).ready(function(){
 		printList(data)
 	   }) 
 	
-   $("#productOrder").bind('change',(function(){
+   $("#productOrder").on('change',(function(){
 	  productOrder = this.value
-	  page=1
+	  
 	  $.ajax({
 		  url: "/product/research/"+page,
 		  dataType: "json",
@@ -100,8 +100,8 @@ $(document).ready(function(){
 	  	
 	  	return str;
 	  	
-	  	
 	  }	  
+	  
 	  
 	  
 	  /** 공구 조사 상세보기 modal 띄우기 */
@@ -140,6 +140,7 @@ $(document).ready(function(){
 			  str += "	</div>";
 			  str += "</div>"
 			  str += "<div class='modal-footer'>";
+			  str += "	<input type='hidden' id='puNo' value='"+gpurchase.gpurchaseNo+"'>"
 			  str += "	<div class='form-group wishButton'>";
 			  str += "	</div>";
 			  str += "</div>";
@@ -149,20 +150,55 @@ $(document).ready(function(){
 			  wishBtn(gwishCheck)
 			  
 			  
-			  /** 공구조사 참여/취소 버튼 클릭 이벤트 */
+			 /* 
+			  console.log(gpurchase.gpurchaseNo)
+			  *//** 공구조사 참여/취소 버튼 클릭 이벤트 *//*
 			  $(document).on("click", ".wishBtn", function(e) {
 					 $(document).each(function(){
 						 e.stopImmediatePropagation()
+						 
 						 var btnId = $(".wishBtn").attr("name")
 						 
 						 if(btnId == 'joinWish') gwishCheck = 0
 						 else gwishCheck = 1
 						 
-						 wishCheck(gpurchaseNo, gwishCheck)
+						 console.log(gpurchase.gpurchaseNo)
+						 wishCheck(gpurchase.gpurchaseNo, gwishCheck)
 				 })
 			 })
+			 */
 			 
-			 
+			  $(document).each(function(){
+				  $(".wishJoinBtn").click(function(){
+					  console.log($('#puNo').val())
+					  wishCheck(gpurchaseNo, 0)
+				  })
+			  })
+			  
+			  $(document).each(function(){
+				  $(".wishCancleBtn").click(function(){
+					  console.log($('#puNo').val())
+					  wishCheck(gpurchaseNo, 1)
+				  })
+			  })
+			  /*
+				  $(document).on("click", ".wishJoinBtn", function(e){
+					  $(".wishJoinBtn").each(function(){
+					  e.stopImmediatePropagation()
+//					  wishCheck(gpurchaseNo, 0)
+					  console.log($('#puNo').val())
+				  })
+			  })
+			  
+			  
+				  $(document).click(function(){
+					  $(".wishCancleBtn").each(function(e){
+					  e.stopImmediatePropagation()
+//					  wishCheck(gpurchaseNo, 1)
+					  console.log($('#puNo').val())
+				  })
+			  })*/
+			  
 		  })
 	  })
 	  }
@@ -173,9 +209,9 @@ $(document).ready(function(){
 		  var str = "";
 		  
 		  if (gwishCheck == 0) {
-			  str += "	<center><a class='button style-10 wishBtn' name='joinWish'>공동 구매 참여</a></center>";
+			  str += "	<center><a class='button style-11 wishJoinBtn'>공동 구매 참여</a></center>";
 		  }else {
-			str += "	<center><a class='button style-10 wishBtn' >구매 참여 취소</a></center>";
+			str += "	<center><a class='button style-10 wishCancleBtn' >구매 참여 취소</a></center>";
 		  }
 		  
 		  $(".wishButton").html(str)
