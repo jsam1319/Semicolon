@@ -1,3 +1,5 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.userdetails.User"%>
 <%@page import="kr.or.kosta.semicolon.member.domain.Member"%>
 <%@ page language="java" contentType="charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -5,9 +7,6 @@
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%
-	Member member = (Member)request.getSession().getAttribute("login");
-%> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,9 +35,25 @@
 <title><decorator:title default=";(Semicolon)" /></title>
 <decorator:head />
 
+<script>
+console.log('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
+</script>
 
 </head>
 <body>
+
+<script>
+	function formSubmit(){
+	    $("#logoutForm").submit();
+	}
+</script>
+
+	<%--<c:url value="/logout" var="logoutUrl"/>
+	
+	<!--  csrt for log out -->
+	 <form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form> --%>
 
 	<%-- Login Modal Start --%>
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
@@ -52,25 +67,48 @@
 					<h4 class="modal-title" id="Login">LOGIN</h4>
 				</div>
 				<div class="modal-body">
-						<form action="/member/login" method="post" class="form">
-							<label>Email Address</label> <input class="simple-field"
-								type="text" name="id" placeholder="Enter Email Address" value="" />
-							<label>Password</label> <input class="simple-field"
-								type="password" name="password" placeholder="Enter Password"
-								value="" />
-							 <div class="row">
+						 <%-- <section class="loginform cf">
+                      	   <form action="<c:url value="/j_spring_security_check"></c:url>" method="post" class="form" >
+                            <label for="id">ID</label>
+                            <input class="simple-field" id="id" type="text" name="id" placeholder="Enter ID" /> 
+                            <label for="password">Password</label>
+                            <input class="simple-field" id="password" type="password" name="password" placeholder="Enter Password" />
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <div class="row">
 	                            <label class="col-sm-6 checkbox-entry">
-                                      <input type="checkbox" value="true" name="autoLogin" id="autoLoginCk"/> <span class="check"></span> 자동로그인
+                                      <input type="checkbox" value="true" name="autoLogin"/> <span class="check"></span> 자동로그인
                                  </label>
-	                            <div class="col-sm-6 checkbox-entry">
+	                            <div class="col-sm-6">
 	                            <p class="text-right"><button type="submit" class="button style-10" style=""> LOGIN </button></p>
 	                          	</div>
-                          	</div><!-- ./row -->
-						</form>
+                          	</div>./row
+                        </form>
+                        <c:if test="${not empty error}">
+                        	<div class="error"> ${error} </div>
+                        </c:if>
+                        </section> --%>
+                        
+                      	   <form action="/member/login" method="post" class="form" >
+                            <label for="id">ID</label>
+                            <input class="simple-field" id="id" type="text" name="id" placeholder="Enter ID" /> 
+                            <label for="password">Password</label>
+                            <input class="simple-field" id="password" type="password" name="password" placeholder="Enter Password" />
+                            <div class="row">
+	                            <label class="col-sm-6 checkbox-entry">
+                                      <input type="checkbox" value="true" name="autoLogin"/> <span class="check"></span> 자동로그인
+                                 </label>
+	                            <div class="col-sm-6">
+	                            <p class="text-right"><button type="submit" class="button style-10" style=""> LOGIN </button></p>
+	                          	</div>
+                          	</div><%-- ./row --%>
+                        </form>
+                        <c:if test="${not empty error}">
+                        	<div class="error"> ${error} </div>
+                        </c:if>
 
 					<hr>
 					<p class="tile text-center text-muted">
-						<a href="#"  style="text-decoration:none"><i class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
+						<a href="/member/regist"  style="text-decoration:none"><i class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
 					</p>
 
 				</div>
@@ -88,7 +126,7 @@
 
 					<div class="header-product">
 						<div class="logo-wrapper">
-							<a href="#" id="logo"><img alt=""
+							<a href="/" id="logo"><img alt=""
 								src="/resources/img/logo-9.png"></a>
 						</div>
 						<div class="product-header-content">
@@ -103,7 +141,8 @@
 									</div>
 								</div>
 								
-								<c:choose>
+								
+								 <c:choose>
 								<c:when test="${empty cookie.autoLoginCookie && empty login}">
 										<div class="header-top-entry increase-icon-responsive">
 											<div class="title">
@@ -113,7 +152,7 @@
 										</div>
 										<div class="header-top-entry">
 											<div class="title">
-												<a href="#"><i class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
+												<a href="/member/regist"><i class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
 											</div>
 										</div>
 								</c:when>
@@ -124,7 +163,35 @@
 											</div>
 										</div>
 									</c:otherwise>
-								</c:choose>
+								</c:choose> 
+								
+								<%-- <c:choose>
+								<c:when test="${empty sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}">
+										<div class="header-top-entry increase-icon-responsive">
+											<div class="title">
+												<a href="#" data-toggle="modal" data-target="#login-modal"><i
+													class="fa fa-sign-in"></i> <span>SIGN IN</span></a>
+											</div>
+										</div>
+										<div class="header-top-entry">
+											<div class="title">
+												<a href="/member/regist"><i class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
+											</div>
+										</div>
+								</c:when>
+								<c:otherwise>
+										<div class="header-top-entry">
+											<div class="title">
+												<a href="#"><i class="fa fa-user-circle"></i> <span>MY PAGE</span></a>
+											</div>
+										</div>
+										<div class="header-top-entry increase-icon-responsive">
+											<div class="title">
+												<a href="javascript:formSubmit()"><i class="fa fa-sign-out"></i> <span>SIGN OUT</span></a>
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose> --%>
 								
 								
 							</div>
@@ -501,10 +568,10 @@
 										class="fa fa-chevron-down"></i>
 										<div class="submenu">
 											<ul class="simple-menu-list-column">
-												<li><a href="shop.html"><i
-														class="fa fa-angle-right"></i>Shop</a></li>
-												<li><a href="product.html"><i
-														class="fa fa-angle-right"></i>Product</a></li>
+												<li><a href="/product/research"><i
+														class="fa fa-angle-right"></i>공동구매 조사</a></li>
+												<li><a href="/product/list"><i
+														class="fa fa-angle-right"></i>공동구매</a></li>
 												<li><a href="product-nosidebar.html"><i
 														class="fa fa-angle-right"></i>No Sidebar</a></li>
 												<li><a href="product-tabnosidebar.html"><i

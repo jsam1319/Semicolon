@@ -1,0 +1,29 @@
+.moreView {
+  font-size: 80px;
+  color: black;
+}
+.modal-image {
+  width: 200px;
+  height: 250px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+.product-detail-box {
+  width: 280px;
+  margin: 0px;
+}
+.modal-price {
+  margin: 10px;
+  padding-left: 60px;
+}
+.size-text {
+  margin: 10px;
+  padding-left: 60px;
+}
+.wishBtn {
+  padding-right: 100px;
+}
+.product-image {
+	width: 100%;
+	height: 80%;
+}
