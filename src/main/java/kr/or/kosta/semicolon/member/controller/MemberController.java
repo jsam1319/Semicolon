@@ -14,11 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.kosta.semicolon.member.domain.Member;
 import kr.or.kosta.semicolon.member.service.MemberService;
+import kr.or.kosta.semicolon.membersize.domain.MemberSize;
+import kr.or.kosta.semicolon.membersize.service.MemberSizeService;
 
 
 /**
@@ -27,6 +27,7 @@ import kr.or.kosta.semicolon.member.service.MemberService;
  *   DATE          AUTHOR         NOTE
  * --------        -----------    ---------------------------------------
  * 2017. 11. 15.      박주연    최초 생성
+ * 2017. 11. 16.	  박주연	회원가입 완료 후 로그인처리 기능 추가
  *
  *
  */
@@ -39,6 +40,9 @@ public class MemberController {
 
 	@Inject
 	MemberService memberService;
+	
+	@Inject
+	MemberSizeService sizeService;
 
 	/**
 	 * <pre>
@@ -111,23 +115,24 @@ public class MemberController {
 	/**
 	 * <pre>
 	 * 1. 개      요 	: 회원가입 처리 메소드
-	 * 2. 처리내용      : 회원들의 정보를 받아 회원가입을 처리한다
+	 * 2. 처리내용      : 회원들의 정보를 받아 회원가입을 처리한 후 인터셉터를 이용해 로그인 처리한다
 	 * </pre>
 	 * 
 	 * @Method Name : memberGet
 	 */
 	@RequestMapping(value="/regist", method = RequestMethod.POST)
-	public String regist(Member member, Model model) {
+	public void regist(Member member, Model model) {
 		logger.debug("regist member:"+member);
 		if(memberService.insert(member) == 1) {
-			model.addAttribute("id",member.getId());
-			return "/member/result";
+			model.addAttribute("mem",member);
+			model.addAttribute("autologin",null);
+			model.addAttribute("result","result");
 		}
-		return "/member/regist";
 	}
 	
 	@RequestMapping(value="/result", method=RequestMethod.GET)
 	public String loginResult() {
+		
 		return "/member/result";
 	}
 	
@@ -156,4 +161,20 @@ public class MemberController {
 		
 		return response;
 	}
+	
+	@RequestMapping(value="/size", method=RequestMethod.GET)
+	public String inputMemberSize() {
+		return "/member/membersize";
+	}
+	
+	@RequestMapping(value="/size", method=RequestMethod.POST)
+	public String MemberSizeProcess(MemberSize size) {
+		logger.info("memberSize:"+size);
+		if(sizeService.insert(size) == 1) {
+			return "redirect:/";
+		}
+		
+		return "/member/size";
+	}
+	
 }

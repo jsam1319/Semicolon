@@ -26,27 +26,28 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public class Member implements UserDetails{
 
-	int memberNo;
-	String id;
-	String password;
-	String email;
-	String address;
-	String name;	
-	String postcode;
-	String phone;
-	String regdate;
-	int age;
-	String gender;
-	String appToken;
-	String sessionId;
-	Date sessionLimit;
-	String autoLogin ;
-	boolean isAccountNonExpired; //계정만료되었는지
-	boolean isAccountNonLocked; //계정 잠겼는지
-	boolean isCredentialsNonExpired;//패스워드 만료되었는지
-	boolean isEnabled;//계정 활성화 되었는지
-	String publicEncoded;
-	String privateEncoded;
+	
+	int memberNo; /** 회원번호 */
+	String id; /** 아이디 */
+	String password; /** 비밀번호 */
+	String email; /** 이메일 */
+	String address; /** 주소 */
+	String name; /** 이름 */	
+	String postcode; /** 우편번호 */
+	String phone; /** 휴대폰 번호 */
+	String regdate; /** 가입날짜 */
+	int age; /** 나이 */
+	String gender; /** 성별 */
+	String appToken; /** 앱 토큰 */
+	String sessionId; /** 세션 아이디 */
+	Date sessionLimit; /** 세션 만료되는 날짜 */
+	String autoLogin ; /** 자동로그인이 선택되었는지 확인하는 변수 */
+	boolean isAccountNonExpired; /** 계정 만료 되었는지 확인하는 변수 */
+	boolean isAccountNonLocked; /** 계정 잠겼는지 확인하는 변수 */
+	boolean isCredentialsNonExpired; /** 패스워드 만료되었는지 확인하는 변수 */
+	boolean isEnabled; /** 계정활성화 되었는지 확인하는 변수 */
+	String publicEncoded; /** publicKey 인코딩 변수 */
+	String privateEncoded; /** privateKey 인코딩 변수  */
 	
 	static Date date = new Date(System.currentTimeMillis());
 	

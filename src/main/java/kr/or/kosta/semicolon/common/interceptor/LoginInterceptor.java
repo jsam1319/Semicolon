@@ -71,10 +71,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     	 
         HttpSession session = request.getSession();
         Member member = (Member) modelAndView.getModel().get("mem");
-//       logger.debug("member:"+member);
+       logger.debug("postHandle");
+        logger.debug("member:"+member);
+        
         
         if(member != null) {
-//            logger.debug("login성공");
+            logger.debug("login성공");
             session.setAttribute(LOGIN, member);
             
             //자동 로그인 체크시
@@ -105,7 +107,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if(referer != null) {
 				response.sendRedirect(referer);
 			} else { //인덱스 페이지로
-				response.sendRedirect("/");
+				if(modelAndView.getModel().get("result").equals("result")) {
+					response.sendRedirect("/member/result");
+				}
+				else {
+					response.sendRedirect("/");
+				}
 			}
         }
         

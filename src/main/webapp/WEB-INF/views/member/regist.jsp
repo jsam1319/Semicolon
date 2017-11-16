@@ -8,7 +8,7 @@
     margin-right:15%;
 	}
 	
-	#id-span #pw-span{
+	.red-span{
 		color: #FF0000;
 	}
 </style>
@@ -47,8 +47,9 @@
                   // 우편번호와 주소 정보를 해당 필드에 넣는다.
                   document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
                   document.getElementById('address').value = fullRoadAddr;
+                 /*  document.getElementById('addressDetail').removeAttribute('disabled');
   					
-                  document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)';
+                  document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)'; */
                   
               }
           }).open();
@@ -112,7 +113,7 @@
 		                            			<input class="button style-10" type="button" id="ckId" value="중복체크"/>
 		                            	</div>
 	                            	</div>
-	                            	<span id="id-span"></span>
+	                            	<span id="id-span" class="red-span"></span>
                             	
                             		<br>
                             		<label>PASSWORD</label>
@@ -124,7 +125,7 @@
 	                            			<input class="simple-field" type="password" name="password" id="password2" placeholder="PASSWORD" required/>
 	                            		</div>
                             		</div>
-                            		<span class="pw-span"></span>
+                            		<span class="pw-span" class="red-span"></span>
                             		<br>
                             		
                             		<label>NAME</label>
@@ -136,8 +137,7 @@
                             		<label>ADDTRESS</label>
 									<div class="row">
 										<div class="col-sm-4 form-group">
-											<input type="text" class="simple-field" id="postcode"
-												name="postcode" required>
+											<input type="text" class="simple-field" id="postcode" name="postcode" required>
 										</div>
 										<div class="col-sm-2 form-group">
 											<input type="button" onclick="daumPostcode()" value="우편번호 찾기" 
@@ -148,15 +148,13 @@
 									<%-- /.row --%>
 									<div class="row">
 										<div class="col-sm-6 form-group">
-											<input type="text" class="simple-field" id="address"
-												name="address" required>
+											<input type="text" class="simple-field" id="address" name="address" required>
 										</div>
-										<div class="col-sm-6 form-group">
-											<input type="text" class="simple-field" id="addressDetail"
-												name="addressDetail" required> <span id="guide"
-												style="color: #999"></span>
+<!-- 										<div class="col-sm-6 form-group">
+											<input type="text" class="simple-field" id="addressDetail"name="addressDetail" required disabled> 
+											<span id="guide" style="color: #999"></span>
 										</div>
-									</div>
+ -->									</div>
 									<%-- /.row --%>
                             		
                             		

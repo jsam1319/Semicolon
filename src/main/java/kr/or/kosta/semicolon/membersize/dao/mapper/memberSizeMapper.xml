@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="kr.or.kosta.semicolon.membersize.dao.MemberSizeDao">
+ 
+	<insert id="insert" parameterType="MemberSize">
+		INSERT INTO member_size 
+		            (member_no, 
+		             waist, 
+		             thigh, 
+		             rise, 
+		             hip, 
+		             pants, 
+		             total_length) 
+		VALUES     (#{memberNo}, 
+		             #{waist}, 
+		             #{thigh}, 
+		             #{rise}, 
+		             #{hip}, 
+		             #{pants}, 
+		             #{totalLength}) 
+	</insert>
+	
+	<update id="update" parameterType="MemberSize">
+		UPDATE member_size 
+		<set> 
+			<if test="waist!=null">waist = #{waist},</if> 
+			<if test="thigh!=null">thigh = #{thigh},</if> 
+			<if test="rise!=null">rise = #{rise},</if> 
+			<if test="hip!=null">hip = #{hip}, </if> 
+			<if test="pants!=null">pants = #{pants}, </if> 
+			<if test="totalLength!=null">total_length = #{totalLength},</if> 
+		</set> 
+		WHERE  member_no = #{memberNo}
+	</update>
+	
+	<select id="select" parameterType="int" resultType="MemberSize">
+		SELECT member_no, 
+		       waist, 
+		       thigh, 
+		       rise, 
+		       hip, 
+		       pants, 
+		       total_length 
+		FROM   member_size 
+		WHERE  member_no = #{memberNo} 
+	</select>
+	
+	<select id="listAll" resultType="MemberSize">
+		SELECT member_no, 
+		       waist, 
+		       thigh, 
+		       rise, 
+		       hip, 
+		       pants, 
+		       total_length 
+		FROM   member_size 
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM member_size
+		WHERE member_no = #{memberNo} 
+	</delete>
+	
+ </mapper>
