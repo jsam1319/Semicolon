@@ -22,6 +22,21 @@ import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.qna.service.QnaService;
 
+/**
+ * @packgename   kr.or.kosta.semicolon.qna.controller
+ * @filename         QnaController.java
+ * @author          전세종
+ * @since            2017. 11. 15.
+ * @see
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 14.      세종         최초 생성
+ *
+ *
+ */
 @Controller
 @RequestMapping("/qna")
 public class QnaController {
