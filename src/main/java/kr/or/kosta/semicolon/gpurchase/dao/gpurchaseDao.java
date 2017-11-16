@@ -29,7 +29,11 @@ public interface gpurchaseDao {
 	
 	public Gpurchase select(int gpurchaseNo) throws Exception;
 	
-	public void update(Gpurchase gpurchase) throws Exception;
+//	public void update(Gpurchase gpurchase) throws Exception;
+	
+	public void updateCntP(int gpurchaseNo) throws Exception;
+	
+	public void updateCntM(int gpurchaseNo) throws Exception;
 	
 	public void delete(int gpurchaseNo) throws Exception;
 	

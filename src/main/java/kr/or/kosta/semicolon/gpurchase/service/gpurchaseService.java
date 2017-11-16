@@ -14,7 +14,7 @@ public interface gpurchaseService {
 	
 	public Map<String, Object> select(int gpurchaseNo) throws Exception;
 	
-	public void update(Gpurchase gpurchase) throws Exception;
+//	public void update(Gpurchase gpurchase) throws Exception;
 	
 	public void delete(int gpurchaseNo) throws Exception;
 	
@@ -23,6 +23,10 @@ public interface gpurchaseService {
 	public Map<String, Object> listAll(Params params) throws Exception;
 	
 	public int listCount() throws Exception;
+	
+	public void updateCntP(int gpurchaseNo) throws Exception;
+
+	public void updateCntM(int gpurchaseNo) throws Exception;
 	
 
 }
