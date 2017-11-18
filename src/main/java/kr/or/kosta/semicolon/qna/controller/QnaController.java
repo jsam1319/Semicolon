@@ -27,7 +27,7 @@ import kr.or.kosta.semicolon.qna.service.QnaService;
  * @filename         QnaController.java
  * @author          전세종
  * @since            2017. 11. 15.
- * @see
+ * @see			 
  *
  * == Modification Infomation (수정 이력) ==
  * 
@@ -46,40 +46,36 @@ public class QnaController {
 	@Inject
 	QnaService qnaService;
 	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna view 메소드
+	 * 2. 처리내용 :   리스트를 띄운다.
+	 * </pre>
+	 * @Method Name : qnaListAll
+	 */
 	@RequestMapping(value = "/list")
 	public String qnaListAll() { 
 		
 		return "qna/list";
 	}
 	
-	@RequestMapping(value = "/list/all", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> list(){
-		
-		ResponseEntity<Map<String, Object>> entity = null;
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<Qna> list = qnaService.allList();
-		
-		map.put("list", list);
-		
-		entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-		
-		return entity;
-	}
-	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna List 더보기 메소드
+	 * 2. 처리내용 :   더보기를 누르면 다음리스트가 출력된다.
+	 * </pre>
+	 * @Method Name  : qnaList
+	 * @param page	 : 페이지를 불러옴
+	 * @param params : 페이지 계산 
+	 */
 	@RequestMapping(value = "/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> qnaList(@PathVariable("page") int page, Params params, Model model) throws Exception{
+	public ResponseEntity<Map<String, Object>> qnaList(@PathVariable("page") int page, Params params) throws Exception{
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		try {
 			params.setPage(page);
 			
-			int count = qnaService.listCount();
-			PageBuilder pb = new PageBuilder(params, count);
-			pb.build();
-			
 			Map<String, Object> map = qnaService.listAll(params);
-			map.put("pageBuilder", pb);
 			
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 			
@@ -91,6 +87,13 @@ public class QnaController {
 		return entity;
 	}
 	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna 등록을 위한 view 메소드
+	 * 2. 처리내용 	 : 등록 화면을 띄운다.
+	 * </pre>
+	 * @Method Name : qnaRegist
+	 */
 	@RequestMapping(value="/regist", method = RequestMethod.GET)
 	public String qnaRegist() {
 		return "/qna/regist";
@@ -106,6 +109,13 @@ public class QnaController {
 		return "redirect:/qna/list";
 	}
 	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna 답변 view 메소드
+	 * 2. 처리내용   : 답변 화면을 띄운다.	
+	 * </pre>
+	 * @Method Name : qnaReply
+	 */
 	@RequestMapping(value="/rewrite", method = RequestMethod.GET)
 	public void qnaReply() {}
 	
@@ -119,12 +129,31 @@ public class QnaController {
 		return "redirect:/qna/list";
 	}
 	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna 글 상세정보를 위한 view 메소드
+	 * 2. 처리내용   : Qna번호로 글을 찾는다
+	 * </pre>
+	 * @Method Name : qnaRead
+	 * @param qnaNo : 글번호
+	 * @param model
+	 */
 	@RequestMapping(value="/read", method = RequestMethod.GET)
 	public void qnaRead(@RequestParam("qnaNo") int qnaNo, Model model) throws Exception {
 		
 		model.addAttribute(qnaService.select(qnaNo));
 	}
 	
+	/**
+	 * <pre>
+	 * 1. 개      요 : Qna 수정을 위한 메소드
+	 * 2. 처리내용   : Qna의 글 번호로 찾은 후 수정 
+	 * </pre>
+	 * @Method Name : qnaModify
+	 * @param qnaNo : 글번호
+	 * @param model
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
 	public void qnaModify(@RequestParam("qnaNo") int qnaNo, Model model) throws Exception {
 		
@@ -140,6 +169,5 @@ public class QnaController {
 		
 		return "redirect:/qna/list";
 	}
-	
 	
 }

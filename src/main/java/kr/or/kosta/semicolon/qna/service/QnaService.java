@@ -21,5 +21,4 @@ public interface QnaService {
 	
 	public Map<String, Object> listAll(Params params) throws Exception;
 	
-	public int listCount() throws Exception; 
 }

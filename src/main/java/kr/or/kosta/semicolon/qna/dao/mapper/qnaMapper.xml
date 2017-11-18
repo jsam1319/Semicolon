@@ -105,9 +105,4 @@
 		           
 	</select>
 	
-	<select id="listCount" resultType="int">
-		SELECT Count(qna_no) count 
-		FROM   qna
-	</select>
-                        
 </mapper>                        

@@ -75,10 +75,4 @@ public class QnaServiceImpl implements QnaService{
 				
 		return map;
 	}
-	
-	@Override
-	public int listCount() throws Exception {
-		
-		return qnaDao.listCount();
-	}
 }

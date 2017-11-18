@@ -35,6 +35,4 @@ public interface QnaDao {
 	
 	public List<Qna> listAll(Params params) throws Exception;
 	
-	public int listCount() throws Exception;
-	
 }
