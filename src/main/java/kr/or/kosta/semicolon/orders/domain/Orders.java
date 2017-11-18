@@ -1,8 +1,24 @@
 package kr.or.kosta.semicolon.orders.domain;
 
+/**
+ * @packgename  	 kr.or.kosta.semicolon.orders.domain
+ * @filename         Orders.java
+ * @author           박주연
+ * @since            2017. 11. 18.
+ * @see
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 14.        박연주        최초 생성
+ * 2017. 11. 18.		박주연		  orderNo 변수 이름변경
+ *
+ */
 public class Orders {
 	
-	int orderNo;
+	//변수 12개
+	int ordersNo;
 	int memberNo;
 	int gpurchaseNo;
 	String oDate;
@@ -15,14 +31,16 @@ public class Orders {
 	String postcode;
 	String status;
 	
+	/** 생성자 */
+	
 	public Orders() {}
 	
-	public Orders(int memberNo, int gpurchaseNo, int price, String address, String receiver, String phone, int qty, String message, String postcode) {
-		this(0, memberNo, gpurchaseNo, null, price, address, receiver, phone, qty, message, postcode, null);
+	public Orders(int memberNo, int gpurchaseNo, int price, String address, String receiver, String phone, int qty, String message, String postcode, String status) {
+		this(0, memberNo, gpurchaseNo, null, price, address, receiver, phone, qty, message, postcode, status);
 	}
 	
-	public Orders(int orderNo, int memberNo, int gpurchaseNo, String oDate, int price, String address, String receiver, String phone, int qty, String message, String postcode, String status) {
-		this.orderNo = orderNo;
+	public Orders(int ordersNo, int memberNo, int gpurchaseNo, String oDate, int price, String address, String receiver, String phone, int qty, String message, String postcode, String status) {
+		this.ordersNo = ordersNo;
 		this.memberNo = memberNo;
 		this.gpurchaseNo = gpurchaseNo;
 		this.oDate = oDate;
@@ -36,12 +54,12 @@ public class Orders {
 		this.status = status;
 	}
 
-	public int getOrderNo() {
-		return orderNo;
+	public int getOrdersNo() {
+		return ordersNo;
 	}
 
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public void setOrdersNo(int orderNo) {
+		this.ordersNo = orderNo;
 	}
 
 	public int getMemberNo() {
@@ -60,11 +78,11 @@ public class Orders {
 		this.gpurchaseNo = gpurchaseNo;
 	}
 
-	public String getoDate() {
+	public String getODate() {
 		return oDate;
 	}
 
-	public void setoDate(String oDate) {
+	public void setODate(String oDate) {
 		this.oDate = oDate;
 	}
 
@@ -134,7 +152,7 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [orderNo=" + orderNo + ", memberNo=" + memberNo + ", gpurchaseNo=" + gpurchaseNo + ", oDate="
+		return "Orders [ordersNo=" + ordersNo + ", memberNo=" + memberNo + ", gpurchaseNo=" + gpurchaseNo + ", oDate="
 				+ oDate + ", price=" + price + ", address=" + address + ", receiver=" + receiver + ", phone=" + phone
 				+ ", qty=" + qty + ", message=" + message + ", postcode=" + postcode + ", status=" + status + "]";
 	}

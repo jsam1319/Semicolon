@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "kr.or.kosta.semicolon.orders.dao.OrdersDao">
+	<insert id="insert" parameterType="Orders">
+		INSERT INTO ORDERS
+					(orders_no,
+					member_no,
+					gpurchase_no,
+					odate,
+					price,
+					address,
+					receiver,
+					phone,
+					qty,
+					message,
+					postcode,
+					status)
+		VALUES		(#{ordersNo},
+					 #{memberNo},
+					 #{gpurchaseNo},
+					 sysdate,
+					 #{price},
+					 #{address},
+					 #{receiver},
+					 #{phone},
+					 #{qty},
+					 #{message},
+					 #{postcode},
+					 #{status}
+					 )
+	</insert>
+	
+	<select id="select" parameterType="int" resultType="Orders">
+		SELECT 		orders_no, 
+					member_no,
+					gpurchase_no,
+					odate,
+					price,
+					address,
+					receiver,
+					phone,
+					qty,
+					message,
+					postcode,
+					status
+		FROM  orders
+		WHERE orders_no = #{ordersNo}	
+	</select>
+	
+	<select id="listAll" resultType="Orders">
+		SELECT 		orders_no, 
+					member_no,
+					gpurchase_no,
+					odate,
+					price,
+					address,
+					receiver,
+					phone,
+					qty,
+					message,
+					postcode,
+					status
+		FROM  orders
+	</select>
+	
+	<update id="update" parameterType="Orders">
+		UPDATE orders
+		<set>
+			<if test="ordersNo!=null"> orders_no = #{ordersNo},</if>
+			<if test="memberNo!=null"> member_no = #{memberNo},</if>
+			<if test="gpurchaseNo!=null"> gpurchase_no = #{gpurchaseNo},</if>
+			<if test="price!=null"> price = #{price},</if>
+			<if test="address!=null"> address = #{address},</if>
+			<if test="receiver!=null"> receiver = #{receiver},</if>
+			<if test="phone!=null"> phone = #{phone},</if>
+			<if test="qty!=null"> qty = #{qty},</if>
+			<if test="message!=null"> message = #{message},</if>
+			<if test="postcode!=null"> postcode = #{postcode},</if>
+			<if test="status!=null"> status = #{status},</if>
+		</set>
+		WHERE orders_no = #{ordersNo}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM orders
+		WHERE orders_no = #{ordersNo}
+	</delete>
+	
+</mapper>

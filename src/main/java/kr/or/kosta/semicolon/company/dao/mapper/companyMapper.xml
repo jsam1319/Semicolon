@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.or.kosta.semicolon.company.dao.CompanyDao">
+	  <insert id="insert" parameterType="Company">
+	  	<selectKey keyProperty="companyNo" order="BEFORE" resultType="int">
+	  		SELECT seq_company.nextval as companyNo FROM DUAL
+	  	</selectKey>
+	  	
+	  	INSERT INTO COMPANY(
+	  				company_no, 
+	  				name, 
+	  				tel)
+	  	VALUES (
+	  			#{companyNo},
+	  			#{name},
+	  			#{tel})
+	  </insert>
+	  
+	  <select id="select" parameterType="int" resultType="Company">
+	  	SELECT company_no, name, tel
+	  	FROM COMPANY
+	  	WHERE company_no = #{value}
+	  </select>
+	  
+	  <select id="listAll" resultType="Company">
+	  	SELECT company_no, name, tel
+	  	FROM COMPANY
+	  </select>
+	  
+	  <update id="update" parameterType="Company">
+	  	UPDATE COMPANY
+	  	<set>
+	  		<if test="name != null">name = #{name},</if>
+	  		<if test="tel != null">tel = #{tel},</if>
+	  	</set>
+	  	WHERE company_no = #{companyNo}
+	  </update>
+  
+  		<delete id="delete" parameterType="int">
+  			DELETE FROM COMPANY
+  			WHERE company_no = #{companyNo}
+  		</delete>
+  </mapper>
