@@ -44,10 +44,26 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	
 	@Override
-	public Gpurchase select(int gpurchaseNo) throws Exception {
-		return gpdao.select(gpurchaseNo);
+	public Map<String, Object> select(int gpurchaseNo) throws Exception {
+		Gpurchase gpurchase = new Gpurchase();
+		gpurchase = gpdao.select(gpurchaseNo);
+		
+		Goods goods = new Goods();
+		goods = goodsDao.select(gpurchase.getGoodsNo());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("gpurchase", gpurchase);
+		map.put("goods", goods);
+		
+		return map;
 	}
 	
+	@Override
+	public int selectGoodsNo(int gpurchaseNo) throws Exception {
+		return gpdao.selectGoodsNo(gpurchaseNo);
+	}
+	
+	/*
 	@Override
 	public Map<String, Object> listall() throws Exception {
 		List<Gpurchase> gplist = gpdao.listall();
@@ -59,7 +75,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		return map;
 	}
-	
+	*/
 	
 	@Override
 	public Map<String, Object> listAll(Params params) throws Exception {
@@ -72,12 +88,12 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		return map;
 	}
-	
+	/*
 	@Override
 	public void update(Gpurchase gpurchase) throws Exception {
 		gpdao.update(gpurchase);
 	}
-	
+	*/
 	@Override
 	public void delete(int gpurchaseNo) throws Exception {
 		gpdao.delete(gpurchaseNo);
@@ -92,4 +108,15 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	public int listCount() throws Exception {
 		return gpdao.listCount();
 	}
+	
+	@Override
+	public void updateCntP(int gpurchaseNo) throws Exception {
+		gpdao.updateCntP(gpurchaseNo);
+	}
+	
+	@Override
+	public void updateCntM(int gpurchaseNo) throws Exception {
+		gpdao.updateCntM(gpurchaseNo);
+	}
+	
 }

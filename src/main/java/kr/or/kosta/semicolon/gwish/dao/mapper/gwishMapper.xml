@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.or.kosta.semicolon.gwish.dao.gwishDao">
+
+<insert id="insert" parameterType="Gwish">
+	<selectKey keyProperty="gwishNo" resultType="int" order="BEFORE">
+		SELECT seq_gwish.nextval FROM dual  
+	</selectKey>
+	INSERT INTO gwish 
+	            (gwish_no, 
+	             gpurchase_no, 
+	             member_no) 
+	VALUES      (#{gwishNo}, 
+	             #{gpurchaseNo},
+	             #{memberNo}) 
+</insert>
+
+<select id="selectCnt" resultType="int" parameterType="Gwish">
+	SELECT Count(gwish_no) 
+	FROM   gwish 
+	WHERE  gpurchase_no = #{gpurchaseNo}
+	       AND member_no = #{memberNo}
+</select>
+
+<select id="select" resultType="int" parameterType="Gwish">
+	SELECT gwish_no 
+	FROM   gwish 
+	WHERE  gpurchase_no = #{gpurchaseNo}
+	       AND member_no = #{memberNo}
+</select>
+
+<delete id="delete" parameterType="int">
+	DELETE gwish 
+	WHERE  gwish_no = #{gwishNo} 
+</delete>
+
+
+</mapper>
