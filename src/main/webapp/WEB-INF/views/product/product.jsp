@@ -623,6 +623,6 @@
 
   <br>
   <br>
-  
+    
   <script src="/resources/js/product.js"></script>
 </body>
