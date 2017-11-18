@@ -32,7 +32,7 @@ public interface ReviewDao {
 	
 	public void delete(int reviewNo) throws Exception;
 	
-//	public List<Review> listAll(Params params) throws Exception;
+	public List<Review> listAll(Params params) throws Exception;
 	
 	public int listCount() throws Exception;
 	

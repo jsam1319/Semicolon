@@ -1,12 +1,15 @@
 package kr.or.kosta.semicolon.review.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.review.dao.ReviewDao;
 import kr.or.kosta.semicolon.review.domain.Review;
 
@@ -45,13 +48,18 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		reviewDao.delete(reviewNo);
 	}
-/*
+
 	@Override
-	public List<Review> listAll(Params params) throws Exception {
+	public Map<String, Object> listAll(Params params) throws Exception {
 		
-		return null;
+		List<Review> list = reviewDao.listAll(params);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+				
+		return map;
 	}
-*/
+
 	@Override
 	public int listCount() throws Exception {
 		
