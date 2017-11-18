@@ -1,19 +1,19 @@
 package kr.or.kosta.semicolon.tops.domain;
 
 import java.util.List;
-
+ 
 public class Tops {
 	
 	private int topsNo;
 	private int goodsNo;
 	private String types;
 	private String sizes;
-	private String sleeveLength;
-	private String fullLength;
+	private Double sleeveLength;
+	private Double fullLength;
 	
 	public Tops() {}
 
-	public Tops(int topsNo, int goodsNo, String types, String sizes, String sleeveLength, String fullLength) {
+	public Tops(int topsNo, int goodsNo, String types, String sizes, Double sleeveLength, Double fullLength) {
 		super();
 		this.topsNo = topsNo;
 		this.goodsNo = goodsNo;
@@ -55,19 +55,19 @@ public class Tops {
 		this.sizes = sizes;
 	}
 
-	public String getSleeveLength() {
+	public Double getSleeveLength() {
 		return sleeveLength;
 	}
 
-	public void setSleeveLength(String sleeveLength) {
+	public void setSleeveLength(Double sleeveLength) {
 		this.sleeveLength = sleeveLength;
 	}
 
-	public String getFullLength() {
+	public Double getFullLength() {
 		return fullLength;
 	}
 
-	public void setFullLength(String fullLength) {
+	public void setFullLength(Double fullLength) {
 		this.fullLength = fullLength;
 	}
 
