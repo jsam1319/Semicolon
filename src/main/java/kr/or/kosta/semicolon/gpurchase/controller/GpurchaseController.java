@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.common.PageBuilder;
 import kr.or.kosta.semicolon.common.Params;
@@ -205,16 +204,16 @@ public class GpurchaseController {
 	 * @param model
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{gpurchaseNo}", method=RequestMethod.GET)
-	public void select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model) throws Exception {
-		logger.info("GpurchaseController porudct 접근");
-		
-		Map<String, Object> map = gpService.select(gpurchaseNo);		
-		
-		model.addAttribute("gpurchase", (Gpurchase)map.get("gpurchase"));
-		model.addAttribute("goods", (Goods)map.get("goods"));
-		
-	}
+	@RequestMapping(value="/product", method=RequestMethod.GET)
+	   public void select(@RequestParam("gpurchaseNo") int gpurchaseNo, Model model) throws Exception {
+	      logger.info("GpurchaseController porudct 접근");
+	      
+	      Map<String, Object> map = gpService.select(gpurchaseNo);      
+	      
+	      model.addAttribute("gpurchase", (Gpurchase)map.get("gpurchase"));
+	      model.addAttribute("goods", (Goods)map.get("goods"));
+	      
+	   }
 	
 
 
