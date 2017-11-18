@@ -8,9 +8,9 @@
       <span></span> <span id="bubble2"></span> <span id="bubble3"></span>
     </div>
   </div>
- 
+
   <div class="content-push">
-  
+
     <div class="breadcrumb-box">
       <a href="#">Home</a> <a href="#">Bags &amp; Accessories</a>
     </div>
@@ -19,7 +19,8 @@
       <div class="row">
         <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
 
-        <input type="hidden" id="loginMemberNo" value="${no}">
+          <input type="hidden" id="loginMemberNo" value="${no}">
+          
           <!-- Top Menu -->
           <div class="page-selector">
             <div class="shop-grid-controls">
@@ -61,23 +62,21 @@
             </div>
             <div class="clear"></div>
           </div>
+          <!-- /.Product List -->
+          
         </div>
         
-        
-        
-<!-- modal -->
-<div class="modal" id="gpurchaseInfo">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      
-    </div>
-  </div>
-</div>
-<!-- /.modal -->
 
 
-        
-        
+        <!-- modal -->
+        <div class="modal" id="gpurchaseInfo">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content"></div>
+          </div>
+        </div>
+        <!-- /.modal -->
+
+
 
         <!-- Left Side Menu -->
         <div
@@ -227,5 +226,6 @@
 
 
   <script src="/resources/js/research.js"></script>
-  <link href="/resources/css/research.css" rel="stylesheet" type="text/css"></link>
+  <link href="/resources/css/gpurchase.css" rel="stylesheet"
+    type="text/css"></link>
 </body>

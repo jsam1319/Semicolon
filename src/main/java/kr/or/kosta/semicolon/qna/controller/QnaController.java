@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.kosta.semicolon.common.PageBuilder;
 import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.qna.service.QnaService;

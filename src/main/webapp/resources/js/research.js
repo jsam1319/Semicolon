@@ -3,16 +3,18 @@ $(document).ready(function(){
 	var memberNo = $("#loginMemberNo").val()
 	
 	/** 글 정렬 후 처음 리스트 붙이기 .html */
-	$.getJSON("/product/research/"+page, function(data){ 
+	$.post("/product/research/"+page, function(data){
 		printList(data)
-	   }) 
+	})
 	
    $("#productOrder").on('change',(function(){
 	  productOrder = this.value
+	  page = 1
 	  
 	  $.ajax({
 		  url: "/product/research/"+page,
 		  dataType: "json",
+		  type: "POST",
 		  data: {
 			  "productOrder" : productOrder
 		  },
@@ -48,6 +50,7 @@ $(document).ready(function(){
 		  $.ajax({
 			  url: "/product/research/"+page,
 			  dataType: "json",
+			  type: "POST",
 			  data: {
 				  "productOrder" : productOrder
 			  },
@@ -74,19 +77,47 @@ $(document).ready(function(){
 	  	$(data.gplist).each(function(){
 	  	      var gpurchase = this;
 	  	      $(data.glist).each(function(){
-	  	        var goods = this;
+	  	    	var goods = this;
+	  	    	  
+	  	    	// 공구 번호와 상품 번호를 비교해 같은 데이터 출력
 	  	        if (gpurchase.goodsNo == goods.goodsNo) {
 	  	              str += "  <div class='col-md-3 col-sm-4 shop-grid-item'>"
-	  	              str += "    <div class='product-slide-entry shift-image eee'>"
+	  	              str += "    <div class='product-slide-entry shift-image'>"
 	  	              str += "      <div class='product-image'>"
-	  	              str += "        <img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
-	  	              str += "        <img src='/resources/img/ex/cat.jpg' alt='image' />"
-	  	              str += "        <div class='bottom-line left-attached'>"
-	  	              str += "          <a class='bottom-line-a square'><i class='fa fa-heart'></i></a>"
-	  	              str += "        </div>"
+	  	            	  
+	  	            	  
+	  	            // 공구 리스트에 등록된 상품 데이터 출력
+	  	            var flag = false;
+	  	            
+	  	            for(var i in data.golist) {
+	  	            	if(data.golist[i] == gpurchase.gpurchaseNo) {
+	  	            		flag = true;
+	  	            		break;
+	  	            	}
+	  	            }
+		  		  	 	
+	  	            if (flag) {
+		  		  	    str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' class='imgcl' alt='totoro' />"
+		  		  	    str += "<img src='/resources/img/ex/cat.jpg' class='imgcl' alt='image' />"
+		  		  	    str += "<div class='bottom-line left-attached2'>"
+			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Research Complete - Go to Buy</a>"
+			  	        str += "</div>"
+		  			} else {
+		  				str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
+		  			  	str += "<img src='/resources/img/ex/cat.jpg' alt='image' />"
+		  			}
+	  	        	
+	  	            
+	  	              
 	  	              str += "      </div>"
 	  	              str += "      <a class='tag' href='#'>Enter Company Name </a>"
-	  	              str += "      <a class='title' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+goods.name+"</a>"
+	  	            	  
+	  	              if(!memberNo){
+	  	            	str += "      <a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
+	  	              } else {
+	  	            	str += "      <a class='title loginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+goods.name+"</a>"
+	  	              }
+	  	              
 	  	              str += "      <div class='price gpurchasePrice'>"
 	  	              str += "        <div class='current gpurchasePrice'>"+gpurchase.price+"</div>"
 	  	              str += "      </div>"
@@ -96,19 +127,19 @@ $(document).ready(function(){
 	  	              str += "      <div class='list-buttons'>"
 	  	              str += "      </div></div><div class='clear'></div></div>"
 	  	        }
+	  	    	
 	  	      })
 	  	    });
 	  	
 	  	return str;
 	  	
-	  }	  
+	  }	
 	  
 	  
 	  
 	  /** 공구 조사 상세보기 modal 띄우기 */
 	  function modalSelect(){
-	  $(".title").on("click", function(){
-		  
+	  $(".loginTitle").on("click", function(){
 		  var gpurchaseNo = $(this).attr("title")
 		  
 		  $.getJSON("/product/"+gpurchaseNo+"/"+memberNo, function(data){
@@ -142,7 +173,7 @@ $(document).ready(function(){
 			  str += "	</div>";
 			  str += "</div>"
 			  str += "<div class='modal-footer'>";
-			  str += "	<input type='hidden' id='puNo' value='"+gpurchase.gpurchaseNo+"'>"
+			  str += "	<input type='hidden' id='puNo' value='"+gpurchase.gpurchaseNo+"'>";
 			  str += "	<div class='form-group wishButton'>";
 			  str += "	</div>";
 			  str += "</div>";
@@ -191,7 +222,7 @@ $(document).ready(function(){
 	  
 	  /** 공구조사 참여 동작 */
 	  function wishCheck(gpNo, wishCk){
-				 
+		  
 			$.ajax({
 			url: "/product/"+wishCk+"/"+gpNo,
 			dataType: "json",

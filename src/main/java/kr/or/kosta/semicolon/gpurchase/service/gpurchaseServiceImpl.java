@@ -105,11 +105,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	*/
 	@Override
-	public int listCount() throws Exception {
-		return gpdao.listCount();
-	}
-	
-	@Override
 	public void updateCntP(int gpurchaseNo) throws Exception {
 		gpdao.updateCntP(gpurchaseNo);
 	}
@@ -119,4 +114,22 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		gpdao.updateCntM(gpurchaseNo);
 	}
 	
+	@Override
+	public Map<String, Object> glistAll(Params params) throws Exception {
+		List<Gpurchase> gplist = gpdao.glistAll(params);
+		List<Goods> glist = goodsDao.listall();
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("gplist", gplist);
+		map.put("glist", glist);
+		
+		return map;
+	}
+	
+	@Override
+	public List<Integer> selectGolist() throws Exception {
+		List<Integer> list = gpdao.selectGolist();
+		
+		return list;
+	}
 }

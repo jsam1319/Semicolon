@@ -181,6 +181,8 @@ body{font-family: 'Raleway', sans-serif; font-weight: 400; font-size: 14px; line
 .button.style-18:hover{background: transparent;}
 .button.style-19{background: #ca1515; border-color: #ca1515; color: #fff;}
 .button.style-19:hover{background: transparent;}
+.button.style-40{color: #262626; font-weight: 600; text-transform: uppercase; line-height: 18px; padding: 10px 20px; border: 1px #fff solid; background: #fff; min-width: 0;}
+.button.style-40:hover{color: #808080;}
 .button-x{font-size: 12px; line-height: 15px; width: 15px; text-align: center; color: #808080;}
 .button-x .fa{display: block; line-height: 15px;}
 /*overflow*/
@@ -711,6 +713,8 @@ footer{position: relative;}
 .product-slide-entry .product-image .bottom-line{position: absolute; left: 0; bottom: -35px; width: 100%; background: rgba(28,28,28,0.9); text-align: center; font-size: 11px; line-height: 35px; font-weight: 600;}
 .product-slide-entry .product-image:hover .bottom-line{bottom: 0;}
 .product-slide-entry .product-image .bottom-line.left-attached{left: -37px; bottom: 0; width: 35px; -webkit-backface-visibility: hidden;}
+.left-attached2 {left: -100%; bottom: 0; width: 100%; -webkit-backface-visibility: hidden; text-align: center;}
+.product-image .bottom-line-a.square2{width: 100%; border-left: 2px rgba(255, 255, 255, 0.1) solid; text-align: center;}
 .product-slide-entry .product-image:hover .bottom-line.left-attached{left: 0;}
 .product-image .bottom-line-a{color: #fff; display: block; cursor: pointer; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
 .product-image .bottom-line-a:hover{background: #fff; color: #222; border-color: transparent!important;}

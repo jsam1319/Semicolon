@@ -41,6 +41,8 @@ public interface gpurchaseDao {
 	
 	public List<Gpurchase> listAll(Params params) throws Exception;
 	
-	public int listCount() throws Exception;
-
+	public List<Gpurchase> glistAll(Params params) throws Exception;
+	
+	public List<Integer> selectGolist() throws Exception;
+	
 }

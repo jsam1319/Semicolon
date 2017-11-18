@@ -141,9 +141,64 @@
 		WHERE  page = #{page}
 	</select>
 	
-	<select id="listCount" resultType="int">
-		SELECT Count(gpurchase_no) count 
-		FROM   gpurchase
+	
+	<select id="glistAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+	SELECT gpurchaseno, 
+	       goodsno, 
+	       min, 
+	       enddate, 
+	       startdate, 
+	       price, 
+	       status, 
+	       likecnt 
+	FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+	               gpurchaseno, 
+	               goodsno, 
+	               min, 
+	               enddate, 
+	               startdate, 
+	               price, 
+	               status, 
+	               likecnt 
+	        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
+	                       goods_no                          goodsNo, 
+	                       min, 
+	                       To_char(end_date, 'yyyy-MM-DD')   endDate, 
+	                       To_char(start_date, 'yyyy-MM-DD') startDate, 
+	                       price, 
+	                       status, 
+	                       likecnt 
+	                FROM   gpurchase 
+	                WHERE  likecnt >= min
+	                <if test="productOrder != null">
+		                	<choose>
+		                		<when test="productOrder == 'newProduct'">
+		                			ORDER BY gpurchase_no DESC
+		                		</when>
+		                		<when test="productOrder == 'lowPrice'">
+		                			ORDER BY price ASC
+		                		</when>
+		                		<when test="productOrder == 'highPrice'">
+		                			ORDER BY price DESC
+		                		</when>
+		                		<when test="productOrder == 'endDate'">
+		                			ORDER BY end_date ASC
+		                		</when>
+		                		<when test="productOrder == 'deadline'">
+		                			ORDER BY likecnt DESC
+		                		</when>
+		                	</choose>
+		                </if>
+	                )) 
+	WHERE  page = #{page}	
 	</select>
+	
+	
+	<select id="selectGolist" resultType="int">
+	SELECT gpurchase_no
+	FROM   gpurchase 
+	WHERE  likecnt >= min 
+	</select>
+	
 	
 </mapper>

@@ -668,7 +668,7 @@
 		<!-- FOOTER -->
 		<footer class="type-2">
 			<div class="position-center">
-				<img class="footer-logo" src="/resources//resources/img/logo-6.png"
+				<img class="footer-logo" src="/resources/img/logo-6.png"
 					alt="" />
 				<div class="footer-links">
 					<a href="#">Site Map</a> <a href="#">Search</a> <a href="#">Terms</a>

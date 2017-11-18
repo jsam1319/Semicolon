@@ -1,5 +1,6 @@
 package kr.or.kosta.semicolon.gpurchase.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.or.kosta.semicolon.common.PageBuilder;
 import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
@@ -66,14 +66,13 @@ public class GpurchaseController {
 	 * 2. 처리내용 : ajax를 이용한 조사 리스트 출력 및 정렬
 	 * </pre>
 	 * @Method Name : researchList
-	 * @param params
-	 * @param model
-	 * @param page
-	 * @param productOrder
+	 * @param params : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
+	 * @param page : 요청받은 페이지
+	 * @param productOrder : 요청받은 페이지 정렬 value
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/research/{page}", method=RequestMethod.GET)
+	@RequestMapping(value="/research/{page}", method=RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> researchList(Params params, Model model, @PathVariable("page") int page, @RequestParam(value="productOrder", defaultValue="newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController research 접근");
 		
@@ -83,12 +82,11 @@ public class GpurchaseController {
 			params.setProductOrder(productOrder);
 			params.setPageSize(4);
 			
-			int count = gpService.listCount();
-			PageBuilder pb = new PageBuilder(params, count);
-			pb.build();
+			// 공구 조사 페이지에서 공구 리스트 페이지로 넘어가는 데이터 가져오기
+			List<Integer> golist = gpService.selectGolist();
 			
 			Map<String, Object> map = gpService.listAll(params);
-			map.put("pageBuilder", pb);
+			map.put("golist", golist);
 			
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 			
@@ -107,7 +105,7 @@ public class GpurchaseController {
 	 * 2. 처리내용 : 상품 상세정보를 modal로 띄우기 위한 ajax
 	 * </pre>
 	 * @Method Name : researchSelect
-	 * @param gpurchaseNo
+	 * @param gpurchaseNo : 상세보기를 띄우기 위한 해당 공구조사 번호
 	 * @return
 	 * @throws Exception
 	 */
@@ -141,9 +139,9 @@ public class GpurchaseController {
 	 * 2. 처리내용 :  공동구매조사페이지 wish 참여 / 취소 동작 ajax
 	 * </pre>
 	 * @Method Name : wishCheck
-	 * @param wishck
-	 * @param gpurchaseNo
-	 * @param memberNo
+	 * @param wishck : 공구조사에 참여했는지에 대한 반환 count
+	 * @param gpurchaseNo : 공구 번호
+	 * @param memberNo : 멤버 번호
 	 * @return
 	 * @throws Exception
 	 */
@@ -183,16 +181,55 @@ public class GpurchaseController {
 	
 	
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void listall() throws Exception {
+	/**
+	 * <pre>
+	 * 1. 개      요 : 공구 list 페이지
+	 * 2. 처리내용 : 공구 list 페이지로 이동
+	 * </pre>
+	 * @Method Name : listPage
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/list")
+	public void listPage() throws Exception {}
+	
+	
+	/**
+	 * <pre>
+	 * 1. 개      요 : 공구 list 상품 list
+	 * 2. 처리내용 : ajax를 이용한 공구 리스트 출력 및 정렬
+	 * </pre>
+	 * @Method Name : gpurchaseList
+	 * @param params : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
+	 * @param page : 요청받은 페이지
+	 * @param productOrder : 요청받은 페이지 정렬 value
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/list/{page}", method=RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> gpurchaseList(Params params, Model model, @PathVariable("page") int page, @RequestParam(value="productOrder", defaultValue="newProduct") String productOrder) throws Exception {
+		logger.info("gpurchaseController gpurchaseList 접근");
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			params.setPage(page);
+			params.setProductOrder(productOrder);
+			params.setPageSize(4);
+			
+			Map<String, Object> map = gpService.glistAll(params);
+			
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
 	}
-/*	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void listAll(Model model) throws Exception {
-		logger.info("gpurchaseController list 접근");
-		model.addAttribute("list", gpService.listAll());
-	}
-	*/
+
+	
 	
 	/**
 	 * <pre>
@@ -204,16 +241,18 @@ public class GpurchaseController {
 	 * @param model
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/product", method=RequestMethod.GET)
-	   public void select(@RequestParam("gpurchaseNo") int gpurchaseNo, Model model) throws Exception {
-	      logger.info("GpurchaseController porudct 접근");
-	      
-	      Map<String, Object> map = gpService.select(gpurchaseNo);      
-	      
-	      model.addAttribute("gpurchase", (Gpurchase)map.get("gpurchase"));
-	      model.addAttribute("goods", (Goods)map.get("goods"));
-	      
-	   }
+	@RequestMapping(value="/gpurchase/{gpurchaseNo}", method=RequestMethod.GET)
+	public String select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model) throws Exception {
+		logger.info("GpurchaseController porudct 접근");
+		
+		Map<String, Object> map = gpService.select(gpurchaseNo);		
+		
+		model.addAttribute("gpurchase", (Gpurchase)map.get("gpurchase"));
+		model.addAttribute("goods", (Goods)map.get("goods"));
+		
+		return "product/product";
+		
+	}
 	
 
 

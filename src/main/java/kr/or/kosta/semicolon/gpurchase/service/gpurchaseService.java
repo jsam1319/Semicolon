@@ -24,11 +24,13 @@ public interface gpurchaseService {
 	
 	public Map<String, Object> listAll(Params params) throws Exception;
 	
-	public int listCount() throws Exception;
-	
 	public void updateCntP(int gpurchaseNo) throws Exception;
 
 	public void updateCntM(int gpurchaseNo) throws Exception;
+	
+	public Map<String, Object> glistAll(Params params) throws Exception;
+	
+	public List<Integer> selectGolist() throws Exception;
 	
 
 }
