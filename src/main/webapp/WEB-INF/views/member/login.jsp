@@ -37,7 +37,7 @@
                                 shipping addresses, view and track your orders in your account
                                 and more.</p>
                         </div>
-                        <a class="button style-12">Register Account</a>
+                        <a class="button style-12" href="/member/regist">Register Account</a>
                     </div>
                 </div>
             </div><%-- ./row --%>
