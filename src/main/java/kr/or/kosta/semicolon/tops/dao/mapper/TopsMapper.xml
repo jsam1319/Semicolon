@@ -3,10 +3,14 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <mapper namespace="kr.or.kosta.semicolon.tops.dao.TopsDao">
-
-
-
-
-
-
+	<select id="getBySize" parameterType="string" resultType="Tops">
+		SELECT  tops_no,
+				types,
+				sizes,
+				sleeve_length,
+				full_length
+		FROM	tops
+		WHERE	goods_no = 0 
+				AND sizes = #{value}
+	</select> 
 </mapper>
