@@ -127,6 +127,11 @@
 								<c:otherwise>
 										<div class="header-top-entry increase-icon-responsive">
 											<div class="title">
+												<a href="/member/mypage"><i class="fa fa-user"></i> <span>MY PAGE</span></a>
+											</div>
+										</div>
+										<div class="header-top-entry increase-icon-responsive">
+											<div class="title">
 												<a href="/member/logout"><i class="fa fa-sign-out"></i> <span>SIGN OUT</span></a>
 											</div>
 										</div>
