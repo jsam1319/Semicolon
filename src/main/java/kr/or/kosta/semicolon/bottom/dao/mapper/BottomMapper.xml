@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.bottom.dao.BottomDao">
+
+	<insert id="insert" parameterType="bottom">
+		<selectKey keyProperty="bottomNo" order="BEFORE" resultType="int">
+			SELECT seq_bottom.nextval 
+			FROM   dual 
+		</selectKey>
+	
+		INSERT INTO bottom 
+		            (bottom_no, 
+		             goods_no, 
+		             types, 
+		             waist, 
+		             rise, 
+		             hip, 
+		             thigh, 
+		             full_length, 
+		             sizes) 
+		VALUES     (#{bottomNo}, 
+		            #{goodsNo}, 
+		            #{types}, 
+		            #{waist}, 
+		            #{rise}, 
+		            #{hip}, 
+		            #{thigh}, 
+		            #{fullLength}, 
+		            #{sizes})
+	</insert>
+
+
+
+
+</mapper>
