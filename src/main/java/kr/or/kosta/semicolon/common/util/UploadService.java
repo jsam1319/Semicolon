@@ -2,19 +2,14 @@ package kr.or.kosta.semicolon.common.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 
@@ -41,10 +36,15 @@ public class UploadService {
 	private final static String UPLOAD_PATH = "C:/Users/kosta/git/Semicolon/src/main/webapp/resources/images/";
 	
 	public String uploadFile(String originalName, byte[] fileData) throws Exception{
-		File target = new File(UPLOAD_PATH, originalName);
+		
+		UUID uid = UUID.randomUUID();
+		
+		String savedName = uid.toString() + "_" + originalName;
+		
+		File target = new File(UPLOAD_PATH, savedName);
 		FileCopyUtils.copy(fileData, target);                 //byte배열을 target으로 전송
 		
-		return originalName;
+		return savedName;
 	}
 	
 	public static String makeThumbnail(String fileName) throws Exception {
@@ -60,5 +60,13 @@ public class UploadService {
 		return thumbnailName.substring(UPLOAD_PATH.length()).replace(File.separatorChar, '/');
 	}
 	
-
+	public void deleteFile(String originalName) throws Exception {
+		File file = new File(UPLOAD_PATH, originalName);
+		
+		if(file.exists() == true) {
+			file.delete();
+		}
+	}
+	
+	
 }
