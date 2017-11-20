@@ -16,15 +16,15 @@ import kr.or.kosta.semicolon.membersize.domain.MemberSize;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 16.       박주연        최초 생성
+ * 2017. 11. 20.		박주연		update return type 1로 변경
  *
  *
  */
 
-//테스트요
 public interface MemberSizeDao {
 	public int insert(MemberSize size);
 	public MemberSize select(int no);
-	public void update(MemberSize size);
+	public int update(MemberSize size);
 	public void delete(int no);
 	public List<MemberSize> listAll();
 }

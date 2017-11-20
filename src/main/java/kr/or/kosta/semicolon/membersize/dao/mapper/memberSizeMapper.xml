@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <!-- 테스트요 -->
  <mapper namespace="kr.or.kosta.semicolon.membersize.dao.MemberSizeDao">
  
 	<insert id="insert" parameterType="MemberSize">
@@ -12,14 +11,16 @@
 		             rise, 
 		             hip, 
 		             pants, 
-		             total_length) 
+		             full_length,
+		             skirt) 
 		VALUES     (#{memberNo}, 
 		             #{waist}, 
 		             #{thigh}, 
 		             #{rise}, 
 		             #{hip}, 
 		             #{pants}, 
-		             #{totalLength}) 
+		             #{fullLength},
+		             #{skirt}) 
 	</insert>
 	
 	<update id="update" parameterType="MemberSize">
@@ -30,7 +31,8 @@
 			<if test="rise!=null">rise = #{rise},</if> 
 			<if test="hip!=null">hip = #{hip}, </if> 
 			<if test="pants!=null">pants = #{pants}, </if> 
-			<if test="totalLength!=null">total_length = #{totalLength},</if> 
+			<if test="fullLength!=null">full_length = #{fullLength},</if> 
+			<if test="skirt!=null">skirt = #{skirt},</if> 
 		</set> 
 		WHERE  member_no = #{memberNo}
 	</update>
@@ -42,7 +44,8 @@
 		       rise, 
 		       hip, 
 		       pants, 
-		       total_length 
+		       full_length,
+		       skirt
 		FROM   member_size 
 		WHERE  member_no = #{memberNo} 
 	</select>
@@ -54,7 +57,8 @@
 		       rise, 
 		       hip, 
 		       pants, 
-		       total_length 
+		       full_length,
+		       skirt
 		FROM   member_size 
 	</select>
 	

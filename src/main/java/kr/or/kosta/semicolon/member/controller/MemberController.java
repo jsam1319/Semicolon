@@ -177,4 +177,9 @@ public class MemberController {
 		return "/member/size";
 	}
 	
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public String mypage() {
+		return "/member/mypage";
+	}
+	
 }
