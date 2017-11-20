@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kosta.semicolon.keyword.dao.KeywordDao">
+
+	<insert id="insert" parameterType="Keyword">
+		<selectKey resultType="int" keyProperty="keywordNo" order="BEFORE" >	
+			SELECT SEQ_KEYWORD.nextval FROM DUAL
+		</selectKey>
+
+		INSERT INTO keyword
+			(
+				keyword_no,
+				goods_no,
+				keyword_name
+			)
+			VALUES 
+			(
+				#{keywordNo},
+				#{goodsNo},
+				#{keywordName}
+			)
+	</insert>
+
+
+	<select id="listByKeyword" parameterType="string" resultType="Goods">
+		SELECT 
+			goods_no,
+			name,
+			price,
+			detail,
+			front_img
+		FROM goods
+		WHERE 
+			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{value} )
+	</select>
+	 
+	
+	
+
+</mapper>
