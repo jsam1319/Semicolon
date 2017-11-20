@@ -75,9 +75,10 @@
 	</select>
 	
 	<!-- 리스트 카운트 -->
-	<select id="listCount" resultType="int">
-		SELECT Count(review_no) count 
-		FROM   review
+	<select id="listAvg" resultType="int">
+		SELECT Trunc(Avg(grade), 0) 
+		FROM   review 
+		WHERE  goods_no = #{goodsNo}
 	</select>
 	
 	<!-- 리스트 페이징 출력 -->
@@ -105,8 +106,15 @@
 		                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate,
 		                       grade
 		                FROM   review
+		                WHERE  goods_no = #{value}
 		                ORDER  BY regdate DESC)) 
 		WHERE  request_page = #{page}
 	</select>
 	
+	<!-- 파일 찾기 -->
+	<select id="getFile" resultType="String">
+	select  attach_file
+	from 	review
+	where 	review_no = #{reviewNo}
+	</select>
 </mapper>

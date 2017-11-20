@@ -20,5 +20,7 @@ public interface ReviewService {
 	
 	public Map<String, Object> listAll(Params params) throws Exception;
 	
-	public int listCount() throws Exception;
+	public int listAvg(int goodsNo) throws Exception;
+	
+	public String getFile(int reivewNo) throws Exception;
 }

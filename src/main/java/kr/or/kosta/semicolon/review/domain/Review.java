@@ -3,9 +3,9 @@ package kr.or.kosta.semicolon.review.domain;
 /**
  * @packgename   kr.kosta.semicolon.review.domain
  * @filename         Review.java
- * @author          전세종
+ * @author          Jeon sejong
  * @since            2017. 11. 15.
- * @see
+ * @see				Review Table Domain
  *
  * == Modification Infomation (수정 이력) ==
  * 

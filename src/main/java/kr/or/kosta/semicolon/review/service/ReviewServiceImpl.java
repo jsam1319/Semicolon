@@ -13,6 +13,21 @@ import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.review.dao.ReviewDao;
 import kr.or.kosta.semicolon.review.domain.Review;
 
+/**
+ * @packgename   kr.or.kosta.semicolon.review.service
+ * @filename         ReviewServiceImpl.java
+ * @author          Jeon SeJong
+ * @since            2017. 11. 16.
+ * @see			 리뷰 관리 비지니스 로직 클래스
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 16.      sejong         최초 생성
+ * 2017. 11. 20.      sejong         remove(), listAvg() 메소드 추가
+ *
+ */
 @Service
 public class ReviewServiceImpl implements ReviewService {
 	
@@ -61,9 +76,15 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int listCount() throws Exception {
+	public int listAvg(int goodsNo) throws Exception {
 		
-		return reviewDao.listCount();
+		return reviewDao.listAvg(goodsNo);
+	}
+	
+	@Override
+	public String getFile(int reivewNo) throws Exception {
+		
+		return reviewDao.getFile(reivewNo);
 	}
 
 }
