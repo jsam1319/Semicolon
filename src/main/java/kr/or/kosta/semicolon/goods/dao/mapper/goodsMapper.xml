@@ -15,7 +15,10 @@
 				name,
 				price,
 				detail,
-				front_img
+				front_img,
+				col,
+				toggle_img,
+				category
 			)
 			VALUES 
 			(
@@ -23,17 +26,23 @@
 				#{name},
 				#{price},
 				#{detail},
-				#{frontImg}
+				#{frontImg},
+				#{col},
+				#{toggleImg},
+				#{category}
 			)
 	</insert>
 
 
-	<select id="listall" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
-		SELECT goods_no AS goodsNo, 
+	<select id="allList" resultType="Goods">
+		SELECT goods_no, 
 		       name, 
 		       price, 
 		       detail, 
-		       front_img AS frontImg 
+		       front_img,
+		       col,
+		       toggle_img,
+		       category 
 		FROM goods
 	</select>
 	 
@@ -43,7 +52,10 @@
 		       name, 
 		       price, 
 		       detail, 
-		       front_img AS frontImg 
+		       front_img AS frontImg,
+		       col,
+			   toggle_img,
+			   category
 		FROM   goods
 		WHERE  goods_no = #{goodsNo}
 	</select>
@@ -53,18 +65,27 @@
 		       NAME, 
 		       price, 
 		       detail, 
-		       frontimg 
+		       frontimg,
+		       col,
+			   toggle_img,
+			   category 
 		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
 		               goodsno, 
 		               NAME, 
 		               price, 
 		               detail, 
-		               frontimg 
+		               frontimg,
+		               col,
+					   toggle_img,
+					   category 
 		        FROM   (SELECT goods_no  goodsNo, 
 		                       NAME, 
 		                       price, 
 		                       detail, 
-		                       front_img frontImg 
+		                       front_img,
+		                       col,
+							   toggle_img,
+							   category 
 		                FROM   goods 
 		                ORDER  BY goods_no DESC)) 
 		WHERE  page = #{page}

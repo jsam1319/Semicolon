@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.kosta.semicolon.common.Params;
@@ -30,7 +32,10 @@ import kr.or.kosta.semicolon.goods.service.GoodsService;
  *
  */
 @Controller
+@RequestMapping("/goods")
 public class GoodsController {
+	
+	Logger logger = Logger.getLogger(GoodsController.class);
 	
 	@Inject
 	GoodsService goodsService;
@@ -44,14 +49,13 @@ public class GoodsController {
 	 * @Method Name : goods
 	 * @param model : 상품 정보를 저장하기 위한 model
 	 */
-/*	@RequestMapping(value = "/goods", method = RequestMethod.GET)
-	public void goods(Params params, Model model) {
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Goods> goods(Model model) {
 		
-		List<Goods> list = goodsService.listAll(params);
-		
-		model.addAttribute("list", list);
+		return goodsService.allList();
 	}
-	*/
+	
 	
 	@RequestMapping(value = "/goods", method = RequestMethod.POST)
 	public String success(Goods goods, RedirectAttributes rttr) {

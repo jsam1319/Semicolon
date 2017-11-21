@@ -7,7 +7,7 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
 
 public interface GoodsService {
 	
-//	public List<Goods> listAll();
+	public List<Goods> allList();
 	
 	public int insert(Goods goods);
 	

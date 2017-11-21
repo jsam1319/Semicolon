@@ -85,7 +85,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Override
 	public Map<String, Object> listAll(Params params) throws Exception {
 		List<Gpurchase> gplist = gpdao.listAll(params);
-		List<Goods> glist = goodsDao.listall();
+		List<Goods> glist = goodsDao.allList();
 		List<Map<String, Object>> comlist = comDao.selectCName();
 		
 		
@@ -126,7 +126,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Override
 	public Map<String, Object> glistAll(Params params) throws Exception {
 		List<Gpurchase> gplist = gpdao.glistAll(params);
-		List<Goods> glist = goodsDao.listall();
+		List<Goods> glist = goodsDao.allList();
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gplist", gplist);

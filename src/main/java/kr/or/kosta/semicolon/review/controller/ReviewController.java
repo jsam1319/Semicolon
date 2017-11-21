@@ -153,7 +153,7 @@ public class ReviewController {
 			String originalName = reviewService.getFile(reviewNo);
 			
 			reviewService.delete(reviewNo);
-//			uploadService.deleteFile(originalName);
+			uploadService.deleteFile(originalName);
 			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
@@ -175,6 +175,7 @@ public class ReviewController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/{goodsNo}", method = RequestMethod.GET)
+	@ResponseBody
 	public int avgGrade(@PathVariable("goodsNo") int goodsNo) throws Exception {
 		
 		return reviewService.listAvg(goodsNo);

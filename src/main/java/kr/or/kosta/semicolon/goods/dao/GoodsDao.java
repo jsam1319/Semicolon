@@ -22,7 +22,7 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
  */
 public interface GoodsDao {
 	
-	public List<Goods> listall();
+	public List<Goods> allList();
 	
 	public int insert(Goods goods);
 	

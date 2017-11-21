@@ -31,10 +31,10 @@ public class GoodsServiceImpl implements GoodsService {
 	@Inject
 	GoodsDao goodsDao;
 	
-/*	@Override
-	public List<Goods> listAll() {
-		return goodsDao.listAll();
-	}*/
+	@Override
+	public List<Goods> allList() {
+		return goodsDao.allList();
+	}
 
 	@Override
 	public int insert(Goods goods) {
