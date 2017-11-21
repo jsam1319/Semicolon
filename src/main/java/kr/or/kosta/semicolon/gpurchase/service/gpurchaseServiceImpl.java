@@ -10,10 +10,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.company.dao.CompanyDao;
 import kr.or.kosta.semicolon.goods.dao.GoodsDao;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gwish.dao.gwishDao;
 
 /**
  * @packgename   kr.or.kosta.semicolon.gpurchase.service
@@ -37,6 +39,9 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	@Inject
 	private GoodsDao goodsDao;
+	
+	@Inject
+	private CompanyDao comDao;
 	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
@@ -81,10 +86,13 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	public Map<String, Object> listAll(Params params) throws Exception {
 		List<Gpurchase> gplist = gpdao.listAll(params);
 		List<Goods> glist = goodsDao.listall();
+		List<Map<String, Object>> comlist = comDao.selectCName();
+		
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gplist", gplist);
 		map.put("glist", glist);
+		map.put("comlist", comlist);
 		
 		return map;
 	}
@@ -114,6 +122,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		gpdao.updateCntM(gpurchaseNo);
 	}
 	
+	
 	@Override
 	public Map<String, Object> glistAll(Params params) throws Exception {
 		List<Gpurchase> gplist = gpdao.glistAll(params);
@@ -126,10 +135,12 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return map;
 	}
 	
+	
 	@Override
 	public List<Integer> selectGolist() throws Exception {
 		List<Integer> list = gpdao.selectGolist();
 		
 		return list;
 	}
+	
 }

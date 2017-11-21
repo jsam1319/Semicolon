@@ -1,6 +1,7 @@
 package kr.or.kosta.semicolon.company.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,7 +23,7 @@ import kr.or.kosta.semicolon.membersize.domain.MemberSize;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 18.       박주연        최초 생성
- *
+ * 
  *
  */
 @Service

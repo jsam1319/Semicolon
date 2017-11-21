@@ -153,7 +153,7 @@ public class ReviewController {
 			String originalName = reviewService.getFile(reviewNo);
 			
 			reviewService.delete(reviewNo);
-			uploadService.deleteFile(originalName);
+//			uploadService.deleteFile(originalName);
 			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {

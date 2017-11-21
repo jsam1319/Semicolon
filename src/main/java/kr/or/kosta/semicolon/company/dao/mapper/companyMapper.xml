@@ -3,6 +3,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="kr.or.kosta.semicolon.company.dao.CompanyDao">
+  
+
 	  <insert id="insert" parameterType="Company">
 	  	<selectKey keyProperty="companyNo" order="BEFORE" resultType="int">
 	  		SELECT seq_company.nextval as companyNo FROM DUAL
@@ -17,6 +19,12 @@
 	  			#{name},
 	  			#{tel})
 	  </insert>
+	  
+	  <resultMap  id="Result" type="company">
+		<result property="name"           column="name"/>
+		<result property="goodsNo"        column="goods_no"/>
+	</resultMap>
+	
 	  
 	  <select id="select" parameterType="int" resultType="Company">
 	  	SELECT company_no, name, tel
@@ -42,4 +50,16 @@
   			DELETE FROM COMPANY
   			WHERE company_no = #{companyNo}
   		</delete>
+  		
+  		<select id="selectCName" resultType="map">
+  			SELECT c.NAME	name, 
+			       g.goods_no	goodsNo
+			FROM   company c, 
+			       nego n, 
+			       nego_list ne, 
+			       goods g 
+			WHERE  c.company_no = n.company_no 
+			       AND n.nego_no = ne.nego_no 
+			       AND ne.goods_no = g.goods_no
+  		</select>
   </mapper>
