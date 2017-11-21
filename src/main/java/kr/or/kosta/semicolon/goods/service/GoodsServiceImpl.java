@@ -21,8 +21,8 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 10.      kosta         최초 생성
- * 2017. 11. 11.	  연주				1차 수정
+ * 2017. 11. 10.      세종         최초 생성
+ * 2017. 11. 11.	  연주			listAll(Params params) 추가
  *
  */
 @Service

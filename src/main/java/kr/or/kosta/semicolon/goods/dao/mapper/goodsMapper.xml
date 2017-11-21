@@ -45,6 +45,19 @@
 		       category 
 		FROM goods
 	</select>
+	
+	<select id="categoryListAll" parameterType="int" resultType="Goods">
+		SELECT goods_no, 
+			   name, 
+			   price, 
+			   detail, 
+			   front_img,
+			   col,
+			   toggle_img,
+			   category 
+		FROM   goods
+		WHERE  category = #{category}
+	</select>
 	 
 	
 	<select id="select" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
