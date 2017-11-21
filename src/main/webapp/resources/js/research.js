@@ -7,7 +7,7 @@ $(document).ready(function(){
 		printList(data)
 	})
 	
-   $("#productOrder").on('change',(function(){
+   $("#productOrder").on('change',function(){
 	  productOrder = this.value
 	  page = 1
 	  
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		  }
 	  })
 	  
-	})) 
+	}) 
 	
 	  function printList(data){
 		var str = returnStr(data)
@@ -73,12 +73,12 @@ $(document).ready(function(){
 		/** 붙이는 html String */
 	  function returnStr(data) {
 	  	var str = "";
-	  	 
+	  	
 	  	$(data.gplist).each(function(){
 	  	      var gpurchase = this;
 	  	      $(data.glist).each(function(){
 	  	    	var goods = this;
-	  	    	  
+	  	    	
 	  	    	// 공구 번호와 상품 번호를 비교해 같은 데이터 출력
 	  	        if (gpurchase.goodsNo == goods.goodsNo) {
 	  	              str += "  <div class='col-md-3 col-sm-4 shop-grid-item'>"
@@ -100,18 +100,26 @@ $(document).ready(function(){
 		  		  	    str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' class='imgcl' alt='totoro' />"
 		  		  	    str += "<img src='/resources/img/ex/cat.jpg' class='imgcl' alt='image' />"
 		  		  	    str += "<div class='bottom-line left-attached2'>"
-			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Research Complete - Go to Buy</a>"
+			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Research Complete</a>"
+			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Go to Buy</a>"
 			  	        str += "</div>"
 		  			} else {
 		  				str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
 		  			  	str += "<img src='/resources/img/ex/cat.jpg' alt='image' />"
 		  			}
 	  	        	
-	  	            
 	  	              
+	  	            
 	  	              str += "      </div>"
-	  	              str += "      <a class='tag' href='#'>Enter Company Name </a>"
 	  	            	  
+	  	           // 해당 공구 상품의 회사 이름 가져오기
+		  	          for (var i in data.comlist) {
+		  			  	if(data.comlist[i].GOODSNO == goods.goodsNo) {
+		  			  		str += "<a class='tag'>"+data.comlist[i].NAME+"</a>"
+		  			  	}
+		  			  }
+	  	            	
+	  	              // 회원 로그인 했는지 체크 - 
 	  	              if(!memberNo){
 	  	            	str += "      <a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
 	  	              } else {

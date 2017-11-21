@@ -27,7 +27,7 @@ import kr.or.kosta.semicolon.gwish.service.gwishService;
  * @filename         GpurchaseController.java
  * @author          박연주
  * @since            2017. 11. 14.
- * @see
+ * @see				공구 관리를 위한 Controller
  *
  * == Modification Infomation (수정 이력) ==
  * 

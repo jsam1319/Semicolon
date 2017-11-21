@@ -3248,3 +3248,51 @@ _:-ms-input-placeholder, :root .simple-drop-down select{padding-right: 10px;}
 @media (max-width: 991px) and (min-width: 768px){
     .header-functionality-entry{margin-left: 15px;}
 }
+
+/* Order Css */
+.orderinfomation-blocks {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.orderTitle {
+	font-size: 10px;
+}
+.block-title.order-main-heading{
+	font-size: 20px;
+	font-weight: 400; 
+	line-height: 30px; 
+	margin-bottom: 20px; 
+	padding-bottom: 20px;
+}
+.inline-order-entry{
+	margin-bottom: 20px; 
+	padding-bottom: 20px; 
+	border-bottom: 1px #f0f0f0 solid;
+}
+.order-image {
+  width: 150%;
+  height: 170%;
+  margin-bottom: 1%;
+  margin-right: 20%;
+}
+.order-content {
+  padding-left: 20%;
+}
+.order-alertMsg {
+  color: red;
+}
+.order-imgDiv {
+  width: 150px;
+  height: 170px;
+}
+
+/** Common */
+.enterContent-1 {
+	padding-top: 2%;
+	padding-botton: 2%;
+}
+
+.enterContent-2 {
+	padding-top: 5%;
+	padding-bottom: 5%;
+}

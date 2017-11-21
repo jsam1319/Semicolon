@@ -1,18 +1,14 @@
 $(document).ready(function(){
-//	var page = 1
 	var memberNo = $("#loginMemberNo").val()
 	listHtml()
 	
+	/** 공구진행/완료 버튼 클릭 시 버튼 변환 이벤트 */
 	$(".ongoing").click(function(){
 		listHtml()
 		$(".end").removeClass('style-14').addClass('style-40')
 		$(this).removeClass('style-40').addClass('style-14')
 	})
 	$(".end").click(function(){
-//		$(this).addClass(“class_name”);
-//		$(this).attr(‘class’,’class_name’);
-//		$("#element").toggleClass('old_class new_class');
-//		$('#element').removeClass('old_class').addClass('new_class');
 
 		$(this).removeClass('style-40').addClass('style-14')
 		$(".ongoing").removeClass('style-14').addClass('style-40')
@@ -101,8 +97,8 @@ $(document).ready(function(){
 	  	              str += "        <img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
 	  	              str += "        <img src='/resources/img/ex/cat.jpg' alt='image' />"
 	  	              str += "      </div>"
-	  	              str += "      <a class='tag' href='#'>Enter Company Name </a>"
-	  	              str += "      <a class='title' title='"+gpurchase.gpurchaseNo+"'>"+goods.name+"</a>"
+	  	              str += "      <a class='tag'>Enter Company Name </a>"
+	  	              str += "      <a class='title' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"' title='"+gpurchase.gpurchaseNo+"'>"+goods.name+"</a>"
 	  	              str += "      <div class='price gpurchasePrice'>"
 	  	              str += "        <div class='current gpurchasePrice'>"+gpurchase.price+"</div>"
 	  	              str += "      </div>"

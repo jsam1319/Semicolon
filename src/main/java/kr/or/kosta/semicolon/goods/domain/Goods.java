@@ -22,16 +22,24 @@ public class Goods {
 	private int price;
 	private String detail;
 	private String frontImg;
+	private String col;
+	private String toggleImg;
+	private String category;
 	
 	public Goods() {}
 	
-	public Goods(int goodsNo, String name, int price, String detail, String frontImg) {
+	public Goods(int goodsNo, String name, int price, String detail, String frontImg, String col, String toggleImg,
+			String category) {
 		this.goodsNo = goodsNo;
 		this.name = name;
 		this.price = price;
 		this.detail = detail;
 		this.frontImg = frontImg;
+		this.col = col;
+		this.toggleImg = toggleImg;
+		this.category = category;
 	}
+
 
 	public int getGoodsNo() {
 		return goodsNo;
@@ -73,10 +81,37 @@ public class Goods {
 		this.frontImg = frontImg;
 	}
 
+	
+	
+	public String getCol() {
+		return col;
+	}
+
+	public void setCol(String col) {
+		this.col = col;
+	}
+
+	public String getToggleImg() {
+		return toggleImg;
+	}
+
+	public void setToggleImg(String toggleImg) {
+		this.toggleImg = toggleImg;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Goods [goodsNo=" + goodsNo + ", name=" + name + ", price=" + price + ", detail=" + detail
-				+ ", frontImg=" + frontImg + "]";
+				+ ", frontImg=" + frontImg + ", col=" + col + ", toggleImg=" + toggleImg + ", category=" + category
+				+ "]";
 	}
 	
 }

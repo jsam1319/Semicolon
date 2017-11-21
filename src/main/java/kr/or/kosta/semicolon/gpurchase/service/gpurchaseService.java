@@ -22,12 +22,14 @@ public interface gpurchaseService {
 	
 //	public List<Gpurchase> listAll(Params params) throws Exception;
 	
+	// 공구 조사(research) 리스트
 	public Map<String, Object> listAll(Params params) throws Exception;
 	
 	public void updateCntP(int gpurchaseNo) throws Exception;
 
 	public void updateCntM(int gpurchaseNo) throws Exception;
 	
+	// 공구(list) 리스트
 	public Map<String, Object> glistAll(Params params) throws Exception;
 	
 	public List<Integer> selectGolist() throws Exception;

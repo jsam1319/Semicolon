@@ -175,6 +175,7 @@ public class ReviewController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/{goodsNo}", method = RequestMethod.GET)
+	@ResponseBody
 	public int avgGrade(@PathVariable("goodsNo") int goodsNo) throws Exception {
 		
 		return reviewService.listAvg(goodsNo);
