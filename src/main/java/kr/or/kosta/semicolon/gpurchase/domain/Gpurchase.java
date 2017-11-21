@@ -11,8 +11,8 @@ package kr.or.kosta.semicolon.gpurchase.domain;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 10.      연주         최초 생성
- *
+ * 2017. 11. 10.      	연주        최초 생성
+ * 2017. 11. 21. 		박주연		pNum 추가
  *
  */
 public class Gpurchase {
@@ -24,14 +24,17 @@ public class Gpurchase {
 	String startDate;
 	String endDate;
 	String status;
+	int pNum; //참여인원
 	
 	public Gpurchase() {}
 	
 	public Gpurchase(int goodsNo, int min, int price, String startDate, String endDate) {
-		this(0, goodsNo, min, price, startDate, endDate, null);
+		this(0, goodsNo, min, price, startDate, endDate, null,0);
 	}
 
-	public Gpurchase(int gpurchaseNo, int goodsNo, int min, int price, String startDate, String endDate, String status) {
+	public Gpurchase(int gpurchaseNo, int goodsNo, int min, int price, String startDate, String endDate, String status,
+			int pNum) {
+		super();
 		this.gpurchaseNo = gpurchaseNo;
 		this.goodsNo = goodsNo;
 		this.min = min;
@@ -39,6 +42,7 @@ public class Gpurchase {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
+		this.pNum = pNum;
 	}
 
 	public int getGpurchaseNo() {
@@ -96,15 +100,19 @@ public class Gpurchase {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public int getpNum() {
+		return pNum;
+	}
+
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
+	}
 
 	@Override
 	public String toString() {
-		return "gpurchase [gpurchaseNo=" + gpurchaseNo + ", goodsNo=" + goodsNo + ", min=" + min + ", price=" + price
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status + "]";
+		return "Gpurchase [gpurchaseNo=" + gpurchaseNo + ", goodsNo=" + goodsNo + ", min=" + min + ", price=" + price
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status + ", pNum=" + pNum + "]";
 	}
-	
-	
-	
-	
 
 }
