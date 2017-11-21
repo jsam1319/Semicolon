@@ -1,15 +1,15 @@
 package kr.or.kosta.semicolon.tops.domain;
 
-import java.util.List;
+import kr.or.kosta.semicolon.common.Clothing;
  
-public class Tops {
+public class Tops implements Clothing{
 	
 	private int topsNo;
 	private int goodsNo;
 	private String types;
 	private String sizes;
-	private Double sleeveLength;
-	private Double fullLength;
+	private double sleeveLength;
+	private double fullLength;
 	
 	public Tops() {}
 

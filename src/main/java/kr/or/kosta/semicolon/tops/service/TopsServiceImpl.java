@@ -1,10 +1,12 @@
 package kr.or.kosta.semicolon.tops.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kr.or.kosta.semicolon.goods.domain.TakeAllThings;
+//import kr.or.kosta.semicolon.goods.domain.TakeAllThings;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
 import kr.or.kosta.semicolon.tops.domain.Tops;
 /**
@@ -21,6 +23,7 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * --------      -----------   ---------------------------------------
  * 2017. 11. 18.      김미소         최초 생성
  * 2017. 11. 18.      박주연		 getBySize 추가
+ * 2017. 11. 20		  박주연		 selectByGoodsNum 추가
  *
  *
  */
@@ -39,7 +42,15 @@ public class TopsServiceImpl implements TopsService {
 	public Tops getBySize(String size) {
 		return dao.getBySize(size);
 	}
-
 	
+	@Override
+	public List<Tops> selectByGoodsNum(int no) {
+		return dao.selectByGoodsNum(no);
+	}
+	
+	@Override
+	public Tops getBySizeGoodsNo(Tops tops) {
+		return dao.getBySizeGoodsNo(tops);
+	}
 
 }

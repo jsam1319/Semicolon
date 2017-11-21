@@ -10,7 +10,30 @@
 				sleeve_length,
 				full_length
 		FROM	tops
-		WHERE	goods_no = 0 
+		WHERE	goods_no is null 
 				AND sizes = #{value}
 	</select> 
+	
+	<select id="selectByGoodsNum" parameterType="int" resultType="Tops">
+		SELECT  tops_no,
+				goods_no,
+				types,
+				sizes,
+				sleeve_length,
+				full_length
+		FROM	tops
+		WHERE	goods_no = #{value}
+	</select>
+	
+	<select id="getBySizeGoodsNo" parameterType="Tops" resultType="Tops">
+		SELECT  tops_no,
+				types,
+				sizes,
+				sleeve_length,
+				full_length
+		FROM	tops
+		WHERE	goods_no = #{goodsNo}
+				AND sizes = #{sizes}
+	</select> 
+	
 </mapper>

@@ -1,7 +1,10 @@
 package kr.or.kosta.semicolon.tops.dao;
 
-import kr.or.kosta.semicolon.goods.domain.TakeAllThings;
+import java.util.List;
+
+import kr.or.kosta.semicolon.bottom.domain.Bottom;
 import kr.or.kosta.semicolon.tops.domain.Tops;
+//import kr.or.kosta.semicolon.goods.domain.TakeAllThings;
 /**
  * 
  * @packgename  	 kr.or.kosta.semicolon.tops.dao
@@ -14,8 +17,10 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 18.      김미소         최초 생성
- * 2017. 11. 18.      박주연		 getBySize 추가
+ * 2017. 11. 18.    김미소         최초 생성
+ * 2017. 11. 18.    박주연		 getBySize 추가
+ * 2017. 11. 20.	박주연		 selectByGoodsNum 추가
+ * 2017. 11. 21.	박주연		 getBySizeGoodsNo 추가
  *
  *
  */
@@ -27,5 +32,9 @@ public interface TopsDao {
 	/** 사이즈에 따른 상세정보 조회 (체형별 정보에 사용할 상세정보들) */
 	public Tops getBySize(String size);
 	
+	/** 상품번호에 따른 tops 반환 */
+	public List<Tops> selectByGoodsNum(int no);
 	
+	/** 사이즈, productNo에 따른 Tops 반환 */
+	public Tops getBySizeGoodsNo(Tops tops);
 }

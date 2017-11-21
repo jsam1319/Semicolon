@@ -1,5 +1,7 @@
 package kr.or.kosta.semicolon.bottom.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +27,16 @@ public class BottomServiceImpl implements BottomService {
 		bottom.setSizes(size);
 		
 		return dao.getByTypesSize(bottom);
+	}
+	
+	@Override
+	public List<Bottom> selectByGoodsNum(int no) {
+		return dao.selectByGoodsNum(no);
+	}
+	
+	@Override
+	public Bottom getBySizeGoodsNo(Bottom bottom) {
+		return dao.getBySizeGoodsNo(bottom);
 	}
 
 }

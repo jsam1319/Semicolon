@@ -32,7 +32,7 @@
 	</insert>
 
 	<select id="getByTypesSize" parameterType="Bottom" resultType="Bottom">
-		SELECT bottom_no, 
+		SELECT 		bottom_no, 
 		             goods_no, 
 		             types, 
 		             waist, 
@@ -45,6 +45,34 @@
 		WHERE types = #{types} 
 				AND sizes = #{sizes}
 	</select> 
-
+	
+	<select id="selectByGoodsNum" parameterType="int" resultType="Bottom">
+		SELECT 		bottom_no, 
+		             goods_no, 
+		             types, 
+		             waist, 
+		             rise, 
+		             hip, 
+		             thigh, 
+		             full_length, 
+		             sizes
+		FROM  bottom
+		WHERE goods_no = #{value}
+	</select>
+	 
+	 <select id="getBySizeGoodsNo" parameterType="Bottom" resultType="Bottom">
+		SELECT 		bottom_no, 
+		             goods_no, 
+		             types, 
+		             waist, 
+		             rise, 
+		             hip, 
+		             thigh, 
+		             full_length, 
+		             sizes
+		FROM  bottom
+		WHERE goods_no = #{goodsNo}
+				AND sizes = #{sizes}
+	</select> 
 
 </mapper>
