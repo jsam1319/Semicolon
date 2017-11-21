@@ -17,5 +17,14 @@ public class BottomServiceImpl implements BottomService {
 	public void insert(Bottom bottom) {
 		dao.insert(bottom);
 	}
+	
+	@Override
+	public Bottom getByTypesSize(String types, String size) {
+		Bottom bottom = new Bottom();
+		bottom.setTypes(types);
+		bottom.setSizes(size);
+		
+		return dao.getByTypesSize(bottom);
+	}
 
 }

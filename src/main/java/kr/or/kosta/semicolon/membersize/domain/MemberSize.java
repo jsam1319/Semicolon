@@ -16,35 +16,40 @@ package kr.or.kosta.semicolon.membersize.domain;
  *
  */
 
-//테스트요
 public class MemberSize {
 	
 	private int memberNo; /** 회원번호 */
-	private double waist; /** 허리둘레 */
-	private double thigh; /** 허벅지둘레 */
-	private double rise; /** 밑위둘레 */
-	private double hip; /** 엉덩이둘레 */
-	private double pants; /** 바지길이 */
-	private double totalLength; /** 총길이 */
+	private String waist; /** 허리둘레 */
+	private String thigh; /** 허벅지둘레 */
+	private String rise; /** 밑위둘레 */
+	private String hip; /** 엉덩이둘레 */
+	private String pants; /** 바지길이 */
+	private String fullLength; /** 총길이 */
+	private String skirt; /** 치마길이 */
+	private String sleeve; /** 치마길이 */
+	private String top; /** 치마길이 */
+	private String shorPants; /** 치마길이 */
+	
 	
 	/** 생성자 */
 	public MemberSize() { }
 	
-	public MemberSize(double waist, double thigh, double rise, double hip, double pants, double totalLength) {
-		this(0, waist, thigh, rise, hip, pants, totalLength);
-	}
-	
-	public MemberSize(int memberNo, double waist, double thigh, double rise, double hip, double pants,
-			double totalLength) {
+	public MemberSize(int memberNo, String waist, String thigh, String rise, String hip, String pants,
+			String fullLength, String skirt, String sleeve, String top, String shorPants) {
+		super();
 		this.memberNo = memberNo;
 		this.waist = waist;
 		this.thigh = thigh;
 		this.rise = rise;
 		this.hip = hip;
 		this.pants = pants;
-		this.totalLength = totalLength;
+		this.fullLength = fullLength;
+		this.skirt = skirt;
+		this.sleeve = sleeve;
+		this.top = top;
+		this.shorPants = shorPants;
 	}
-	
+
 	/** Getter, Setter */
 
 	public int getMemberNo() {
@@ -55,58 +60,101 @@ public class MemberSize {
 		this.memberNo = memberNo;
 	}
 
-	public double getWaist() {
+	public String getWaist() {
 		return waist;
 	}
 
-	public void setWaist(double waist) {
+	public void setWaist(String waist) {
 		this.waist = waist;
 	}
 
-	public double getThigh() {
+	public String getThigh() {
 		return thigh;
 	}
 
-	public void setThigh(double thigh) {
+	public void setThigh(String thigh) {
 		this.thigh = thigh;
 	}
 
-	public double getRise() {
+	public String getRise() {
 		return rise;
 	}
 
-	public void setRise(double rise) {
+	public void setRise(String rise) {
 		this.rise = rise;
 	}
 
-	public double getHip() {
+	public String getHip() {
 		return hip;
 	}
 
-	public void setHip(double hip) {
+	public void setHip(String hip) {
 		this.hip = hip;
 	}
 
-	public double getPants() {
+	public String getPants() {
 		return pants;
 	}
 
-	public void setPants(double pants) {
+	public void setPants(String pants) {
 		this.pants = pants;
 	}
 
-	public double getTotalLength() {
-		return totalLength;
+	public String getTotalLength() {
+		return fullLength;
 	}
 
-	public void setTotalLength(double totalLength) {
-		this.totalLength = totalLength;
+	public void setTotalLength(String totalLength) {
+		this.fullLength = totalLength;
+	}
+
+	public String getSkirt() {
+		return skirt;
+	}
+
+	public void setSkirt(String skirt) {
+		this.skirt = skirt;
+	}
+	
+	
+
+	public String getFullLength() {
+		return fullLength;
+	}
+
+	public void setFullLength(String fullLength) {
+		this.fullLength = fullLength;
+	}
+
+	public String getSleeve() {
+		return sleeve;
+	}
+
+	public void setSleeve(String sleeve) {
+		this.sleeve = sleeve;
+	}
+
+	public String getTop() {
+		return top;
+	}
+
+	public void setTop(String top) {
+		this.top = top;
+	}
+
+	public String getShorPants() {
+		return shorPants;
+	}
+
+	public void setShorPants(String shorPants) {
+		this.shorPants = shorPants;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberSize [memberNo=" + memberNo + ", waist=" + waist + ", thigh=" + thigh + ", rise=" + rise
-				+ ", hip=" + hip + ", pants=" + pants + ", totalLength=" + totalLength + "]";
+				+ ", hip=" + hip + ", pants=" + pants + ", fullLength=" + fullLength + ", skirt=" + skirt + ", sleeve="
+				+ sleeve + ", top=" + top + ", shorPants=" + shorPants + "]";
 	}
 	
 }
