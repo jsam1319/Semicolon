@@ -17,7 +17,7 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 10.      연주        최초 생성
+ * 2017. 11. 10.    박연주        최초 생성
  *
  *
  */
@@ -25,7 +25,7 @@ public interface gpurchaseDao {
 	
 	public void insert(Gpurchase gpurchase) throws Exception;
 	
-	public List<Gpurchase> listall() throws Exception;
+	public List<Gpurchase> gpListAll() throws Exception;
 	
 	public Gpurchase select(int gpurchaseNo) throws Exception;
 	
@@ -43,6 +43,10 @@ public interface gpurchaseDao {
 	
 	public List<Gpurchase> glistAll(Params params) throws Exception;
 	
+	public List<Gpurchase> endlistAll(Params params) throws Exception;
+	
 	public List<Integer> selectGolist() throws Exception;
+	
+	public void statusUpdate(Gpurchase gpurchase) throws Exception;
 	
 }

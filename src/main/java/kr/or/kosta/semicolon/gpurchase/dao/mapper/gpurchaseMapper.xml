@@ -26,7 +26,7 @@
 	</insert>
 
  
-	<select id="listall" resultType="Gpurchase">
+	<select id="gpListAll" resultType="Gpurchase">
 		SELECT gpurchase_no                      AS gpurchaseNo, 
 		       goods_no                          AS goodsNo, 
 		       min, 
@@ -34,7 +34,8 @@
 		       To_char(start_date, 'yyyy-MM-DD') startDate, 
 		       price, 
 		       status,
-		       likecnt							AS likeCnt 
+		       likecnt							AS likeCnt,
+		       pnum 
 		FROM   gpurchase 
 		ORDER  BY gpurchase_no DESC
 	</select>
@@ -47,7 +48,8 @@
 		       To_char(start_date, 'yyyy-MM-DD') AS startDate, 
 		       price, 
 		       status,
-		       likecnt 
+		       likecnt,
+		       pnum 
 		FROM   gpurchase 
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</select>
@@ -98,7 +100,8 @@
 		       startdate, 
 		       price, 
 		       status,
-		       likecnt 
+		       likecnt,
+		       pnum 
 		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
 		               gpurchaseno, 
 		               goodsno, 
@@ -107,7 +110,8 @@
 		               startdate, 
 		               price, 
 		               status,
-		               likecnt 
+		               likecnt,
+		               pnum 
 		        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
 		                       goods_no                          goodsNo, 
 		                       min, 
@@ -115,8 +119,10 @@
 		                       To_char(start_date, 'yyyy-MM-DD') startDate, 
 		                       price, 
 		                       status,
-		                       likecnt 
-		                FROM   gpurchase 
+		                       likecnt,
+		                       pnum 
+		                FROM   gpurchase
+		                WHERE  status = 0 
 		                
 		                <if test="productOrder != null">
 		                	<choose>
@@ -150,7 +156,8 @@
 	       startdate, 
 	       price, 
 	       status, 
-	       likecnt 
+	       likecnt,
+	       pnum 
 	FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
 	               gpurchaseno, 
 	               goodsno, 
@@ -159,7 +166,8 @@
 	               startdate, 
 	               price, 
 	               status, 
-	               likecnt 
+	               likecnt,
+	               pnum 
 	        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
 	                       goods_no                          goodsNo, 
 	                       min, 
@@ -167,9 +175,64 @@
 	                       To_char(start_date, 'yyyy-MM-DD') startDate, 
 	                       price, 
 	                       status, 
-	                       likecnt 
+	                       likecnt,
+	                       pnum 
 	                FROM   gpurchase 
-	                WHERE  likecnt >= min
+	                WHERE  status = 1
+	                <if test="productOrder != null">
+		                	<choose>
+		                		<when test="productOrder == 'newProduct'">
+		                			ORDER BY gpurchase_no DESC
+		                		</when>
+		                		<when test="productOrder == 'lowPrice'">
+		                			ORDER BY price ASC
+		                		</when>
+		                		<when test="productOrder == 'highPrice'">
+		                			ORDER BY price DESC
+		                		</when>
+		                		<when test="productOrder == 'endDate'">
+		                			ORDER BY end_date ASC
+		                		</when>
+		                		<when test="productOrder == 'deadline'">
+		                			ORDER BY likecnt DESC
+		                		</when>
+		                	</choose>
+		                </if>
+	                )) 
+	WHERE  page = #{page}	
+	</select>
+	
+	<select id="endlistAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+	SELECT gpurchaseno, 
+	       goodsno, 
+	       min, 
+	       enddate, 
+	       startdate, 
+	       price, 
+	       status, 
+	       likecnt,
+	       pnum 
+	FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+	               gpurchaseno, 
+	               goodsno, 
+	               min, 
+	               enddate, 
+	               startdate, 
+	               price, 
+	               status, 
+	               likecnt,
+	               pnum 
+	        FROM   (SELECT gpurchase_no                      gpurchaseNo, 
+	                       goods_no                          goodsNo, 
+	                       min, 
+	                       To_char(end_date, 'yyyy-MM-DD')   endDate, 
+	                       To_char(start_date, 'yyyy-MM-DD') startDate, 
+	                       price, 
+	                       status, 
+	                       likecnt,
+	                       pnum 
+	                FROM   gpurchase 
+	                WHERE  status = 2
 	                <if test="productOrder != null">
 		                	<choose>
 		                		<when test="productOrder == 'newProduct'">
@@ -197,8 +260,19 @@
 	<select id="selectGolist" resultType="int">
 	SELECT gpurchase_no
 	FROM   gpurchase 
-	WHERE  likecnt >= min 
+	WHERE  likecnt >= min
 	</select>
 	
-	
+	 <update id="statusUpdate" parameterType="Gpurchase">
+		UPDATE gpurchase
+		<set>
+			<if test="status == 0">
+				status=1, start_date=sysdate, end_date=sysdate+5
+			</if>
+			<if test="status == 1">
+				status=2
+			</if>
+		</set>
+		WHERE gpurchase_no = #{gpurchaseNo}
+	</update>
 </mapper>

@@ -20,6 +20,7 @@
         <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
 
           <input type="hidden" id="loginMemberNo" value="${no}">
+          <input type="hidden" id="category" value="${category}">
           
           <!-- Top Menu -->
           <div class="page-selector">

@@ -11,62 +11,132 @@
   <div class="content-push">
 
     <div class="breadcrumb-box">
-      <a href="#">Home</a> <a href="#">Bags &amp; Accessories</a>
+      <a href="/">Home</a> <a href="#">진행중인 공구</a>
     </div>
 
     <div class="information-blocks">
       <div class="row">
         <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
-        
-        
-      <div>
-        <a class="button style-14 ongoing">진행중인 공구</a> 
-        <a class="button style-40 end">완료된 공구</a>
-      </div>
-        
-          <!-- Top Menu -->
-          <div class="page-selector">
-            <div class="shop-grid-controls">
-              <div class="entry">
-                <div class="inline-text">Sorty by</div>
-                <div class="simple-drop-down">
-                  <select id="productOrder">
-                    <option value='newProduct' selected>등록순</option>
-                    <option value='endDate'>마감날짜순</option>
-                    <option value='deadline'>참여많은순</option>
-                    <option value='lowPrice'>낮은가격순</option>
-                    <option value='highPrice'>높은가격순</option>
-                  </select>
+
+          <input type="hidden" id="loginMemberNo" value="${no}">
+          <input type="hidden" id="category" value="${category}">
+
+          <div class="information-blocks">
+            <div class="tabs-container style-1">
+              <div class="swiper-tabs tabs-switch">
+                <div class="title">Gpurchase info</div>
+                <div class="list">
+                  <a class="tab-switcher active">진행중인 공구</a>
+                   <a class="tab-switcher endTab">마감된 공구</a>
+                  <div class="clear"></div>
                 </div>
               </div>
-              <div class="entry">
-                <div class="view-button active grid">
-                  <i class="fa fa-th"></i>
+              <div>
+
+
+                <!-- /.ongoing Gpurchase -->
+                <div class="tabs-entry ongoinGpurchase">
+                  <!-- Top Menu -->
+                  <div class="page-selector">
+                    <div class="shop-grid-controls">
+                      <div class="entry">
+                        <div class="inline-text">Sorty by</div>
+                        <div class="simple-drop-down">
+                          <select id="productOrder">
+                            <option value='newProduct' selected>등록순</option>
+                            <option value='endDate'>마감날짜순</option>
+                            <option value='deadline'>참여많은순</option>
+                            <option value='lowPrice'>낮은가격순</option>
+                            <option value='highPrice'>높은가격순</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="entry">
+                        <div class="view-button active grid">
+                          <i class="fa fa-th"></i>
+                        </div>
+                        <div class="view-button list">
+                          <i class="fa fa-list"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  <!-- /.Top Menu -->
+                  
+                  <!-- Gpurchase List -->
+                  <div class="row shop-grid grid-view listView"></div>
+                  <div class="page-selector">
+                    <center>
+                      <a class="moreView"><i
+                        class="fa fa-angle-down"></i></a>
+                    </center>
+                    <div class="pages-box">
+                      <a href="#" class="square-button"><i
+                        class="fa fa-angle-up"></i></a>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  <!-- /.Gpurchase List -->
                 </div>
-                <div class="view-button list">
-                  <i class="fa fa-list"></i>
+                <!-- /.ongoing Gpurchase -->
+
+
+                <!-- End Gpurchase -->
+                <div class="tabs-entry">
+                  <!-- Top Menu -->
+                  <div class="page-selector">
+                    <div class="shop-grid-controls">
+                      <div class="entry">
+                        <div class="inline-text">Sorty by</div>
+                        <div class="simple-drop-down">
+                          <select id="endproductOrder">
+                            <option value='newProduct' selected>등록순</option>
+                            <option value='endDate'>마감날짜순</option>
+                            <option value='deadline'>참여많은순</option>
+                            <option value='lowPrice'>낮은가격순</option>
+                            <option value='highPrice'>높은가격순</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="entry">
+                        <div class="view-button active grid">
+                          <i class="fa fa-th"></i>
+                        </div>
+                        <div class="view-button list">
+                          <i class="fa fa-list"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  <!-- /.Top Menu -->
+
+                  <!-- Gpurchase List -->
+                  <div class="row shop-grid grid-view endlistView"></div>
+
+                  <div class="page-selector">
+                    <center>
+                      <a class="moreView"><i
+                        class="fa fa-angle-down"></i></a>
+                    </center>
+                    <div class="pages-box">
+                      <a href="#" class="square-button"><i
+                        class="fa fa-angle-up"></i></a>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  <!-- /.Gpurchase List -->
                 </div>
               </div>
             </div>
-            <div class="clear"></div>
           </div>
-          <!-- /.Top Menu -->
-          
-          <!-- Gpurchase List -->
-          <div class="row shop-grid grid-view listView"></div>
-          
-          <div class="page-selector">
-            <center>
-              <a class="moreView"><i class="fa fa-angle-down"></i></a>
-            </center>
-            <div class="pages-box">
-              <a href="#" class="square-button"><i
-                class="fa fa-angle-up"></i></a>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- /.Gpurchase List -->
-          
+          <!-- /.End Gpurchase -->
+
+
+
+
+
         </div>
 
 
@@ -158,58 +228,6 @@
             </div>
           </div>
 
-          <div class="information-blocks">
-            <div class="block-title size-2">Sort by price</div>
-            <div class="range-wrapper">
-              <div id="prices-range"></div>
-              <div class="range-price">
-                Price:
-                <div class="min-price">
-                  <b>&pound;<span>0</span></b>
-                </div>
-                <b>-</b>
-                <div class="max-price">
-                  <b>&pound;<span>200</span></b>
-                </div>
-              </div>
-              <a class="button style-14">filter</a>
-            </div>
-          </div>
-
-          <div class="information-blocks">
-            <div class="block-title size-2">Sort by brands</div>
-            <div class="row">
-              <div class="col-xs-6">
-                <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Armani
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Bershka Co
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Nelly.com
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Zigzag
-                  Inc
-                </label>
-              </div>
-              <div class="col-xs-6">
-                <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Armani
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Bershka Co
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Nelly.com
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Zigzag
-                  Inc
-                </label>
-              </div>
-            </div>
-          </div>
-
         </div>
         <!-- /.Left Side Menu -->
       </div>
@@ -217,9 +235,10 @@
   </div>
 
   <div class="clear"></div>
-  
-  
+
+
   <script src="/resources/js/list.js"></script>
-  <link href="/resources/css/gpurchase.css" rel="stylesheet" type="text/css"></link>
+  <link href="/resources/css/gpurchase.css" rel="stylesheet"
+    type="text/css"></link>
 </body>
 </html>

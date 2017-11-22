@@ -13,7 +13,7 @@ public class Params {
 	private String productOrder;
 	
 	public Params() {
-		this(1, null, null, 10, 5, "newProduct");
+		this(1, null, null, 12, 5, "newProduct");
 	}
 	
 	public Params(int page, String type, String value, int pageSize, int pageNum, String productOrder) {

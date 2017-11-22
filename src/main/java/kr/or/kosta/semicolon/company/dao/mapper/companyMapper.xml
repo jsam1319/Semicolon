@@ -51,7 +51,7 @@
   			WHERE company_no = #{companyNo}
   		</delete>
   		
-  		<select id="selectCName" resultType="map">
+  		<select id="selectCNameListAll" resultType="map">
   			SELECT c.NAME	name, 
 			       g.goods_no	goodsNo
 			FROM   company c, 
@@ -62,4 +62,18 @@
 			       AND n.nego_no = ne.nego_no 
 			       AND ne.goods_no = g.goods_no
   		</select>
+  		
+  		<select id="selectCName" parameterType="int" resultType="String">
+  			SELECT c.NAME	name
+			FROM   company c, 
+			       nego n, 
+			       nego_list ne, 
+			       goods g 
+			WHERE  c.company_no = n.company_no 
+			       AND n.nego_no = ne.nego_no 
+			       AND ne.goods_no = g.goods_no
+			       AND g.goods_no = #{goodsNo}
+  		</select>
+  		
+  		
   </mapper>

@@ -157,7 +157,7 @@ var changeSizeGap = function(data){
 				<div class="col-sm-7 col-md-4 information-entry">
 					<div class="product-detail-box">
 						<h1 class="product-title">${goods.name}</h1>
-						<h3 class="product-subtitle">Enter Company Name</h3>
+						<h3 class="product-subtitle">${companyName}</h3>
 
 						<div class="rating-box" id="avgGrade"></div>
 
@@ -199,8 +199,66 @@ var changeSizeGap = function(data){
 							<div class="entry number">1</div>
 							<div class="entry number-plus">&nbsp;</div>
 						</div>
-						<div class="detail-info-entry">
-							<a class="button style-10"><i class="fa fa-heart"></i> Buy</a>
+						<div class="detail-info-entry btnDiv">
+            
+              
+              <script>
+              
+              
+              <!-- 공구재요청 -->
+              var string = "";
+            	  if(${gpurchase.status} == 1) {
+            		  string += "<a class='button style-10'><i class='fa fa-heart'></i>구매하기</a>"
+            		  
+            		  $(".btnDiv").html(string)
+            		  
+            	  } else {
+            		  askBtn("${askCnt}")
+            	  }
+              
+              function askBtn(askCheck) {
+            	  var str = "";
+            	  if(askCheck == 0) {
+            		  str += "<a class='button style-10 askresale'>재공구요청</a>"
+            	  } else {
+            		  str += "<a class='button style-10 askcancle'>요청취소</a>"
+            	  }
+            	  
+            	  $(".btnDiv").html(str)
+              }
+              
+              
+              
+              var gpurchaseNo = ${gpurchase.gpurchaseNo}
+              
+              $(document).on("click", ".askresale", function(event){
+            	  askCheck(0, gpurchaseNo)
+            	  event.stopImmediatePropagation()
+              })
+              $(document).on("click", ".askcancle", function(event){
+            	  askCheck(1, gpurchaseNo)
+            	  event.stopImmediatePropagation()
+              })
+              
+              function askCheck(askCk, gpNo){ 
+            	  $.ajax({
+            		  url: "/product/askck/"+askCk+"/"+gpNo,
+            		  type: "POST",
+            		  data: {
+            			  "memberNo" : "${no}"
+            		  },
+            		  success: function(askCheck){
+            			  askBtn(askCheck)
+            		  },
+            		  error: function(data){
+            			  console.log(data)
+            		  }
+            	  })
+            	  
+              }
+              
+              </script>
+              
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -301,8 +359,10 @@ var changeSizeGap = function(data){
 					class="button style-40" href="#productInfo3">유의 사항</a>
 			</div>
 
-			<div class="inline-product-entry">
 
+            <c:choose>
+            <c:when test="${gpurchase.status == 1}">
+			<div class="inline-product-entry">
 				<form id="replyform" method="post" enctype="multipart/form-data">
 					<div class="row">
 						<div class=" col-md-8">
@@ -326,6 +386,8 @@ var changeSizeGap = function(data){
 					</div>
 				</form>
 			</div>
+      </c:when>
+</c:choose>
 
 			<div id="reviewList"></div>
 
@@ -345,7 +407,20 @@ var changeSizeGap = function(data){
 					class="button style-40" href="#productInfo2">상품 리뷰</a> <a
 					class="button style-14" href="#productInfo3">유의 사항</a>
 			</div>
-			<div class="inline-product-entry">유의유의</div>
+      <c:choose>
+      <c:when test="${gpurchase.status == 1 }">
+			<div class="inline-product-entry">
+      <p>진행중인 공동구매입니다. </p>
+      <p>공동구매 상품이므로 반품은 불가능합니다. </p>
+      </div>
+      </c:when>
+      <c:when test="${gpurchase.status == 2 }">
+      <div class="inline-product-entry">
+      <p>마감된 공동구매입니다. </p>
+      <p>해당 상품 공동구매를 원하시면 재공구요청을 해주세요. </p>
+      </div>
+      </c:when>
+      </c:choose>
 		</div>
 	</div>
 

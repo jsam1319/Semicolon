@@ -1,9 +1,12 @@
 $(document).ready(function(){
 	var page = 1
 	var memberNo = $("#loginMemberNo").val()
+	var category = $("#category").val()
+	
+	console.log("category : "+category)
 	
 	/** 글 정렬 후 처음 리스트 붙이기 .html */
-	$.post("/product/research/"+page, function(data){
+	$.post("/product/research/"+category+"/"+page, function(data){
 		printList(data)
 	})
 	
@@ -12,7 +15,7 @@ $(document).ready(function(){
 	  page = 1
 	  
 	  $.ajax({
-		  url: "/product/research/"+page,
+		  url: "/product/research/"+category+"/"+page,
 		  dataType: "json",
 		  type: "POST",
 		  data: {
@@ -48,7 +51,7 @@ $(document).ready(function(){
 	  function print(){
 		  var productOrder = $("select option:selected").val(); 
 		  $.ajax({
-			  url: "/product/research/"+page,
+			  url: "/product/research/"+category+"/"+page,
 			  dataType: "json",
 			  type: "POST",
 			  data: {
@@ -99,9 +102,8 @@ $(document).ready(function(){
 	  	            if (flag) {
 		  		  	    str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' class='imgcl' alt='totoro' />"
 		  		  	    str += "<img src='/resources/img/ex/cat.jpg' class='imgcl' alt='image' />"
-		  		  	    str += "<div class='bottom-line left-attached2'>"
-			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Research Complete</a>"
-			  	        str += "	<a class='bottom-line-a square2' href='/product/gpurchase/"+gpurchase.gpurchaseNo+"'>Go to Buy</a>"
+		  		  	    str += "<div class='bottom-line'>"
+			  	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
 			  	        str += "</div>"
 		  			} else {
 		  				str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"

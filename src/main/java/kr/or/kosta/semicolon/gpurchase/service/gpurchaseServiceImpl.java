@@ -13,6 +13,7 @@ import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.company.dao.CompanyDao;
 import kr.or.kosta.semicolon.goods.dao.GoodsDao;
 import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.gpurchase.CompareTime;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gwish.dao.gwishDao;
@@ -56,9 +57,12 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		Goods goods = new Goods();
 		goods = goodsDao.select(gpurchase.getGoodsNo());
 		
+		String companyName = comDao.selectCName(gpurchase.getGoodsNo());
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
 		map.put("goods", goods);
+		map.put("companyName", companyName);
 		
 		return map;
 	}
@@ -68,31 +72,26 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return gpdao.selectGoodsNo(gpurchaseNo);
 	}
 	
-	/*
-	@Override
-	public Map<String, Object> listall() throws Exception {
-		List<Gpurchase> gplist = gpdao.listall();
-		List<Goods> glist = goodsDao.listall();
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("gplist", gplist);
-		map.put("glist", glist);
-		
-		return map;
-	}
-	*/
 	
 	@Override
-	public Map<String, Object> listAll(Params params) throws Exception {
+	public List<Gpurchase> gpListAll() throws Exception {
+		return gpdao.gpListAll();
+	}
+	
+	
+	@Override
+	public Map<String, Object> listAll(Params params, int category) throws Exception {
 		List<Gpurchase> gplist = gpdao.listAll(params);
-		List<Goods> glist = goodsDao.allList();
-		List<Map<String, Object>> comlist = comDao.selectCName();
-		
+		List<Goods> glist = goodsDao.categoryListAll(category);
+		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gplist", gplist);
 		map.put("glist", glist);
 		map.put("comlist", comlist);
+		
+		
+		
 		
 		return map;
 	}
@@ -124,13 +123,29 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	
 	@Override
-	public Map<String, Object> glistAll(Params params) throws Exception {
+	public Map<String, Object> glistAll(Params params, int category) throws Exception {
 		List<Gpurchase> gplist = gpdao.glistAll(params);
-		List<Goods> glist = goodsDao.allList();
+		List<Goods> glist = goodsDao.categoryListAll(category);
+		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gplist", gplist);
 		map.put("glist", glist);
+		map.put("comlist", comlist);
+		
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> endlistAll(Params params, int category) throws Exception {
+		List<Gpurchase> gplist = gpdao.endlistAll(params);
+		List<Goods> glist = goodsDao.categoryListAll(category);
+		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("gplist", gplist);
+		map.put("glist", glist);
+		map.put("comlist", comlist);
 		
 		return map;
 	}
@@ -142,5 +157,11 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		return list;
 	}
+	
+	@Override
+	public void statusUpdate(Gpurchase gpurchase) throws Exception {
+		gpdao.statusUpdate(gpurchase);
+	}
+	
 	
 }

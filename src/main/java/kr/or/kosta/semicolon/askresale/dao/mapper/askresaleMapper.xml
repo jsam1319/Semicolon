@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.askresale.dao.AskresaleDao">
+
+<select id="selectCnt" resultType="int" parameterType="AskResale">
+	SELECT Count(ask_resale_no) 
+	FROM   ask_resale 
+	WHERE  member_no = #{memberNo} 
+	       AND gpurchase_no = #{gpurchaseNo} 
+</select>
+
+<insert id="insert" parameterType="AskResale">
+	<selectKey keyProperty="askResaleNo" resultType="int" order="BEFORE">
+		SELECT seq_ask_resale.nextval FROM dual
+	</selectKey>
+	INSERT INTO ask_resale 
+	            (ask_resale_no, 
+	             member_no, 
+	             gpurchase_no) 
+	VALUES     (#{askResaleNo}, 
+	            #{memberNo}, 
+	            #{gpurchaseNo})
+</insert>
+
+<select id="select" resultType="int" parameterType="AskResale">
+	SELECT ask_resale_no 
+	FROM   ask_resale 
+	WHERE  member_no = #{memberNo} 
+	       AND gpurchase_no = #{gpurchaseNo}
+</select>
+
+<delete id="delete" parameterType="int">
+	DELETE ask_resale 
+	WHERE  ask_resale_no = #{askResaleNo}
+</delete>
+
+
+</mapper>

@@ -10,7 +10,7 @@ public interface gpurchaseService {
 	
 	public void insert(Gpurchase gpurchase) throws Exception;
 	
-//	public Map<String, Object> listall() throws Exception;
+	public List<Gpurchase> gpListAll() throws Exception;
 	
 	public Map<String, Object> select(int gpurchaseNo) throws Exception;
 	
@@ -23,16 +23,21 @@ public interface gpurchaseService {
 //	public List<Gpurchase> listAll(Params params) throws Exception;
 	
 	// 공구 조사(research) 리스트
-	public Map<String, Object> listAll(Params params) throws Exception;
+	public Map<String, Object> listAll(Params params, int category) throws Exception;
+	
+	// 공구 진행(ongoing) 리스트
+	public Map<String, Object> glistAll(Params params, int category) throws Exception;
+	
+	// 공구 완료(end) 리스트
+	public Map<String, Object> endlistAll(Params params, int category) throws Exception;
 	
 	public void updateCntP(int gpurchaseNo) throws Exception;
 
 	public void updateCntM(int gpurchaseNo) throws Exception;
 	
-	// 공구(list) 리스트
-	public Map<String, Object> glistAll(Params params) throws Exception;
-	
 	public List<Integer> selectGolist() throws Exception;
+	
+	public void statusUpdate(Gpurchase gpurchase) throws Exception;
 	
 
 }
