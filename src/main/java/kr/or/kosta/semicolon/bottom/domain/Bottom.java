@@ -1,5 +1,7 @@
 package kr.or.kosta.semicolon.bottom.domain;
 
+import kr.or.kosta.semicolon.common.Clothing;
+
 /**
  * 
  * @packgename  	 kr.or.kosta.semicolon.bottom.domain
@@ -16,7 +18,7 @@ package kr.or.kosta.semicolon.bottom.domain;
  *
  *
  */
-public class Bottom {
+public class Bottom  implements Clothing{
 	
 	private int bottomNo;
 	private int goodsNo;
