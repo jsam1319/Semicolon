@@ -2,6 +2,7 @@ package kr.or.kosta.semicolon.tops.domain;
 
 import kr.or.kosta.semicolon.common.Clothing;
  
+
 public class Tops implements Clothing{
 	
 	private int topsNo;
