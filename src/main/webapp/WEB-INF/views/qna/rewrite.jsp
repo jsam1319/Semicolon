@@ -36,16 +36,13 @@
 
                 <div class="information-blocks">
                     <div class="row">
-                    <form role="form" method="post">
-                      <input type='hidden' name='qnaNo' value="${qnaNo }">
-                    </form>
                         
                         <div class="col-md-9 col-md-push-3 information-entry">
                             <div class="blog-landing-box type-1 detail-post">
                                 <div class="blog-entry">
                                     <h3 class="additional-blog-title">문의 답변 하기</h3>
                                     <form id="registerForm" method="post">
-                                        <input type='hidden' name='memberNo' value="1"> 
+                                        <input type='hidden' name='qnaNo' value="${qnaNo }">
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <label>답변 내용 <span>*</span></label>

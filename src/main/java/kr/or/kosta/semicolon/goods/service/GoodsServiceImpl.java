@@ -45,6 +45,11 @@ public class GoodsServiceImpl implements GoodsService {
 	public Goods select(int goodsNo) throws Exception {
 		return goodsDao.select(goodsNo);
 	}
+	
+	@Override
+	public int selectNo(String name) throws Exception {
+		return goodsDao.selectNo(name);
+	}
 
 	@Override
 	public List<Goods> listAll(Params params) throws Exception {

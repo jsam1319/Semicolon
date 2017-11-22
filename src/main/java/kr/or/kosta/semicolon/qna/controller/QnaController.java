@@ -115,10 +115,13 @@ public class QnaController {
 	 * </pre>
 	 * @Method Name : qnaReply
 	 */
-	@RequestMapping(value="/rewrite", method = RequestMethod.GET)
-	public void qnaReply() {}
+	@RequestMapping(value="/rewrite/{qnaNo}", method = RequestMethod.GET)
+	public String qnaReply(@PathVariable("qnaNo") int qnaNo) {
+		
+		return "/qna/rewrite";
+	}
 	
-	@RequestMapping(value="/rewrite", method = RequestMethod.POST)
+	@RequestMapping(value="/rewrite/{qnaNo}", method = RequestMethod.POST)
 	public String qnaReplyUpdate(Qna qna, RedirectAttributes rttr) throws Exception {
 		
 		qnaService.update(qna);
@@ -137,11 +140,16 @@ public class QnaController {
 	 * @param qnaNo : 글번호
 	 * @param model
 	 */
-	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public void qnaRead(@RequestParam("qnaNo") int qnaNo, Model model) throws Exception {
+	@RequestMapping(value="/read/{qnaNo}", method = RequestMethod.GET)
+	public String qnaRead(@PathVariable("qnaNo") int qnaNo, Model model) throws Exception {
 		
-		model.addAttribute(qnaService.select(qnaNo));
+		Qna qna = qnaService.select(qnaNo);
+		
+		model.addAttribute("qna", qna);
+		
+		return "/qna/read";
 	}
+	
 	
 	/**
 	 * <pre>
@@ -153,13 +161,16 @@ public class QnaController {
 	 * @param model
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/modify", method = RequestMethod.GET)
-	public void qnaModify(@RequestParam("qnaNo") int qnaNo, Model model) throws Exception {
+	@RequestMapping(value="/modify/{qnaNo}", method = RequestMethod.GET)
+	public String qnaModify(@PathVariable("qnaNo") int qnaNo, Model model) throws Exception {
+		Qna qna = qnaService.select(qnaNo);
+		model.addAttribute("qna", qna);
 		
-		model.addAttribute(qnaService.select(qnaNo));
+		return "/qna/modify";
 	}
 	
-	@RequestMapping(value="/modify", method = RequestMethod.POST)
+	
+	@RequestMapping(value="/modify/{qnaNo}", method = RequestMethod.POST)
 	public String qnaModifyUpdate(Qna qna, RedirectAttributes rttr) throws Exception {
 		
 		qnaService.modify(qna);

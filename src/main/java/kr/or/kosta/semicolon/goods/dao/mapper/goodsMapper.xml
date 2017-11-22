@@ -73,6 +73,14 @@
 		WHERE  goods_no = #{goodsNo}
 	</select>
 	
+	
+	<select id="selectNo" resultType="int">
+		SELECT goods_no
+		FROM   goods
+		WHERE  name = #{name}
+	</select>
+	
+	
 	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
 		SELECT goodsno, 
 		       NAME, 

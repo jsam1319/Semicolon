@@ -65,13 +65,13 @@
                             </div>
                             <div class="col-sm-6 information-entry left-border nopadding">
                                 <div class="column-article-entry">
-                                    <a class="title" href="#">Goods Request & Answer</a>
+                                    <a class="title" href="/qna/list">Goods Request & Answer</a>
                                     <div class="description">상품 문의 및 답변</div>
                                 </div>
                             </div>
                             <div class="col-sm-6 information-entry left-border nopadding">
                                 <div class="column-article-entry">
-                                    <a class="title" href="#">A/S Request & Answer</a>
+                                    <a class="title" href="/after/list">A/S Request & Answer</a>
                                     <div class="description">A/S 요청 및 답변</div>
                                 </div>
                             </div>

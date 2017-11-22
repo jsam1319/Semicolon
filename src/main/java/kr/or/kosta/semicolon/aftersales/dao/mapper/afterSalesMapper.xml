@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.aftersales.dao.AfterSalesDao">
+	
+	<!-- AS 등록 -->
+	<insert id="insert" parameterType="AfterSales">
+		<selectKey keyProperty="aftersalesNo" order="BEFORE" resultType="int">
+			SELECT seq_AfterSales.nextval FROM  dual 
+		</selectKey>
+		INSERT INTO aftersales 
+		            (aftersales_no, 
+		             goods_no, 
+		             member_no, 
+		             attach_file, 
+		             content, 
+		             password) 
+		VALUES      (#{aftersalesNo}, 
+		             #{goodsNo}, 
+		             #{memberNo}, 
+		             #{attachFile}, 
+		             #{content}, 
+		             #{password}) 
+	</insert>
+	
+	<!-- AS 검색 -->
+	<select id="select" resultType="AfterSales">
+		SELECT aftersales_no, 
+		       goods_no, 
+		       member_no, 
+		       attach_file, 
+		       content, 
+		       password, 
+		       status 
+		FROM   aftersales 
+		WHERE  aftersales_no = #{aftersalesNo} 
+	</select>
+	
+	<!-- AS 수정 -->
+	<update id="update">
+		UPDATE aftersales 
+		SET    status = 1
+		WHERE  aftersales_no = #{aftersalesNo}
+	</update>
+	
+	
+	<!-- AS 삭제 -->
+	<delete id="delete">
+		DELETE FROM aftersales
+		WHERE aftersales_no = #{aftersalesNo}
+	</delete>
+	
+	<!-- AS List by Member -->
+	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="AfterSales">
+		SELECT aftersales_no, 
+		       goods_no, 
+		       member_no, 
+		       attach_file, 
+		       content,
+		       password,
+		       status,
+		       regdate
+		FROM   (SELECT CEIL(rownum / 5) request_page, 
+		               aftersales_no, 
+		               goods_no,
+		               member_no,
+		               attach_file,
+		               content,
+		               password,
+		               status,
+		               regdate 
+		        FROM   (SELECT aftersales_no, 
+		                       goods_no, 
+		                       member_no, 
+		                       attach_file, 
+		                       content,
+		                       password,
+		                       status,
+		                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate
+		                FROM   aftersales
+		                <if test="value != 1">
+		                WHERE  member_no = #{value}
+		                </if>
+		                ORDER  BY regdate DESC)) 
+		WHERE  request_page = #{page}
+	</select>
+	
+</mapper>

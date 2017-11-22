@@ -25,8 +25,10 @@ $(document).ready(function(){
     formObj.submit();
   });
   
+  var qnaNo = ${qna.qnaNo};
+  
   $("#modifyBtn").on("click", function() {
-		formObj.attr("action", "/qna/modify");
+		formObj.attr("action", "/qna/modify/" + qnaNo);
 		formObj.attr("method", "get");
 		formObj.submit();
 	});
@@ -64,7 +66,7 @@ $(document).ready(function(){
                                     <form id="registerForm" role="form" method="post">
                                     <input type='hidden' name='qnaNo' value="${qna.qnaNo}">
                                     </form>
-                                        <input type='hidden' name='memberNo' value="1"> 
+                                        <input type='hidden' name='memberNo' value="${no }"> 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>글 제목 <span>*</span></label>

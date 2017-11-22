@@ -50,16 +50,15 @@ $(document).ready(function(){
 				  url: "/qna/" + page,
 				  dataType: "json",
 				  success: function(data){
-					  console.log(data);
 					  var str = printList(data)
 					  $("#replies").append(str);
 				  },
 				  error: function(data){
 					  console.log(data)
 				  }
-			  })
-		  })
-	  })
+			  });
+		  });
+	  });
 });
 
 function printList(data) {
@@ -83,19 +82,18 @@ function printList(data) {
                 
                 var date1 = new Date();
                 var date2 = new Date(regdate);
-                //86400000 하루!
                 
                 if( (date1 - date2 - 86400000) > 0) timeString = time;
                 else								timeString = moment(regdate).fromNow();
                 
                 var answer = "";
-                if( this.answerContent == null ) answer = "아직 읽지 않았습니다.. 잠시만 기다려주세요.. <a class='style-19' href='/qna/rewrite?qnaNo=" + this.qnaNo + "' id='rewrite'>답변작성</a>";
+                if( this.answerContent == null ) answer = "아직 읽지 않았습니다.. 잠시만 기다려주세요.. <a class='style-19' href='/qna/rewrite/" + this.qnaNo + "' id='rewrite'>답변작성</a>";
                 else answer = this.answerContent.replace(/\n/gi, "<br>");
                 
       			str += '<div class="blog-entry" id="qnalist">';
       			str += '<div class="date" id="date">' + day + '<span>' + mon + '</span></div>';
       			str += '<div class="content">';
-      			str += '<a class="title" href="/qna/read?qnaNo=' + this.qnaNo + '">' + this.title + '</a>';
+      			str += '<a class="title" href="/qna/read/' + this.qnaNo + '">' + this.title + '</a>';
       			str += '<div class="subtitle">' + timeString + '  /  ';
       			str += '<span style="font-weight:bold">' + status + '</span>';
       			str += '</div>';
@@ -133,7 +131,9 @@ function printList(data) {
                     <a href="/">홈</a>
                     <a href="#">문의 리스트</a>
                 </div>
-
+                
+                <div class="col-md-2"><a class="button style-10" href="/qna/regist">작성하기</a></div>
+                
                 <div class="information-blocks">
                     <div class="row">
                         

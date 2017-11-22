@@ -28,6 +28,8 @@ public interface GoodsDao {
 	
 	public Goods select(int goodsNo) throws Exception;
 	
+	public int selectNo(String name) throws Exception;
+	
 	public List<Goods> listAll(Params params) throws Exception;
 	
 	public int listCount() throws Exception;

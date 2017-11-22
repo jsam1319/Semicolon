@@ -3,16 +3,24 @@
 <html>
 <head>
     <meta name="format-detection" content="telephone=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/resources/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
-    <link href="/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
-    <link href="/resources/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/css/semantic.css" rel="stylesheet" type="text/css" />
     <!--[if IE 9]>
         <link href="css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
     <link rel="shortcut icon" href="/resources/img/favicon-6.ico" />
+    <script src="/resources/js/semantic.js"></script>
+<style>
+
+#preview{
+    z-index: 9999;
+    position:absolute;
+    border:0px solid #ccc;
+    background:#333;
+    padding:1px;
+    display:none;
+    color:#fff;
+}
+</style>    
 </head>
 <body class="style-10">
 
@@ -41,22 +49,42 @@
                                 <div class="blog-entry">
                                     <h3 class="additional-blog-title">1 : 1 문의 하기</h3>
                                     <form id="registerForm" method="post">
-                                        <input type='hidden' name='memberNo' value="1"> 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>글 제목 <span>*</span></label>
                                                 <input class="simple-field" type="text" name="title" placeholder="글 제목 (입력)" value="" />
                                             </div>    
-                                            <div class="col-md-3">    
+                                            <!-- <div class="col-md-3">    
                                                 <label>상품번호 <span>*</span></label>
                                                 <input class="simple-field" type="text" name="goodsNo" placeholder="상품번호 (입력)" value="" />
                                                 <div class="clear"></div>
+                                            </div> -->
+                                            <div class="col-md-3">
+                                              <label>상품검색 <span>*</span></label>
+                                              <div class="ui inline dropdown button" id="dropdown">
+                                                <span class="text" id="choose">Choose Category</span>
+                                                <i class="dropdown icon"></i>
+                                                <div class="menu">
+                                                  <div class="item">
+                                                    <i class="dropdown icon"></i>
+                                                    <span class="text">Tops</span>
+                                                    <div class="menu" id="topsMenu"></div>
+                                                  </div>
+                                                  <div class="item">
+                                                    <i class="dropdown icon"></i> 
+                                                    <span class="text">Bottom</span>
+                                                    <div class="menu" id="bottomMenu"></div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="clear"></div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <label>글 내용 <span>*</span></label>
                                                 <textarea class="simple-field" name="content" placeholder="무엇을 도와드릴까요? (입력)"></textarea>
                                                 <div class="button style-10">보내기<input type="submit" value="" /></div>
                                             </div>
+                                            <div id="hiddenData"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -73,13 +101,77 @@
 
         <div class="clear"></div>
 
-
-    <script src="/resources/js/jquery-2.1.3.min.js"></script>
-    <script src="/resources/js/idangerous.swiper.min.js"></script>
-    <script src="/resources/js/global.js"></script>
-
-    <!-- custom scrollbar -->
-    <script src="/resources/js/jquery.mousewheel.js"></script>
-    <script src="/resources/js/jquery.jscrollpane.min.js"></script>
+    
+    <script>
+    var goodsNo = "";
+    $(document).ready(function(){
+    	
+    	$('.dropdown').dropdown();
+    	
+    	$(document).on('click','#dropdown div > a', function() {
+    	    // 선택된 항목 값(value) 얻기
+    	    goodsName = $(this).text();
+    	    goodsNo = $(this).attr('id');
+    	});
+    	
+    	$(document).on("mouseover", ".image", function(e){
+    		$("body").append("<p id='preview'><img src='"+ $(this).attr("src") +"' width='150px' /></p>");
+    		
+    		$("#preview").css("top", 35 + "%")
+    		             .css("left", 35 + "%")
+    		             .fadeIn("fast");
+    	});
+    	
+    	$(document).on("mousemove", ".image", function(e){
+    		$("#preview").css("top", 35 + "%")
+    		             .css("left", 35 + "%");
+    		
+    	});
+    	
+    	$(document).on("mouseout", ".image", function(){
+    		$("#preview").remove();
+    	});
+    	
+		$.getJSON("/goods/list", function(data){
+            
+    		var str = "";
+    		
+            $(data).each(function(){
+				if(this.category == 1){
+					str += '<a class="item" id="' + this.goodsNo + '" ><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+				}
+            });
+            $("#topsMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 2){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#bottomMenu").html(str);
+        });
+    	
+    });
+    
+    $("#registerForm").submit(function(event){
+    	event.preventDefault();
+    	
+		var registerForm = document.getElementById("registerForm");
+		
+		var memberNo = ${no};
+		
+		var str = "";
+		
+		str += "<input type='hidden' name='goodsNo' value='" + goodsNo + "'> ";
+		str += "<input type='hidden' name='memberNo' value='" + memberNo + "'> ";
+		
+		$("#hiddenData").append(str);
+		
+		var formData = new FormData(registerForm);
+		
+		$(this).get(0).submit();
+	});
+    </script>
 </body>
 </html>
