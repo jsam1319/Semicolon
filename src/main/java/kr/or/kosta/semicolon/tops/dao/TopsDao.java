@@ -42,3 +42,4 @@ public interface TopsDao {
 	/** 공구별 상품 사이즈 출력*/
 	public List<HashMap<String, String>> selectSize(int gpurchaseNo);
 }
+>>>>>>> branch 'master' of https://github.com/jsam1319/Semicolon.git

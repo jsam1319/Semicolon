@@ -2,9 +2,9 @@ package kr.or.kosta.semicolon.bottom.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import kr.or.kosta.semicolon.bottom.domain.Bottom;
+
 
 /**
  * 
