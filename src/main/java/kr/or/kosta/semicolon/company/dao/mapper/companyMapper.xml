@@ -75,5 +75,8 @@
 			       AND g.goods_no = #{goodsNo}
   		</select>
   		
+  		<select id="count" resultType="int">
+  			 SELECT count(*) cnt FROM company
+  		</select>
   		
   </mapper>
