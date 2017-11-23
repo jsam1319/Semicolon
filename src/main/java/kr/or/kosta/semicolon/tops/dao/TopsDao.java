@@ -1,5 +1,6 @@
 package kr.or.kosta.semicolon.tops.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.or.kosta.semicolon.bottom.domain.Bottom;
@@ -21,7 +22,7 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * 2017. 11. 18.    박주연		 getBySize 추가
  * 2017. 11. 20.	박주연		 selectByGoodsNum 추가
  * 2017. 11. 21.	박주연		 getBySizeGoodsNo 추가
- *
+ * 2017. 11. 22.	박연주		 selectSize 추가
  *
  */
 public interface TopsDao {
@@ -35,6 +36,9 @@ public interface TopsDao {
 	/** 상품번호에 따른 tops 반환 */
 	public List<Tops> selectByGoodsNum(int no);
 	
-	/** 사이즈, productNo에 따른 Tops 반환 */
+	/** 사이즈, goodsNo에 따른 Tops 반환 */
 	public Tops getBySizeGoodsNo(Tops tops);
+	
+	/** 공구별 상품 사이즈 출력*/
+	public List<HashMap<String, String>> selectSize(int gpurchaseNo);
 }

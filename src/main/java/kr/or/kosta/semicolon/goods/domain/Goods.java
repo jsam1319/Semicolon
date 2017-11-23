@@ -11,8 +11,8 @@ package kr.or.kosta.semicolon.goods.domain;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 10.      kosta         최초 생성
- *
+ * 2017. 11. 10.      전세종         최초 생성
+ * 
  *
  */
 public class Goods {

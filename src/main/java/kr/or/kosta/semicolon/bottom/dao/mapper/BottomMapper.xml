@@ -74,5 +74,15 @@
 		WHERE goods_no = #{goodsNo}
 				AND sizes = #{sizes}
 	</select> 
+	
+	<select id="selectSize" parameterType="int" resultType="HashMap">
+		SELECT B.sizes 
+		FROM   bottom B, 
+		       goods G, 
+		       gpurchase GP 
+		WHERE  B.goods_no = G.goods_no 
+		       AND G.goods_no = GP.goods_no 
+		       AND GP.gpurchase_no = #{gpurchaseNo}
+	</select>
 
 </mapper>

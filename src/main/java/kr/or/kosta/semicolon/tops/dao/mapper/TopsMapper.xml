@@ -36,4 +36,14 @@
 				AND sizes = #{sizes}
 	</select> 
 	
+	<select id="selectSize" parameterType="int" resultType="HashMap">
+		SELECT T.sizes 
+		FROM   tops T, 
+		       goods G, 
+		       gpurchase GP 
+		WHERE  T.goods_no = G.goods_no 
+		       AND G.goods_no = GP.goods_no 
+		       AND GP.gpurchase_no = #{gpurchaseNo}
+	</select>
+	
 </mapper>
