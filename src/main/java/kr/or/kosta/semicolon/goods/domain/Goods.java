@@ -24,12 +24,13 @@ public class Goods {
 	private String frontImg;
 	private String col;
 	private String toggleImg;
-	private String category;
+	private int category;
 	
 	public Goods() {}
-	
+
 	public Goods(int goodsNo, String name, int price, String detail, String frontImg, String col, String toggleImg,
-			String category) {
+			int category) {
+		super();
 		this.goodsNo = goodsNo;
 		this.name = name;
 		this.price = price;
@@ -39,7 +40,6 @@ public class Goods {
 		this.toggleImg = toggleImg;
 		this.category = category;
 	}
-
 
 	public int getGoodsNo() {
 		return goodsNo;
@@ -81,8 +81,6 @@ public class Goods {
 		this.frontImg = frontImg;
 	}
 
-	
-	
 	public String getCol() {
 		return col;
 	}
@@ -99,11 +97,11 @@ public class Goods {
 		this.toggleImg = toggleImg;
 	}
 
-	public String getCategory() {
+	public int getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 
@@ -113,5 +111,7 @@ public class Goods {
 				+ ", frontImg=" + frontImg + ", col=" + col + ", toggleImg=" + toggleImg + ", category=" + category
 				+ "]";
 	}
+	
+	
 	
 }

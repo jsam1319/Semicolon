@@ -1,4 +1,10 @@
 package kr.or.kosta.semicolon.goods.domain;
+
+import java.util.Arrays;
+
+import kr.or.kosta.semicolon.keyword.domain.Keyword;
+import kr.or.kosta.semicolon.tops.domain.Tops;
+
 /**
  * 
  * @packgename  	 kr.or.kosta.semicolon.goods.domain
@@ -24,7 +30,8 @@ public class TakeAllThings {
 	private String detail;
 	private String frontImg;
 	private String toggleImg;
-	private String color;
+	private String col;
+	private int category;
 	
 	//상하의 공통
 	private String types[];
@@ -34,7 +41,6 @@ public class TakeAllThings {
 	// 상의 사이즈 
 	private int topsNo;
 	private Double sleeveLength[];
-	
 	
 	//하의 사이즈
 	private int bottomNo;
@@ -49,14 +55,14 @@ public class TakeAllThings {
 	
 	// 이미지 
 	private int imageNo;
-	private String attachFile;
+	private String attachFile[];
 	
 	public TakeAllThings() {}
 
 	public TakeAllThings(int goodsNo, String name, int price, String detail, String frontImg, String toggleImg,
-			String color, String[] types, String[] sizes, Double[] fullLength, int topsNo, Double[] sleeveLength,
-			int bottomNo, Double[] waist, Double[] rise, Double[] hip, Double[] thigh, int keywordNo,
-			String[] keywordName, int imageNo, String attachFile) {
+			String col, int category, String[] types, String[] sizes, Double[] fullLength, int topsNo,
+			Double[] sleeveLength, int bottomNo, Double[] waist, Double[] rise, Double[] hip, Double[] thigh,
+			int keywordNo, String[] keywordName, int imageNo, String[] attachFile) {
 		super();
 		this.goodsNo = goodsNo;
 		this.name = name;
@@ -64,7 +70,8 @@ public class TakeAllThings {
 		this.detail = detail;
 		this.frontImg = frontImg;
 		this.toggleImg = toggleImg;
-		this.color = color;
+		this.col = col;
+		this.category = category;
 		this.types = types;
 		this.sizes = sizes;
 		this.fullLength = fullLength;
@@ -80,6 +87,7 @@ public class TakeAllThings {
 		this.imageNo = imageNo;
 		this.attachFile = attachFile;
 	}
+
 
 
 	public int getGoodsNo() {
@@ -130,20 +138,20 @@ public class TakeAllThings {
 		this.toggleImg = toggleImg;
 	}
 
-	public String getColor() {
-		return color;
+	public String getCol() {
+		return col;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setCol(String col) {
+		this.col = col;
 	}
 
-	public int getTopsNo() {
-		return topsNo;
+	public int getCategory() {
+		return category;
 	}
 
-	public void setTopsNo(int topsNo) {
-		this.topsNo = topsNo;
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
 	public String[] getTypes() {
@@ -162,20 +170,28 @@ public class TakeAllThings {
 		this.sizes = sizes;
 	}
 
-	public Double[] getSleeveLength() {
-		return sleeveLength;
-	}
-
-	public void setSleeveLength(Double[] sleeveLength) {
-		this.sleeveLength = sleeveLength;
-	}
-
 	public Double[] getFullLength() {
 		return fullLength;
 	}
 
 	public void setFullLength(Double[] fullLength) {
 		this.fullLength = fullLength;
+	}
+
+	public int getTopsNo() {
+		return topsNo;
+	}
+
+	public void setTopsNo(int topsNo) {
+		this.topsNo = topsNo;
+	}
+
+	public Double[] getSleeveLength() {
+		return sleeveLength;
+	}
+
+	public void setSleeveLength(Double[] sleeveLength) {
+		this.sleeveLength = sleeveLength;
 	}
 
 	public int getBottomNo() {
@@ -218,22 +234,6 @@ public class TakeAllThings {
 		this.thigh = thigh;
 	}
 
-	public int getImageNo() {
-		return imageNo;
-	}
-
-	public void setImageNo(int imageNo) {
-		this.imageNo = imageNo;
-	}
-
-	public String getAttachFile() {
-		return attachFile;
-	}
-
-	public void setAttachFile(String attachFile) {
-		this.attachFile = attachFile;
-	}
-
 	public int getKeywordNo() {
 		return keywordNo;
 	}
@@ -250,15 +250,61 @@ public class TakeAllThings {
 		this.keywordName = keywordName;
 	}
 
+	public int getImageNo() {
+		return imageNo;
+	}
+
+	public void setImageNo(int imageNo) {
+		this.imageNo = imageNo;
+	}
+
+	
+	
+	public String[] getAttachFile() {
+		return attachFile;
+	}
+
+
+
+	public void setAttachFile(String[] attachFile) {
+		this.attachFile = attachFile;
+	}
+
+
+
+	public Goods getGoods() {
+		
+		Goods goods = new Goods();
+		
+		goods.setName(name);
+		goods.setPrice(price);
+		goods.setDetail(detail);
+		goods.setFrontImg(frontImg);
+		goods.setToggleImg(toggleImg);
+		goods.setCol(col);
+		goods.setCategory(category);
+		
+		return goods;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "TakeAllThings [goodsNo=" + goodsNo + ", name=" + name + ", price=" + price + ", detail=" + detail
-				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", color=" + color + ", topsNo=" + topsNo
-				+ ", types=" + types + ", sizes=" + sizes + ", sleeveLength=" + sleeveLength + ", fullLength="
-				+ fullLength + ", imageNo=" + imageNo + ", attachFile=" + attachFile + "]";
+				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", col=" + col + ", category=" + category
+				+ ", types=" + Arrays.toString(types) + ", sizes=" + Arrays.toString(sizes) + ", fullLength="
+				+ Arrays.toString(fullLength) + ", topsNo=" + topsNo + ", sleeveLength=" + Arrays.toString(sleeveLength)
+				+ ", bottomNo=" + bottomNo + ", waist=" + Arrays.toString(waist) + ", rise=" + Arrays.toString(rise)
+				+ ", hip=" + Arrays.toString(hip) + ", thigh=" + Arrays.toString(thigh) + ", keywordNo=" + keywordNo
+				+ ", keywordName=" + Arrays.toString(keywordName) + ", imageNo=" + imageNo + ", attachFile="
+				+ Arrays.toString(attachFile) + "]";
 	}
 	
+
 	
+	
+
 	
 
 }
