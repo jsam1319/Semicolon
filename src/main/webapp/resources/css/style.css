@@ -3296,3 +3296,11 @@ _:-ms-input-placeholder, :root .simple-drop-down select{padding-right: 10px;}
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
+.enterContent-3 {
+	padding-top: 6%;
+	padding-bottom: 6%;
+}
+
+.left-margin {
+	margin-left: 10%;
+}

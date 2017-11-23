@@ -9,14 +9,16 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.kosta.semicolon.bottom.dao.BottomDao;
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.company.dao.CompanyDao;
 import kr.or.kosta.semicolon.goods.dao.GoodsDao;
 import kr.or.kosta.semicolon.goods.domain.Goods;
-import kr.or.kosta.semicolon.gpurchase.CompareTime;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gwish.dao.gwishDao;
+import kr.or.kosta.semicolon.tops.dao.TopsDao;
 
 /**
  * @packgename   kr.or.kosta.semicolon.gpurchase.service
@@ -44,6 +46,12 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Inject
 	private CompanyDao comDao;
 	
+	@Inject
+	private BottomDao bottomDao;
+	
+	@Inject
+	private TopsDao topsdao;
+	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
 		gpdao.insert(gpurchase);
@@ -59,11 +67,25 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		String companyName = comDao.selectCName(gpurchase.getGoodsNo());
 		
+		List<HashMap<String, String>> sizeList;
+		
+		if (goods.getCategory() < 200) {
+			sizeList = topsdao.selectSize(gpurchaseNo);
+		} else {
+			sizeList = bottomDao.selectSize(gpurchaseNo);
+		}
+		
+		List<String> size = new ArrayList<String>(); 
+		for (HashMap<String, String> list : sizeList) {
+			size.add(list.get("SIZES"));
+		}
+	
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
 		map.put("goods", goods);
 		map.put("companyName", companyName);
-		
+		map.put("size", size);
+
 		return map;
 	}
 	

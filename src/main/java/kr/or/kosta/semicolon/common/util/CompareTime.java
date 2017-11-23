@@ -1,4 +1,4 @@
-package kr.or.kosta.semicolon.gpurchase;
+package kr.or.kosta.semicolon.common.util;
 
 import java.util.Calendar;
 

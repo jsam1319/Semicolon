@@ -156,6 +156,7 @@ $(document).ready(function(){
 			  var gpurchase = data.gpurchase;
 			  var goods = data.goods;
 			  var gwishCheck = data.gwishCheck;
+			  var size = data.size;
 			  
 			  var str = "";
 			  
@@ -172,12 +173,13 @@ $(document).ready(function(){
 			  str += "			</div>";
 			  str += "			<div class='size-selector detail-info-entry'>";
 			  str += "				<div class='detail-info-entry-title size-text'>구입 가능 사이즈</div>";
-			  str += "				<div class='entry'>xs</div>";
-			  str += "				<div class='entry'>s</div>";
-			  str += "				<div class='entry'>m</div>";
-			  str += "				<div class='entry'>l</div>";
-			  str += "				<div class='entry'>xl</div>";
-			  str += "				<div class='spacer'></div>";
+			  
+			  for (var i = 0; i < size.length; i++) {
+				  str += "<div class='entry'>"+size[i]+"</div>"; 
+			}
+			  
+			  
+			  
 			  str += "			</div>";
 			  str += "		</div>";
 			  str += "	</div>";

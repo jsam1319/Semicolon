@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.askresale.service.askResaleService;
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.goods.domain.Goods;
-import kr.or.kosta.semicolon.gpurchase.CompareTime;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
@@ -56,6 +54,17 @@ public class GpurchaseController {
 	
 	@Inject
 	private askResaleService askService;
+	
+	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	   public void insert() {
+	      logger.info("Product Insert...GET");
+	   }
+	   
+	   @RequestMapping(value="/insert", method=RequestMethod.POST)
+	   public void insert(Goods goods) {
+	      logger.info("Product Insert...POST");
+	   }
+	   
 
 	/**
 	 * <pre>
@@ -98,12 +107,9 @@ public class GpurchaseController {
 	 * </pre>
 	 * 
 	 * @Method Name : researchList
-	 * @param params
-	 *            : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
-	 * @param page
-	 *            : 요청받은 페이지
-	 * @param productOrder
-	 *            : 요청받은 페이지 정렬 value
+	 * @param params : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
+	 * @param page : 요청받은 페이지
+	 * @param productOrder : 요청받은 페이지 정렬 value
 	 * @return
 	 * @throws Exception
 	 */
@@ -141,8 +147,7 @@ public class GpurchaseController {
 	 * </pre>
 	 * 
 	 * @Method Name : researchSelect
-	 * @param gpurchaseNo
-	 *            : 상세보기를 띄우기 위한 해당 공구조사 번호
+	 * @param gpurchaseNo : 상세보기를 띄우기 위한 해당 공구조사 번호
 	 * @return
 	 * @throws Exception
 	 */
@@ -157,7 +162,7 @@ public class GpurchaseController {
 			Map<String, Object> map = gpService.select(gpurchaseNo);
 
 			Gwish gwish = new Gwish(gpurchaseNo, memberNo);
-
+			
 			map.put("gwishCheck", wishService.selectCnt(gwish));
 
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
@@ -176,12 +181,9 @@ public class GpurchaseController {
 	 * </pre>
 	 * 
 	 * @Method Name : wishCheck
-	 * @param wishck
-	 *            : 공구조사에 참여했는지에 대한 반환 count
-	 * @param gpurchaseNo
-	 *            : 공구 번호
-	 * @param memberNo
-	 *            : 멤버 번호
+	 * @param wishck : 공구조사에 참여했는지에 대한 반환 count
+	 * @param gpurchaseNo : 공구 번호
+	 * @param memberNo : 멤버 번호
 	 * @return
 	 * @throws Exception
 	 */
@@ -248,12 +250,9 @@ public class GpurchaseController {
 	 * </pre>
 	 * 
 	 * @Method Name : gpurchaseList
-	 * @param params
-	 *            : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
-	 * @param page
-	 *            : 요청받은 페이지
-	 * @param productOrder
-	 *            : 요청받은 페이지 정렬 value
+	 * @param params : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
+	 * @param page : 요청받은 페이지
+	 * @param productOrder : 요청받은 페이지 정렬 value
 	 * @return
 	 * @throws Exception
 	 */
@@ -334,9 +333,9 @@ public class GpurchaseController {
 	 * @param model
 	 * @throws Exception
 	 */
-//	@ResponseBody
 	@RequestMapping(value = "/gpurchase/{gpurchaseNo}/{memberNo}", method = RequestMethod.GET) 
 	public String select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model, @PathVariable("memberNo") int memberNo) throws Exception {
+		logger.info("gpurchaseselect 들어옴");
 		Map<String, Object> map = gpService.select(gpurchaseNo);
 		
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
@@ -345,10 +344,9 @@ public class GpurchaseController {
 		model.addAttribute("gpurchase", (Gpurchase) map.get("gpurchase"));
 		model.addAttribute("goods", (Goods) map.get("goods"));
 		model.addAttribute("companyName", map.get("companyName"));
+		model.addAttribute("size", map.get("size"));
 		model.addAttribute("askCnt", askCnt);
 		
-		logger.info("askCnt : "+askCnt);
-
 		return "product/product";
 
 	}
