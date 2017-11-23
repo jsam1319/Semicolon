@@ -1,8 +1,10 @@
 package kr.or.kosta.semicolon.bottom.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.or.kosta.semicolon.bottom.domain.Bottom;
+
 
 /**
  * 
@@ -19,7 +21,7 @@ import kr.or.kosta.semicolon.bottom.domain.Bottom;
  * 2017. 11. 20.     	김미소          최초 생성
  * 2017. 11. 20.		박주연			getByTypesSize, selectByGoodsNum 추가
  * 2017. 11. 21.		박주연			getBySizeGoodsNo추가
- *
+ * 2017. 11. 22.		박연주			selectSize추가
  */
 public interface BottomDao {
 	
@@ -34,4 +36,7 @@ public interface BottomDao {
 	
 	/** sizes, productNo에 따른 bottom 반환 */
 	public Bottom getBySizeGoodsNo(Bottom bottom);
+	
+	/** 공구별 상품 사이즈 출력*/
+	public List<HashMap<String, String>> selectSize(int gpurchaseNo);
 }
