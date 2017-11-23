@@ -46,4 +46,26 @@
 		       AND GP.gpurchase_no = #{gpurchaseNo}
 	</select>
 	
+	<insert id="insert" parameterType="tops">
+		<selectKey keyProperty="topsNo" order="BEFORE" resultType="int">
+			SELECT seq_tops.nextval 
+			FROM   dual
+		</selectKey>
+		
+		INSERT INTO tops 
+            (tops_no, 
+             goods_no, 
+             types, 
+             sizes, 
+             sleeve_length, 
+             full_length) 
+		VALUES     (#{topsNo}, 
+		            #{goodsNo}, 
+		            #{types}, 
+		            #{sizes}, 
+		            #{sleeveLength}, 
+		            #{fullLength})
+		
+	</insert>
+	
 </mapper>
