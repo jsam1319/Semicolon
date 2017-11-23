@@ -12,7 +12,7 @@
 		       nego_list list, 
 		       nego, 
 		       company 
-		WHERE  g.status = '완료' 
+		WHERE  g.status = 2
 		       AND g.goods_no = goods.goods_no 
 		       AND g.goods_no = list.goods_no 
 		       AND goods.goods_no = list.goods_no 
@@ -33,7 +33,7 @@
 		       nego_list list, 
 		       nego, 
 		       company 
-		WHERE  g.status = '완료' 
+		WHERE  g.status = 2
 			   AND g.end_date >= #{startDate} AND g.end_date <= #{endDate}
 		       AND g.goods_no = goods.goods_no 
 		       AND g.goods_no = list.goods_no 

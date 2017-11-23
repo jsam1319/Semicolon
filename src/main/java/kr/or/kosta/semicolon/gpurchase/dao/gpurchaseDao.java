@@ -3,6 +3,7 @@ package kr.or.kosta.semicolon.gpurchase.dao;
 import java.util.List;
 
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 
 /**
@@ -18,7 +19,7 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 10.    박연주        최초 생성
- *
+ * 2017. 11. 23		박주연		getSalesByCategory 추가
  *
  */
 public interface gpurchaseDao {
@@ -48,5 +49,8 @@ public interface gpurchaseDao {
 	public List<Integer> selectGolist() throws Exception;
 	
 	public void statusUpdate(Gpurchase gpurchase) throws Exception;
+	
+	//카테고리별 판매량
+	public List<CategorySales> getSalesByCategory();
 	
 }

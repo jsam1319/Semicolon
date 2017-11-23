@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 
 public interface gpurchaseService {
@@ -38,6 +39,7 @@ public interface gpurchaseService {
 	public List<Integer> selectGolist() throws Exception;
 	
 	public void statusUpdate(Gpurchase gpurchase) throws Exception;
-	
 
+	//카테고리별 판매량
+	public List<CategorySales> getSalesByCategory();
 }

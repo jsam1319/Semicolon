@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.kosta.semicolon.chart.domain.Chart;
 import kr.or.kosta.semicolon.chart.service.ChartService;
+import kr.or.kosta.semicolon.common.enumtype.Category;
+import kr.or.kosta.semicolon.common.util.CategoryName;
 import kr.or.kosta.semicolon.company.service.CompanyService;
+import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
+import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 
 /**
  * @packgename  	 kr.or.kosta.semicolon.chart.controller
@@ -45,6 +49,9 @@ public class ChartController {
 	
 	@Inject
 	CompanyService comService;
+	
+	@Inject
+	gpurchaseService gService;
 
 	Logger logger = Logger.getLogger(ChartController.class);
 
@@ -57,9 +64,22 @@ public class ChartController {
 	public String drawBarDonutChart() {
 		return "/admin/salesPie";
 	}
+	
+	@RequestMapping("/mul")
+	public String drawMultiChart() {
+		return "/admin/multichart";
+	}
 
+	/**
+	 * <pre>
+	 * 1. 개       요 : 회사별 전체 매출액 반환
+	 * 2. 처 리 내 용 : 회사별 전체 매출액 반환
+	 * </pre>
+	 * @Method Name : getSalesbyMon
+	 * @return  ResponseEntity<Object>
+	 */
 	@RequestMapping(value = "/", method=RequestMethod.GET)
-	public ResponseEntity<Object> getChartData() {
+	public ResponseEntity<Object> getCompanyData() {
 		ResponseEntity<Object> entity = null;
 
 		List<Chart> list = service.getSalesbyCompany();
@@ -71,6 +91,45 @@ public class ChartController {
 			obj = new JSONObject();
 			obj.put("name", chart.getName());
 			obj.put("y", chart.getSales());
+
+			array.add(obj);
+		}
+
+		JSONObject sendObj = new JSONObject();
+		sendObj.put("array", array);
+
+		entity = new ResponseEntity<Object>(array, HttpStatus.OK);
+
+		return entity;
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개       요 : 선택한 date 데이터를 json으로 변환 후 뷰로 전달
+	 * 2. 처 리 내 용 : startDate부터 endDate까지 모든 회사들의 수익의 데이터를 받아 json타입으로 만들어서 뷰로 보낸다
+	 * </pre>
+	 * @Method Name : getSalesbyMon
+	 * @param request : HttpServletRequest
+	 * @return  ResponseEntity<Object>
+	 */
+	@RequestMapping(value = "/", method=RequestMethod.PUT)
+	public ResponseEntity<Object> getCategoryData() {
+		ResponseEntity<Object> entity = null;
+		
+		List<CategorySales> list = gService.getSalesByCategory();
+		
+		JSONObject obj;
+		JSONArray array = new JSONArray();
+		
+		CategoryName cat = new CategoryName();
+
+		for (CategorySales cs : list) {
+			obj = new JSONObject();
+			
+			
+			Category name = cat.getCategoryName(cs.getCategory());
+			obj.put("name",name.toString());
+			obj.put("y", cs.getPrice());
 
 			array.add(obj);
 		}
@@ -152,5 +211,6 @@ public class ChartController {
 	
 		return entity;
 	}
+	
 
 }

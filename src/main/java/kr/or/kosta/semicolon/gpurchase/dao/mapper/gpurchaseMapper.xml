@@ -275,4 +275,13 @@
 		</set>
 		WHERE gpurchase_no = #{gpurchaseNo}
 	</update>
+	
+	<select id="getSalesByCategory" resultType="CategorySales">
+		SELECT g.price, goods.category 
+		FROM   gpurchase g, 
+		       goods 
+		WHERE  g.goods_no = goods.goods_no 
+		GROUP  BY goods.category, 
+		          g.price
+	</select>
 </mapper>

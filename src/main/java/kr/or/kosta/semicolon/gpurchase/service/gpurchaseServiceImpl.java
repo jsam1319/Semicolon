@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.bottom.dao.BottomDao;
 import kr.or.kosta.semicolon.common.Params;
-import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.company.dao.CompanyDao;
 import kr.or.kosta.semicolon.goods.dao.GoodsDao;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
+import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
-import kr.or.kosta.semicolon.gwish.dao.gwishDao;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
 
 /**
@@ -32,6 +31,7 @@ import kr.or.kosta.semicolon.tops.dao.TopsDao;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 10.      연주         최초 생성
+ * 2017. 11. 23.	  박주연	   getSalesByCategory 추가
  *
  */
 @Service
@@ -185,5 +185,8 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		gpdao.statusUpdate(gpurchase);
 	}
 	
-	
+	@Override
+	public List<CategorySales> getSalesByCategory(){
+		return gpdao.getSalesByCategory();
+	}
 }
