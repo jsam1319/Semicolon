@@ -53,8 +53,13 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public List<MemberSize> listAll() {
+	public List<Company> listAll() {
 		return dao.listAll();
+	}
+	
+	@Override
+	public int count() {
+		return dao.count();
 	}
 
 }

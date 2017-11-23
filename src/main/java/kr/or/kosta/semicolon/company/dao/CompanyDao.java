@@ -18,16 +18,17 @@ import kr.or.kosta.semicolon.membersize.domain.MemberSize;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 16.       박주연        최초 생성
- * 2017. 11. 20.	   박연주	  selectCNameListAll, selectCName(회사이름 가져오기) 추가   
- *
+ * 2017. 11. 20.	   박연주	  	 selectCNameListAll, selectCName(회사이름 가져오기) 추가   
+ * 2017. 11. 22.  	   박주연		 count 추가
  */
 public interface CompanyDao {
 	public int insert(Company company);
 	public Company select(int no);
 	public void update(Company company);
 	public void delete(int no);
-	public List<MemberSize> listAll();
+	public List<Company> listAll();
 	public List<Map<String, Object>> selectCNameListAll();
 	public String selectCName(int goodsNo);
+	public int count();
 	
 }

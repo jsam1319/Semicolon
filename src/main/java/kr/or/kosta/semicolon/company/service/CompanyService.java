@@ -26,5 +26,6 @@ public interface CompanyService {
 	public Company select(int no);
 	public void update(Company company);
 	public void delete(int no);
-	public List<MemberSize> listAll();
+	public List<Company> listAll();
+	public int count();
 }
