@@ -21,16 +21,16 @@
   href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900'
   rel='stylesheet' type='text/css' />
 <link href="/resources/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
 
 <script src="/resources/js/jquery-2.1.3.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/idangerous.swiper.min.js"></script>
 <script src="/resources/js/global.js"></script>
-
 <!-- custom scrollbar -->
 <script src="/resources/js/jquery.mousewheel.js"></script>
 <script src="/resources/js/jquery.jscrollpane.min.js"></script>
-
+<script src="/resources/js/jasny-bootstrap.js"></script>
 <title><decorator:title default=";(Semicolon)" /></title>
 <decorator:head />
 
@@ -92,15 +92,14 @@
   </div>
   
   <!-- search Modal -->
-	<div class="modal fade" id="image-search-modal" tabindex="-1" role="dialog"
-		aria-labelledby="Image" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
+	<div class="modal fade" id="image-search-modal" tabindex="-1" role="dialog" aria-labelledby="Image" aria-hidden="true">
+		<div class="modal-dialog modal-sm-5">
 
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="image">ImageSearch</h4>
+					<h4 class="modal-title" id="image">이미지 검색</h4>
 				</div>
 				<div class="modal-body">
 		
@@ -114,17 +113,27 @@
 					</div>
 					</form>
 				
-					<form action="http://localhost:8000/polls/search/" method="post" enctype="Multipart/form-data">
-						<label> 파일로 검색 </label>
-						<div class="input-group">
-						<input class="form-control" type="file" name="image " placeholder="파일을 입력하세요!" accept="image/*" >
-						<span class="input-group-btn">
-			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-			      </span>
-					</div>
-				</form>
+					<label> 파일로 검색 </label>
+					<form action="http://localhost:8000/polls/search/" method="post" enctype="Multipart/form-data" >
+						
+							<div class="fileinput fileinput-new" data-provides="fileinput" style="margin: auto">
+						  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 250px;"></div>
+						  	<div>
+						    	<span class="button style-14 btn-file" style="margin : auto">
+						    		<span class="fileinput-new">이미지를 선택하세요!</span>
+						    		<span class="fileinput-exists">변경</span>
+						    		<input type="file" name="image" accept="image/*">
+						    	</span>
+						    	<button type="submit" class="button style-14" ><i class="fa fa-search"></i></button>
+						  	</div>
+							</div>
+													<!-- <input type="file" class="form-control" name="image" class="jfilestyle" placeholder="파일을 입력하세요!" accept="image/*" > -->
+					</form>
+					
 				</div>
-			</div>
+					
+				</div>
+				
 		</div>
 	</div>
   <%-- Login Modal End --%>
@@ -683,30 +692,12 @@
 
   <div class="search-box popup">
     <form>
-      <div class="search-button">
-        <i class="fa fa-search"></i> <input type="submit" />
-      </div>
-      <div class="search-drop-down">
-        <div class="title">
-          <span>All categories</span><i class="fa fa-angle-down"></i>
-        </div>
-        <div class="list">
-          <div class="overflow">
-            <div class="category-entry">Category 1</div>
-            <div class="category-entry">Category 2</div>
-            <div class="category-entry">Category 2</div>
-            <div class="category-entry">Category 4</div>
-            <div class="category-entry">Category 5</div>
-            <div class="category-entry">Lorem</div>
-            <div class="category-entry">Ipsum</div>
-            <div class="category-entry">Dollor</div>
-            <div class="category-entry">Sit Amet</div>
-          </div>
-        </div>
-      </div>
-      <div class="search-field">
-        <input type="text" value="" placeholder="Search for product" />
-      </div>
+     	<div class="input-group">
+						<input class="form-control" type="text" placeholder="URL을 입력하세요!">
+						<span class="input-group-btn">
+			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+			      </span>
+			  </div>
     </form>
   </div>
 
@@ -926,7 +917,7 @@
       </div>
     </div>
   </div>
-  
+
   
   
 </body>
