@@ -64,14 +64,13 @@
               class="simple-field" id="password" type="password"
               name="password" placeholder="Enter Password" />
             <div class="row">
-              <label class="col-sm-6 checkbox-entry"> <input
+              <label class="col-sm-5 checkbox-entry"> <input
                 type="checkbox" value="true" name="autoLogin" /> <span
                 class="check"></span> 자동로그인
               </label>
-              <div class="col-sm-6">
+              <div class="col-sm-5"	>
                 <p class="text-right">
-                  <button type="submit" class="button style-10" style="">
-                    LOGIN</button>
+                  <input type="submit" class="button style-10" value="LOGIN">
                 </p>
               </div>
             </div>
@@ -91,6 +90,43 @@
       </div>
     </div>
   </div>
+  
+  <!-- search Modal -->
+	<div class="modal fade" id="image-search-modal" tabindex="-1" role="dialog"
+		aria-labelledby="Image" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="image">ImageSearch</h4>
+				</div>
+				<div class="modal-body">
+		
+					<form>
+						<label> URL로 검색 </label>
+							<div class="input-group">
+						<input class="form-control" type="text" placeholder="URL을 입력하세요!">
+						<span class="input-group-btn">
+			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+			      </span>
+					</div>
+					</form>
+				
+					<form action="http://localhost:8000/polls/search/" method="post" enctype="Multipart/form-data">
+						<label> 파일로 검색 </label>
+						<div class="input-group">
+						<input class="form-control" type="file" name="image " placeholder="파일을 입력하세요!" accept="image/*" >
+						<span class="input-group-btn">
+			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+			      </span>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
   <%-- Login Modal End --%>
 
 
@@ -106,16 +142,24 @@
                 src="/resources/img/logo-9.png"></a>
             </div>
             <div class="product-header-content">
-              <div class="line-entry">
-                <div class="menu-button responsive-menu-toggle-class">
-                  <i class="fa fa-reorder"></i>
-                </div>
-                <div
-                  class="header-top-entry increase-icon-responsive open-search-popup">
-                  <div class="title">
-                    <i class="fa fa-search"></i> <span>Search</span>
-                  </div>
-                </div>
+							<div class="line-entry">
+								<div class="menu-button responsive-menu-toggle-class">
+									<i class="fa fa-reorder"></i>
+								</div>
+								<div
+									class="header-top-entry increase-icon-responsive open-search-popup">
+									<div class="title">
+										<i class="fa fa-search"></i> <span>KeywordSearch</span>
+									</div>
+								</div>
+								
+								<div
+									class="header-top-entry increase-icon-responsive open-image-popup">
+									<div class="title">
+										<a href="#" data-toggle="modal" data-target="#image-search-modal"><i class="fa fa-picture-o"></i> <span>ImageSearch</span></a>
+									</div>
+								</div>
+								
 
 
                 <c:choose>
