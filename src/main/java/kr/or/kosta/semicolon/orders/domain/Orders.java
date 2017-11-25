@@ -17,16 +17,14 @@ package kr.or.kosta.semicolon.orders.domain;
  */
 public class Orders {
 	
-	//변수 12개
+	//변수 10개
 	int ordersNo;
 	int memberNo;
-	int gpurchaseNo;
 	String oDate;
 	int price;
 	String address;
 	String receiver;
 	String phone;
-	int qty;
 	String message;
 	String postcode;
 	String status;
@@ -35,20 +33,22 @@ public class Orders {
 	
 	public Orders() {}
 	
-	public Orders(int memberNo, int gpurchaseNo, int price, String address, String receiver, String phone, int qty, String message, String postcode, String status) {
-		this(0, memberNo, gpurchaseNo, null, price, address, receiver, phone, qty, message, postcode, status);
+	public Orders(int memberNo) {
+		this(0, memberNo, null, 0, null, null, null, null, null, null);
 	}
 	
-	public Orders(int ordersNo, int memberNo, int gpurchaseNo, String oDate, int price, String address, String receiver, String phone, int qty, String message, String postcode, String status) {
+	public Orders(int memberNo, int price, String address, String receiver, String phone, String message, String postcode, String status) {
+		this(0, memberNo, null, price, address, receiver, phone, message, postcode, status);
+	}
+	
+	public Orders(int ordersNo, int memberNo, String oDate, int price, String address, String receiver, String phone, String message, String postcode, String status) {
 		this.ordersNo = ordersNo;
 		this.memberNo = memberNo;
-		this.gpurchaseNo = gpurchaseNo;
 		this.oDate = oDate;
 		this.price = price;
 		this.address = address;
 		this.receiver = receiver;
 		this.phone = phone;
-		this.qty = qty;
 		this.message = message;
 		this.postcode = postcode;
 		this.status = status;
@@ -68,14 +68,6 @@ public class Orders {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-
-	public int getGpurchaseNo() {
-		return gpurchaseNo;
-	}
-
-	public void setGpurchaseNo(int gpurchaseNo) {
-		this.gpurchaseNo = gpurchaseNo;
 	}
 
 	public String getODate() {
@@ -118,14 +110,6 @@ public class Orders {
 		this.phone = phone;
 	}
 
-	public int getQty() {
-		return qty;
-	}
-
-	public void setQty(int qty) {
-		this.qty = qty;
-	}
-
 	public String getMessage() {
 		return message;
 	}
@@ -152,10 +136,11 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "Orders [ordersNo=" + ordersNo + ", memberNo=" + memberNo + ", gpurchaseNo=" + gpurchaseNo + ", oDate="
-				+ oDate + ", price=" + price + ", address=" + address + ", receiver=" + receiver + ", phone=" + phone
-				+ ", qty=" + qty + ", message=" + message + ", postcode=" + postcode + ", status=" + status + "]";
+		return "Orders [ordersNo=" + ordersNo + ", memberNo=" + memberNo + ", oDate=" + oDate + ", price=" + price
+				+ ", address=" + address + ", receiver=" + receiver + ", phone=" + phone + ", message=" + message
+				+ ", postcode=" + postcode + ", status=" + status + "]";
 	}
+
 	
 	
 

@@ -17,6 +17,8 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.keyword.dao.KeywordDao;
+import kr.or.kosta.semicolon.keyword.domain.Keyword;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
 
 /**
@@ -52,6 +54,9 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Inject
 	private TopsDao topsdao;
 	
+	@Inject
+	private KeywordDao keyworddao;
+	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
 		gpdao.insert(gpurchase);
@@ -59,15 +64,28 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	@Override
 	public Map<String, Object> select(int gpurchaseNo) throws Exception {
+//		공구 정보 불러오기
 		Gpurchase gpurchase = new Gpurchase();
 		gpurchase = gpdao.select(gpurchaseNo);
 		
+//		상품 정보 불러오기
 		Goods goods = new Goods();
 		goods = goodsDao.select(gpurchase.getGoodsNo());
 		
+//		회사명 불러오기
 		String companyName = comDao.selectCName(gpurchase.getGoodsNo());
 		
-		List<HashMap<String, String>> sizeList;
+//		상품 키워드 불러오기
+		List<HashMap<String, String>> keywordList;
+		keywordList = keyworddao.selectName(goods.getGoodsNo());
+		
+		List<String> keyword = new ArrayList<>();
+		for (HashMap<String, String> kw : keywordList) {
+			keyword.add(kw.get("KEYWORDNAME"));
+		}
+		
+//		상품 사이즈 카테고리별 분리 및 불러오기
+		List<HashMap<String, Object>> sizeList;
 		
 		if (goods.getCategory() < 200) {
 			sizeList = topsdao.selectSize(gpurchaseNo);
@@ -75,14 +93,16 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 			sizeList = bottomDao.selectSize(gpurchaseNo);
 		}
 		
-		List<String> size = new ArrayList<String>(); 
-		for (HashMap<String, String> list : sizeList) {
-			size.add(list.get("SIZES"));
+		List<Object> size = new ArrayList<>(); 
+		for (HashMap<String, Object> list : sizeList) {
+			size.add(list);
 		}
 	
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
 		map.put("goods", goods);
+		map.put("keyword", keyword);
 		map.put("companyName", companyName);
 		map.put("size", size);
 

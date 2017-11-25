@@ -76,7 +76,9 @@
 	</select> 
 	
 	<select id="selectSize" parameterType="int" resultType="HashMap">
-		SELECT B.sizes 
+		SELECT B.sizes, 
+		       b.bottom_no     bottomNo, 
+		       gp.gpurchase_no gpurchaseNo 
 		FROM   bottom B, 
 		       goods G, 
 		       gpurchase GP 
@@ -84,5 +86,12 @@
 		       AND G.goods_no = GP.goods_no 
 		       AND GP.gpurchase_no = #{gpurchaseNo}
 	</select>
+	
+	<select id="selectOrderSizes" parameterType="int" resultType="String">
+		SELECT sizes 
+		FROM   bottom 
+		WHERE  bottom_no = #{bottomNo}
+	</select>
+
 
 </mapper>

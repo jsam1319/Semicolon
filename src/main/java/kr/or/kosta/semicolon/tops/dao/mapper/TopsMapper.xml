@@ -37,7 +37,9 @@
 	</select> 
 	
 	<select id="selectSize" parameterType="int" resultType="HashMap">
-		SELECT T.sizes 
+		SELECT T.sizes, 
+		       t.tops_no 		topsNo,
+		       gp.gpurchase_no 	gpurchaseNo
 		FROM   tops T, 
 		       goods G, 
 		       gpurchase GP 
@@ -67,5 +69,11 @@
 		            #{fullLength})
 		
 	</insert>
+	
+	<select id="selectOrderSizes" parameterType="int" resultType="String">
+		SELECT sizes 
+		FROM   tops 
+		WHERE  tops_no = #{topsNo}
+	</select>
 	
 </mapper>

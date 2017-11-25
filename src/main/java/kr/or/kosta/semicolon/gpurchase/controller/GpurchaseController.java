@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -151,10 +153,13 @@ public class GpurchaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/{gpurchaseNo}/{memberNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{gpurchaseNo}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> researchSelect(@PathVariable("gpurchaseNo") int gpurchaseNo,
-			@PathVariable("memberNo") int memberNo) throws Exception {
+			HttpServletRequest request) throws Exception {
 		logger.info("gpurchaseController researchSelect 접근");
+		
+		HttpSession session = request.getSession();
+		int memberNo = (int)session.getAttribute("no");
 
 		ResponseEntity<Map<String, Object>> entity = null;
 
@@ -189,11 +194,13 @@ public class GpurchaseController {
 	 */
 	@RequestMapping(value = "/{gwishCheck}/{gpurchaseNo}", method = RequestMethod.POST)
 	public ResponseEntity<Integer> wishCheck(@PathVariable("gwishCheck") int wishck,
-			@PathVariable("gpurchaseNo") int gpurchaseNo,
-			@RequestParam(value = "memberNo", defaultValue = "1") int memberNo) throws Exception {
+			@PathVariable("gpurchaseNo") int gpurchaseNo, HttpServletRequest request) throws Exception {
 		logger.info("gpurchaseController wishCheck 접근");
 
 		ResponseEntity<Integer> entity = null;
+		
+		HttpSession session = request.getSession();
+		int memberNo = (int)session.getAttribute("no");
 
 		Gwish gwish = new Gwish(gpurchaseNo, memberNo);
 
@@ -225,8 +232,6 @@ public class GpurchaseController {
 	
 	
 	
-	
-
 	/**
 	 * <pre>
 	 * 1. 개      요 : 공구 list 페이지
@@ -333,9 +338,13 @@ public class GpurchaseController {
 	 * @param model
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/gpurchase/{gpurchaseNo}/{memberNo}", method = RequestMethod.GET) 
-	public String select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model, @PathVariable("memberNo") int memberNo) throws Exception {
+	@RequestMapping(value = "/gpurchase/{gpurchaseNo}", method = RequestMethod.GET) 
+	public String select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model, HttpServletRequest request) throws Exception {
 		logger.info("gpurchaseselect 들어옴");
+		
+		HttpSession session = request.getSession();
+		int memberNo = (int)session.getAttribute("no");
+		
 		Map<String, Object> map = gpService.select(gpurchaseNo);
 		
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
@@ -343,6 +352,7 @@ public class GpurchaseController {
 		
 		model.addAttribute("gpurchase", (Gpurchase) map.get("gpurchase"));
 		model.addAttribute("goods", (Goods) map.get("goods"));
+		model.addAttribute("keyword", map.get("keyword"));
 		model.addAttribute("companyName", map.get("companyName"));
 		model.addAttribute("size", map.get("size"));
 		model.addAttribute("askCnt", askCnt);

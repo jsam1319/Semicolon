@@ -21,7 +21,7 @@ import kr.or.kosta.semicolon.bottom.domain.Bottom;
  * 2017. 11. 20.     	김미소          최초 생성
  * 2017. 11. 20.		박주연			getByTypesSize, selectByGoodsNum 추가
  * 2017. 11. 21.		박주연			getBySizeGoodsNo추가
- * 2017. 11. 22.		박연주			selectSize추가
+ * 2017. 11. 22.		박연주			selectSize, selectOrderSizes추가
  */
 public interface BottomDao {
 	
@@ -38,5 +38,8 @@ public interface BottomDao {
 	public Bottom getBySizeGoodsNo(Bottom bottom);
 	
 	/** 공구별 상품 사이즈 출력*/
-	public List<HashMap<String, String>> selectSize(int gpurchaseNo);
+	public List<HashMap<String, Object>> selectSize(int gpurchaseNo) throws Exception;
+	
+	/** 주문 항목 번호에 해당하는 사이즈 출력 */
+	public String selectOrderSizes(int bottomNo) throws Exception;
 }

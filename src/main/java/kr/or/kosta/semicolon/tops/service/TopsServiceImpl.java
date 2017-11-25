@@ -25,7 +25,7 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * 2017. 11. 18.      김미소         최초 생성
  * 2017. 11. 18.      박주연		 getBySize 추가
  * 2017. 11. 20		  박주연		 selectByGoodsNum 추가
- * 
+ * 2017. 11. 24.	  박연주		 selectOrderSizes 추가
  *
  */
 @Service
@@ -52,6 +52,11 @@ public class TopsServiceImpl implements TopsService {
 	@Override
 	public Tops getBySizeGoodsNo(Tops tops) {
 		return dao.getBySizeGoodsNo(tops);
+	}
+	
+	@Override
+	public String selectOrderSizes(int topsNo) throws Exception {
+		return dao.selectOrderSizes(topsNo);
 	}
 	
 }

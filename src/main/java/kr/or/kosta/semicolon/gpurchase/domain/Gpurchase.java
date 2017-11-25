@@ -118,6 +118,7 @@ public class Gpurchase {
 		this.pNum = pNum;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Gpurchase [gpurchaseNo=" + gpurchaseNo + ", goodsNo=" + goodsNo + ", min=" + min + ", price=" + price

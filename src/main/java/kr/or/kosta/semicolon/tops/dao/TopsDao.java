@@ -22,7 +22,7 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * 2017. 11. 18.    박주연		 getBySize 추가
  * 2017. 11. 20.	박주연		 selectByGoodsNum 추가
  * 2017. 11. 21.	박주연		 getBySizeGoodsNo 추가
- * 2017. 11. 22.	박연주		 selectSize 추가
+ * 2017. 11. 22.	박연주		 selectSize, selectOrderSizes 추가
  *
  */
 public interface TopsDao {
@@ -40,5 +40,8 @@ public interface TopsDao {
 	public Tops getBySizeGoodsNo(Tops tops);
 	
 	/** 공구별 상품 사이즈 출력*/
-	public List<HashMap<String, String>> selectSize(int gpurchaseNo);
+	public List<HashMap<String, Object>> selectSize(int gpurchaseNo);
+	
+	/** 주문 항목 번호에 해당하는 사이즈 출력 */
+	public String selectOrderSizes(int topsNo) throws Exception;
 }

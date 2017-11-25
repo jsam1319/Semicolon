@@ -24,7 +24,9 @@ public interface OrderListDao {
 	
 	public List<OrderList> listAll();
 
-	public int insert(OrderList orderList);
+//	public int insert(OrderList orderList);
+	
+	public void insert(OrderList orderList);
 
 	public OrderList select(int no);
 

@@ -67,10 +67,8 @@
                   <!-- Gpurchase List -->
                   <div class="row shop-grid grid-view listView"></div>
                   <div class="page-selector">
-                    <center>
                       <a class="moreView"><i
                         class="fa fa-angle-down"></i></a>
-                    </center>
                     <div class="pages-box">
                       <a href="#" class="square-button"><i
                         class="fa fa-angle-up"></i></a>
@@ -116,10 +114,8 @@
                   <div class="row shop-grid grid-view endlistView"></div>
 
                   <div class="page-selector">
-                    <center>
                       <a class="moreView"><i
                         class="fa fa-angle-down"></i></a>
-                    </center>
                     <div class="pages-box">
                       <a href="#" class="square-button"><i
                         class="fa fa-angle-up"></i></a>
@@ -237,7 +233,7 @@
   <div class="clear"></div>
 
 
-  <script src="/resources/js/list.js"></script>
+  <script src="/resources/js/gpurchase/list.js"></script>
   <link href="/resources/css/gpurchase.css" rel="stylesheet"
     type="text/css"></link>
 </body>

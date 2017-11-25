@@ -19,6 +19,7 @@ import kr.or.kosta.semicolon.bottom.domain.Bottom;
  * 2017. 11. 20.      	김미소      최초 생성
  * 2017. 11. 20.		박주연		getByTypesSize추가, select 추가
  * 2017. 11. 21.		박주연		getBySizeGoodsNo추가
+ * 2017. 11. 24.		박연주		selectOrderSizes 추가
  */
 public interface BottomService {
 	
@@ -33,5 +34,8 @@ public interface BottomService {
 	
 	/** size, productNo에 따른 bottom 반환 */
 	public Bottom getBySizeGoodsNo(Bottom bottom);
+	
+	/** 주문 항목 번호에 해당하는 사이즈 출력 */
+	public String selectOrderSizes(int bottomNo) throws Exception;
 
 }

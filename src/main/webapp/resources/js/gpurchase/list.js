@@ -98,7 +98,7 @@ $(document).ready(function(){
 		  	              if(!memberNo){
 		  	            	str += "<a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
 		  	              } else {
-		  	            	str += "<a href='/product/gpurchase/"+gpurchase.gpurchaseNo+"/"+memberNo+"' class='title loginTitle' title='"+gpurchase.gpurchaseNo+"'>"+goods.name+"</a>"
+		  	            	str += "<a href='/product/gpurchase/"+gpurchase.gpurchaseNo+"' class='title loginTitle' title='"+gpurchase.gpurchaseNo+"'>"+goods.name+"</a>"
 		  	              }
 	  	              
 	  	              str += "      <div class='price gpurchasePrice'>"

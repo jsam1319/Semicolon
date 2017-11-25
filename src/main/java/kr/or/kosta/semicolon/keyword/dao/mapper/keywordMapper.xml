@@ -36,6 +36,12 @@
 			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{value} )
 	</select>
 	 
+	 
+	 <select id="selectName" parameterType="int" resultType="HashMap">
+	 	SELECT keyword_name keywordName
+		FROM   keyword 
+		WHERE  goods_no = #{goodsNo}
+	 </select>
 	
 	
 

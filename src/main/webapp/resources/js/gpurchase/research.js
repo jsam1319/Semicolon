@@ -110,7 +110,6 @@ $(document).ready(function(){
 		  			  	str += "<img src='/resources/img/ex/cat.jpg' alt='image' />"
 		  			}
 	  	        	
-	  	              
 	  	            
 	  	              str += "      </div>"
 	  	            	  
@@ -121,7 +120,7 @@ $(document).ready(function(){
 		  			  	}
 		  			  }
 	  	            	
-	  	              // 회원 로그인 했는지 체크 - 
+	  	              // 회원 로그인 했는지 체크
 	  	              if(!memberNo){
 	  	            	str += "      <a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
 	  	              } else {
@@ -152,7 +151,7 @@ $(document).ready(function(){
 	  $(".loginTitle").on("click", function(){
 		  var gpurchaseNo = $(this).attr("title")
 		  
-		  $.getJSON("/product/"+gpurchaseNo+"/"+memberNo, function(data){
+		  $.getJSON("/product/"+gpurchaseNo, function(data){
 			  var gpurchase = data.gpurchase;
 			  var goods = data.goods;
 			  var gwishCheck = data.gwishCheck;
@@ -175,9 +174,8 @@ $(document).ready(function(){
 			  str += "				<div class='detail-info-entry-title size-text'>구입 가능 사이즈</div>";
 			  
 			  for (var i = 0; i < size.length; i++) {
-				  str += "<div class='entry'>"+size[i]+"</div>"; 
+				  str += "<div class='entry'>"+size[i].SIZES+"</div>"; 
 			}
-			  
 			  
 			  
 			  str += "			</div>";
@@ -239,9 +237,6 @@ $(document).ready(function(){
 			url: "/product/"+wishCk+"/"+gpNo,
 			dataType: "json",
 			type: "POST",
-			data: {
-				"memberNo" : memberNo
-			},
 			success: function(gwishCheck){
 				wishBtn(gwishCheck)
 			},

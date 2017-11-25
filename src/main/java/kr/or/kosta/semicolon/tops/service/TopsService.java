@@ -19,8 +19,8 @@ import kr.or.kosta.semicolon.tops.domain.Tops;
  * --------      -----------   ---------------------------------------
  * 2017. 11. 18.      김미소         최초 생성
  * 2017. 11. 18.	  박주연       	 getBySize 추가
- * 2017. 11. 20		  박주연		 getBySizeGoodsNo 추가
- * 
+ * 2017. 11. 20.	  박주연		 getBySizeGoodsNo 추가
+ * 2017. 11. 24.	  박연주		 selectOrderSizes 추가
  *
  */
 public interface TopsService {
@@ -36,5 +36,8 @@ public interface TopsService {
 	
 	/** 사이즈, productNo에 따른 Tops 반환 */
 	public Tops getBySizeGoodsNo(Tops tops);
+	
+	/** 주문 항목 번호에 해당하는 사이즈 출력 */
+	public String selectOrderSizes(int topsNo) throws Exception;
 	
 }
