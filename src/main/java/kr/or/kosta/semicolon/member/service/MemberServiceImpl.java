@@ -22,7 +22,7 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
  * 2017. 11. 8.        JaeHyun      최초 생성
  * 2017. 11. 9.        박주연       crud 생성
  * 2017. 11. 15.	   박주연		isMember, selectById, updateLogin, readLogin, isId 추가
- *
+ * 2017. 11. 24.	   박연주		selectOrderInfo 추가
  *
  */
 
@@ -147,6 +147,12 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     @Override
     public String isId(String id) {
     	return memberDao.isId(id);
+    }
+    
+    @Override
+    /** 공구 주문하는 사람 기본 정보 */
+    public Member selectOrderInfo(int memberNo) throws Exception {
+    	return memberDao.selectOrderInfo(memberNo);
     }
 }
     

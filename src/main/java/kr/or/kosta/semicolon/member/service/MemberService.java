@@ -29,4 +29,7 @@ public interface MemberService{
     
     /** id중복체크 */
     public String isId(String id); 
+    
+    /** 공구 주문하는 사람 기본 정보 */
+    public Member selectOrderInfo(int memberNo) throws Exception;
 }

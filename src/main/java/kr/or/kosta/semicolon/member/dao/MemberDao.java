@@ -24,7 +24,7 @@ import kr.or.kosta.semicolon.member.domain.Member;
  * --------        -----------    ---------------------------------------
  * 2017. 11. 8.     JaeHyun    		최초 생성
  * 2017. 11. 9.     박주연         crud 추가
- *
+ * 2017. 11. 24.    박연주			selectOrderInfo 추가
  *
  */
 
@@ -57,5 +57,8 @@ public interface MemberDao {
     
     /** 아이디 중복체크 */
     public String isId(String id) ;
+    
+    /** 공구 주문하는 사람 기본 정보 */
+    public Member selectOrderInfo(int memberNo) throws Exception;
 
 }

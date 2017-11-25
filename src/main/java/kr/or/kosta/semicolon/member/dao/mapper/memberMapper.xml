@@ -160,5 +160,14 @@
         FROM	member
         WHERE	id = #{value}
     </select>
+    
+    <select id="selectOrderInfo" parameterType="int" resultType="Member">
+    	SELECT NAME, 
+		       address, 
+		       postcode, 
+		       phone 
+		FROM   member 
+		WHERE  member_no = #{memberNo}
+    </select>
         
 </mapper>
