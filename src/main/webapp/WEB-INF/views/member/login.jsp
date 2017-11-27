@@ -5,8 +5,6 @@
 </head>
 
 <body class="style-10">
-
-
         <div class="information-blocks">
             <div class="row">
                 <div class="col-sm-6 information-entry" >

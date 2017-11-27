@@ -39,17 +39,22 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession session = request.getSession();
-        Member member = (Member)session.getAttribute("login");
+        int memberNo = 0;
         
-        if(member == null) {
+        if(session.getAttribute("no")!=null) {
+        	memberNo = (int)session.getAttribute("no");
+        }
+        
+        
+        if(memberNo == 0) {
             saveReferer(request);
             
             //autoLoginCookie가 존재할 때
             Cookie autoLoginCookie = WebUtils.getCookie(request, "autoLoginCookie");
             if(autoLoginCookie != null) {
-                member = memberService.readLogin(autoLoginCookie.getValue());
+                Member member = memberService.readLogin(autoLoginCookie.getValue());
                 if(member != null) {
-                    session.setAttribute("login", member);
+                    session.setAttribute("no", member.getMemberNo());
                     return true;
                 }
             }

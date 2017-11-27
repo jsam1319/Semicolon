@@ -50,6 +50,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+    	logger.debug("prehandle");
         HttpSession session = request.getSession();
         if(session.getAttribute(LOGIN) != null) {
             session.removeAttribute(LOGIN);
@@ -87,7 +88,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 int days = 60 * 60 * 24 * 14; //14일간 저장
                 Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * days));
                 
-                logger.debug("session_limitmit : " + sessionLimit.toString());
+                logger.debug("session_limit : " + sessionLimit.toString());
                 
                 // 사용자 테이블의 sessionid와 sessionlimt 컬럼 수정
                 Member newM = new Member();
@@ -106,6 +107,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             // 로그인 전의 해당 경로로 이동
             String referer = (String)session.getAttribute("referer");
             if(referer != null) {
+            	request.getSession().setAttribute("referer", "/");
 				response.sendRedirect(referer);
 			} else { //인덱스 페이지로
 				if((String)modelAndView.getModel().get("result") != null) {
