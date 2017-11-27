@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.require.dao.RequireDao">
+	
+	<insert id="insert" >
+		<selectKey keyProperty="requireNo" order="BEFORE" resultType="int">
+			SELECT seq_require.nextval 
+			FROM   dual
+		</selectKey>
+		
+		INSERT INTO require 
+		            (require_no, 
+		             member_no, 
+		             title, 
+		             content, 
+		             image, 
+		             want_price, 
+		             company) 
+		VALUES     (#{requireNo}, 
+		            #{memberNo}, 
+		            #{title}, 
+		            #{content}, 
+		            #{image},
+		            #{price},
+		            #{company}) 
+		
+	</insert>
+	
+	<select id="listAll" parameterType="int" resultType="Require">
+		SELECT page, 
+		       requireno, 
+		       memberno, 
+		       title, 
+		       content, 
+		       image, 
+		       regdate, 
+		       comments, 
+		       price, 
+		       company 
+		FROM  (SELECT Ceil(rownum / 9) AS page, 
+		              requireno, 
+		              memberno, 
+		              title, 
+		              content, 
+		              image, 
+		              regdate, 
+		              comments, 
+		              price, 
+		              company 
+		       FROM   (SELECT require_no                     AS requireNo, 
+		                      member_no                      AS memberNo, 
+		                      title, 
+		                      content, 
+		                      image, 
+		                      To_char(regdate, 'yyyy-mm-dd') AS regdate, 
+		                      comments, 
+		                      want_price                     AS price, 
+		                      company 
+		               FROM   require 
+		               ORDER  BY require_no DESC)) 
+		WHERE  page = #{page}
+	</select>
+	
+	<select id="readOne" parameterType="int" resultType="Require">
+		SELECT require_no	as requireNo, 
+		       member_no	as memberNo, 
+		       title, 
+		       content, 
+		       image, 
+		       To_char(regdate, 'yyyy-mm-dd') as regdate, 
+		       want_price	as price, 
+		       company 
+		FROM   require 
+		WHERE  require_no = #{requireNo}
+	</select>
+	
+	<update id="update" parameterType="Require">
+		UPDATE require 
+		SET    comments = #{comments}
+		WHERE  require_no = #{requireNo} 
+	</update>
+	
+</mapper>

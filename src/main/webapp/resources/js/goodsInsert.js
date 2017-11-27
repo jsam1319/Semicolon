@@ -14,7 +14,6 @@ $(document).ready(function(){
       if (dialogName == 'image') {
           dialog.on('show', function (obj) {
         	  this.selectPage('Upload'); //업로드탭으로 시작
-              
           });
           
           dialog.on('ok', function(obj) {
@@ -319,7 +318,7 @@ $(document).ready(function(){
   
   /* 모달창 Push버튼 눌렀을 때 발생하는 이벤트*/
   $(".modalClose").on("click", function(){
-	 
+	  
 	  var cloth = $("select[name='selectClothing']");
 	  
 	  if(cloth.val() == 'top'){
@@ -457,7 +456,7 @@ $(document).ready(function(){
 	    if (event.keyCode === 13) {
 	    	$('#keyword').tagsinput('add', $('.bootstrap-tagsinput input').val(), {preventPost: true});
 	    	$('.bootstrap-tagsinput input').val("")
-	    	
+
 	    	event.preventDefault();
 	    }
   }); 
@@ -465,6 +464,9 @@ $(document).ready(function(){
   /* 최종 submit버튼 */
   $("#registerForm").submit(function(event){
 		event.preventDefault();  
+		
+		var imageSrc = "";
+		var str = "";
 		 
 		/* 상품 테이블에 FrontImage, ToggleImage 넣기위해 <input type=hidden> 동적생성 */
 		var img1= $(".images1").attr("src");
@@ -472,15 +474,26 @@ $(document).ready(function(){
 		
 		var frontImg = getImageLink(img1);
 		var endImg = getImageLink(img2);
-		 
+		
+		var frontAttachImg = getRealLink(img1);
+		var toggleAttachImg = getRealLink(img2);
+		
 		var that = $(this);
 		
-		var str = "";
+		for(i=0; i<imageValue.length; i++){
+			imageSrc = imageValue[i].substr(34);
+			
+			str += "<input type='hidden' name='attachFile' value='"+imageSrc+"'>";
+	  	}
+		
+		str += "<input type='hidden' name='attachFile' value='"+frontAttachImg+"'>";
+		str += "<input type='hidden' name='attachFile' value='"+toggleAttachImg+"'>";
 		str += "<input type='hidden' name='frontImg' value='"+frontImg+"'>";
 		str += "<input type='hidden' name='toggleImg' value='"+endImg+"'>";
-		str += "<input type='hidden' name='attachFile' value='"+imageValue+"'>";
 		
 		that.append(str);
+		
+		console.log(str);
 		
 		that.get(0).submit();  
 	});
@@ -491,6 +504,12 @@ $(document).ready(function(){
 	  var end = imgPath.substr(20);
 	  
 	  return front + end;
+  }
+  
+  function getRealLink(path){
+	  var real = path.substr(20);
+	  
+	  return real;
   }
   
   

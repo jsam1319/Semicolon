@@ -62,7 +62,7 @@ public class UploadServiceImpl implements UploadService {
 	
 	public String makeThumbnail(String fileName) throws Exception {
 		BufferedImage sourceImg = ImageIO.read(new File(UPLOAD_PATH, fileName));
-		BufferedImage imgCopy = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,130);
+		BufferedImage imgCopy = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,150);
 		
 		String thumbnailName = UPLOAD_PATH + "s_" + fileName;
 		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);

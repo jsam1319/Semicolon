@@ -223,6 +223,7 @@ public class GoodsController {
 		return "/resources/images/"+thumbnail;
 		
 	}
+	
 	/**
 	 * 
 	 * <pre>

@@ -23,7 +23,7 @@ public class TopsController {
 	
 	Logger logger = Logger.getLogger(TopsController.class);
 	
-	@RequestMapping(value="/tops/test", method=RequestMethod.POST)
+	@RequestMapping(value="/tops", method=RequestMethod.POST)
 	@ResponseBody
 	public String getOption(Tops tops) {
 		

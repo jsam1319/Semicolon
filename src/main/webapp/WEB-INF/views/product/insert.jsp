@@ -2,58 +2,40 @@
  
 <head>
 <style>
-.dropbox{
-     border:1px solid #f2f2f2;
+
+th > select.yearselect{
+    float:left;
+}
+
+#imageButtonDiv{
+    float:right;
+    margin-top:1%;
+    margin-right:1%;
+}
+
+.contentDiv{
+     border:1px solid #e6e6e6;
      width:100%;
-     height:200px;
+     height:auto;
      color:#92AAB0;
-     text-align:center;
-     font-size:24px;
-     padding-top:10%;
-     padding-bottom:10%;
-     margin-top:10%;
      margin-bottom:5%;
+     padding:2%;
 }
 
-.mainImages{
-    border:1px solid #f2f2f2;
-     width:100%;
-     height:100px;
-     color:#92AAB0;
-     text-align:center;
-     font-size:24px;
-     padding-top:10%;
-     padding-bottom:10%;
-     margin-bottom:5%;
-}
-
-.imagelist{
-     border:1px solid #f2f2f2;
-     width:100%;
-     height:150px;
-     color:#92AAB0;
-     text-align:center;
-     font-size:24px;
-     padding-top:10%;
-     padding-bottom:10%;
-     margin-bottom:5%;
-}
-
-.labelmargin{
-    margin-top:10%;
-}
-
-#divmargin{
-    margin-bottom:3%;
-}
-
-#uploadFile{
-    display:none;
+.imageId{
+    display:inline-block;
+    width:200px;
+    height:auto;
 }
 
 </style>
-</head>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+</head>
 
 <body class="style-10">
     <!-- LOADER -->
@@ -69,55 +51,37 @@
                 <div class="contact-spacer"></div>
                 <div class="information-blocks">
                     <div class="row">
-                    <form>
-                        <div class="col-md-8 information-entry">
-                            <h3 class="block-title main-heading">Upload the Article</h3>
+                    <form id="registerForm" role="form" method="post" action="/product/insert">
+                        <div class="col-md-12 information-entry">
+                            <h3 class="block-title main-heading">공구 사전조사 등록</h3>
                                 <div class="row">
-                                    <div class="col-sm-12" id="divmargin">
-                                        <label>Title <span>*</span></label>
-                                        <input class="simple-field" type="text" name="title" value="${goods.name}" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Writer <span>*</span></label>
-                                        <input class="simple-field" type="text" name="writer" value="" />
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Start Date</label>
-                                        <input class="simple-field" type="date" name="startDate" value="" />
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>End Date</label>
-                                        <input class="simple-field" type="date" name="EndDate" value="" />
-                                        <div class="clear"></div>
-                                    </div>
-                                      <div class="col-sm-6">
-                                          <label>Minimum Number <span>*</span></label>
-                                          <input class="simple-field" type="text" name="min" placeholder="최소인원" value="" />
-                                          <div class="clear"></div>
+                                      <div class="col-sm-6" id="divmargin">
+                                          <label>공구상품 <span>*</span></label>
+                                          <input class="simple-field" type="text" name="title" value="${goods.name}" disabled readonly />
                                       </div>
                                       <div class="col-sm-6">
-                                          <label>Price</label>
-                                          <input class="simple-field" type="text" name="price" value="" />
+                                          <label>공구진행날짜 <span>*</span></label>
+                                          <input class="simple-field" type="text" name="date" id="date" />
                                           <div class="clear"></div>
                                       </div>
                                       
-                                    <div class="col-sm-12">
-                                        <label>Content<span>*</span></label>
-                                        <textarea class="simple-field" placeholder="상품에 대한 간략한 설명" value="${goods.detail}"></textarea>
-                                    </div>
-                                </div>
+                                      <div class="col-sm-6">
+                                          <label>최소인원 <span>*</span></label>
+                                          <input class="simple-field" type="number" name="min" placeholder="최소인원" value=""  required/>
+                                          <div class="clear"></div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <label>가격(￦) <span>*</span></label>
+                                          <input class="simple-field" type="number" name="price" value="" required />
+                                          <div class="clear"></div>
+                                      </div>
+                                    <input type="hidden" name="goodsNo" value="${goods.goodsNo }">
+                                    <input type="hidden" name="category" value="${goods.category}">
+                                      
+                              </div>
                         </div>
-                        <div class="col-md-4 information-entry">
-                            <h3 class="block-title main-heading">Upload Image File</h3>
-                            <div class="article-container style-1">
-                                <div class="dropbox">drag and drop <br> the file</div>
-                                <input type="file" id="uploadFile">
-                                <div class="mainImages"></div>
-                                <div class="imagelist"></div>
-                            </div>
-                            <p class="text-right"><a class="button style-10">REGISTER<input type="submit" value="" /></a></p>  
+                        <div id="imageButtonDiv">
+                           <a class="button style-10">REGISTER<input type="submit" id="" value="" /></a>
                         </div>
                        </form>
                     </div>
@@ -125,71 +89,50 @@
                 <br><br>
             </div>
         <div class="clear"></div>  
-        
-        
-       
-    <div class="search-box popup">
-        <form>
-            <div class="search-button">
-                <i class="fa fa-search"></i>
-                <input type="submit" />
-            </div>
-            <div class="search-drop-down">
-                <div class="title"><span>All categories</span><i class="fa fa-angle-down"></i></div>
-                <div class="list">
-                    <div class="overflow">
-                        <div class="category-entry">Category 1</div>
-                        <div class="category-entry">Category 2</div>
-                        <div class="category-entry">Category 2</div>
-                        <div class="category-entry">Category 4</div>
-                        <div class="category-entry">Category 5</div>
-                        <div class="category-entry">Lorem</div>
-                        <div class="category-entry">Ipsum</div>
-                        <div class="category-entry">Dollor</div>
-                        <div class="category-entry">Sit Amet</div>
-                    </div>
-                </div>
-            </div>
-            <div class="search-field">
-                <input type="text" value="" placeholder="Search for product" />
-            </div>
-        </form>
-    </div>
 
 <script>
 
-/* $(document).ready(function(){
-  $(".dropbox").on("click", function(){
-    $("#uploadFile").click();
-  });
-  
-  $(".dropbox").on("dragenter dragover", function(event){
-	    event.preventDefault();
+$(document).ready(function(){
+	var start = "";
+	var end = "";
+	
+	$("#date").daterangepicker({
+		
+		locale: { format: 'YYYY/MM/DD',  
+				  daysOfWeek: [ "일", "월", "화", "수", "목", "금", "토" ],
+                  monthNames: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
+        },
+		startDate: moment(),
+		endDate: moment().add(7, 'days'),
+		showDropdowns : true
+		
+		
 	});
-  
-  $(".dropbox").on("drop", function(event){
-	    event.preventDefault();
-	    
-	    var files = event.originalEvent.dataTransfer.files;
-	    var file = files[0];
-	    var formData = new FormData();
-	    formData.append("file", file);
-	    
-	    
-	   $.ajax({
-	    	url:'/product/research',
-	    	data:formData,
-	    	dataType:'text',
-	    	processData:false,
-	    	contentType:false,
-	    	type:'POST',
-	    	success: function(data){
-	    		alert(data);
-	    	}
-	    	
-	    });
+	
+	$('#date').on('apply.daterangepicker', function(ev, picker) {
+		  start = picker.startDate.format('YYYY-MM-DD');
+		  end = picker.endDate.format('YYYY-MM-DD');
 	});
-}); */
+	
+	/* 최종 submit버튼 */
+	  $("#registerForm").submit(function(event){
+			event.preventDefault();  
+			 
+			var that = $(this);
+			
+			var str = "";
+			
+			str += "<input type='hidden' name='startDate' value='"+start+"'>";
+			str += "<input type='hidden' name='endDate' value='"+end+"'>";
+			
+			that.append(str);
+			
+			that.get(0).submit();  
+			
+	   });
+	
+
+}); 
 
 </script>
 

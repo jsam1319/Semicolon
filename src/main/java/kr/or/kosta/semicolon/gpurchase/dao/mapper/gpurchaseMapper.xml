@@ -14,15 +14,13 @@
 		             min, 
 		             end_date, 
 		             start_date, 
-		             price,
-		             likecnt) 
+		             price) 
 		VALUES      (#{gpurchaseNo}, 
 		             #{goodsNo}, 
 		             #{min}, 
 		             #{endDate}, 
 		             #{startDate}, 
-		             #{price},
-		             #{likeCnt})
+		             #{price})
 	</insert>
 
  

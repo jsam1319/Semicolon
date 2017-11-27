@@ -3,18 +3,17 @@
 
 <head>
 
-<script src="/resources/js/goodsInsert.js"></script>
-<link href="/resources/css/goodsInsert.css" rel="stylesheet"
-  type="text/css"></link>
-
 <!-- 키워드(Tags Input) -->
 <meta name="keywords" content="">
-<script src="/resources/js/tagsinput/bootstrap-tagsinput.js"></script>
-<link href="/resources/js/tagsinput//bootstrap-tagsinput.css"
+<script src="/resources/tagsinput/bootstrap-tagsinput.js"></script>
+<link href="/resources/tagsinput//bootstrap-tagsinput.css"
   rel="stylesheet">
 
 <!-- CK EDITOR -->
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+
+<script src="/resources/js/goodsInsert.js"></script>
+<link href="/resources/css/goodsInsert.css" rel="stylesheet" type="text/css"></link>
 
 </head>
 
@@ -80,7 +79,7 @@
               </div>
               <div class="col-sm-6" id="dropDiv">
                 <label>상품가격 <span>*</span></label> <input
-                  class="simple-field" type="text" name="price" required />
+                  class="simple-field" type="number" name="price" required />
                 <div class="clear"></div>
               </div>
 
@@ -114,8 +113,9 @@
               value="" /></a>
           </div>
         </form>
-
+          
       </div>
+      <br><br><br>
     </div>
   </div>
   <div class="clear"></div>

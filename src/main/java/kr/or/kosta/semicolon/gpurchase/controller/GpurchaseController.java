@@ -23,6 +23,7 @@ import kr.or.kosta.semicolon.askresale.service.askResaleService;
 import kr.or.kosta.semicolon.common.Params;
 import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.goods.service.GoodsService;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
@@ -57,16 +58,29 @@ public class GpurchaseController {
 	@Inject
 	private askResaleService askService;
 	
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	   public void insert() {
-	      logger.info("Product Insert...GET");
-	   }
-	   
-	   @RequestMapping(value="/insert", method=RequestMethod.POST)
-	   public void insert(Goods goods) {
-	      logger.info("Product Insert...POST");
-	   }
-	   
+	@Inject
+	private GoodsService goodsService;
+	
+	@RequestMapping(value="/insert/{goodsNo}", method=RequestMethod.GET)
+	public String insert(@PathVariable("goodsNo") int goodsNo, Model model) throws Exception {
+		logger.info("Product Insert...GET");
+		
+		Goods goods = new Goods();
+		goods = goodsService.select(goodsNo);
+		
+		model.addAttribute("goods", goods);
+		
+		return "/product/insert";
+	}
+	
+	@RequestMapping(value="/insert", method=RequestMethod.POST)
+	public String insert(Gpurchase gpurchase, Model model) throws Exception {
+		logger.info("Product Insert...POST");
+		
+		gpService.insert(gpurchase);
+		
+		return "/goods/insert";
+	}
 
 	/**
 	 * <pre>

@@ -67,7 +67,7 @@
 		       detail, 
 		       front_img AS frontImg,
 		       col,
-			   toggle_img,
+			   toggle_img As toggleImg,
 			   category
 		FROM   goods
 		WHERE  goods_no = #{goodsNo}
