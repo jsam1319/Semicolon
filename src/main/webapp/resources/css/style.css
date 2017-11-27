@@ -3336,3 +3336,14 @@ _:-ms-input-placeholder, :root .simple-drop-down select{padding-right: 10px;}
   font-size: 80px;
   color: black;
 }
+
+#listOut{
+  margin-top:5%;
+  margin-bottom: 5%;
+  margin-left:5%;
+  font-size: 13px;
+}
+
+#listToggleBtn{
+  height:27px;
+}

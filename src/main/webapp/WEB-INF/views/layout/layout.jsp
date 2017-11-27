@@ -380,9 +380,9 @@
                       <div class="full-width-menu-items-left">
                         <div class="row">
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                              Top<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -402,9 +402,9 @@
                             
                           </div>
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                               Bottom<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -569,9 +569,8 @@
                       <div class="full-width-menu-items-left">
                         <div class="row">
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
-                              Top<span
-                                class="toggle-list-button"></span>
+                            <div class="submenu-list-title" id="listOut">
+                              Top<span class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -592,9 +591,9 @@
                             
                           </div>
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                               Bottom<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
