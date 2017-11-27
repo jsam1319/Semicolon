@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
 
 import kr.or.kosta.semicolon.member.domain.Member;
 import kr.or.kosta.semicolon.member.service.MemberService;
@@ -55,6 +56,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if(session.getAttribute(LOGIN) != null) {
             session.removeAttribute(LOGIN);
         }
+        
+      //autoLoginCookie가 존재할 때
+        Cookie autoLoginCookie = WebUtils.getCookie(request, "autoLoginCookie");
+        if(autoLoginCookie != null) {
+            Member member = memberService.readLogin(autoLoginCookie.getValue());
+            if(member != null) {
+                session.setAttribute(LOGIN, member.getMemberNo());
+                return true;
+            }
+        }
         return true;
     }
     
@@ -73,17 +84,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         Member member = (Member) modelAndView.getModel().get("mem");
 
-       logger.debug("postHandle");
-       logger.debug("member:"+member);
+//       logger.debug("postHandle");
+//       logger.debug("member:"+member);
 
         
         if(member != null) {
-            logger.debug("login성공");
+//            logger.debug("login성공");
             session.setAttribute(LOGIN, member.getMemberNo());
             
             //자동 로그인 체크시
             if(modelAndView.getModel().get("autologin") != null) {
-            	logger.debug("자동로그인처리");
+//            	logger.debug("자동로그인처리");
                 String sessionId = session.getId();
                 int days = 60 * 60 * 24 * 14; //14일간 저장
                 Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * days));
