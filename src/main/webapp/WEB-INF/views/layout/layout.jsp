@@ -8,6 +8,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<style>
+.submenu-list-title{
+  margin-top:5%;
+}
+
+#listOut{
+  margin-top:5%;
+  margin-bottom: 5%;
+  margin-left:5%;
+  font-size: 13px;
+}
+
+#listToggleBtn{
+  height:27px;
+}
+</style>
 <meta charset="utf-8">
 <meta name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
@@ -380,9 +396,9 @@
                       <div class="full-width-menu-items-left">
                         <div class="row">
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                              Top<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -402,9 +418,9 @@
                             
                           </div>
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                               Bottom<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -569,9 +585,8 @@
                       <div class="full-width-menu-items-left">
                         <div class="row">
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
-                              Top<span
-                                class="toggle-list-button"></span>
+                            <div class="submenu-list-title" id="listOut">
+                              Top<span class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">
@@ -592,9 +607,9 @@
                             
                           </div>
                           <div class="col-lg-6">
-                            <div class="submenu-list-title">
+                            <div class="submenu-list-title" id="listOut">
                               Bottom<span
-                                class="toggle-list-button"></span>
+                                class="toggle-list-button" id="listToggleBtn"></span>
                             </div>
                             <ul
                               class="list-type-1 toggle-list-container">

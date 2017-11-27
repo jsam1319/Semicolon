@@ -21,6 +21,7 @@
     margin:2%;
 }
 
+
 .middleDiv{
     padding:0%;
 }
@@ -113,18 +114,21 @@
               </div>
               </div>
                 <label>요청내용</label><input class="simple-field" type="text" id="contentinmodal" value="" />
-                <label>관리자답변</label><input class="simple-field" type="text" id="commentsinmodal" value="" />
+                <label>관리자 답변내용</label><input class="simple-field" type="text" id="commentsinmodal" value="" />
               </div>
             </div>
           </div>
         </div>
-        
+        <c:if test="${no eq -1}">
         <div class="modal-footer" id="replyDiv">
-           <label>관리자 답변 <span>*</span></label> <input class="simple-field" id="leaveComments" type="text" value=""  /> 
+           <label>관리자 답변등록 <span>*</span></label> <input class="simple-field" id="leaveComments" type="text" value=""  /> 
         </div>
+        </c:if>
 
         <div class="modal-footer">
+        <c:if test="${no eq -1}">
           <button type="button" class="btn btn-default" id="addReply">Reply</button>
+        </c:if>  
           <button type="button" class="btn btn-default modalClose"
             data-dismiss="modal">Close</button>
         </div>
@@ -133,33 +137,6 @@
   </div>
 <%-- Modal 영역 종료 --%>
 
- <%--
-  <div class="modal" id="commentModal">
-    <div class="modal-dialog modal-m">
-      <div class="modal-content modalSizing">
-        <div class="modal-header">
-          <button type="button" class="close" id="modalClose"
-            data-dismiss="modal">
-            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-          </button>
-          <h4 class="modal-title">관리자 댓글달기</h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal-footer" id="replyDiv">
-          <label>관리자 답변 <span>*</span></label> <input class="simple-field" type="text" value=""  />              
-          
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default modalClose"
-            data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
---%>
-
-   
             <div class="content-push">
 
                 <div class="breadcrumb-box">
@@ -219,6 +196,7 @@ $(document).ready(function(){
 		})
 	})
 	
+	/* modal창 클릭시 ajax */
 	$(document).on("click", ".toModal", function(e){
 		var requireNum = $(this).parent().children()[1].value;
 		$.ajax({
@@ -231,19 +209,20 @@ $(document).ready(function(){
 		
 	})
 	
+	/* modal창 안에서 관리자가 댓글 달았을 경우 */
 	$("#addReply").on("click", function(e){
 		var re = $("#leaveComments").val();
 		var requireNum = $("#requireNo").val();
 		$.ajax({
 			url:"/require/reply/"+requireNum,
-			data:{comments:re},
 			type:'PUT',
 			headers : {
 				"Content-Type" : "application/json",
 				"X-HTTP-Method-Override" : "PUT"
 			},
+			data:JSON.stringify({requireNo:requireNum,comments:re}),
 			success:function(data){
-				alert(data)
+				$("#commentsinmodal").val(data.comments)
 			}
 		}) 
 	})
@@ -263,22 +242,25 @@ $(document).ready(function(){
 		for (var i = 0; i < data.length; i++) {
 			str += "<div class='col-sm-4 portfolio-entry'>";
 			str += "<div class='col-sm-3 middleDiv'>";
-			str += "<div class='image'>";
+			
+			str += "<div class='image hidden-xs'>";
 			str += "   <img class='imageClass' src='"+data[i].image+"'>";
-			str += "   <div class='hover-layer'>";
-			str += "        <div class='info'>";
-			str += "            <div class='actions'>";
-			str += "                <a class='action-button open-image' href='#'><i class='fa fa-search'></i></a>";
-			str += "                <a class='action-button' href='#'><i class='fa fa-link'></i></a>";
-			str += "            </div>";
-			str += "        </div>";
-			str += "    </div>";
 			str += "</div>";
+			
+			str += "<div class='image hidden-md hidden-sm hidden-lg'>";
+			str += "   <img class='imageMobileClass' src='"+data[i].image+"'>";
+			str += "</div>";
+			
 			str += "</div>";
 			str += "<div class='col-sm-9'>";
 			str += "<a class='title toModal' data-toggle='modal' data-target='#titleModal'>"+data[i].title+"</a>";
 			str += "<input type='hidden' name='requireNo' value='"+data[i].requireNo+"'>";
-			str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'>"+data[i].comments+"comment</span></div>";
+			if(data[i].comments != null){  //관리자 댓글이 달렸을 경우
+				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 1 comment</span></div>";
+			}else{	//관리자 댓글이 달리지 않았을 경우
+				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 0 comment</span></div>";
+			}
+			
 			str += "<div class='description'>희망가격 : "+data[i].price+" <br> 회사명(제조사) : "+data[i].company+"</div>";
 			str += "</div>";
 			str += "</div>";
@@ -294,6 +276,7 @@ $(document).ready(function(){
 		var company = $("#companyinmodal");
 		var content = $("#contentinmodal");
 		var requireNo = $("#requireNo")
+		var comments = $("#commentsinmodal");
 		
 		image.attr('src', data.image);
 		title.val(data.title)
@@ -301,6 +284,8 @@ $(document).ready(function(){
 		company.val(data.company)
 		content.val(data.content)
 		requireNo.val(data.requireNo)
+		comments.val(data.comments)
+		
 	}
 	
 })
