@@ -15,7 +15,6 @@
 </style>
 
 <script>
-console.log("아이디"+"${login.memberNo}");
 
 
 $(document).ready(function(){
@@ -103,6 +102,13 @@ var inputData = function(data){
 			 </div>
      	</div>              
     	<br>
+    	
+    	<hr>
+    	<div class="col-sm-12" style="padding-left:17%">
+    		<img src="/resources/img/size.JPG"  align="center">
+    		<hr><br>
+    	</div>
+    	
     
 		<form action="/size/" method="post">
 			<div class="row">

@@ -17,20 +17,25 @@ import kr.or.kosta.semicolon.orderlist.domain.OrderList;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 23.       박주연        최초 생성
- *
+ * 2017. 11. 23. 	   박연주	     update 추가
+ * 2017. 11. 24.	   박주연		 selectByOrdersNo, selectList추가
  *
  */
 public interface OrderListDao {
 	
 	public List<OrderList> listAll();
 
-//	public int insert(OrderList orderList);
+	public int insert(OrderList orderList);
 	
-	public void insert(OrderList orderList);
+//	public void insert(OrderList orderList);
 
 	public OrderList select(int no);
+	
+	public List<OrderList> selectList(int no);
 
 	public void update(OrderList orderList);
 
 	public void delete(int no);
+	
+	public List<OrderList> selectByOrdersNo(int no);
 }

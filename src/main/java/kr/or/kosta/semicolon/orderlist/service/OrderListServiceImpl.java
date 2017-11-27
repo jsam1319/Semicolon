@@ -21,7 +21,7 @@ import kr.or.kosta.semicolon.orderlist.domain.OrderList;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 23.       박주연        최초 생성
- *
+ * 2017. 11. 24.	   박주연		 selectByOrdersNo추가
  *
  */
 @Service
@@ -39,10 +39,15 @@ public class OrderListServiceImpl implements OrderListService {
 	public int insert(OrderList orderList) {
 		return listDao.insert(orderList);
 	}
-
+	
 	@Override
 	public OrderList select(int no) {
 		return listDao.select(no);
+	}
+
+	@Override
+	public List<OrderList> selectList(int no) {
+		return listDao.selectList(no);
 	}
 
 	@Override
@@ -53,6 +58,11 @@ public class OrderListServiceImpl implements OrderListService {
 	@Override
 	public void delete(int no) {
 		listDao.delete(no);
+	}
+	
+	@Override
+	public List<OrderList> selectByOrdersNo(int no){
+		return listDao.selectByOrdersNo(no);
 	}
 
 }

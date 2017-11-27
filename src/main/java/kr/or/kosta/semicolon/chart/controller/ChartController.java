@@ -59,11 +59,6 @@ public class ChartController {
 	public String drawChart() {
 		return "/admin/salesLine";
 	}
-
-	@RequestMapping("/salespie")
-	public String drawBarDonutChart() {
-		return "/admin/salesPie";
-	}
 	
 	@RequestMapping("/mul")
 	public String drawMultiChart() {
