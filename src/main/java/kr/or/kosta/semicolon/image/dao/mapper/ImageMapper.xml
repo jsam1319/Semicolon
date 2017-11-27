@@ -11,10 +11,12 @@
 		INSERT INTO image 
 	            (image_no, 
 	             goods_no, 
-	             attach_file) 
+	             attach_file,
+	             feature) 
 		VALUES  (#{imageNo}, 
 	             #{goodsNo}, 
-	             #{attachFile})
+	             #{attachFile},
+	             #{feature})
 	</insert>
 		
 	   

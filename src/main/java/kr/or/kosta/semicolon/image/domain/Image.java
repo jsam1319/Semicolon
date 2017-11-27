@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 13.      김미소         최초 생성
- *
+ * 2017. 11. 27.		이재현		Feature 추가 
  *
  */
 public class Image {
@@ -26,6 +26,7 @@ public class Image {
 	private int imageNo;
 	private int goodsNo;
 	private String attachFile;
+	private String feature;
 	private String CKEditorFuncNum;           // ckeditor 대상을 기억하기 위한 값 저장
 	private MultipartFile upload;
 
@@ -34,13 +35,14 @@ public class Image {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Image(int imageNo, int goodsNo, String attachFile, String cKEditorFuncNum, MultipartFile upload) {
+	public Image(int imageNo, int goodsNo, String attachFile, String cKEditorFuncNum, MultipartFile upload, String feature) {
 		super();
 		this.imageNo = imageNo;
 		this.goodsNo = goodsNo;
 		this.attachFile = attachFile;
 		CKEditorFuncNum = cKEditorFuncNum;
 		this.upload = upload;
+		this.feature = feature;
 	}
 	
 	public int getImageNo() {
@@ -74,14 +76,19 @@ public class Image {
 		this.upload = upload;
 	}
 
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
 	@Override
 	public String toString() {
-		return "Image [imageNo=" + imageNo + ", goodsNo=" + goodsNo + ", attachFile=" + attachFile
-				+ ", CKEditorFuncNum=" + CKEditorFuncNum + ", upload=" + upload + "]";
+		return "Image [imageNo=" + imageNo + ", goodsNo=" + goodsNo + ", attachFile=" + attachFile + ", feature="
+				+ feature + ", CKEditorFuncNum=" + CKEditorFuncNum + ", upload=" + upload + "]";
 	}
-	
-
-	
 	
 
 }
