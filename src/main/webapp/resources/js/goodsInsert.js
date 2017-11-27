@@ -1,4 +1,7 @@
 
+var i = 0;
+var front = true;
+
 $(document).ready(function(){ 
 	 
   /* CK EDITOR */
@@ -69,91 +72,49 @@ $(document).ready(function(){
 	    		  });
 	    	}
 	    });
+	   
+	   var formData = new FormData();
+	    formData.append("image", file);
+	   
+		  if(front) {
+			   /* 파이썬 미들 서버 호출 (분류기)*/
+			   $.ajax({
+					  url : 'http://localhost:8000/polls/',
+					  data : formData,
+					  dataType : 'JSON',
+					  crossDomain: true,
+					  processData:false,
+				    contentType:false,
+				    type:'POST',
+				    success: function(data){
+				    	console.log(data);
+				    	data = data[0];
+				    	
+				    	category = data.category;
+				    	value = data.class;
+				    	
+				    	console.log(category + " : " + value);
+
+				    	clothEvent(category);
+				    	$("#selectClothing").val(category);
+				    	$('.selectOption select').val(value);
+				    	
+				    	front = false;
+				    	}, 
+				    error : function(data, a, b ) {
+				    	console.log(data);
+				    	console.log(a);
+				    	console.log(b);
+				    }
+			   })
+		   }	
 	});
   
   
   /** 사이즈 Modal 이벤트 영역 */
-  
-  $("#selectClothing").change(function(){
-	  
-	  var option = $(this).val();
-	  var str = "";
-	  var add = "";
-	  var value = "";
-	  
-	  if(option == 'top'){
-		  
-		  value = "        <option>종류 선택</option>" +
-		  		  "        <option value='coat'>Coat</option>" +
-		  		  "        <option value='jacket'>Jacket</option>" +
-		  		  "        <option value='dress'>Dress</option>" +
-		  	  	  "        <option value='knit'>Knit</option>" +
-		  		  "        <option value='sweatShirt'>SweatShirt</option>";
-		  
-		  add = addingOp(value);
-		  
-		  $(".selectOption").html(add);
-		  
-		  var topOption = $("select[name='option']");
-		  
-		  topOption.change(function(){
-			  
-			  str = topBase();
-			  $(".addOption").html(str);
-			  
-		  });
-		  
-		  
-	  }else{
-		  
-		  value = "        <option>종류 선택</option>" +
-		  		  "        <option value='skirt'>Skirt</option>" +
-		  		  "        <option value='shortPants'>Shorts</option>" +
-		  		  "        <option value='pants'>Pants</option>";
-		  
-		  add = addingOp(value);
-		  $(".selectOption").html(add);
-		  
-		  var bottomOption = $("select[name='option']");
-		  
-		  bottomOption.change(function(){
-			  
-			  var data = "";
-			  
-			  if(bottomOption.val() == 'skirt'){
-				  
-				  data = "<option>사이즈 선택</option>" +
-				  		 "<option value='xs'>XS</option>" +
-				  		 "<option value='s'>S</option>" +
-				  		 "<option value='m'>M</option>" +
-				  		 "<option value='l'>L</option>" +
-				  		 "<option value='xl'>XL</option>" +
-				   		 "<option value='free'>FREE</option>";
-				   		 
-				  str = bottomBase(data);
-				  
-			  }else{
-				  
-				  data = "<option>사이즈 선택</option>" +
-			  		 	 "<option value='24'>24</option>" +
-			  			 "<option value='25'>25</option>" +
-			  			 "<option value='26'>26</option>" +
-			  			 "<option value='27'>27</option>" +
-			  			 "<option value='28'>28</option>" +
-			  			 "<option value='29'>29</option>" +
-			  			 "<option value='30'>30</option>" +
-			   			 "<option value='free'>FREE</option>";
-			   	
-				  str = bottomBase(data);
-			  }
-			  
-			  $(".addOption").html(str);
-			  
-		  });
-		  
-	  }
-	  
-  });
+  $("#selectClothing").change(function() {
+	  clothEvent($(this).val());
+  	})
   
   $(".addSizeBtn").on("click", function(){
 	  
@@ -512,5 +473,82 @@ $(document).ready(function(){
 	  return real;
   }
   
+  function clothEvent(option){
+	  var str = "";
+	  var add = "";
+	  var value = "";
+	  
+	  if(option == 'top'){
+		  
+		  value = "      <option>종류 선택</option>" +
+		  		  "        <option value='coat'>Coat</option>" +
+		  		  "        <option value='jacket'>Jacket</option>" +
+		  		  "        <option value='dress'>Dress</option>" +
+		  	  	"	 	     <option value='knit'>Knit</option>" +
+		  		  "        <option value='sweatShirt'>SweatShirt</option>";
+		  
+		  add = addingOp(value);
+		  
+		  $(".selectOption").html(add);
+		  
+		  var topOption = $("select[name='option']");
+		  
+		  topOption.change(function(){
+			  
+			  str = topBase();
+			  $(".addOption").html(str);
+			  
+		  });
+		  
+		  
+	  }else{
+		  
+		  value = "        <option>종류 선택</option>" +
+		  		  "        <option value='skirt'>Skirt</option>" +
+		  		  "        <option value='shortPants'>Shorts</option>" +
+		  		  "        <option value='pants'>Pants</option>";
+		  
+		  add = addingOp(value);
+		  $(".selectOption").html(add);
+		  
+		  var bottomOption = $("select[name='option']");
+		  
+		  bottomOption.change(function(){
+			  
+			  var data = "";
+			  
+			  if(bottomOption.val() == 'skirt'){
+				  
+				  data = "<option>사이즈 선택</option>" +
+				  		 "<option value='xs'>XS</option>" +
+				  		 "<option value='s'>S</option>" +
+				  		 "<option value='m'>M</option>" +
+				  		 "<option value='l'>L</option>" +
+				  		 "<option value='xl'>XL</option>" +
+				   		 "<option value='free'>FREE</option>";
+				   		 
+				  str = bottomBase(data);
+				  
+			  }else{
+				  
+				  data = "<option>사이즈 선택</option>" +
+			  		 	 "<option value='24'>24</option>" +
+			  			 "<option value='25'>25</option>" +
+			  			 "<option value='26'>26</option>" +
+			  			 "<option value='27'>27</option>" +
+			  			 "<option value='28'>28</option>" +
+			  			 "<option value='29'>29</option>" +
+			  			 "<option value='30'>30</option>" +
+			   			 "<option value='free'>FREE</option>";
+			   	
+				  str = bottomBase(data);
+			  }
+			  
+			  $(".addOption").html(str);
+			  
+		  });
+		  
+	  }
+}
   
 }); 
