@@ -8,22 +8,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<style>
-.submenu-list-title{
-  margin-top:5%;
-}
-
-#listOut{
-  margin-top:5%;
-  margin-bottom: 5%;
-  margin-left:5%;
-  font-size: 13px;
-}
-
-#listToggleBtn{
-  height:27px;
-}
-</style>
 <meta charset="utf-8">
 <meta name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
