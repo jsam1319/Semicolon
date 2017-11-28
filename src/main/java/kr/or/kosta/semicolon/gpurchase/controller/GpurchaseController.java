@@ -74,12 +74,12 @@ public class GpurchaseController {
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String insert(Gpurchase gpurchase, Model model) throws Exception {
+	public String insert(Gpurchase gpurchase, int category) throws Exception {
 		logger.info("Product Insert...POST");
 		
 		gpService.insert(gpurchase);
 		
-		return "/goods/insert";
+		return "redirect:/product/research/"+category;
 	}
 
 	/**
