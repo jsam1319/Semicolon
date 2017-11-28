@@ -22,21 +22,18 @@ public class Goods {
 	private int price;
 	private String detail;
 	private String frontImg;
-	private String col;
 	private String toggleImg;
 	private int category;
 	
 	public Goods() {}
 
-	public Goods(int goodsNo, String name, int price, String detail, String frontImg, String col, String toggleImg,
-			int category) {
+	public Goods(int goodsNo, String name, int price, String detail, String frontImg, String toggleImg, int category) {
 		super();
 		this.goodsNo = goodsNo;
 		this.name = name;
 		this.price = price;
 		this.detail = detail;
 		this.frontImg = frontImg;
-		this.col = col;
 		this.toggleImg = toggleImg;
 		this.category = category;
 	}
@@ -81,14 +78,6 @@ public class Goods {
 		this.frontImg = frontImg;
 	}
 
-	public String getCol() {
-		return col;
-	}
-
-	public void setCol(String col) {
-		this.col = col;
-	}
-
 	public String getToggleImg() {
 		return toggleImg;
 	}
@@ -108,9 +97,9 @@ public class Goods {
 	@Override
 	public String toString() {
 		return "Goods [goodsNo=" + goodsNo + ", name=" + name + ", price=" + price + ", detail=" + detail
-				+ ", frontImg=" + frontImg + ", col=" + col + ", toggleImg=" + toggleImg + ", category=" + category
-				+ "]";
+				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", category=" + category + "]";
 	}
+
 	
 	
 	

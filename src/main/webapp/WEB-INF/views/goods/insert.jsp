@@ -95,7 +95,6 @@
                 <label>상품정보<span>*</span></label>
                 <textarea class="simple-field" id="detail" name="detail" required
                   rows="15" placeholder="상품에 대한 설명과 상품 상세 이미지 추가"></textarea>
-                <input type="hidden" name="col" value="black">
               </div>
 
               <div class="hiddenSize"></div>

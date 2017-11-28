@@ -30,7 +30,6 @@ public class TakeAllThings {
 	private String detail;
 	private String frontImg;
 	private String toggleImg;
-	private String col;
 	private int category;
 	
 	//상하의 공통
@@ -60,9 +59,9 @@ public class TakeAllThings {
 	public TakeAllThings() {}
 
 	public TakeAllThings(int goodsNo, String name, int price, String detail, String frontImg, String toggleImg,
-			String col, int category, String[] types, String[] sizes, Double[] fullLength, int topsNo,
-			Double[] sleeveLength, int bottomNo, Double[] waist, Double[] rise, Double[] hip, Double[] thigh,
-			int keywordNo, String[] keywordName, int imageNo, String[] attachFile) {
+			int category, String[] types, String[] sizes, Double[] fullLength, int topsNo, Double[] sleeveLength,
+			int bottomNo, Double[] waist, Double[] rise, Double[] hip, Double[] thigh, int keywordNo,
+			String[] keywordName, int imageNo, String[] attachFile) {
 		super();
 		this.goodsNo = goodsNo;
 		this.name = name;
@@ -70,7 +69,6 @@ public class TakeAllThings {
 		this.detail = detail;
 		this.frontImg = frontImg;
 		this.toggleImg = toggleImg;
-		this.col = col;
 		this.category = category;
 		this.types = types;
 		this.sizes = sizes;
@@ -87,8 +85,6 @@ public class TakeAllThings {
 		this.imageNo = imageNo;
 		this.attachFile = attachFile;
 	}
-
-
 
 	public int getGoodsNo() {
 		return goodsNo;
@@ -136,14 +132,6 @@ public class TakeAllThings {
 
 	public void setToggleImg(String toggleImg) {
 		this.toggleImg = toggleImg;
-	}
-
-	public String getCol() {
-		return col;
-	}
-
-	public void setCol(String col) {
-		this.col = col;
 	}
 
 	public int getCategory() {
@@ -258,19 +246,13 @@ public class TakeAllThings {
 		this.imageNo = imageNo;
 	}
 
-	
-	
 	public String[] getAttachFile() {
 		return attachFile;
 	}
 
-
-
 	public void setAttachFile(String[] attachFile) {
 		this.attachFile = attachFile;
 	}
-
-
 
 	public Goods getGoods() {
 		
@@ -281,29 +263,22 @@ public class TakeAllThings {
 		goods.setDetail(detail);
 		goods.setFrontImg(frontImg);
 		goods.setToggleImg(toggleImg);
-		goods.setCol(col);
 		goods.setCategory(category);
 		
 		return goods;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "TakeAllThings [goodsNo=" + goodsNo + ", name=" + name + ", price=" + price + ", detail=" + detail
-				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", col=" + col + ", category=" + category
-				+ ", types=" + Arrays.toString(types) + ", sizes=" + Arrays.toString(sizes) + ", fullLength="
+				+ ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", category=" + category + ", types="
+				+ Arrays.toString(types) + ", sizes=" + Arrays.toString(sizes) + ", fullLength="
 				+ Arrays.toString(fullLength) + ", topsNo=" + topsNo + ", sleeveLength=" + Arrays.toString(sleeveLength)
 				+ ", bottomNo=" + bottomNo + ", waist=" + Arrays.toString(waist) + ", rise=" + Arrays.toString(rise)
 				+ ", hip=" + Arrays.toString(hip) + ", thigh=" + Arrays.toString(thigh) + ", keywordNo=" + keywordNo
 				+ ", keywordName=" + Arrays.toString(keywordName) + ", imageNo=" + imageNo + ", attachFile="
 				+ Arrays.toString(attachFile) + "]";
 	}
-	
-
-	
-	
 
 	
 

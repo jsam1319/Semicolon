@@ -16,7 +16,6 @@
 				price,
 				detail,
 				front_img,
-				col,
 				toggle_img,
 				category
 			)
@@ -27,7 +26,6 @@
 				#{price},
 				#{detail},
 				#{frontImg},
-				#{col},
 				#{toggleImg},
 				#{category}
 			)
@@ -40,7 +38,6 @@
 		       price, 
 		       detail, 
 		       front_img,
-		       col,
 		       toggle_img,
 		       category 
 		FROM goods
@@ -52,7 +49,6 @@
 			   price, 
 			   detail, 
 			   front_img,
-			   col,
 			   toggle_img,
 			   category 
 		FROM   goods
@@ -66,7 +62,6 @@
 		       price, 
 		       detail, 
 		       front_img AS frontImg,
-		       col,
 			   toggle_img As toggleImg,
 			   category
 		FROM   goods
@@ -87,7 +82,6 @@
 		       price, 
 		       detail, 
 		       frontimg,
-		       col,
 			   toggle_img,
 			   category 
 		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
@@ -96,7 +90,6 @@
 		               price, 
 		               detail, 
 		               frontimg,
-		               col,
 					   toggle_img,
 					   category 
 		        FROM   (SELECT goods_no  goodsNo, 
@@ -104,7 +97,6 @@
 		                       price, 
 		                       detail, 
 		                       front_img,
-		                       col,
 							   toggle_img,
 							   category 
 		                FROM   goods 
