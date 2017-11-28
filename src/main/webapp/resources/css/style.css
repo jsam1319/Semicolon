@@ -461,7 +461,7 @@ body:not(.mobile) .socials-box a:hover .fa{top: -5px;}
 .search-box.popup.bottom-align{top: auto!important; bottom: 75px;}
 .search-box.popup.bottom-align .search-drop-down .list{position: absolute; top: auto; bottom: 100%;}
 /*.popup.active{opacity: 1; transform: rotateX(0deg); -moz-transform: rotateX(0deg); -webkit-transform: rotateX(0deg); -ms-transform: rotateX(0deg);}*/
-.search-box.popup:before{width: 28px; height: 15px; position: absolute; content: ""; background: url(../img/search-angle.png); top: -15px; right: 30px;}
+.search-box.popup:before{height: 15px; position: absolute; content: ""; background: url(../img/search-angle.png); top: -15px; right: 30px;}
 .search-box.popup.bottom-align:before{transform: rotate(180deg); -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); top: 100%;}
 .cart-box.popup{position: fixed; padding: 15px 0 0 0; width: 300px;}
 .cart-box.popup .popup-container{border: 2px #ebebeb solid; padding: 25px 25px 20px 25px; background: #fff; position: relative;}

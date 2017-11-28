@@ -960,7 +960,7 @@ $(document).ready(function() {
 })
 
 function liListGroup(value, keyword) {
-	value = value.replace(keyword, '<strong>' + keyword + '</strong>')
+	value = value.replace(keyword, '<font color="blue" style="font-weight:bold">' + keyword + '</font>')
 	console.log(keyword + " " + value)
 	return '<li class="list-group-item">' + value + '</li>'
 }
