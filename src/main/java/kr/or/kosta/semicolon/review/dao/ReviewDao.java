@@ -18,7 +18,7 @@ import kr.or.kosta.semicolon.review.domain.Review;
  * --------      -----------   ---------------------------------------
  * 2017. 11. 15.      sejong    최초 생성
  * 2017. 11. 20.	  sejong	remove(), listAvg() 메소드 생성
- *
+ * 2017. 11. 28.	  박연주	selectReviewCount 추가
  */
 public interface ReviewDao {
 	
@@ -37,5 +37,8 @@ public interface ReviewDao {
 	public int listAvg(int goodsNo) throws Exception;
 	
 	public String getFile(int reivewNo) throws Exception;
+	
+	// 해당 상품에 대한 리뷰 개수
+	public int selectReviewCount(int goodsNo) throws Exception;
 	
 }

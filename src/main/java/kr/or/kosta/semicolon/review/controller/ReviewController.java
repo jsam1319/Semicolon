@@ -180,6 +180,7 @@ public class ReviewController {
 	public int avgGrade(@PathVariable("goodsNo") int goodsNo) throws Exception {
 		
 		return reviewService.listAvg(goodsNo);
+		
 	}
 
 }
