@@ -24,25 +24,26 @@
 	</insert>
 
 
-	<select id="listByKeyword" parameterType="string" resultType="Goods">
+	<select id="listByKeyword" parameterType="string" resultType="Gpurchase">
 		SELECT 
-			goods_no,
-			name,
-			price,
-			detail,
-			front_img
-		FROM goods
+			gpurchase_no, goods_no, min, end_date, start_date, price, likecnt, status, pnum
+		FROM gpurchase
 		WHERE 
 			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{value} )
 	</select>
 	 
 	 
 	 <select id="selectName" parameterType="int" resultType="HashMap">
-	 	SELECT keyword_name keywordName
-		FROM   keyword 
-		WHERE  goods_no = #{goodsNo}
+		 	SELECT keyword_name keywordName
+			FROM   keyword 
+			WHERE  goods_no = #{goodsNo}
 	 </select>
-	
-	
 
+
+	<select id="autoComplete" parameterType="string" resultType="string">
+		SELECT keyword_name keywordName
+		FROM keyword
+		WHERE keyword_name like '%${value}%'
+	
+	</select>
 </mapper>

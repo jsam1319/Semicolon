@@ -10,4 +10,6 @@ public interface KeywordService {
 	public int insert(Keyword keyword);
 	
 	public List<Goods> listByKeyword(String keyword);
+	
+	public List<String> autoComplete(String keyword);
 }
