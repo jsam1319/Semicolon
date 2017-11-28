@@ -53,6 +53,11 @@ public class gwishServiceImpl implements gwishService {
 	public int delete(int gwishNo) throws Exception {
 		return dao.delete(gwishNo);
 	}
+	
+	@Override
+	public int selectMemNo(int gpurchaseNo) throws Exception {
+		return dao.selectMemNo(gpurchaseNo);
+	}
 
 	@Override
 	public List<Gwish> selectByMemNo(int gwishNo) throws Exception{

@@ -23,7 +23,8 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
  * 2017. 11. 9.        박주연       crud 생성
  * 2017. 11. 15.	   박주연		isMember, selectById, updateLogin, readLogin, isId 추가
  * 2017. 11. 24.	   박연주		selectOrderInfo 추가
- *
+ * 2017. 11. 28.	   Sejong		selectAppToken, updateToken 추가
+ * 	
  */
 
 @Service
@@ -60,6 +61,11 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     @Override
     public Member select(int no) {
         return memberDao.select(no);
+    }
+    
+    @Override
+    public String selectToken(int no) {
+    	return  memberDao.selectToken(no);
     }
     
     @Override
@@ -121,6 +127,11 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     @Override
     public void updateLogin(Member member) throws Exception{
         memberDao.updateLogin(member);
+    }
+    
+    @Override
+    public void updateToken(Member member) throws Exception {
+    	memberDao.updateToken(member);
     }
 
     /**

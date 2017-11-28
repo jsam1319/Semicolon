@@ -28,18 +28,21 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
 import kr.or.kosta.semicolon.gwish.service.gwishService;
+import kr.or.kosta.semicolon.member.service.MemberService;
+import kr.or.kosta.semicolon.push.service.PushTokenService;
 
 /**
- * @packgename kr.or.kosta.semicolon.gpurchase.controller
- * @filename GpurchaseController.java
- * @author 박연주
- * @since 2017. 11. 14.
- * @see 공구 관리를 위한 Controller
+ * @packgename 	kr.or.kosta.semicolon.gpurchase.controller
+ * @filename 	GpurchaseController.java
+ * @author 		박연주
+ * @since 		2017. 11. 14.
+ * @see 		공구 관리를 위한 Controller
  *
- *      == Modification Infomation (수정 이력) ==
+ * == Modification Infomation (수정 이력) ==
  * 
- *      DATE AUTHOR NOTE -------- -----------
- *      --------------------------------------- 2017. 11. 14. 박연주 최초 생성
+ * 	  DATE 			AUTHOR 			NOTE 
+ *  --------      -----------   ---------------------------------------
+ * 2017. 11. 14. 	   박연주 			최초 생성
  *
  *
  */
@@ -60,6 +63,12 @@ public class GpurchaseController {
 	
 	@Inject
 	private GoodsService goodsService;
+	
+	@Inject
+	private MemberService memService;
+	
+	@Inject
+	private PushTokenService pushService;
 	
 	@RequestMapping(value="/insert/{goodsNo}", method=RequestMethod.GET)
 	public String insert(@PathVariable("goodsNo") int goodsNo, Model model) throws Exception {
@@ -453,6 +462,9 @@ public class GpurchaseController {
 					
 					if (status == 0) {
 						// 안드로이드 푸쉬 알림
+						int memberNo = wishService.selectMemNo(gpurchaseNo);
+						String token = memService.selectToken(memberNo);
+						pushService.pushToken(token);
 					} 
 					
 				} else if (likeCnt < min && status == 0) {

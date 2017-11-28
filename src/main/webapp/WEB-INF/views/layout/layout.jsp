@@ -38,9 +38,50 @@
 <body>
 
   <script>
-			function formSubmit() {
-				$("#logoutForm").submit();
+  var no;
+  $(document).ready(function(){
+		var autoFlag = false;
+	  
+		// 로그아웃중...
+	    if( ${empty cookie.autoLoginCookie && empty no} ){
+		   	//alert("!!");	
+		}else if( ${not empty cookie.autoLoginCookie} ){	//auto 접속
+			autoFlag = true;
+			var agent = navigator.userAgent.toLowerCase();
+			
+			if(agent.indexOf("android") != -1) {
+				alert("true")
 			}
+			
+		   	no = ${no};
+		   	//window.mJSInterface.setAutoLogin("true");
+		   	//window.mJSInterface.setLoginInfo(paramId);
+		   	
+		   	
+		}else{		// 간단 로그인
+			//alert("~~");
+			//window.mJSInterface.setAutoLogin("true");
+		}
+					 
+	  });
+  
+  function setMessage(token) {
+	  $.ajax({
+		  url : "/push/token",
+		  type : 'post',
+		  data : {
+			  token : token, no : no
+		  },
+		  success : function(data) {
+			  console.log(data);
+		  },
+		  error : function(data, a, b) {
+			  console.log(data);
+			  console.log(a);
+			  console.log(b);
+		  }
+	  })
+  }
 		</script>
 
 
