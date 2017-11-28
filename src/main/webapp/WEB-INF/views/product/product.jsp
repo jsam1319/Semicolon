@@ -11,84 +11,6 @@ var productSize = new Object;
 //베스트 사이즈
 var bestSize = new Object;
 
-$(document).ready(function(){
-	$(".compare").append();   
- 	console.log("memberno:${no}"); 
-	matchBest();
-	
-	$(".size").click(function(){
-	   changeSizeGap($(this).text());
-	});
-	
-	
-});
-
-//가장 적합한 사이즈를 반환
-var matchBest = function(){
-     $.ajax({
-    url : "/size/get/${no}/${goods.goodsNo}",
-    type : "get",
-    dataType : "json",
-    success : function(data){
-        console.log(data); 
-        print(data);
-        $("#sizeAnnounce").html("가장 적합한 사이즈 : "+data.sizes);
-    },
-    error : function(xhr, statusText){
-        console.log("("+xhr.status+", "+statusText+")"); 
-    }
- }); 
-}
-
- //사이즈 비교 결과 띄어줌
-var print = function(data){
-    
-	 console.log(data.types); 
-    
-    $(".compare").html(data.sizes+"와 자신 사이즈와 비교결과<br>");
-    
-    if(data.types == 'pants' || data.types == 'shortPants' || data.types == 'skirt'){
-        letter('허리',data.waist);
-        
-        if(data.types != 'skirt'){
-	        letter('밑위',data.rise);
-	        letter('허벅지',data.thigh);
-        }
-        
-        letter('엉덩이',data.hip);
-    }
-    else{ //상의
-        var num = productSize.sleeveLength - userSize.sleeve;
-        letter('소매길이', data.sleeveLength);
-    }
-    
-    letter('총 길이', data.fullLength);
-}
- 
-
-
-var letter = function(body, num){
-    $(".compare").append(body+" 사이즈 : "+num+"<br>");
-} 
-
-//사용자가 클릭할 때마다 사이즈 차이 변환
-var changeSizeGap = function(data){
-   console.log("size:"+data); 
-     $.ajax({
-       url : "/size/get/${no}/"+data+"/${goods.goodsNo}",
-       type : "get",
-       dataType : "json",
-       success : function(data){
-           print(data);
-       },
-       error : function(xhr, statusText){
-           console.log("("+xhr.status+", "+statusText+")"); 
-       }
-    }); 
-}
-
-
-
 </script>
 </head>
 
@@ -230,7 +152,7 @@ var changeSizeGap = function(data){
             <div class="col-md-12">
               <div class="information-blocks">
                 
-                <!-- 사이즈정보 출력 -->
+                <!-- 체형별 사이즈 정보 제공 시작 -->
                  <div class="information-entry products-list">
                   <h3 class="block-title inline-product-column-title" style="line-height:150%;"> 체형별 사이즈 정보 </h3>
                   <div class="inline-product-entry">
@@ -241,6 +163,7 @@ var changeSizeGap = function(data){
                     <div class="clear"></div>
                   </div>
                 </div>
+                <!-- 체형별 사이즈 정보 제공 끝 -->
                 
                 <br><br>
                 
