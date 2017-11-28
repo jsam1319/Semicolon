@@ -73,31 +73,31 @@
                           
                           <div class="menu">
                           
-                            <div class="item">
-                            <i class="dropdown icon"></i>
+                            <div class="ui scrolling dropdown item">
+                            <i class="dropdown icon" ></i>
                             <span class="text">Coat</span>
                               <div class="menu" id="coatMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Jacket</span>
                               <div class="menu" id="jacketMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Dress</span>
                               <div class="menu" id="dressMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Knit</span>
                               <div class="menu" id="knitMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">sweatShirt </span>
                               <div class="menu" id="sweatMenu"></div>
@@ -106,24 +106,24 @@
                           </div>
                           
                         </div>
-                        <div class="item">
+                        <div class="ui scrolling dropdown item">
                           <i class="dropdown icon"></i> 
                           <span class="text">Bottom</span>
                           <div class="menu">
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Skirt</span>
                               <div class="menu" id="skirtMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Shorts</span>
                               <div class="menu" id="shortsMenu"></div>
                             </div>
                           
-                            <div class="item">
+                            <div class="ui scrolling dropdown item">
                             <i class="dropdown icon"></i>
                             <span class="text">Pants</span>
                               <div class="menu" id="pantsMenu"></div>
