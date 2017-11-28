@@ -683,7 +683,7 @@ $(function() {
 	
 	var page = 1;
     
-    var gpurchaseNo = ${gpurchase.gpurchaseNo};
+    var goodsNo = ${gpurchase.goodsNo};
     
     $('#targetType').raty({
 		cancel     : true,
@@ -691,7 +691,7 @@ $(function() {
 		targetType : 'score'
 	});
       
-	$.getJSON("/review/" + gpurchaseNo + "/" + page, function(data){
+	$.getJSON("/review/" + goodsNo + "/" + page, function(data){
         
 		var str = printList(data);
         

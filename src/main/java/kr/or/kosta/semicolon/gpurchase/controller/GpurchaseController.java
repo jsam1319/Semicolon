@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.askresale.service.askResaleService;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
@@ -74,12 +74,12 @@ public class GpurchaseController {
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String insert(Gpurchase gpurchase, Model model) throws Exception {
+	public String insert(Gpurchase gpurchase, int category) throws Exception {
 		logger.info("Product Insert...POST");
 		
 		gpService.insert(gpurchase);
 		
-		return "/goods/insert";
+		return "redirect:/product/research/"+category;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class GpurchaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> researchList(Params params, @PathVariable("category") int category,
+	public ResponseEntity<Map<String, Object>> researchList(UseParameter params, @PathVariable("category") int category,
 			@PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController research 접근");
@@ -276,7 +276,7 @@ public class GpurchaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> gpurchaseList(Params params, Model model,
+	public ResponseEntity<Map<String, Object>> gpurchaseList(UseParameter params, Model model,
 			@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController gpurchaseList 접근");
@@ -316,7 +316,7 @@ public class GpurchaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> endList(Params params, Model model,
+	public ResponseEntity<Map<String, Object>> endList(UseParameter params, Model model,
 			@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController endList 접근");

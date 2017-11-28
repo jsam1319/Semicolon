@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.kosta.semicolon.aftersales.domain.AfterSales;
 import kr.or.kosta.semicolon.aftersales.service.AfterSalesService;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.common.util.UploadService;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
 import kr.or.kosta.semicolon.member.domain.Member;
@@ -99,7 +99,7 @@ public class AfterSalesController {
 	}
 	
 	@RequestMapping(value = "/{memberNo}/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> afterlist(@PathVariable("memberNo") int memberNo, @PathVariable("page") int page, Params params){
+	public ResponseEntity<Map<String, Object>> afterlist(@PathVariable("memberNo") int memberNo, @PathVariable("page") int page, UseParameter params){
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		params.setPage(page);

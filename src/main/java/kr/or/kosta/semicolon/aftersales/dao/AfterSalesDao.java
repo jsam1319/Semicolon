@@ -3,7 +3,7 @@ package kr.or.kosta.semicolon.aftersales.dao;
 import java.util.List;
 
 import kr.or.kosta.semicolon.aftersales.domain.AfterSales;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 
 /**
  * @packgename   kr.or.kosta.semicolon.service.dao
@@ -30,6 +30,6 @@ public interface AfterSalesDao {
 	
 	public void delete(int aftersalesNo);
 	
-	public List<AfterSales> listAll(Params params);
+	public List<AfterSales> listAll(UseParameter params);
 	
 }

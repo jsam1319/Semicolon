@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- 리스트 페이징 출력 -->
-	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Review">
+	<select id="listAll" parameterType="UseParameter" resultType="Review">
 		SELECT review_no, 
 		       goods_no, 
 		       member_no, 

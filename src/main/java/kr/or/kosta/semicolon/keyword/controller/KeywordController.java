@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
@@ -42,5 +43,12 @@ public class KeywordController {
 	@RequestMapping(value = "/keyword", method = RequestMethod.GET)
 	public List<Goods> listByKeyword(String keyword) {
 			return keywordService.listByKeyword(keyword);
+	}
+	
+	@RequestMapping(value = "/keyword/auto", method = RequestMethod.GET)
+	@ResponseBody
+	public List<String> autoComplete(String keyword) {
+		System.out.println(keyword);
+		return keywordService.autoComplete(keyword);
 	}
 }

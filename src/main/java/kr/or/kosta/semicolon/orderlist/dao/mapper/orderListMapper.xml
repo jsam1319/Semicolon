@@ -17,11 +17,16 @@
 		             orders_no) 
 		VALUES     (#{orderListNo}, 
 		            #{qty}, 
-		            #{topsNo}, 
-		            #{bottomNo}, 
+		            <choose>
+		            	<when test="topsNo==0">null,</when>
+		            	<when test="topsNo!=0">#{topsNo},</when>
+		            </choose>
+		            <choose>
+		            	<when test="bottomNo==0">null,</when>
+		            	<when test="bottomNo!=0">#{bottomNo},</when>
+		            </choose>
 		            #{gpurchaseNo},
-		            #{ordersNo}); 
-  		
+		            #{ordersNo})
   	</insert>
 
   	<select id="select" parameterType="int" resultType="OrderList">

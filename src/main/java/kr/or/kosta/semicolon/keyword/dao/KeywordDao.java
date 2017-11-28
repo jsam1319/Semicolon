@@ -29,4 +29,6 @@ public interface KeywordDao {
 	
 	public List<HashMap<String, String>> selectName(int goodsNo) throws Exception;
 	
+	public List<String> autoComplete(String keyword);
+	
 }

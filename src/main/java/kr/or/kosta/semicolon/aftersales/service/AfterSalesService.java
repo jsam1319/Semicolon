@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.kosta.semicolon.aftersales.domain.AfterSales;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 
 public interface AfterSalesService {
 	
@@ -16,7 +16,7 @@ public int insert(AfterSales aftersales);
 	
 	public void delete(int aftersalesNo);
 	
-	public Map<String, Object> listAll(Params params);
+	public Map<String, Object> listAll(UseParameter params);
 	
 	
 }

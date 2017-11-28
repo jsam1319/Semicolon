@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.bottom.dao.BottomDao;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.company.dao.CompanyDao;
 import kr.or.kosta.semicolon.goods.dao.GoodsDao;
 import kr.or.kosta.semicolon.goods.domain.Goods;
@@ -121,7 +121,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	
 	@Override
-	public Map<String, Object> listAll(Params params, int category) throws Exception {
+	public Map<String, Object> listAll(UseParameter params, int category) throws Exception {
 		List<Gpurchase> gplist = gpdao.listAll(params);
 		List<Goods> glist = goodsDao.categoryListAll(category);
 		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
@@ -164,7 +164,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	
 	@Override
-	public Map<String, Object> glistAll(Params params, int category) throws Exception {
+	public Map<String, Object> glistAll(UseParameter params, int category) throws Exception {
 		List<Gpurchase> gplist = gpdao.glistAll(params);
 		List<Goods> glist = goodsDao.categoryListAll(category);
 		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
@@ -178,7 +178,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	
 	@Override
-	public Map<String, Object> endlistAll(Params params, int category) throws Exception {
+	public Map<String, Object> endlistAll(UseParameter params, int category) throws Exception {
 		List<Gpurchase> gplist = gpdao.endlistAll(params);
 		List<Goods> glist = goodsDao.categoryListAll(category);
 		List<Map<String, Object>> comlist = comDao.selectCNameListAll();

@@ -90,7 +90,7 @@
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</delete>
 	
-	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+	<select id="listAll" parameterType="UseParameter" resultType="Gpurchase">
 		SELECT gpurchaseno, 
 		       goodsno, 
 		       min, 
@@ -100,7 +100,7 @@
 		       status,
 		       likecnt,
 		       pnum 
-		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+		FROM   (SELECT Ceil (rownum / 16) page, 
 		               gpurchaseno, 
 		               goodsno, 
 		               min, 
@@ -146,7 +146,7 @@
 	</select>
 	
 	
-	<select id="glistAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+	<select id="glistAll" parameterType="UseParameter" resultType="Gpurchase">
 	SELECT gpurchaseno, 
 	       goodsno, 
 	       min, 
@@ -156,7 +156,7 @@
 	       status, 
 	       likecnt,
 	       pnum 
-	FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+	FROM   (SELECT Ceil (rownum / 16) page, 
 	               gpurchaseno, 
 	               goodsno, 
 	               min, 
@@ -200,7 +200,7 @@
 	WHERE  page = #{page}	
 	</select>
 	
-	<select id="endlistAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Gpurchase">
+	<select id="endlistAll" parameterType="UseParameter" resultType="Gpurchase">
 	SELECT gpurchaseno, 
 	       goodsno, 
 	       min, 
@@ -210,7 +210,7 @@
 	       status, 
 	       likecnt,
 	       pnum 
-	FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+	FROM   (SELECT Ceil (rownum / 16) page, 
 	               gpurchaseno, 
 	               goodsno, 
 	               min, 
