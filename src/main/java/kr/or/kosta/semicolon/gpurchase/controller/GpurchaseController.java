@@ -432,7 +432,7 @@ public class GpurchaseController {
 	 * @Method Name : updateStatus
 	 * @throws Exception
 	 */
-	@Scheduled(cron = "0 00 00 * * *")
+	@Scheduled(cron = "59 59 23 * * *")
 	public void updateStatus() throws Exception {
 		logger.info("updateStatus 들어옴");
 		List<Gpurchase> list = gpService.gpListAll();
@@ -443,10 +443,23 @@ public class GpurchaseController {
 			String compare = time.timeCount();
 			int likeCnt = gpurchase.getLikeCnt();
 			int min = gpurchase.getMin();
-
-			if (compare != null && likeCnt >= min) {
-				gpService.statusUpdate(gpurchase);
+			int status = gpurchase.getStatus();
+			int gpurchaseNo = gpurchase.getGpurchaseNo();
+			
+			// 공구의 endDate가 현재 날짜보다 과거라면 조건 만족
+			if (compare != null) {
+				if (likeCnt >= min && status <2) {
+					gpService.statusUpdate(gpurchase);
+					
+					if (status == 0) {
+						// 안드로이드 푸쉬 알림
+					} 
+					
+				} else if (likeCnt < min && status == 0) {
+					gpService.updateResearchCancle(gpurchaseNo);
+				}
 			}
+
 		}
 	}
 	

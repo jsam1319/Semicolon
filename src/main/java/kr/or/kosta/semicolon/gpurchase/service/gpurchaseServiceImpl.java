@@ -32,9 +32,9 @@ import kr.or.kosta.semicolon.tops.dao.TopsDao;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 10.      연주         최초 생성
- * 2017. 11. 23.	  박주연	   getSalesByCategory 추가
- *
+ * 2017. 11. 10.     박연주   	최초 생성
+ * 2017. 11. 23.	 박주연	    getSalesByCategory 추가
+ * 2017. 11. 28.	 박연주		updateResearchCancle 추가
  */
 @Service
 public class gpurchaseServiceImpl implements gpurchaseService {
@@ -131,27 +131,14 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		map.put("glist", glist);
 		map.put("comlist", comlist);
 		
-		
-		
-		
 		return map;
 	}
-	/*
-	@Override
-	public void update(Gpurchase gpurchase) throws Exception {
-		gpdao.update(gpurchase);
-	}
-	*/
+	
 	@Override
 	public void delete(int gpurchaseNo) throws Exception {
 		gpdao.delete(gpurchaseNo);
 	}
-	/*
-	@Override
-	public List<Gpurchase> listAll(Params params) throws Exception {
-		return gpdao.listAll(params);
-	}
-	*/
+	
 	@Override
 	public void updateCntP(int gpurchaseNo) throws Exception {
 		gpdao.updateCntP(gpurchaseNo);
@@ -161,7 +148,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	public void updateCntM(int gpurchaseNo) throws Exception {
 		gpdao.updateCntM(gpurchaseNo);
 	}
-	
 	
 	@Override
 	public Map<String, Object> glistAll(UseParameter params, int category) throws Exception {
@@ -191,7 +177,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return map;
 	}
 	
-	
 	@Override
 	public List<Integer> selectGolist() throws Exception {
 		List<Integer> list = gpdao.selectGolist();
@@ -208,4 +193,10 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	public List<CategorySales> getSalesByCategory(){
 		return gpdao.getSalesByCategory();
 	}
+	
+	@Override
+	public void updateResearchCancle(int gpurchaseNo) throws Exception {
+		gpdao.updateResearchCancle(gpurchaseNo);
+	}
+	
 }

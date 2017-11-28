@@ -71,15 +71,20 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
-		System.out.println(list);
-				System.out.println(map);
+		
 		return map;
 	}
 
 	@Override
 	public int listAvg(int goodsNo) throws Exception {
+		int cnt = reviewDao.selectReviewCount(goodsNo);
 		
-		return reviewDao.listAvg(goodsNo);
+		if (cnt == 0) {
+			return 0;
+		} else {
+			return reviewDao.listAvg(goodsNo);
+		}
+		
 	}
 	
 	@Override
@@ -87,5 +92,5 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewDao.getFile(reivewNo);
 	}
-
+	
 }

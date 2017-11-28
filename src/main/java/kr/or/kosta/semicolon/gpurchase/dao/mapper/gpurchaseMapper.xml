@@ -58,21 +58,6 @@
 		WHERE  gpurchase_no = #{gpurchaseNo}
 	</select>
 	
-	<!-- 
- 	<update id="update" parameterType="Gpurchase">
-		UPDATE gpurchase 
-		<set>
-			<if test="min != null">min = #{min},</if>
-			<if test="price != null">price = #{price},</if>
-			<if test="startDate != null">start_date = #{startDate},</if>
-			<if test="endDate != null">end_date = #{endDate},</if>
-			<if test="status != null">status = #{status}</if>
-			<if test="likeCnt != null">likecnt = #{likeCnt}</if>
-		</set>
-		WHERE  gpurchase_no = #{gpurchaseNo} 
-	</update>
- -->
- 
  	<update id="updateCntP" parameterType="int">
  		UPDATE gpurchase 
 		SET    likecnt = likecnt + 1 
@@ -177,6 +162,7 @@
 	                       pnum 
 	                FROM   gpurchase 
 	                WHERE  status = 1
+	                
 	                <if test="productOrder != null">
 		                	<choose>
 		                		<when test="productOrder == 'newProduct'">
@@ -231,6 +217,7 @@
 	                       pnum 
 	                FROM   gpurchase 
 	                WHERE  status = 2
+	                
 	                <if test="productOrder != null">
 		                	<choose>
 		                		<when test="productOrder == 'newProduct'">
@@ -286,6 +273,12 @@
 	<update id="updatePnum" parameterType="int">
 		UPDATE gpurchase 
 		SET    pnum = pnum + 1 
+		WHERE  gpurchase_no = #{gpurchaseNo}
+	</update>
+	
+	<update id="updateResearchCancle" parameterType="int">
+		UPDATE gpurchase 
+		SET    status = -1 
 		WHERE  gpurchase_no = #{gpurchaseNo}
 	</update>
 </mapper>
