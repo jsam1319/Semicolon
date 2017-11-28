@@ -29,8 +29,14 @@ public class HangulSeperator {
 	
 	public static String seperate(String hangul) {
 		String str = "";
+		
+		
 
 		for(int i=0; i<hangul.length(); i++) {
+			if((int)'ㄱ' <=  hangul.charAt(i) && (int)'ㅎ' >= hangul.charAt(i)) {
+				str = str + Character.toString(hangul.charAt(i));
+				continue;
+			}
 			str = str + charSeperate(hangul.charAt(i));
 		}
 		

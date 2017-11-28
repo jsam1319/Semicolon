@@ -934,13 +934,35 @@ $(document).ready(function() {
 		}
 	})
 	
-	$("#keyword").change(function() {
+	$("#keyword").keyup(function() {
+		$("#autocomplete").html('');
+		$.ajax({
+			url : '/keyword/auto',
+			data : { keyword : $("#keyword").val()} ,
+			dataType : 'json',
+			success : function(data) {
+				if(data.length == 0) {
+					$("#autocomplete").html('');
+					$("#autocomplete").append(liListGroup("추천 검색어가 존재하지 않습니다.", $("#keyword").val())) ;
+				}
+				
+				for (var i = 0; i < data.length; i++) {
+					$("#autocomplete").append(liListGroup(data[i], $("#keyword").val())) ;
+				}
+			},
+			error : function(data) {
+				$("#autocomplete").html('');
+				$("#autocomplete").append(liListGroup("추천 검색어가 존재하지 않습니다.", $("#keyword").val())) ;
+			}
+		})
 		
 	})
 })
 
-function liListGroup(value) {
-	return '<li class="list-group-item">' + value + '</ldi>'
+function liListGroup(value, keyword) {
+	value = value.replace(keyword, '<strong>' + keyword + '</strong>')
+	console.log(keyword + " " + value)
+	return '<li class="list-group-item">' + value + '</li>'
 }
 
 

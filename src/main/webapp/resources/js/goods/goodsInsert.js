@@ -44,7 +44,6 @@ $(document).ready(function(){
 	    var formData = new FormData();
 	    formData.append("file", file);
 	    
-	    
 	   $.ajax({
 		   
 	    	url:'/goods/upload',
@@ -442,9 +441,11 @@ $(document).ready(function(){
 		var that = $(this);
 		
 		for(i=0; i<imageValue.length; i++){
-			imageSrc = imageValue[i].substr(34);
+			imageSrc = imageValue[i].split("/");
+			imageName = imageSrc[imageSrc.length-1]
+			alert(imageName)
 			
-			str += "<input type='hidden' name='attachFile' value='"+imageSrc+"'>";
+			str += "<input type='hidden' name='attachFile' value='"+imageName+"'>";
 	  	}
 		
 		str += "<input type='hidden' name='attachFile' value='"+frontAttachImg+"'>";
@@ -463,14 +464,15 @@ $(document).ready(function(){
 	  
 	  var front = imgPath.substr(0, 18);
 	  var end = imgPath.substr(20);
-	  
+	  alert("front : " + front)
+	  alert("end : " + end)
 	  return front + end;
   }
   
   function getRealLink(path){
-	  var real = path.substr(20);
-	  
-	  return real;
+	  var real = path.split("/");
+	   alert(real[real.length-1])
+	  return real[real.length-1];
   }
   
   function clothEvent(option){
@@ -534,7 +536,7 @@ $(document).ready(function(){
 				  data = "<option>사이즈 선택</option>" +
 			  		 	 "<option value='24'>24</option>" +
 			  			 "<option value='25'>25</option>" +
-			  			 "<option value='26'>26</option>" +
+			  			 "<option value='26'>26</option>mage ima" +
 			  			 "<option value='27'>27</option>" +
 			  			 "<option value='28'>28</option>" +
 			  			 "<option value='29'>29</option>" +
