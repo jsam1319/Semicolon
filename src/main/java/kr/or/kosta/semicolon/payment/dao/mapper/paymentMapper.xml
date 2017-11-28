@@ -18,9 +18,8 @@
 		            #{ordersNo}, 
 		            #{method}, 
 		            #{payPrice}, 
-		            #{cardInfo})
+		            #{cardInfo, jdbcType=NUMERIC})
   	</insert>
-  
   	
    
   </mapper>

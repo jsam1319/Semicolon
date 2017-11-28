@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <body class="style-10">
+
 
   <!-- LOADER -->
   <div id="loader-wrapper">
@@ -12,8 +14,8 @@
   <div class="clear"></div>
   <div class="clear"></div>
 
+ <form id="orderForm" action="/order/orders" method="POST">
   <div class="content-push">
-
     <div class="breadcrumb-box">
       <a href="#">Home</a> <a href="#">Shop</a> <a href="#">Order</a>
     </div>
@@ -24,24 +26,28 @@
         <div class="col-sm-9 information-entry">
           <h3 class="cart-column-title size-1">Products</h3>
           
+ 
           <c:forEach items="${orderList}" var="order">
             <div class="traditional-cart-entry style-1">
               <a href="#" class="image"><img class="order-image"
                 src="/resources/img/ex/cat.jpg" alt=""></a>
               <div class="content">
                 <div class="cell-view" name="dataset">
-                  <a class="tag" href="#">${map.CNAME}</a> <a
-                    class="title" href="#">${map.GNAME}</a>
+                  <a class="tag" href="#">${map.CNAME}</a> 
+                  <a class="title" href="#">${map.GNAME}</a>
                   <div class="inline-description">Order Size :
                     ${order.sizes}</div>
                   <div class="inline-description">Order Qty :
                     ${order.qty}</div>
                   <div class="price">
                     <div class="current">₩ ${map.PRICE * order.qty}</div>
-                    <input type="hidden" name="orderQty" value="${order.qty}">
-                    <input type="hidden" id="orderPrice" value="${map.PRICE}">
-                    <input type="hidden" name="bottomNo" value="${bottomNo}">
-                    <input type="hidden" name="gpurchaseNo" value="${gpurchaseNo}">
+                    
+                    <input type="hidden" name="qty" value="${order.qty}">
+                    <input type="hidden"  id="orderPrice" value="${map.PRICE}">
+                    <input type="hidden" name="bottomNo" value="${order.bottomNo}">
+                    <input type="hidden" name="topsNo" value="${order.topsNo}">
+                    <input type="hidden" name="sizes" value="${order.sizes}">
+                    <input type="hidden" name="gpurchaseNo" value="${order.gpurchaseNo}">
                     
                   </div>
                 </div>
@@ -67,7 +73,6 @@
   <div class="clear"></div>
   <div class="enterContent-4"></div>
 
-  <form id="orderForm" action="/order/orders" method="POST">
     <div class="orderinfomation-blocks">
       <div class="accordeon">
         <div class="accordeon-title active">
@@ -225,5 +230,7 @@
 
   <script src="/resources/js/order/order.js"></script>
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.js"></script>
+
 
 </body>

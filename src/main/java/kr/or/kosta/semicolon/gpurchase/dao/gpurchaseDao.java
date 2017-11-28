@@ -2,7 +2,7 @@ package kr.or.kosta.semicolon.gpurchase.dao;
 
 import java.util.List;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 
@@ -40,11 +40,11 @@ public interface gpurchaseDao {
 	
 	public void delete(int gpurchaseNo) throws Exception;
 	
-	public List<Gpurchase> listAll(Params params) throws Exception;
+	public List<Gpurchase> listAll(UseParameter params) throws Exception;
 	
-	public List<Gpurchase> glistAll(Params params) throws Exception;
+	public List<Gpurchase> glistAll(UseParameter params) throws Exception;
 	
-	public List<Gpurchase> endlistAll(Params params) throws Exception;
+	public List<Gpurchase> endlistAll(UseParameter params) throws Exception;
 	
 	public List<Integer> selectGolist() throws Exception;
 	

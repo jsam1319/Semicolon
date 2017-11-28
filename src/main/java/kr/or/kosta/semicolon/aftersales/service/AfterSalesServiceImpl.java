@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.aftersales.dao.AfterSalesDao;
 import kr.or.kosta.semicolon.aftersales.domain.AfterSales;
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 
 @Service
 public class AfterSalesServiceImpl implements AfterSalesService {
@@ -43,7 +43,7 @@ public class AfterSalesServiceImpl implements AfterSalesService {
 	}
 
 	@Override
-	public Map<String, Object> listAll(Params params) {
+	public Map<String, Object> listAll(UseParameter params) {
 		
 		List<AfterSales> list = aftersalesDao.listAll(params);
 		

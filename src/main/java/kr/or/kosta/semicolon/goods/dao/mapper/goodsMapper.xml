@@ -56,7 +56,7 @@
 	</select>
 	 
 	
-	<select id="select" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+	<select id="select" resultType="Goods">
 		SELECT goods_no AS goodsNo, 
 		       name, 
 		       price, 
@@ -76,7 +76,7 @@
 	</select>
 	
 	
-	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+	<select id="listAll" parameterType="int" resultType="Goods">
 		SELECT goodsno, 
 		       NAME, 
 		       price, 
@@ -84,7 +84,7 @@
 		       frontimg,
 			   toggle_img,
 			   category 
-		FROM   (SELECT Ceil (rownum / #{pageSize}) page, 
+		FROM   (SELECT Ceil (rownum / 10) page, 
 		               goodsno, 
 		               NAME, 
 		               price, 
