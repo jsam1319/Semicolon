@@ -38,9 +38,50 @@
 <body>
 
   <script>
-			function formSubmit() {
-				$("#logoutForm").submit();
+  var no;
+  $(document).ready(function(){
+		var autoFlag = false;
+	  
+		// 로그아웃중...
+	    if( ${empty cookie.autoLoginCookie && empty no} ){
+		   	//alert("!!");	
+		}else if( ${not empty cookie.autoLoginCookie} ){	//auto 접속
+			autoFlag = true;
+			var agent = navigator.userAgent.toLowerCase();
+			
+			if(agent.indexOf("android") != -1) {
+				alert("true")
 			}
+			
+		   	no = ${no};
+		   	//window.mJSInterface.setAutoLogin("true");
+		   	//window.mJSInterface.setLoginInfo(paramId);
+		   	
+		   	
+		}else{		// 간단 로그인
+			//alert("~~");
+			//window.mJSInterface.setAutoLogin("true");
+		}
+					 
+	  });
+  
+  function setMessage(token) {
+	  $.ajax({
+		  url : "/push/token",
+		  type : 'post',
+		  data : {
+			  token : token, no : no
+		  },
+		  success : function(data) {
+			  console.log(data);
+		  },
+		  error : function(data, a, b) {
+			  console.log(data);
+			  console.log(a);
+			  console.log(b);
+		  }
+	  })
+  }
 		</script>
 
 
@@ -76,14 +117,11 @@
             </div>
             <%-- ./row --%>
           </form>
-          <c:if test="${not empty error}">
-            <div class="error">${error}</div>
-          </c:if>
 
           <hr>
           <p class="tile text-center text-muted">
-            <a href="/member/regist" style="text-decoration: none"><i
-              class="fa fa-user-plus"></i> <span>SIGN UP</span></a>
+            <a href="/member/regist" style="color:#000000;">
+            	<i class="fa fa-user-plus" ></i> <span>SIGN UP</span></a>
           </p>
 
         </div>
@@ -188,6 +226,18 @@
                         <a href="/member/regist"><i
                           class="fa fa-user-plus"></i> <span>SIGN
                             UP</span></a>
+                      </div>
+                    </div>
+                  </c:when>
+                  <c:when test="${no eq -1}">
+                  	<div class="header-top-entry increase-icon-responsive">
+		                   <div class="title">
+		                       	<a href="/admin/"><i class="fa fa-eye" style="color:#f00;" ></i> <span>ADMIN</span></a>
+		                   </div>
+                    </div>
+                    <div class="header-top-entry increase-icon-responsive">
+                      <div class="title">
+                        <a href="/member/logout"><i class="fa fa-sign-out"></i> <span>SIGN OUT</span></a>
                       </div>
                     </div>
                   </c:when>

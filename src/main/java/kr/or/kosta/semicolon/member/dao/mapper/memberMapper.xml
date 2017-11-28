@@ -82,6 +82,12 @@
         WHERE member_no = #{value}
     </select>
     
+    <select id="selectToken" resultType="String">
+        SELECT  app_token
+        FROM member
+        WHERE member_no = #{value}
+    </select>
+    
     <update id="update" parameterType="Member">
         UPDATE  member 
         SET     password = #{password},
@@ -132,6 +138,12 @@
         SET    session_id = #{sessionId}, 
                session_limit = #{sessionLimit} 
         WHERE  id = #{id}
+    </update>
+    
+    <update id="updateToken" parameterType="Member">
+        UPDATE member
+        SET    app_token = #{appToken} 
+        WHERE  member_no = #{memberNo} 
     </update>
     
     <select id="isId" parameterType="String" resultType="String">

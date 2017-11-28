@@ -13,6 +13,8 @@ public interface MemberService{
 
     public Member select(int no);
     
+    public String selectToken(int no);
+    
     public Member selectById(String id);
 
     public void update(Member member);
@@ -23,6 +25,9 @@ public interface MemberService{
 
     /** 자동 로그인 처리를 위한 세션아이디와 유효기간 저장 */
     public void updateLogin(Member member) throws Exception;
+    
+    /** 자동 로그인시 토큰을 저장 */
+    public void updateToken(Member member) throws Exception;
 
     /** 세션아이디에 해당하는 사용자 정보 반환 */
     public Member readLogin(String sessionId) throws Exception;

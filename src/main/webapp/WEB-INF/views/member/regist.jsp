@@ -47,9 +47,9 @@
                   // 우편번호와 주소 정보를 해당 필드에 넣는다.
                   document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
                   document.getElementById('address').value = fullRoadAddr;
-                 /*  document.getElementById('addressDetail').removeAttribute('disabled');
-  					
-                  document.getElementById('guide').innerHTML = '(상세주소 예 : 101동 101호)'; */
+                   document.getElementById('address').removeAttribute('disabled');
+                   document.getElementById('postcode').removeAttribute('disabled');
+                  document.getElementById('guide').innerHTML = '(상세주소를 추가 입력해주세요. 예 : 101동 101호)'; 
                   
               }
           }).open();
@@ -137,24 +137,19 @@
                             		<label>ADDTRESS</label>
 									<div class="row">
 										<div class="col-sm-4 form-group">
-											<input type="text" class="simple-field" id="postcode" name="postcode" required>
+											<input type="text" class="simple-field" id="postcode" name="postcode" required disabled>
 										</div>
 										<div class="col-sm-2 form-group">
-											<input type="button" onclick="daumPostcode()" value="우편번호 찾기" 
-												class="button style-10"><br>
+											<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="button style-10"><br>
 										</div>
 		
 									</div>
 									<%-- /.row --%>
 									<div class="row">
-										<div class="col-sm-6 form-group">
-											<input type="text" class="simple-field" id="address" name="address" required>
+										<div class="col-sm-12 form-group">
+											<input type="text" class="simple-field" id="address" name="address" disabled required>
+											<span id="guide" style="color: #999" class="red-span"></span>
 										</div>
-<!-- 										<div class="col-sm-6 form-group">
-											<input type="text" class="simple-field" id="addressDetail"name="addressDetail" required disabled> 
-											<span id="guide" style="color: #999"></span>
-										</div>
- -->									</div>
 									<%-- /.row --%>
                             		
                             		

@@ -19,6 +19,7 @@ import kr.or.kosta.semicolon.gwish.domain.GwishDetail;
  * --------      -----------   ---------------------------------------
  * 2017. 11. 15.       박연주        최초 생성
  * 2017. 11. 27. 		박주연		 selectByNo, getListByMemNo 생성
+ * 2017. 11. 28.		Sejong		 selectMemNo 생성
  *
  */
 public interface gwishService {
@@ -30,6 +31,8 @@ public interface gwishService {
 	public int select(Gwish gwish) throws Exception;
 	
 	public int delete(int gwishNo) throws Exception;
+	
+	public int selectMemNo(int gpurchaseNo) throws Exception;
 	
 	public List<Gwish> selectByMemNo(int gwishNo) throws Exception;
 	

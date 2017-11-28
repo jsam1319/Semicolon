@@ -26,7 +26,7 @@
 	}); //end ready
 	
 	$(document).on("click",'.deletebtn',function(){
-		     $.ajax({
+		      $.ajax({
 		      url : "/gwish/"+$(this).val(),
 		      type : "delete",
 		      headers : {
@@ -37,7 +37,7 @@
 		   	  success: function(data){
 		   	   $(this).parent().parent().remove();
 		   	  }
-		   });  
+		   });   
 		   
 		   $("#confirm-modal").modal();
 	});
@@ -90,12 +90,13 @@
    
 	</script>
 	
+	<%-- Modal --%>
 	<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog modal-sm">
 
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">알림</h4>
+          <h4 class="modal-title" style="text-align:center">알림</h4>
         </div>
         
         <div class="modal-body">
@@ -103,7 +104,7 @@
         </div>
 
         <div class="modal-footer">
-	       <button type="button" class="button style-10"" data-dismiss="modal">Close</button>
+	       <button type="button" class="button style-10" data-dismiss="modal" style="text-align:center">Close</button>
 	    </div>
        
       </div>
