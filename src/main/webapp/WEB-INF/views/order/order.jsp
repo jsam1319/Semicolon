@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <body class="style-10">
 
@@ -35,19 +36,13 @@
                 <div class="cell-view" name="dataset">
                   <a class="tag" href="#">${map.CNAME}</a> 
                   <a class="title" href="#">${map.GNAME}</a>
-                  <div class="inline-description">Order Size :
-                    ${order.sizes}</div>
-                  <div class="inline-description">Order Qty :
-                    ${order.qty}</div>
+                  <div class="inline-description">Order Size : ${order.sizes}</div>
+                  <div class="inline-description">Order Qty : ${order.qty}</div>
                   <div class="price">
-                    <div class="current">₩ ${map.PRICE * order.qty}</div>
+                    <div class="current">￦<fmt:formatNumber value="${map.PRICE * order.qty}" groupingUsed="true"/></div>
                     
                     <input type="hidden" name="qty" value="${order.qty}">
                     <input type="hidden"  id="orderPrice" value="${map.PRICE}">
-                    <input type="hidden" name="bottomNo" value="${order.bottomNo}">
-                    <input type="hidden" name="topsNo" value="${order.topsNo}">
-                    <input type="hidden" name="sizes" value="${order.sizes}">
-                    <input type="hidden" name="gpurchaseNo" value="${order.gpurchaseNo}">
                     
                   </div>
                 </div>

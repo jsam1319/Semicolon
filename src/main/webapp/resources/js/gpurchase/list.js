@@ -102,7 +102,7 @@ $(document).ready(function(){
 		  	              }
 	  	              
 	  	              str += "      <div class='price gpurchasePrice'>"
-	  	              str += "        <div class='current gpurchasePrice'>"+gpurchase.price+"</div>"
+	  	              str += "        <div class='current gpurchasePrice'>￦"+numberfmt(gpurchase.price)+"</div>"
 	  	              str += "      </div>"
 	  	              str += "		<div class='date'>"
 	  	              str += " 			<div>"+gpurchase.startDate+" ~ "+gpurchase.endDate+"</div>"
@@ -118,18 +118,22 @@ $(document).ready(function(){
 	  }	  
 	  
 	  
+	  /** 가격 데이터 포맷 */
+	  function numberfmt(value){
+          return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
 	  
 	  
 	  
 	  
-	  /** ------------------------------------------End---------------------------------------- */
+	  /* -------------------- 완료된 공구 ------------------ */
 	  
 	  $(".endTab").on("click", function(){
 		  endListHtml()
 	  })
 	  
 	  
-	  /** 글 정렬 후 진행중인 공고리스트 처음 붙이기 .html */
+	  /** 글 정렬 후 완료된 공구리스트 처음 붙이기 .html */
 		function endListHtml(){
 			page = 1
 			$.getJSON("/product/list/"+category+"/"+page, function(data){
@@ -163,7 +167,7 @@ $(document).ready(function(){
 		    $(".endlistView").html(str);
 		  }
 		  
-		/** 글 정렬 후 더보기 버튼 클릭 시 진행중인 공고리스트 붙이기 .append  */
+		/** 글 정렬 후 더보기 버튼 클릭 시 완료된 공구리스트 붙이기 .append  */
 		  $('.moreView').each(function(){
 			  $(this).click(function(e){
 				  e.preventDefault();

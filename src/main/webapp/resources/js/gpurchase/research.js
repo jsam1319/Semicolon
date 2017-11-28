@@ -128,7 +128,7 @@ $(document).ready(function(){
 	  	              }
 	  	              
 	  	              str += "      <div class='price gpurchasePrice'>"
-	  	              str += "        <div class='current gpurchasePrice'>"+gpurchase.price+"</div>"
+	  	              str += "        <div class='current gpurchasePrice'> ￦"+numberfmt(gpurchase.price)+"</div>"
 	  	              str += "      </div>"
 	  	              str += "		<div class='date'>"
 	  	              str += " 			<div>"+gpurchase.startDate+" ~ "+gpurchase.endDate+"</div>"
@@ -144,6 +144,12 @@ $(document).ready(function(){
 	  	
 	  }	
 	  
+	  
+	  
+	  /** 가격 데이터 포맷 */
+	  function numberfmt(value){
+          return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
 	  
 	  
 	  /** 공구 조사 상세보기 modal 띄우기 */
@@ -168,7 +174,7 @@ $(document).ready(function(){
 			  str += "		<img class='modal-image' src='/resources/img/ex/cat.jpg' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
 			  str += "		<div class='product-detail-box'>"
 			  str += "			<div class='price detail-info-entry modal-price'>";
-			  str += "				<div class='current'>￦"+gpurchase.price+"</div>";
+			  str += "				<div class='current'>￦"+numberfmt(gpurchase.price)+"</div>";
 			  str += "			</div>";
 			  str += "			<div class='size-selector detail-info-entry'>";
 			  str += "				<div class='detail-info-entry-title size-text'>구입 가능 사이즈</div>";
@@ -176,7 +182,6 @@ $(document).ready(function(){
 			  for (var i = 0; i < size.length; i++) {
 				  str += "<div class='entry'>"+size[i].SIZES+"</div>"; 
 			}
-			  
 			  
 			  str += "			</div>";
 			  str += "		</div>";
@@ -213,6 +218,7 @@ $(document).ready(function(){
 		  })
 	  })
 	  }
+	  
 	  
 	  
 	 

@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <body class="style-10">
   <!-- LOADER -->
   <div id="loader-wrapper">
@@ -163,58 +164,6 @@
               </div>
             </div>
           </div>
-
-          <div class="information-blocks">
-            <div class="block-title size-2">Sort by price</div>
-            <div class="range-wrapper">
-              <div id="prices-range"></div>
-              <div class="range-price">
-                Price:
-                <div class="min-price">
-                  <b>&pound;<span>0</span></b>
-                </div>
-                <b>-</b>
-                <div class="max-price">
-                  <b>&pound;<span>200</span></b>
-                </div>
-              </div>
-              <a class="button style-14">filter</a>
-            </div>
-          </div>
-
-          <div class="information-blocks">
-            <div class="block-title size-2">Sort by brands</div>
-            <div class="row">
-              <div class="col-xs-6">
-                <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Armani
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Bershka Co
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Nelly.com
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Zigzag
-                  Inc
-                </label>
-              </div>
-              <div class="col-xs-6">
-                <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Armani
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Bershka Co
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span>
-                  Nelly.com
-                </label> <label class="checkbox-entry"> <input
-                  type="checkbox" /> <span class="check"></span> Zigzag
-                  Inc
-                </label>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- /.Left Side Menu -->
       </div>
@@ -225,6 +174,5 @@
 
 
   <script src="/resources/js/gpurchase/research.js"></script>
-  <link href="/resources/css/gpurchase.css" rel="stylesheet"
-    type="text/css"></link>
+  <link href="/resources/css/gpurchase.css" rel="stylesheet" type="text/css"></link>
 </body>

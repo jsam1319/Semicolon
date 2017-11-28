@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 
 <head>
@@ -85,7 +86,7 @@ var bestSize = new Object;
               <div class="rating-box" id="avgGrade"></div>
 
               <div class="price detail-info-entry">
-                <div class="current">￦ ${gpurchase.price}</div>
+                <div class="current">￦<fmt:formatNumber value="${gpurchase.price}" groupingUsed="true"/></div>
               </div>
               <div class="size-selector detail-info-entry">
                 <div class="detail-info-entry-title sizeDiv">Size</div>
@@ -115,8 +116,7 @@ var bestSize = new Object;
               
               <div class="col-sm-12 enterContent-3"></div>
               <div class="purchaseNum">
-                <div class="col-sm-5 pNumDiv">(${gpurchase.pNum} /
-                  ${gpurchase.min}) 참여</div>
+                <div class="col-sm-5 pNumDiv">(${gpurchase.pNum} / ${gpurchase.min}) 참여</div>
                 <div class="detail-info-entry btnDiv">
                   <div class="clear"></div>
                 </div>
@@ -137,12 +137,13 @@ var bestSize = new Object;
           </div>
         <!-- /.상품 정보 -->
 
-
+        <!-- js 사용을 위한 hidden Value -->
         <input type="hidden" id="gpurchaseNo" value="${gpurchase.gpurchaseNo}">
         <input type="hidden" id="goodsNo" value="${goods.goodsNo}">
         <input type="hidden" id="memberNo" value="${no}">
         <input type="hidden" id="status" value="${gpurchase.status}">
         <input type="hidden" id="askCnt" value="${askCnt}">
+        <!-- /.js 사용을 위한 hidden Value -->
 
         <div class="clear visible-xs visible-sm"></div>
 
@@ -289,7 +290,7 @@ var bestSize = new Object;
       </div>
 
       <div id="productInfo3"></div>
-<div class="enterContent-4"></div>
+      <div class="enterContent-4"></div>
       <div>
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
@@ -322,222 +323,6 @@ var bestSize = new Object;
   <script src="/resources/js/ko.js"></script>
   <script src="/resources/js/gpurchase/product.js"></script>
   <script src="/resources/js/jquery.raty.js"></script>
-  <script>
-
-$(function() {
-	
-	var goodsNo = ${goods.goodsNo}
-	
-	$.getJSON("/review/" + goodsNo, function(data){
-        
-		var str = '';
-		
-		for(var i = 0; i < data; i++){
-			str += '<div class="star">';
-			str += '<i class="fa fa-star"></i>';
-			str += '</div>';
-		}
-        
-		for(var j = 0; j < 5-data; j++){
-			str += '<div class="star">';
-			str += ' <i class="fa fa-star-o"></i>';
-			str += '</div>';
-		}
-		
-		
-		$("#avgGrade").html(str);
-    });
-	
-	var page = 1;
-    
-    var goodsNo = ${gpurchase.goodsNo};
-    
-    $('#targetType').raty({
-		cancel     : true,
-		target     : '#targetType-hint',
-		targetType : 'score'
-	});
-      
-	$.getJSON("/review/" + goodsNo + "/" + page, function(data){
-        
-		var str = printList(data);
-        
-        $("#reviewList").prepend(str);
-    });
-    
-    
-	$("#reviewBtn").click(function(){
-		
-		var contentObj = $("#content");
-		var fileObj = $("#attachFile");
-		
-		var memberNo = ${no};
-		var goodsNo = ${goods.goodsNo};
-		var grade = $("#targetType").raty("score");
-		var content = contentObj.val();
-		var attachFile = fileObj.val();
-
-		var replyform = document.getElementById("replyform");
-		
-		var formdata = new FormData(replyform);
-		formdata.append("memberNo", memberNo);
-		formdata.append("goodsNo", goodsNo);
-		formdata.append("grade", grade);
-		
-		$.ajax({
-			type: "post",
-			url: "/review/",
-			data: formdata,
-			processData: false,
-			contentType: false,
-			success: function(data){
-    				
-    			contentObj.val("");
-    			fileObj.val("");
-    			$ ('#targetType').raty('score', 0);
-    				
-    			page = 1;
-    		        
-    			var str = printList(data);
-    		        
-    		    $("#reviewList").prepend(str);
-    		    
-    		    $.getJSON("/review/" + goodsNo, function(data){
-    		        
-    				var str = '';
-    				
-    				for(var i = 0; i < data; i++){
-    					str += '<div class="star">';
-    					str += '<i class="fa fa-star"></i>';
-    					str += '</div>';
-    				}
-    		        
-    				for(var j = 0; j < 5-data; j++){
-    					str += '<div class="star">';
-    					str += ' <i class="fa fa-star-o"></i>';
-    					str += '</div>';
-    				}
-    				
-    				
-    				$("#avgGrade").html(str);
-    		    });
-			}
-			
-		});
-		
-	});
-	
-	$('.moreView').each(function(i){
-		  $(this).click(function(e){
-			  e.preventDefault();
-			  page++;
-			  
-			  $.ajax({
-				  url: "/review/" + gpurchaseNo + "/" + page,
-				  dataType: "json",
-				  success: function(data){
-					 /*  console.log(data); */
-					  var str = printList(data)
-					  $("#reviewList").append(str);
-				  },
-				  error: function(data){
-					 /*  console.log(data) */
-				  }
-			  })
-		  })
-	  })
-	
-	$(document).on("click", "#removeBtn", function(event){
-		
-		var reviewNo = $(this).attr("title");
-		
-		var removetag = $(this).parent().parent().parent();
-		
-		/* console.log(removetag); */
-		
-		$.ajax({
-	        type:'delete',
-	        url:'/review/'+reviewNo,	
-	        headers: { 
-	              "Content-Type": "application/json",
-	              "X-HTTP-Method-Override": "DELETE" },
-	        dataType:'text', 
-	        success:function(result){
-	          console.log("result: " + result);
-	          if(result == 'SUCCESS'){
-	            alert("삭제 되었습니다.");
-	            removetag.remove();
-	          }
-	      }});
-	});
-      
-  });
-  
-function printList(data) {
-  
-  var str = "";
-  
-  $(data.list).each( function(){
-	  
-	  var regdate = this.regdate == undefined ? '' : this.regdate.trim();	
-		
-	  var date = regdate.split(" ")[0];
-	  var time = regdate.split(" ")[1];
-		
-	  var mon = date.split("-")[1];
-      var day = date.split("-")[2];
-      
-      var timeString = "";
-      
-      var date1 = new Date();
-      var date2 = new Date(regdate);
-      
-      if( (date1 - date2 - 86400000) > 0) timeString = time;
-      else								  timeString = moment(regdate).fromNow();
-      
-    str += '<div class="wishlist-entry">';
-    str += '<div class="column-1">';
-    str += '<div class="comment">';
-    str += '<a class="comment-image" href="#"><img src="/resources/images/' + this.attachFile + '" /></a>';
-    str += '<div class="comment-content">';
-    str += '<div class="comment-title"><span>' + this.memberNo + '</span> Posted ' + timeString + ', ' + date + '</div>';
-    
-    var grade = this.grade;
-    var staro = 5 - grade;
-    
-    str += '<div class="rating-box">';
-    
-    for(var i = 0; i < grade; i++){
-    	
-    	str += '<div class="star">';
-        str += '<i class="fa fa-star"></i>';
-        str += '</div>';
-        
-    }
-    
-    for(var i = 0; i < staro; i++){
-    	str += '<div class="star">';
-        str += '<i class="fa fa-star-o"></i>';
-        str += '</div>';
-    }
-    
-    str += '</div>';
-    
-    str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
-    str += '</div>';
-    str += '</div>';
-    str += '</div>';
-    str += '<div class="column-2">';
-    str += '<a class="button style-14">더보기</a>';
-    str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
-    str += '</div> ';
-    str += '</div>';
-  });
-
-  return str;
-}
-</script>
-  <link href="/resources/css/gpurchase.css" rel="stylesheet"
-    type="text/css"></link>
+  <link href="/resources/css/gpurchase.css" rel="stylesheet" type="text/css"></link>
 
 </body>

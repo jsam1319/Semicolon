@@ -72,7 +72,7 @@
 		     $(this).addClass("active")
 		            		
 		     var str = "";
-		     no += 1
+		     no -= 0
 		            		
 		     /** 이미 선택한 사이즈인지 체크 / 선택한 사이즈면 return */
 		     if ($("#"+pNum+"qt").length == 1) {
@@ -146,7 +146,6 @@
 			   $(this).parent().remove();
 		   })
 		            	
-		            	 
            
            /** 주문페이지로 데이터 전송 */
 		   $("#orderForm").submit(function(e){
@@ -204,6 +203,215 @@
 		    $(".size").click(function(){
 		       changeSizeGap($(this).text());
 		    });
+		    
+		    
+		    
+		    /** ----------- 리뷰 ------------- */
+			
+			$.getJSON("/review/" + goodsNo, function(data){
+		        
+				var str = '';
+				
+				for(var i = 0; i < data; i++){
+					str += '<div class="star">';
+					str += '<i class="fa fa-star"></i>';
+					str += '</div>';
+				}
+		        
+				for(var j = 0; j < 5-data; j++){
+					str += '<div class="star">';
+					str += ' <i class="fa fa-star-o"></i>';
+					str += '</div>';
+				}
+				
+				
+				$("#avgGrade").html(str);
+		    });
+			
+			var page = 1;
+		    
+		    
+		    $('#targetType').raty({
+				cancel     : true,
+				target     : '#targetType-hint',
+				targetType : 'score'
+			});
+		      
+			$.getJSON("/review/" + goodsNo + "/" + page, function(data){
+		        
+				var str = printList(data);
+		        
+		        $("#reviewList").prepend(str);
+		    });
+		    
+		    
+			$("#reviewBtn").click(function(){
+				
+				var contentObj = $("#content");
+				var fileObj = $("#attachFile");
+				
+				var grade = $("#targetType").raty("score");
+				var content = contentObj.val();
+				var attachFile = fileObj.val();
+
+				var replyform = document.getElementById("replyform");
+				
+				var formdata = new FormData(replyform);
+				formdata.append("memberNo", memberNo);
+				formdata.append("goodsNo", goodsNo);
+				formdata.append("grade", grade);
+				
+				$.ajax({
+					type: "post",
+					url: "/review/",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					success: function(data){
+		    				
+		    			contentObj.val("");
+		    			fileObj.val("");
+		    			$ ('#targetType').raty('score', 0);
+		    				
+		    			page = 1;
+		    		        
+		    			var str = printList(data);
+		    		        
+		    		    $("#reviewList").prepend(str);
+		    		    
+		    		    $.getJSON("/review/" + goodsNo, function(data){
+		    		        
+		    				var str = '';
+		    				
+		    				for(var i = 0; i < data; i++){
+		    					str += '<div class="star">';
+		    					str += '<i class="fa fa-star"></i>';
+		    					str += '</div>';
+		    				}
+		    		        
+		    				for(var j = 0; j < 5-data; j++){
+		    					str += '<div class="star">';
+		    					str += ' <i class="fa fa-star-o"></i>';
+		    					str += '</div>';
+		    				}
+		    				
+		    				
+		    				$("#avgGrade").html(str);
+		    		    });
+					}
+					
+				});
+				
+			});
+			
+			$('.moreView').each(function(i){
+				  $(this).click(function(e){
+					  e.preventDefault();
+					  page++;
+					  
+					  $.ajax({
+						  url: "/review/" + gpurchaseNo + "/" + page,
+						  dataType: "json",
+						  success: function(data){
+							   console.log(data); 
+							  var str = printList(data)
+							  $("#reviewList").append(str);
+						  },
+						  error: function(data){
+							   console.log(data) 
+						  }
+					  })
+				  })
+			  })
+			
+			$(document).on("click", "#removeBtn", function(event){
+				
+				var reviewNo = $(this).attr("title");
+				
+				var removetag = $(this).parent().parent().parent();
+				
+				$.ajax({
+			        type:'delete',
+			        url:'/review/'+reviewNo,	
+			        headers: { 
+			              "Content-Type": "application/json",
+			              "X-HTTP-Method-Override": "DELETE" },
+			        dataType:'text', 
+			        success:function(result){
+			          console.log(result);
+			          if(result == 'SUCCESS'){
+			            removetag.remove();
+			          }
+			      }});
+			});
+		      
+		  
+		function printList(data) {
+		  
+		  var str = "";
+		  
+		  $(data.list).each( function(){
+			  
+			  var regdate = this.regdate == undefined ? '' : this.regdate.trim();	
+				
+			  var date = regdate.split(" ")[0];
+			  var time = regdate.split(" ")[1];
+				
+			  var mon = date.split("-")[1];
+		      var day = date.split("-")[2];
+		      
+		      var timeString = "";
+		      
+		      var date1 = new Date();
+		      var date2 = new Date(regdate);
+		      
+		      if( (date1 - date2 - 86400000) > 0) timeString = time;
+		      else								  timeString = moment(regdate).fromNow();
+		      
+		    str += '<div class="wishlist-entry">';
+		    str += '<div class="column-1">';
+		    str += '<div class="comment">';
+		    str += '<a class="comment-image" href="#"><img src="/resources/images/' + this.attachFile + '" /></a>';
+		    str += '<div class="comment-content">';
+		    str += '<div class="comment-title"><span>' + this.memberNo + '</span> Posted ' + timeString + ', ' + date + '</div>';
+		    
+		    var grade = this.grade;
+		    var staro = 5 - grade;
+		    
+		    str += '<div class="rating-box">';
+		    
+		    for(var i = 0; i < grade; i++){
+		    	
+		    	str += '<div class="star">';
+		        str += '<i class="fa fa-star"></i>';
+		        str += '</div>';
+		        
+		    }
+		    
+		    for(var i = 0; i < staro; i++){
+		    	str += '<div class="star">';
+		        str += '<i class="fa fa-star-o"></i>';
+		        str += '</div>';
+		    }
+		    
+		    str += '</div>';
+		    
+		    str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
+		    str += '</div>';
+		    str += '</div>';
+		    str += '</div>';
+		    str += '<div class="column-2">';
+		    str += '<a class="button style-14">더보기</a>';
+		    str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
+		    str += '</div> ';
+		    str += '</div>';
+		  });
+
+		  return str;
+		}
+		    
+		    
+		    
 		            	 
 	}); //end ready
 		

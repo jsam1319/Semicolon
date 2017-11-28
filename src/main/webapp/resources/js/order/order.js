@@ -9,12 +9,17 @@ $(document).ready(function(){
     	oq += Number(orderQty[i].value)
 	}
     
-	$(".qty").html(oq)
+	$(".qty").html(numberfmt(oq))
 	
 	var total = Number(oq) * Number(op)
-	$(".totalPrice").html("₩ "+total)
+	$(".totalPrice").html("￦"+numberfmt(total))
 	
-	
+
+	  /** 가격 데이터 포맷 */
+	  function numberfmt(value){
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+	  
 	
 	
 	/** 결제 방법_카드 선택 시 .html */
@@ -110,11 +115,11 @@ $(document).ready(function(){
               })
               
               
+              
+              /** 주소찾기 버튼 클릭 시 주소 API 메소드 호출 */
               $(document).on("click", ".daumPost", function(){
             	  daumPostcode()
               })
-              
-              
               
               
               /** 주소 API */
