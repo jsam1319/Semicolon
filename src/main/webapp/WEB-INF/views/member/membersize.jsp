@@ -23,7 +23,7 @@ $(document).ready(function(){
     $("#bottom").change(function(){
       	var url = "/size/pants/"+$(this).val();
     	callAjax(url);
-    	var url = "/size/shortPants/"+$(this).val();
+    	var url = "/size/shortpants/"+$(this).val();
     	callAjax(url);
     });
     
@@ -68,13 +68,13 @@ var inputData = function(data){
         $("input[name=top]").val(data.fullLength);
     }
     
-    else if(data.types == "pants" || data.types == "shortPants" ){
+    else if(data.types == "pants" || data.types == "shortpants" ){
         $("input[name=waist]").val(data.waist); 
         $("input[name=hip]").val(data.hip); 
         $("input[name=thigh]").val(data.thigh); 
         $("input[name=rise]").val(data.rise); 
         if(data.types == "pants") { $("input[name=pants]").val(data.fullLength); }
-        if(data.types == "shortPants") { $("input[name=shortPants]").val(data.fullLength); }
+        if(data.types == "shortpants") { $("input[name=shortpants]").val(data.fullLength); }
     }
     
     else { //skirt
@@ -112,7 +112,6 @@ var inputData = function(data){
     
 		<form action="/size/" method="post">
 			<div class="row">
-				<input type="number" value="${no}" name="memberNo" class="memberNo">
 				<div class="col-sm-6">
 					<label>바지사이즈</label>
 					<div class="simple-drop-down simple-field ">
@@ -207,7 +206,7 @@ var inputData = function(data){
 				</div>
 				<div class="col-sm-6">
 					<label> 반바지 길이 <span class="cm">( cm )</span> </label> 
-					<input class="simple-field" type="number" placeholder="SHORT PANTS LENGTH" name="shortPants" step="any">
+					<input class="simple-field" type="number" placeholder="SHORT PANTS LENGTH" name="shortpants" step="any">
 					<div class="clear"></div>
 				</div>
 				<div class="col-sm-6">
@@ -229,6 +228,7 @@ var inputData = function(data){
 					<p class="text-right"><input type="submit" value="Submit" class="button style-10" step="any"><p>
 				</div>
 				</div><%--./row --%>
+				<input type="number" value="${no}" name="memberNo" class="memberNo">
 		</form>
 	</div><%-- ./information-entry --%>
 </div>

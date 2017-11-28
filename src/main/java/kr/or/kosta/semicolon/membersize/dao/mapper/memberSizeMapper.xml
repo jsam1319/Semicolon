@@ -12,7 +12,10 @@
 		             hip, 
 		             pants, 
 		             full_length,
-		             skirt) 
+		             skirt,
+		             sleeve,
+		             top,
+		             shortpants) 
 		VALUES     (#{memberNo}, 
 		             #{waist}, 
 		             #{thigh}, 
@@ -20,7 +23,10 @@
 		             #{hip}, 
 		             #{pants}, 
 		             #{fullLength},
-		             #{skirt}) 
+		             #{skirt},
+		             #{sleeve},
+		             #{top},
+		             #{shortpants}) 
 	</insert>
 	
 	<update id="update" parameterType="MemberSize">
@@ -33,6 +39,9 @@
 			<if test="pants!=null">pants = #{pants}, </if> 
 			<if test="fullLength!=null">full_length = #{fullLength},</if> 
 			<if test="skirt!=null">skirt = #{skirt},</if> 
+			<if test="sleeve!=null">sleeve = #{sleeve},</if> 
+			<if test="top!=null">top = #{top},</if> 
+			<if test="shortpants!=null">shortpants = #{shortpants}</if> 
 		</set> 
 		WHERE  member_no = #{memberNo}
 	</update>
@@ -45,7 +54,10 @@
 		       hip, 
 		       pants, 
 		       full_length,
-		       skirt
+		       skirt,
+		       sleeve,
+		       top,
+		       shortpants
 		FROM   member_size 
 		WHERE  member_no = #{memberNo} 
 	</select>
@@ -58,7 +70,10 @@
 		       hip, 
 		       pants, 
 		       full_length,
-		       skirt
+		       skirt,
+		       sleeve,
+		       top,
+		       shortpants
 		FROM   member_size 
 	</select>
 	

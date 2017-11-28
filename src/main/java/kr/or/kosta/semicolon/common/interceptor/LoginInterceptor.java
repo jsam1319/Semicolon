@@ -57,15 +57,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             session.removeAttribute(LOGIN);
         }
         
-      //autoLoginCookie가 존재할 때
-        Cookie autoLoginCookie = WebUtils.getCookie(request, "autoLoginCookie");
-        if(autoLoginCookie != null) {
-            Member member = memberService.readLogin(autoLoginCookie.getValue());
-            if(member != null) {
-                session.setAttribute(LOGIN, member.getMemberNo());
-                return true;
-            }
-        }
         return true;
     }
     

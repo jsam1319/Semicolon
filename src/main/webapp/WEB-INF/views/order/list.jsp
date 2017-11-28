@@ -25,6 +25,10 @@ th > select.yearselect{
     float:left;
 }
 
+.tag:hover {
+	text-decoration: none;
+    color: #ca1515;
+}
 
 
 </style>
@@ -137,7 +141,7 @@ $(document).ready(function() {
 	                        printHtml += '<td>';
 	                    }
 	                    printHtml +=    
-	                        '<p class="text-right">'+item.ordersNo+'</p>'+
+	                        '<p class="text-right"><a class="tag"  href="/order/'+item.ordersNo+'">'+item.ordersNo+'</a></p>'+
 	        	        	'</td>'+
 	        	        	'<td rowspan="'+list.length+'">'+	
 	        	        		'<div class="traditional-cart-entry">'+	

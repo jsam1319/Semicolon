@@ -16,8 +16,9 @@
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
-						<a class="title" href="/order/">Purchase List</a>
-						<div class="description">구매이력 조회</div>
+						<div class="title">Search</div>
+						<a class="description" href="/order/"> 구매 이력 조회 <i class="fa fa-angle-right"></i> <br>
+						<a class="description" href="/gwish/"> 찜 목록 조회 <i class="fa fa-angle-right"></i> <br>
 					</div>
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">

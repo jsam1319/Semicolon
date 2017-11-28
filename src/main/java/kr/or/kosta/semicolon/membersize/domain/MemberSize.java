@@ -12,7 +12,7 @@ package kr.or.kosta.semicolon.membersize.domain;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 16.     박주연     최초 생성
- *
+ * 2017. 11. 27. 	 박주연		shortPants-> shortpants
  *
  */
 
@@ -26,17 +26,16 @@ public class MemberSize {
 	private double pants; /** 바지길이 */
 	private double fullLength; /** 총길이 */
 	private double skirt; /** 치마길이 */
-	private double sleeve; /** 치마길이 */
-	private double top; /** 치마길이 */
-	private double shorPants; /** 치마길이 */
+	private double sleeve; /** 소매길이 */
+	private double top; /** 상의길이 */
+	private double shortpants; /** 반바지길이 */
 	
 	
 	/** 생성자 */
 	public MemberSize() { }
 	
 	public MemberSize(int memberNo, double waist, double thigh, double rise, double hip, double pants,
-			double fullLength, double skirt, double sleeve, double top, double shorPants) {
-		super();
+			double fullLength, double skirt, double sleeve, double top, double shortpants) {
 		this.memberNo = memberNo;
 		this.waist = waist;
 		this.thigh = thigh;
@@ -47,8 +46,11 @@ public class MemberSize {
 		this.skirt = skirt;
 		this.sleeve = sleeve;
 		this.top = top;
-		this.shorPants = shorPants;
+		this.shortpants = shortpants;
 	}
+
+
+
 
 	/** Getter, Setter */
 
@@ -115,8 +117,6 @@ public class MemberSize {
 	public void setSkirt(double skirt) {
 		this.skirt = skirt;
 	}
-	
-	
 
 	public double getFullLength() {
 		return fullLength;
@@ -142,19 +142,19 @@ public class MemberSize {
 		this.top = top;
 	}
 
-	public double getShorPants() {
-		return shorPants;
+	public double getShortpants() {
+		return shortpants;
 	}
 
-	public void setShorPants(double shorPants) {
-		this.shorPants = shorPants;
+	public void setShortpants(double shorPants) {
+		this.shortpants = shorPants;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberSize [memberNo=" + memberNo + ", waist=" + waist + ", thigh=" + thigh + ", rise=" + rise
 				+ ", hip=" + hip + ", pants=" + pants + ", fullLength=" + fullLength + ", skirt=" + skirt + ", sleeve="
-				+ sleeve + ", top=" + top + ", shorPants=" + shorPants + "]";
+				+ sleeve + ", top=" + top + ", shortpants=" + shortpants + "]";
 	}
 	
 }

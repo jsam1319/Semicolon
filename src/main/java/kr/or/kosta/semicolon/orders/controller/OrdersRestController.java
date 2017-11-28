@@ -26,6 +26,21 @@ import kr.or.kosta.semicolon.orders.domain.OrderListVal;
 import kr.or.kosta.semicolon.orders.domain.Orders;
 import kr.or.kosta.semicolon.orders.sevice.OrdersService;
 
+/**
+ * @packgename  	 kr.or.kosta.semicolon.orders.controller
+ * @filename         OrdersRestController.java
+ * @author           박주연
+ * @since            2017. 11. 20.
+ * @see
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 20.       박주연        최초 생성
+ *
+ *
+ */
 @RestController
 public class OrdersRestController {
 	Logger logger = Logger.getLogger(OrdersRestController.class);

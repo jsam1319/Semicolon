@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import kr.or.kosta.semicolon.bottom.domain.Bottom;
 import kr.or.kosta.semicolon.bottom.service.BottomService;
@@ -56,6 +58,38 @@ public class MemberSizeController {
 	
 	/**
 	 * <pre>
+	 * 1. 개       요   : MemberSize 처리
+	 * 2. 처 리 내 용   : MemberSize insert 처리
+	 * </pre>
+	 * @Method Name : insert
+	 * @param size : mebersize
+	 */
+	@RequestMapping(value="/", method=RequestMethod.POST)
+	public ModelAndView insert(MemberSize size){
+		
+		MemberSize isSize = sizeService.select(size.getMemberNo());
+		logger.debug("size:"+size);
+		int result = 0;
+		if(isSize == null) { result  = sizeService.insert(size); }
+		else { result = sizeService.update(size); }
+
+		ResponseEntity<String> entity = null;
+		
+		if(result == 1) { //insert 성공
+			entity = new ResponseEntity<String>(HttpStatus.OK);
+		}
+		else {
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		
+		RedirectView rv =new RedirectView("/");
+		rv.setExposeModelAttributes(false);
+		return new ModelAndView(rv);
+		
+	}
+	
+	/**
+	 * <pre>
 	 * 1. 개       요   : 바지 사이즈 상세 정보 반환
 	 * 2. 처 리 내 용   : 바지 사이즈의 상세 정보를 얻어옴
 	 * </pre>
@@ -66,10 +100,11 @@ public class MemberSizeController {
 	@ResponseBody
 	public Bottom getBottomDetail(@PathVariable("size") String size, @PathVariable("types") String types) {
 		Bottom bottom = bottomService.getByTypesSize(types, size);
-		logger.debug(bottom);
 		
 		return bottom;
 	}
+	
+	
 	
 	/**
 	 * <pre>
@@ -89,34 +124,7 @@ public class MemberSizeController {
 		return tops;
 	}
 	
-	/**
-	 * <pre>
-	 * 1. 개       요   : MemberSize 처리
-	 * 2. 처 리 내 용   : MemberSize insert 처리
-	 * </pre>
-	 * @Method Name : insert
-	 * @param size : mebersize
-	 */
-	@RequestMapping(value="/", method=RequestMethod.POST)
-	@ResponseBody
-	public String insert(MemberSize size){
-		
-		MemberSize isSize = sizeService.select(size.getMemberNo());
-		int result = 0;
-		if(isSize == null) { result  = sizeService.insert(size); }
-		else { result = sizeService.update(isSize); }
-
-		ResponseEntity<String> entity = null;
-		
-		if(result == 1) { //insert 성공
-			entity = new ResponseEntity<String>(HttpStatus.OK);
-		}
-		else {
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		
-		return "redirect:/";
-	}
+	
 
 	/**
 	 * <pre>
@@ -135,13 +143,13 @@ public class MemberSizeController {
 		if(size != null) {
 			List<? extends Clothing> bottom = bottomService.selectByGoodsNum(goodsNo);
 			List<? extends Clothing> tops = topsService.selectByGoodsNum(goodsNo);
+			Clothing object = null;
 			
-			Clothing object;
-			if(bottom != null) {
+			if(bottom.size() > 0) {
 				object = sizeService.compare(bottom, size);
-			}else {
+			}else if(tops.size() > 0) {
 				object = sizeService.compare(tops, size);
-			}
+			}else { }
 			
 			if(object != null) {
 				entity = new ResponseEntity<Clothing>(object, HttpStatus.OK);

@@ -28,7 +28,7 @@ import kr.or.kosta.semicolon.membersize.service.MemberSizeService;
  * --------        -----------    ---------------------------------------
  * 2017. 11. 15.      박주연    최초 생성
  * 2017. 11. 16.	  박주연	회원가입 완료 후 로그인처리 기능 추가
- *
+ * 2017. 11. 24.	  박주연	
  *
  */
 
@@ -181,5 +181,6 @@ public class MemberController {
 	public String mypage() {
 		return "/member/mypage";
 	}
+
 	
 }

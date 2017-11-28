@@ -69,10 +69,13 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 		int sum = 0; //사이즈 차의 합
 		Clothing minObj = null; 
 		
+		logger.debug("compare[tops:"+goods+",size:"+size+"]");
+		
 		for (Object object : goods) {
 			sum = 0;
 			
 			if(object instanceof Tops) {
+				logger.debug("tops:"+object);
 				sum += ((Tops) object).getSleeveLength() - size.getSleeve(); 
 				sum += ((Tops) object).getFullLength() - size.getTop(); 
 			}else {

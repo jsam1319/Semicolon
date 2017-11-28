@@ -36,5 +36,48 @@
 	WHERE  gwish_no = #{gwishNo} 
 </delete>
 
+<select id="selectByMemNo" parameterType="int" resultType="Gwish">
+	SELECT gwish_no,
+			gpurchase_no,
+			member_no,
+			regdate
+	FROM	gwish
+	WHERE	member_no = #{value}
+</select>
+
+<select id="getListByMemNo" parameterType="map" resultType="GwishDetail">
+SELECT 		regdate, 
+	       start_date, 
+	       end_date, 
+	       name, 
+	       price, 
+	       front_img AS "img", 
+	       company,
+         	gwish_no
+	FROM   (SELECT Ceil(ROWNUM / 6) AS page, 
+	               gw.regdate, 
+	               gp.start_date, 
+	               gp.end_date, 
+	               g.name, 
+	               g.price, 
+	               g.front_img, 
+	               c.name           AS company,
+                 gw.gwish_no
+	        FROM   gwish gw, 
+	               gpurchase gp, 
+	               goods g, 
+	               company c, 
+	               nego n, 
+	               nego_list nl, 
+	               member m 
+	        WHERE  gw.gpurchase_no = gp.gpurchase_no 
+	               AND g.goods_no = gp.goods_no 
+	               AND nl.goods_no = g.goods_no 
+	               AND n.nego_no = nl.nego_no 
+	               AND c.company_no = n.company_no 
+	               AND m.member_no = gw.member_no 
+	               AND m.member_no = #{memberNo} ) 
+	WHERE  page = #{page} 
+</select>
 
 </mapper>

@@ -32,7 +32,7 @@ var matchBest = function(){
     success : function(data){
         console.log(data); 
         print(data);
-        $("#sizeAnnounce").html("회원님에게 적합한 사이즈는 "+data.sizes+" 입니다.");
+        $("#sizeAnnounce").html("가장 적합한 사이즈 : "+data.sizes);
     },
     error : function(xhr, statusText){
         console.log("("+xhr.status+", "+statusText+")"); 
@@ -45,7 +45,7 @@ var print = function(data){
     
 	 console.log(data.types); 
     
-    $(".compare").html("이 "+data.sizes+"은(는) 회원님의 <br>");
+    $(".compare").html(data.sizes+"와 자신 사이즈와 비교결과<br>");
     
     if(data.types == 'pants' || data.types == 'shortPants' || data.types == 'skirt'){
         letter('허리',data.waist);
@@ -68,7 +68,7 @@ var print = function(data){
 
 
 var letter = function(body, num){
-    $(".compare").append(body+" 사이즈와 "+num+" 차이가 납니다.<br>");
+    $(".compare").append(body+" 사이즈 : "+num+"<br>");
 } 
 
 //사용자가 클릭할 때마다 사이즈 차이 변환
@@ -485,6 +485,21 @@ var changeSizeGap = function(data){
           <div class="row">
             <div class="col-md-12">
               <div class="information-blocks">
+                
+                <!-- 사이즈정보 출력 -->
+                 <div class="information-entry products-list">
+                  <h3 class="block-title inline-product-column-title" style="line-height:150%;"> 체형별 사이즈 정보 </h3>
+                  <div class="inline-product-entry">
+                       	<div class="price">
+                       		<div class="current" id="sizeAnnounce"></div>
+						</div>
+						<h3 class="compare product-subtitle" style="text-decoration:none;  line-height: 150%;"></h3>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+                
+                <br><br>
+                
                 <div class="information-entry products-list">
                   <h3 class="block-title inline-product-column-title">Featured
                     products</h3>
@@ -519,23 +534,11 @@ var changeSizeGap = function(data){
                     </div>
                     <div class="clear"></div>
                   </div>
-
-                  <div class="inline-product-entry">
-                    <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-3.jpg"></a>
-                    <div class="content">
-                      <div class="cell-view">
-                        <a href="#" class="title">Pullover Batwing
-                          Sleeve Zigzag</a>
-                        <div class="price">
-                          <div class="prev">$199,99</div>
-                          <div class="current">$119,99</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
                 </div>
+                
+               
+                
+                
               </div>
             </div>
           </div>
