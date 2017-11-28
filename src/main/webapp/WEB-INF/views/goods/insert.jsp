@@ -12,8 +12,8 @@
 <!-- CK EDITOR -->
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 
-<script src="/resources/js/goodsInsert.js"></script>
-<link href="/resources/css/goodsInsert.css" rel="stylesheet" type="text/css"></link>
+<script src="/resources/js/goods/goodsInsert.js"></script>
+<link href="/resources/css/goods/goodsInsert.css" rel="stylesheet" type="text/css"></link>
 
 </head>
 

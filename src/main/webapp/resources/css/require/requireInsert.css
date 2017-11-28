@@ -1,0 +1,23 @@
+.btnDiv{
+    float:right;
+    margin: 2%;
+}
+
+.imageDiv{
+     width:100%;
+     height:auto;
+     margin-top:2%;
+     padding:1%;
+}
+
+#fileUpload{
+    display:none;
+}
+
+.thumbnailDiv{
+    padding-left:40%;
+}
+
+#imageLabel{
+    text-align: center;
+}

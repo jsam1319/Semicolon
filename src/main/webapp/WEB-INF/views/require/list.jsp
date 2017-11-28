@@ -3,91 +3,23 @@
 
 <head>
 
-<style>
-#writeBtn{
-    float:right;
-    color:black;
-    font-weight: bold;
-}
-
-.image{
-    width:100%;
-    height:auto;
-}
-
-.imageClass{
-    width:68px;
-    height:124px;
-    margin:2%;
-}
-
-
-.middleDiv{
-    padding:0%;
-}
-
-.moreView {
-  padding-left: 45%;
-  font-size: 80px;
-  color: black;
-}
-
-#imageinmodal{
-    width:50%;
-    height:auto;
-    padding-left: 10%;
-    margin-left:15%;
-}
-
-#titleinmodal{
-    margin-bottom:0%;
-}
-
-.col-sm-5{
-    padding:0%;
-    margin-right:1%
-}
-
-.Outer{
-    margin-top:2%;
-    padding:0%;
-    margin-bottom:2%;
-}
-
-.priceDiv{
-    padding-left:0%;
-}
-
-.simple-field{
-    margin-bottom:1%;
-}
-
-.companyDiv{
-    padding:0%;
-}
-
-#replyDiv{
-    text-align: left;
-}
-
-
-</style>
+<script src="/resources/js/require/requireList.js"></script>
+<link href="/resources/css/require/requireList.css" rel="stylesheet"
+  type="text/css"></link>
 
 </head>
 
 <body class="style-10">
 
-    <!-- LOADER -->
-    <div id="loader-wrapper">
-        <div class="bubbles">
-            <div class="title">loading</div>
-            <span></span>
-            <span id="bubble2"></span>
-            <span id="bubble3"></span>
-        </div>
+  <!-- LOADER -->
+  <div id="loader-wrapper">
+    <div class="bubbles">
+      <div class="title">loading</div>
+      <span></span> <span id="bubble2"></span> <span id="bubble3"></span>
     </div>
-    
-    <%-- Modal 영역 시작 --%>
+  </div>
+
+  <%-- Modal 영역 시작 --%>
   <div class="modal" id="titleModal">
     <div class="modal-dialog modal-m">
       <div class="modal-content modalSizing">
@@ -103,195 +35,83 @@
             <div class="row">
               <div class="col-sm-12">
                 <label>상품이미지</label><img id="imageinmodal" src="">
-                <label>제목</label><input class="simple-field" type="text" id="titleinmodal" value=""  />
-              <div class="col-sm-12 Outer">
-              <div class="col-sm-6 priceDiv">
-                <input type="hidden" id="requireNo" value=""  />
-                <label>희망가격</label><input class="simple-field" type="text" id="priceinmodal" value=""  />
-              </div>
-              <div class="col-sm-6 companyDiv">
-                <label>회사명(제조사)</label><input class="simple-field" type="text" id="companyinmodal" value="" />
-              </div>
-              </div>
-                <label>요청내용</label><input class="simple-field" type="text" id="contentinmodal" value="" />
-                <label>관리자 답변내용</label><input class="simple-field" type="text" id="commentsinmodal" value="" />
+                <label>제목</label><input class="simple-field" type="text"
+                  id="titleinmodal" value="" />
+                <div class="col-sm-12 Outer">
+                  <div class="col-sm-6 priceDiv">
+                    <input type="hidden" id="requireNo" value="" /> <label>희망가격</label><input
+                      class="simple-field" type="text" id="priceinmodal"
+                      value="" />
+                  </div>
+                  <div class="col-sm-6 companyDiv">
+                    <label>회사명(제조사)</label><input class="simple-field"
+                      type="text" id="companyinmodal" value="" />
+                  </div>
+                </div>
+                <label>요청내용</label><input class="simple-field"
+                  type="text" id="contentinmodal" value="" /> <label>관리자
+                  답변내용</label><input class="simple-field" type="text"
+                  id="commentsinmodal" value="" />
               </div>
             </div>
           </div>
         </div>
         <c:if test="${no eq -1}">
-        <div class="modal-footer" id="replyDiv">
-           <label>관리자 답변등록 <span>*</span></label> <input class="simple-field" id="leaveComments" type="text" value=""  /> 
-        </div>
+          <div class="modal-footer" id="replyDiv">
+            <label>관리자 답변등록 <span>*</span></label> <input
+              class="simple-field" id="leaveComments" type="text"
+              value="" />
+          </div>
         </c:if>
 
         <div class="modal-footer">
-        <c:if test="${no eq -1}">
-          <button type="button" class="btn btn-default" id="addReply">Reply</button>
-        </c:if>  
+          <c:if test="${no eq -1}">
+            <button type="button" class="btn btn-default" id="addReply">Reply</button>
+          </c:if>
           <button type="button" class="btn btn-default modalClose"
             data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-<%-- Modal 영역 종료 --%>
+  <%-- Modal 영역 종료 --%>
 
-            <div class="content-push">
+  <div class="content-push">
 
-                <div class="breadcrumb-box">
-                    <a href="/">Home</a>
-                    <a href="#">공구조사</a>
-                </div>
+    <div class="breadcrumb-box">
+      <a href="/">Home</a> <a href="#">공구조사</a>
+    </div>
 
-                <div class="information-blocks">
-                    <div class="portfolio-container type-1">
-                        <div class="portfolio-navigation">
-                            <div class="links-drop-down">
-                                <div class="list">
-                                    <a class="active" href="#">All</a>
-                                    <!-- <a href="#">Hipster</a>
-                                    <a href="#">Photography</a>
-                                    <a href="#">Casual</a>
-                                    <a href="#">Nature</a> -->
-                                    <a class="button style-7" id="writeBtn" href="/require/insert">Write</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row articleRow">
-                           
-                        </div>
-                    </div>
-                    
-                  <div class="row shop-grid grid-view listView"></div>
-                  <div class="page-selector">
-                      <a class="moreView"><i class="fa fa-angle-down"></i></a>
-                    <div class="pages-box">
-                      <a href="#" class="square-button"><i class="fa fa-angle-up"></i></a>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                </div>
-                
+    <div class="information-blocks">
+      <div class="portfolio-container type-1">
+        <div class="portfolio-navigation">
+          <div class="links-drop-down">
+            <div class="list">
+              <a class="active" href="#">All</a>
+              <a class="button style-7" id="writeBtn"
+                href="/require/insert">Write</a>
             </div>
-            <br><br><br>
+          </div>
+        </div>
+        <div class="row articleRow"></div>
+      </div>
+
+      <div class="row shop-grid grid-view listView"></div>
+      <div class="page-selector">
+        <a class="moreView"><i class="fa fa-angle-down"></i></a>
+        <div class="pages-box">
+          <a href="#" class="square-button"><i
+            class="fa fa-angle-up"></i></a>
+        </div>
         <div class="clear"></div>
+      </div>
+    </div>
 
-    
-<script>
-
-$(document).ready(function(){
-	var page;
-	
-	/* 전체리스트 출력 위해 /require/list로 이동 (post방식) */
-	page=1
-	goPost(page);
-	
-	/* 더보기 클릭시 해당 페이지의 리스트 append */
-	$(".moreView").each(function(){
-		$(this).click(function(ev){
-			ev.preventDefault();
-			page += 1;
-			goPost(page);
-		})
-	})
-	
-	/* modal창 클릭시 ajax */
-	$(document).on("click", ".toModal", function(e){
-		var requireNum = $(this).parent().children()[1].value;
-		$.ajax({
-			url:"/require/modal/"+requireNum,
-			data:{requireNo:requireNum},
-			dataType:"json",
-			method:"POST",
-			success:putInModal
-		});
-		
-	})
-	
-	/* modal창 안에서 관리자가 댓글 달았을 경우 */
-	$("#addReply").on("click", function(e){
-		var re = $("#leaveComments").val();
-		var requireNum = $("#requireNo").val();
-		$.ajax({
-			url:"/require/reply/"+requireNum,
-			type:'PUT',
-			headers : {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "PUT"
-			},
-			data:JSON.stringify({requireNo:requireNum,comments:re}),
-			success:function(data){
-				$("#commentsinmodal").val(data.comments)
-			}
-		}) 
-	})
-	
-	function goPost(page){
-		
-		$.post("/require/list/"+page, function(data){
-			var string = appending(data);
-			$(".articleRow").append(string);
-		});
-		
-	}
-	
-	function appending(data){
-		var str = "";
-		
-		for (var i = 0; i < data.length; i++) {
-			str += "<div class='col-sm-4 portfolio-entry'>";
-			str += "<div class='col-sm-3 middleDiv'>";
-			
-			str += "<div class='image hidden-xs'>";
-			str += "   <img class='imageClass' src='"+data[i].image+"'>";
-			str += "</div>";
-			
-			str += "<div class='image hidden-md hidden-sm hidden-lg'>";
-			str += "   <img class='imageMobileClass' src='"+data[i].image+"'>";
-			str += "</div>";
-			
-			str += "</div>";
-			str += "<div class='col-sm-9'>";
-			str += "<a class='title toModal' data-toggle='modal' data-target='#titleModal'>"+data[i].title+"</a>";
-			str += "<input type='hidden' name='requireNo' value='"+data[i].requireNo+"'>";
-			if(data[i].comments != null){  //관리자 댓글이 달렸을 경우
-				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 1 comment</span></div>";
-			}else{	//관리자 댓글이 달리지 않았을 경우
-				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 0 comment</span></div>";
-			}
-			
-			str += "<div class='description'>희망가격 : "+data[i].price+" <br> 회사명(제조사) : "+data[i].company+"</div>";
-			str += "</div>";
-			str += "</div>";
-		}
-		
-		return str;
-	}
-	
-	function putInModal(data){
-		var image = $("#imageinmodal");
-		var title = $("#titleinmodal");
-		var price = $("#priceinmodal");
-		var company = $("#companyinmodal");
-		var content = $("#contentinmodal");
-		var requireNo = $("#requireNo")
-		var comments = $("#commentsinmodal");
-		
-		image.attr('src', data.image);
-		title.val(data.title)
-		price.val(data.price)
-		company.val(data.company)
-		content.val(data.content)
-		requireNo.val(data.requireNo)
-		comments.val(data.comments)
-		
-	}
-	
-})
-
-
-</script>    
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="clear"></div>
 
 
 </body>
