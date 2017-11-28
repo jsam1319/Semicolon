@@ -1,6 +1,7 @@
 package kr.or.kosta.semicolon.orderlist.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.kosta.semicolon.orderlist.domain.OrderList;
 
@@ -17,7 +18,7 @@ import kr.or.kosta.semicolon.orderlist.domain.OrderList;
  * --------      -----------   ---------------------------------------
  * 2017. 11. 23.       박주연        최초 생성
  * 2017. 11. 24.	   박주연		 selectByOrdersNo추가
- *
+ * 2017. 11. 27.	   박연주		 selectOrderItem 추가
  */
 public interface OrderListService {
 	
@@ -34,4 +35,6 @@ public interface OrderListService {
 	public void delete(int no);
 	
 	public List<OrderList> selectByOrdersNo(int no);
+	
+	public Map<String, Object> selectOrderItem(int gpurchaseNo) throws Exception;
 }

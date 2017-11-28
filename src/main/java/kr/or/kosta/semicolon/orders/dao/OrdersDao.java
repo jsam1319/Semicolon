@@ -19,6 +19,7 @@ import kr.or.kosta.semicolon.orders.domain.Orders;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 16.       박주연        최초 생성
+ * 2017. 11. 23.	   박연주		 selectOrderInfo 추가
  * 2017. 11. 24.	   박주연		 selectByMemNo, selectByOrdersNo
  * 2017. 11. 27.	   박주연		 selectDetail추가
  *
@@ -34,6 +35,9 @@ public interface OrdersDao {
 	public void delete(int ordersNo);
 	
 	public void update(Orders orders);
+	
+	/** 주문할 때 필요한 상품 정보들 출력 */
+	public Map<String, Object> selectOrderInfo(int gpurchaseNo);
 	
 	public List<OrderListVal> selectByOrdersNo(Map<String, Object> map);
 	

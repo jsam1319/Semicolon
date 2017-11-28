@@ -13,7 +13,7 @@ import kr.or.kosta.semicolon.askresale.domain.AskResale;
  * 
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
- * 2017. 11. 22.      kosta         최초 생성
+ * 2017. 11. 22.      박연주         최초 생성
  *
  *
  */

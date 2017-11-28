@@ -113,7 +113,8 @@ var changeSizeGap = function(data){
       <a href="#">Home</a> <a href="#">Shop</a> <a href="#">T-shirts</a>
       <a href="#">Careers</a> <a href="#">T-shirt Stampata</a>
     </div>
-
+    
+  <form action="/order/" method="post" id="orderForm">
     <div class="information-blocks">
       <div class="row">
         <div class="col-sm-5 col-md-4 col-lg-5 information-entry">
@@ -154,84 +155,277 @@ var changeSizeGap = function(data){
         </div>
 
         <!-- 상품 정보 -->
-        <form id="OrderForm" role="form" method="post" action="/order/">
-        <div class="col-sm-7 col-md-4 information-entry">
-          <div class="product-detail-box">
-            <h1 class="product-title">${goods.name}</h1>
-            <h3 class="product-subtitle">${companyName}</h3>
+          <div class="col-sm-7 col-md-4 information-entry">
+            <div class="product-detail-box">
+              <h1 class="product-title">${goods.name}</h1>
+              <h3 class="product-subtitle">${companyName}</h3>
 
-            <div class="rating-box" id="avgGrade"></div>
+              <div class="rating-box" id="avgGrade"></div>
 
-            <div class="price detail-info-entry">
-              <div class="current">￦ ${gpurchase.price}</div>
-            </div>
-            <div class="size-selector detail-info-entry">
-              <div class="detail-info-entry-title sizeDiv">Size</div>
-              <c:forEach var="size" items="${size}">
-                <div class="entry size" id="${size}">${size}</div>
-              </c:forEach>
-
-            </div>
-            <input type="hidden" id="size" name="size">
-            <input type="hidden" id="orderNum" name="orderNum">
-            <input type="hidden" name="gpurchaseNo" value="${gpurchase.gpurchaseNo}">
-            
-            <script>
+              <div class="price detail-info-entry">
+                <div class="current">￦ ${gpurchase.price}</div>
+              </div>
+              <div class="size-selector detail-info-entry">
+                <div class="detail-info-entry-title sizeDiv">Size</div>
+                
+                <!-- 상의/하의 구분해 데이터 출력  -->
+                <c:forEach var="size" items="${size}">
+                  <c:choose>
+                    <c:when test="${size.TOPSNO != null}">
+                      <div class="entry size" name="TOP" id="${size.TOPSNO}">${size.SIZES}</div>
+                    </c:when>
+                    <c:when test="${size.BOTTOMNO != null}">
+                      <div class="entry size" name="BOTTOM" id="${size.BOTTOMNO}">${size.SIZES}</div>
+                    </c:when>
+                  </c:choose>
+                </c:forEach>
+                
+              </div>
+              
+              <script>
             $(document).ready(function(){
-            	/** 주문페이지에 데이터 넘기기 */
+            	
+            	var no = 0;
+            	
+            	/** 주문항목 추가 */
             	$(".size").on("click", function(){
-            		var pSize = $(this).attr("id")
+            		var pSize = $(this).html()	// size 이름 (ex XS/S/M...)
+            		var pNum = $(this).attr("id")	// 상의/하의 PK
+            		
             		
             		$(this).addClass("active")
-            		$("#size").val(pSize)
+            		
+            		var str = "";
+            		no += 1
+            		
+            		/** 이미 선택한 사이즈인지 체크 / 선택한 사이즈면 return */
+            		if ($("#"+pNum+"qt").length == 1) {
+						return;
+            			
+					} else {
+						
+            		str += "<div class='article-container style-1' id='"+no+"'>"
+                    str += "	<div class='col-sm-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
+                    str += "	<div class='col-sm-6 checkDiv2'>"
+                    str += "		<div class='quantity-selector detail-info-entry qtnChoice'>"
+                    str += "			<div class='entry number-minus minus'>&nbsp;</div>"
+                    str += "			<div class='entry number quantity' name='quantity' id='"+pNum+"qt'>1</div>"
+                    str += "			<div class='entry number-plus plus'>&nbsp;</div>"
+                    str += "		</div>"
+                    str += "	</div>"
+                    str += "	<div class='col-sm-1 xMark'>"
+                    str += "		<i class='fa fa-times '></i>"
+                    str += "	</div>"
+                    str += "</div>"
+            		
+            		$(".orderItem").append(str)
+            		
+            		
+            		var hiddenStr = "";
+                    
+                    var qtP = $("#"+pNum+"qt").html()
+                    
+                    
+                    if ($(".size").attr("name") == 'TOP') {
+                    	hiddenStr += "<input type='hidden' name='topsNo' value='"+pNum+"'>"
+					} else {
+            			hiddenStr += "<input type='hidden' name='bottomNo' value='"+pNum+"'>"
+            		 	
+					}
+                    
+            		hiddenStr += "<input type='hidden' class='"+pNum+"qt' name='qty' value='"+qtP+"'>"
+            		hiddenStr += "<input type='hidden' name='sizes' value='"+pSize+"'>"
+            		
+            		$("#"+no+"").append(hiddenStr)
+            		
+					}
+            		
             	})
             	
-            	$("#OrderForm").submit(function(e){
+            	/** 상품 갯수 +/- */
+            	$(document).on("click", ".plus", function(){
+            		var qtIdP = $(this).prev().attr("id")	// 상의/하의 pk +qt
+            		var qtP = $("#"+qtIdP).html()
+            		qtP = Number(qtP)
+            		
+            		qtP += 1
+            		
+            		$("#"+qtIdP).html(qtP)	// +된 데이터 붙여주기
+            		$("."+qtIdP+"").val(qtP)	// name='qty'의 value 넣어주기
+            		
+            	})
+            	
+            	$(document).on("click", ".minus", function(){
+            		var qtIdM = $(this).next().attr("id")
+            		var qtM = $("#"+qtIdM).html()
+            		qtM = Number(qtM)
+            		
+            		if (qtM > 1) {
+            			qtM -= 1
+            			
+            			$("#"+qtIdM).html(qtM)
+            			$("."+qtIdM+"").val(qtM)
+					}
+            	})
+            	
+           
+            	/** 선택한 상품 삭제 */
+            	 $(document).on("click", ".xMark", function(){
+            		 $(this).parent().remove();
+            		 
+            	 })
+            	
+            	 
+            	 $("#orderForm").submit(function(e){
             		e.preventDefault();
             		
-            		var qt = $(".quantity").html()
+            		var gpurchaseNo = '${gpurchase.gpurchaseNo}'
+                		var qty = $("input[name='qty']")
+                		var sizes = $("input[name='sizes']")
+                			
+                		if ($(".size").attr("name") == 'TOP') {	
+                			var topsNo = $("input[name='topsNo']")
+                			var type = 'top'
+                		} else {
+                			var bottomNo = $("input[name='bottomNo']")
+                		}
+                		 
+                		
+            		var OrderList;
+            		var OlList = new Array();
             		
-            		$("#orderNum").val(qt)
-            		$(this).get(0).submit()
-            	})
-            	
+            		 for (var i = 0; i < qty.length; i++) {
+            			  
+            			 if (type == 'top') {
+                				 OrderList = {
+         								'topsNo' : topsNo[i].value,
+         								'gpurchaseNo' : gpurchaseNo,
+         								'qty' : qty[i].value,
+         								'sizes' : sizes[i].value
+         						}
+						} else {
+    							OrderList = {
+    									'bottomNo' : bottomNo[i].value, 
+    									'gpurchaseNo' : gpurchaseNo,
+    									'qty' : qty[i].value,
+         								'sizes' : sizes[i].value
+    							}
+						}
+						 
+            			 OlList.push(OrderList)
+					}
+                		  
+            		 
+                		 var OLJson = JSON.stringify(OlList) 
+                		 
+                		 var submitStr = "<input type='hidden' name='orderList' value='"+OLJson+"'>"
+            		
+                		 $(this).append(submitStr)
+                		 
+                		 $(this).get(0).submit();
+            		
+            	 })
+            	  
+            	 
+            	 /** 구매 버튼 클릭 시 데이터 전송 */
+            	 /* 
+            	 $(document).on("click", ".purchaseBtn", function(){
+            		 
+            		var gpurchaseNo = '${gpurchase.gpurchaseNo}'
+            		var qty = $("input[name='qty']")
+            		var sizes = $("input[name='sizes']")
+            			
+            		if ($(".size").attr("name") == 'TOP') {	
+            			var topsNo = $("input[name='topsNo']")
+            			var type = 'top'
+            		} else {
+            			var bottomNo = $("input[name='bottomNo']")
+            		}
+            		 
+            		
+            		var OrderList;
+            		var OlList = new Array();
+            		
+            		 for (var i = 0; i < qty.length; i++) {
+            			  
+            			 if (type == 'top') {
+                				 OrderList = {
+         								'topsNo' : topsNo[i].value,
+         								'gpurchaseNo' : gpurchaseNo,
+         								'qty' : qty[i].value,
+         								'sizes' : sizes[i].value
+         						}
+						} else {
+    							OrderList = {
+    									'bottomNo' : bottomNo[i].value, 
+    									'gpurchaseNo' : gpurchaseNo,
+    									'qty' : qty[i].value,
+         								'sizes' : sizes[i].value
+    							}
+						}
+						 
+            			 OlList.push(OrderList)
+					}
+            		  
+            		 console.log("OlList")
+            		 console.log(OlList)
+            		 
+            		 $.ajax({
+							url : "/order/",
+							type: "POST",
+							data: {
+								orderList : JSON.stringify(OlList)
+								},
+							success: function(data){
+								console.log(data)
+								window.location.href = data;
+							},
+							error: function(data){
+								console.log("error!!");
+								console.log(data)
+							}
+						})
+            		  
+            		 
+            	 })
+            	  */
             })
             </script>
-
-            <div class="quantity-selector detail-info-entry">
-              <div class="detail-info-entry-title">Quantity</div>
-              <div class="entry number-minus">&nbsp;</div>
-              <div class="entry number quantity">1</div>
-              <div class="entry number-plus">&nbsp;</div>
-            </div>
-            <div class="enterContent-1"></div>
-            <div class="detail-info-entry purchaseNum">
-              <div class="detail-info-entry-title">공구 참여 인원 현황</div>
-              <div class="detail-info-entry-title left-margin">${gpurchase.pNum}
-                &nbsp; / &nbsp; ${gpurchase.min}</div>
-
-            </div>
-            <div class="enterContent-3"></div>
-
-            <div class="detail-info-entry btnDiv">
-              <div class="clear"></div>
-            </div>
             
-            <div class="detail-info-entry buttonDiv">
-              <div class="clear"></div>
-            </div>
-
-            <script>
-                
+              <div class="orderListDiv col-sm-12">
+                <div class="accordeon">
+                  <div class="accordeon-title">주문항목</div>
+                  <!-- 주문항목 appendDiv -->
+                  <div class="accordeon-entry orderItem" style="display: block;">
+                  </div>
+                  <!-- /.주문항목 appendDiv -->
+                </div>
+              </div>
               
+              <div class="col-sm-12 enterContent-3"></div>
+              <div class="purchaseNum">
+                <div class="col-sm-5 pNumDiv">(${gpurchase.pNum} /
+                  ${gpurchase.min}) 참여</div>
+                <div class="detail-info-entry btnDiv">
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="col-sm-7 enterContent-3"></div>
+
+              <div class="detail-info-entry buttonDiv">
+                <div class="clear"></div>
+              </div>
+
+
+              <script>
               <!-- 공구재요청 -->
               var string = "";
             	  if(${gpurchase.status} == 1) {
-            		  string += "<a class='button style-10'><i class='fa fa-heart'></i>구매하기"
-            		  string += "<input type='submit' value=''></a>"
+            		  string += "<a class='button style-15 purchaseBtn'><i class='fa fa-heart'></i>구매하기"
+            		  // style-10
+            		  string += "<input type='submit' value=''>"
             		  
             		  $(".btnDiv").html(string)
-            		  
             	  } else {
             		  askBtn("${askCnt}")
             	  }
@@ -246,7 +440,7 @@ var changeSizeGap = function(data){
             	  
             	  $(".buttonDiv").html(str)
               }
-              
+
               
               
               var gpurchaseNo = ${gpurchase.gpurchaseNo}
@@ -276,13 +470,11 @@ var changeSizeGap = function(data){
             	  })
             	  
               }
-              
               </script>
 
 
+            </div>
           </div>
-        </div>
-        </form>
         <!-- /.상품 정보 -->
 
 
@@ -350,34 +542,37 @@ var changeSizeGap = function(data){
         </div>
         <!-- /.Side 추천 상품 정보 -->
       </div>
+      
+      <div class="enterContent-1"></div>
+      
+       <!-- 상품 Keyword(Tag) -->
+      <div class="tags-selector detail-info-entry col-sm-6">
+        <div class="detail-info-entry-title">Tags: </div>
+       <c:forEach var="keyword" items="${keyword}">
+          <a href="#">${keyword}</a>&nbsp;
+          <c:if test="${not status.last }">/&nbsp; </c:if>
+       </c:forEach>
+      </div>
+      <!-- /.상품 Keyword(Tag) -->
+      
     </div>
+    </form>
     <div class="clear"></div>
 
     <div id="productInfo1"></div>
-
     <div class="information-blocks">
-
-      <!-- 체형별 상품 비교 -->
-      <div class="tags-selector detail-info-entry">
-        <div class="detail-info-entry-title">Tags:</div>
-        <a href="#">bootstrap</a>/ <a href="#">collections</a> <a
-          href="#">color/</a>/ <a href="#">responsive</a>
-      </div>
-      <!----------------------->
-
-
+    <div class="enterContent-4"></div>
       <div>
         <a class="button style-14" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <div class="inline-product-entry">
-      ${goods.detail}
-      </div>
+      <div class="inline-product-entry">${goods.detail}</div>
 
       <div id="productInfo2"></div>
-      <br> <br> <br> <br> <br>
+      
+      <div class="enterContent-4"></div>
       <div>
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
           class="button style-14" href="#productInfo2">상품 리뷰</a> <a
@@ -419,17 +614,13 @@ var changeSizeGap = function(data){
       <div id="reviewList"></div>
 
       <div class="page-selector">
-        <center>
           <a class="moreView"> <i class="fa fa-angle-down"></i>
           </a>
-        </center>
       </div>
 
       <div id="productInfo3"></div>
-
-      <br /> <br /> <br /> <br /> <br />
-
-      <div id="productInfo1">
+<div class="enterContent-4"></div>
+      <div>
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
           class="button style-14" href="#productInfo3">유의 사항</a>
@@ -439,6 +630,7 @@ var changeSizeGap = function(data){
           <div class="inline-product-entry">
             <p>진행중인 공동구매입니다.</p>
             <p>공동구매 상품이므로 반품은 불가능합니다.</p>
+            <p>구매는 한번에 한 상품씩 가능합니다.</p>
           </div>
         </c:when>
         <c:when test="${gpurchase.status == 2 }">
@@ -458,7 +650,7 @@ var changeSizeGap = function(data){
 
   <script src="/resources/js/moment.js"></script>
   <script src="/resources/js/ko.js"></script>
-  <script src="/resources/js/product.js"></script>
+  <script src="/resources/js/gpurchase/product.js"></script>
   <script src="/resources/js/jquery.raty.js"></script>
   <script>
 

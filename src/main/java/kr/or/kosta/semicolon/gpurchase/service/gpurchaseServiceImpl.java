@@ -114,7 +114,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return gpdao.selectGoodsNo(gpurchaseNo);
 	}
 	
-	
 	@Override
 	public List<Gpurchase> gpListAll() throws Exception {
 		return gpdao.gpListAll();

@@ -5,7 +5,7 @@ package kr.or.kosta.semicolon.orders.domain;
  * @filename         Orders.java
  * @author           박주연
  * @since            2017. 11. 18.
- * @see
+ * @see				 Orders Table의 Domain
  *
  * == Modification Infomation (수정 이력) ==
  * 

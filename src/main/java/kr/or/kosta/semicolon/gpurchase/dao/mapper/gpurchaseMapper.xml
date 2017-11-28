@@ -282,4 +282,10 @@
 		GROUP  BY goods.category, 
 		          g.price
 	</select>
+	
+	<update id="updatePnum" parameterType="int">
+		UPDATE gpurchase 
+		SET    pnum = pnum + 1 
+		WHERE  gpurchase_no = #{gpurchaseNo}
+	</update>
 </mapper>

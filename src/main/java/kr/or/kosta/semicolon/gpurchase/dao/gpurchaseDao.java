@@ -53,4 +53,6 @@ public interface gpurchaseDao {
 	//카테고리별 판매량
 	public List<CategorySales> getSalesByCategory();
 	
+	public void updatePnum(int gpurchaseNo) throws Exception;
+	
 }

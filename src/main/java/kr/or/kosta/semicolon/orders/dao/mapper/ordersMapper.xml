@@ -4,32 +4,30 @@
   
 <mapper namespace = "kr.or.kosta.semicolon.orders.dao.OrdersDao">
 	<insert id="insert" parameterType="Orders">
-		INSERT INTO ORDERS
-					(orders_no,
-					member_no,
-					odate,
-					price,
-					address,
-					receiver,
-					phone,
-					message,
-					postcode,
-					status)
-		VALUES		(#{ordersNo},
-					 #{memberNo},
-					 sysdate,
-					 #{price},
-					 #{address},
-					 #{receiver},
-					 #{phone},
-					 #{message},
-					 #{postcode},
-					 #{status}
-					 )
+		<selectKey keyProperty="ordersNo" resultType="int" order="BEFORE">
+			SELECT seq_orders.nextval as ordersNo FROM dual  
+		</selectKey>
+		INSERT INTO orders 
+		            (orders_no, 
+		             member_no, 
+		             price, 
+		             address, 
+		             receiver, 
+		             phone, 
+		             message, 
+		             postcode) 
+		VALUES     (#{ordersNo}, 
+		            #{memberNo}, 
+		            #{price}, 
+		            #{address}, 
+		            #{receiver}, 
+		            #{phone}, 
+		            #{message}, 
+		            #{postcode})
 	</insert>
 	
 	<select id="select" parameterType="int" resultType="Orders">
-		SELECT 		orders_no,
+		SELECT 		orders_no, 
 					member_no,
 					odate,
 					price,
@@ -44,7 +42,7 @@
 	</select>
 	
 	<select id="listAll" resultType="Orders">
-		SELECT 		orders_no,
+		SELECT 		orders_no, 
 					member_no,
 					odate,
 					price,
@@ -77,76 +75,22 @@
 		DELETE FROM orders
 		WHERE orders_no = #{ordersNo}
 	</delete>
-	
-	<select id="selectByOrdersNo" parameterType="map" resultType="OrderListVal">
-		SELECT o.orders_no, 
-		       g.front_img as img, 
-		       <if test="topsNo==0"> b.sizes, </if>
-		       <if test="bottomNo==0"> t.sizes, </if>
-		       g.name, 
-		       gp.price AS unit_price, 
-		       o.price  AS total_price, 
-		       ol.qty, 
-		       o.status 
-		FROM   orders o, 
+	 
+	<select id="selectOrderInfo" parameterType="int" resultType="map">
+		SELECT c.NAME		cName, 
+		       g.front_img	frontImg, 
+		       g.NAME		gName, 
+		       gp.price 
+		FROM   company c, 
 		       goods g, 
-		       <if test="topsNo==0"> bottom b, </if>
-		       <if test="bottomNo==0"> tops t, </if>
 		       gpurchase gp, 
-		       order_list ol 
-		<where>
-		   	   <if test="topsNo==0"> g.goods_no = b.goods_no  </if>
-		       <if test="bottomNo==0"> AND g.goods_no = t.goods_no  </if>
+		       nego n, 
+		       nego_list ne 
+		WHERE  c.company_no = n.company_no 
+		       AND n.nego_no = ne.nego_no 
+		       AND ne.goods_no = g.goods_no 
 		       AND g.goods_no = gp.goods_no 
-		       AND gp.gpurchase_no = ol.gpurchase_no 
-		       AND o.orders_no = ol.orders_no 
-		      <if test="topsNo==0"> AND   ol.bottom_no = b.bottom_no      </if>
-		       <if test="bottomNo==0"> AND ol.tops_no = t.tops_no  </if>
-		       AND o.orders_no = #{ordersNo}
-		   		<if test="topsNo==0">  AND ol.bottom_no = #{bottomNo}     </if>
-		       <if test="bottomNo==0"> AND ol.tops_no = #{topsNo} </if>
-		</where>
+		       AND gp.gpurchase_no = #{gpurchaseNo}
 	</select>
-	
-	<select id="selectByMemNo" parameterType="map" resultType="Orders">
-		<![CDATA[
-		SELECT 		orders_no,
-					member_no,
-					odate,
-					price,
-					address,
-					receiver,
-					phone,
-					message,
-					postcode,
-					status
-		FROM  orders
-		WHERE member_no = #{memberNo}	
-		AND odate >= TO_DATE(#{start},'YY/MM/DD') 
-		AND odate <=  TO_DATE(#{end}, 'YY/MM/DD') 
-		]]>
-	</select>
-	
-	<select id="selectDetail" parameterType="int" resultType="OrderDetail">
-		SELECT o.orders_no, 
-		       o.odate, 
-		       o.price, 
-		       o.address, 
-		       o.receiver, 
-		       o.phone, 
-		       o.message, 
-		       o.postcode, 
-		       o.status, 
-		       p.method, 
-		       p.regdate AS "pdate", 
-		       p.card_info, 
-		       m.name 
-		FROM   orders o, 
-		       payment p, 
-		       member m 
-		WHERE  m.member_no = o.member_no 
-		       AND o.orders_no = p.orders_no 
-		       AND o.orders_no = #{value}
-	</select>
-	
+	 
 </mapper>
