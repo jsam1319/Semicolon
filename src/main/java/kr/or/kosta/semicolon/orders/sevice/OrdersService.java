@@ -1,8 +1,10 @@
 package kr.or.kosta.semicolon.orders.sevice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.kosta.semicolon.orderlist.domain.OrderList;
 import kr.or.kosta.semicolon.orders.domain.OrderDetail;
 import kr.or.kosta.semicolon.orders.domain.OrderListVal;
 import kr.or.kosta.semicolon.orders.domain.Orders;
@@ -46,5 +48,5 @@ public interface OrdersService {
 	
 	public OrderDetail selectDetail(int no);
 	
-	public void insertOrder(Orders orders, String orderlist, Payment payment) throws Exception;
+	public void insertOrder(Orders orders, ArrayList<OrderList> orderlist, Payment payment) throws Exception;
 }

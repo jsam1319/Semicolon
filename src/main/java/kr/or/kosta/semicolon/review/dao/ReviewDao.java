@@ -2,7 +2,7 @@ package kr.or.kosta.semicolon.review.dao;
 
 import java.util.List;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.review.domain.Review;
 
 /**
@@ -32,7 +32,7 @@ public interface ReviewDao {
 	
 	public void delete(int reviewNo) throws Exception;
 	
-	public List<Review> listAll(Params params) throws Exception;
+	public List<Review> listAll(UseParameter params) throws Exception;
 	
 	public int listAvg(int goodsNo) throws Exception;
 	

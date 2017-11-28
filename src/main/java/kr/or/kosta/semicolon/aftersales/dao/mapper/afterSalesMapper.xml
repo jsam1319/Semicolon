@@ -53,7 +53,7 @@
 	</delete>
 	
 	<!-- AS List by Member -->
-	<select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="AfterSales">
+	<select id="listAll" parameterType="UseParameter" resultType="AfterSales">
 		SELECT aftersales_no, 
 		       goods_no, 
 		       member_no, 

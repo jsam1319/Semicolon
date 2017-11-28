@@ -3,7 +3,7 @@ package kr.or.kosta.semicolon.review.service;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.review.domain.Review;
 
 public interface ReviewService {
@@ -18,7 +18,7 @@ public interface ReviewService {
 	
 	public void delete(int reviewNo) throws Exception;
 	
-	public Map<String, Object> listAll(Params params) throws Exception;
+	public Map<String, Object> listAll(UseParameter params) throws Exception;
 	
 	public int listAvg(int goodsNo) throws Exception;
 	

@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.common.util.UploadService;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.review.domain.Review;
@@ -114,17 +114,18 @@ public class ReviewController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/{gpurchaseNo}/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> reivewList(@PathVariable("page") int page, @PathVariable("gpurchaseNo")int gpurchaseNo, Params params) throws Exception{
+	@RequestMapping(value = "/{goodsNo}/{page}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> reivewList(@PathVariable("page") int page, @PathVariable("goodsNo")int goodsNo, UseParameter useparam) throws Exception{
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		logger.info("List컨트롤 들어옴!");
 		
 		try {
-			params.setPage(page);
-			params.setValue(Integer.toString(gpurchaseNo)); 
-			Map<String, Object> map = reviewService.listAll(params);
-			
+			useparam.setPage(page);
+			useparam.setValue(Integer.toString(goodsNo)); 
+			Map<String, Object> map = reviewService.listAll(useparam);
+			logger.info(useparam);
+			logger.info(map);
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 			
 		} catch (Exception e) {

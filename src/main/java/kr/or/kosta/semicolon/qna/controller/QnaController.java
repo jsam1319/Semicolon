@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.qna.service.QnaService;
 
@@ -68,7 +68,7 @@ public class QnaController {
 	 * @param params : 페이지 계산 
 	 */
 	@RequestMapping(value = "/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> qnaList(@PathVariable("page") int page, Params params) throws Exception{
+	public ResponseEntity<Map<String, Object>> qnaList(@PathVariable("page") int page, UseParameter params) throws Exception{
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		try {

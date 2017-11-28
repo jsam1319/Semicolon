@@ -2,7 +2,7 @@ package kr.or.kosta.semicolon.goods.dao;
 
 import java.util.List;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 
 /**
@@ -30,7 +30,7 @@ public interface GoodsDao {
 	
 	public int selectNo(String name) throws Exception;
 	
-	public List<Goods> listAll(Params params) throws Exception;
+	public List<Goods> listAll(UseParameter params) throws Exception;
 	
 	public int listCount() throws Exception;
 	

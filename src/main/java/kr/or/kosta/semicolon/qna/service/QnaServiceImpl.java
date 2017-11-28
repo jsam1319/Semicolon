@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.qna.dao.QnaDao;
@@ -67,7 +67,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
-	public Map<String, Object> listAll(Params params) throws Exception {
+	public Map<String, Object> listAll(UseParameter params) throws Exception {
 		List<Qna> list = qnaDao.listAll(params);
 		
 		Map<String, Object> map = new HashMap<>();

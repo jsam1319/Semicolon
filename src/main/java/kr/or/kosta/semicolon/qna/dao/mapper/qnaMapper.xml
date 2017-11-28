@@ -73,7 +73,7 @@
 	</select>
 	
 	<!-- 전체 상품문의 -->
-    <select id="listAll" parameterType="kr.or.kosta.semicolon.common.Params" resultType="Qna">
+    <select id="listAll" parameterType="UseParameter" resultType="Qna">
 		SELECT qnano, 
 		       goodsno, 
 		       memberno, 

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -78,7 +80,7 @@ public class OrdersController {
 	
 	/** Order Page */
 	@RequestMapping(value="/", method=RequestMethod.POST)
-	public String orderPage(String orderList, HttpServletRequest request, Model model) throws Exception {
+	public String orderPage(String orderList, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		logger.info("OrderController /order POST");
 		
 		HttpSession session = request.getSession();
@@ -90,7 +92,7 @@ public class OrdersController {
 		
 //		readValue(arg, type) : arg를 type으로 변환
 		list = mapper.readValue(orderList, ArrayList.class);
-		logger.info(list);
+		
 //		ArrayList 선언
 		ArrayList<OrderList> orders = new ArrayList<OrderList>();
 		
@@ -100,13 +102,19 @@ public class OrdersController {
 			orders.add(mapper.readValue(new ObjectMapper().writeValueAsString(list.get(i)), OrderList.class));
 		}
 		
-		logger.info(orders);
-		
 		for (OrderList orderlist : orders) {
 			logger.info(orderlist);
 		}
 		
 		Map<String, Object> map = orderListService.selectOrderItem(orders.get(0).getGpurchaseNo());
+		
+		
+		/** Cookie 생성 및 주문항목(JSON) set */
+		Cookie cookie = new Cookie("orderlist", orderList);
+	    cookie.setMaxAge(60*60*24*365);            // 쿠키 유지 기간(이부분이 없으면 브라우저 종료시 사라짐)
+	    cookie.setPath("/");                       // 모든 경로에서 접근 가능하도록 
+	    response.addCookie(cookie);
+		
 		
 		model.addAttribute("orderList", orders);
 		model.addAttribute("member", memberService.select(memberNo));
@@ -117,23 +125,53 @@ public class OrdersController {
 	}
 	
 	
-	@RequestMapping(value="/orders", method=RequestMethod.POST)
-	public String Order(HttpServletRequest request, Payment payment, Orders orders, String orderlist) throws Exception {
-		logger.info("Order POST 컨트롤러 접근");
 	
+	
+	
+	@RequestMapping(value="/orders", method=RequestMethod.POST)
+	public String Order(HttpServletRequest request, Payment payment, Orders orders) throws Exception {
+		logger.info("Order POST 컨트롤러 접근");
+		
+		/** Cookie에 담겨있는 주문목록 출력 */
+		Cookie[] cookies = request.getCookies();
+		String cookievalue=null;
+		
+		for (int i = 0; i < cookies.length; i++) {
+			if(cookies[i].getName().equals("orderlist")) {
+				cookievalue = cookies[i].getValue();
+			}
+		}
+		
+		
+		/** 주문목록(JSON -> Object) 변환 */
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayList<String> list;
+		
+//		readValue(arg, type) : arg를 type으로 변환
+		list = mapper.readValue(cookievalue, ArrayList.class);
+		
+//		ArrayList 선언
+		ArrayList<OrderList> orderItems = new ArrayList<OrderList>();
+		
+		
+		for(int i=0; i<list.size(); i++) {
+//			writeValueAsString(value) : value를 String 타입으로 변환 
+			orderItems.add(mapper.readValue(new ObjectMapper().writeValueAsString(list.get(i)), OrderList.class));
+		}
+		
+		
+		
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 		
-		logger.info(memberNo);
-		logger.info(payment);
-		logger.info(orders);
-		logger.info(orderlist);
-		
-		
-		/*
 		orders.setMemberNo(memberNo);
-		ordersService.insertOrder(orders, orderlist, payment);
-		*/
+		
+		logger.info(orders);
+		logger.info(payment);
+		logger.info(orderItems);
+		
+		ordersService.insertOrder(orders, orderItems, payment);
+		
 		return "/";
 	
 	}

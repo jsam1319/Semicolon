@@ -59,45 +59,28 @@ public class OrdersServiceImpl implements OrdersService {
 	
 	@Override
 	@Transactional
-	public void insertOrder(Orders order, String orderList, Payment payment) throws Exception {
+	public void insertOrder(Orders order, ArrayList<OrderList> orderItems, Payment payment) throws Exception {
+		
+		/** orders 생성 */
 		dao.insert(order);
-		logger.info(orderList);
-		/*
-		for (OrderList list : orderList) {
-			logger.info(list);
-		}*/
-		/** 공구 상품에 대한 정보 받아오기 */
-//		ObjectMapper mapper = new ObjectMapper();
-//		ArrayList<String> list;
 		
-//		readValue(arg, type) : arg를 type으로 변환
-//		list = mapper.readValue(orderList, ArrayList.class);
+		logger.info("insert 전 orderlist : "+orderItems);
 		
-//		ArrayList 선언
-//		ArrayList<OrderList> orders = new ArrayList<OrderList>();
-		
-		
-//		for(int i=0; i<list.size(); i++) {
-//			writeValueAsString(value) : value를 String 타입으로 변환 
-//			orders.add(mapper.readValue(new ObjectMapper().writeValueAsString(list.get(i)), OrderList.class));
-//		}
-		
-		/*
-		for (OrderList orderlist : orders) {
-			logger.info(order.getOrdersNo());
-			logger.info(orderlist);
-			
+		/** orderList 생성 */
+		for (OrderList orderlist : orderItems) {
 			orderlist.setOrdersNo(order.getOrdersNo());
 			orderListdao.insert(orderlist);
-			
-			logger.info("gpurchaseNo : "+gpurchaseNo);
 		}
-		
+		logger.info("insert 후 orderlist : "+orderItems);
+		logger.info("setOrdersNo 전 payment : "+payment);
+		payment.setOrdersNo(order.getOrdersNo());
+		logger.info("setOrdersNo 후 payment : "+payment);
 		paymetdao.insert(payment);
 		
+		int gpurchaseNo = orderItems.get(0).getGpurchaseNo();
 		gpurchasedao.updatePnum(gpurchaseNo);
-		*/
 		
+		logger.info("gpurchaseNo : "+gpurchaseNo);
 		// 주문 insert -> +주문pk : 주문List insert -> 결제 insert -> gpurchase pNum+
 	}
 	

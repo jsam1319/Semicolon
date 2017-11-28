@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	/** totalOrder, qty 출력하기 */
-	var orderQty = $("input[name='orderQty']")
+	var orderQty = $("input[name='qty']")
 	var op = $("#orderPrice").val()
     var oq = 0;
     
@@ -83,7 +83,7 @@ $(document).ready(function(){
 
         $(this).append(submitStr)
         
-      //  $(this).get(0).submit();
+       $(this).get(0).submit();
      })
      
      

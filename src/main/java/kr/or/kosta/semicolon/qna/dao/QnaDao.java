@@ -2,7 +2,7 @@ package kr.or.kosta.semicolon.qna.dao;
 
 import java.util.List;
 
-import kr.or.kosta.semicolon.common.Params;
+import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.qna.domain.Qna;
 
 /**
@@ -33,6 +33,6 @@ public interface QnaDao {
 	
 	public void modify(Qna qna) throws Exception;
 	
-	public List<Qna> listAll(Params params) throws Exception;
+	public List<Qna> listAll(UseParameter params) throws Exception;
 	
 }
