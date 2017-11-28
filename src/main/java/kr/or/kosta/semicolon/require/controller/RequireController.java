@@ -107,6 +107,7 @@ public class RequireController {
 		obj.put("content", require.getContent());
 		obj.put("image", require.getImage());
 		obj.put("requireNo", require.getRequireNo());
+		obj.put("comments", require.getComments());
 		
 		String jsonStr = obj.toJSONString();
 		
@@ -114,7 +115,7 @@ public class RequireController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/reply/{requireNo}", method= {RequestMethod.PUT})
+	@RequestMapping(value="/reply/{requireNo}", method= {RequestMethod.PUT, RequestMethod.PATCH})
 	public Require insert(@PathVariable("requireNo")int requireNo, @RequestBody Require require) {
 		logger.info("modal--  컨트롤러 Reply... update");
 		

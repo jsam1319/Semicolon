@@ -71,7 +71,8 @@
 		       image, 
 		       To_char(regdate, 'yyyy-mm-dd') as regdate, 
 		       want_price	as price, 
-		       company 
+		       company,
+		       comments 
 		FROM   require 
 		WHERE  require_no = #{requireNo}
 	</select>
