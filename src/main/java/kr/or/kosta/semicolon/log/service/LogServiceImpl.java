@@ -8,7 +8,7 @@ import kr.or.kosta.semicolon.log.dao.LogDao;
 import kr.or.kosta.semicolon.log.domain.Log;
 
 @Service
-public class LogServiceImpl {
+public class LogServiceImpl implements LogService{
 
 	@Inject
 	LogDao logDao;
