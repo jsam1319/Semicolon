@@ -113,7 +113,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				response.sendRedirect(referer);
 			} else { //인덱스 페이지로
 				if((String)modelAndView.getModel().get("result") != null) {
-					response.sendRedirect("/member/result/"+member.getName());
+					response.sendRedirect("/member/result/"+member.getId());
 				}
 				else {
 					response.sendRedirect("/");

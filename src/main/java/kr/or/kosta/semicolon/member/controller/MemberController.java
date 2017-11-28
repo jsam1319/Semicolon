@@ -129,9 +129,9 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/result/{name}", method=RequestMethod.GET)
-	public String loginResult(Model model, @PathVariable("name") String name) {
-		model.addAttribute("name",name);
+	@RequestMapping(value="/result/{id}", method=RequestMethod.GET)
+	public String loginResult(Model model, @PathVariable("id") String id) {
+		model.addAttribute("id",id);
 		return "/member/result";
 	}
 	
