@@ -126,8 +126,9 @@
     </select> 
     
      <select id="readLogin" parameterType="string" resultType="Member">
-        SELECT  id,
-                password,    
+        SELECT  member_no,
+        		id,
+                password
         FROM   member
         WHERE  session_id = #{value} 
                AND session_limit > SYSDATE

@@ -94,7 +94,7 @@ public class MemberSizeController {
 	 * 2. 처 리 내 용   : 바지 사이즈의 상세 정보를 얻어옴
 	 * </pre>
 	 * @Method Name : getBottom
-	 * @param size : 바지 사이즈
+	 * @param size : types(skirt, pants, shortpants) 사이즈
 	 */
 	@RequestMapping(value="/{types}/{size}", method=RequestMethod.GET)
 	@ResponseBody
@@ -212,4 +212,28 @@ public class MemberSizeController {
 		return entity;
 		
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개       요 : 회원의 체형정보 불러옴
+	 * 2. 처 리 내 용 : 회원의 체형정보를 반환
+	 * </pre>
+	 * @Method Name : getMemberSize
+	 * @param memberNo : memberNo
+	 * @return ResponseEntity<MemberSize>
+	 */
+	@RequestMapping(value="/{memberNo}", method=RequestMethod.GET)
+	public ResponseEntity<MemberSize> getMemberSize(@PathVariable("memberNo") int memberNo){
+		MemberSize mSize = sizeService.select(memberNo);
+		ResponseEntity<MemberSize> entity = null;
+		if(mSize != null) {
+			entity = new ResponseEntity<MemberSize>(mSize, HttpStatus.OK);
+		}
+		else {
+			entity = new ResponseEntity<MemberSize>(HttpStatus.NO_CONTENT); //클라이언트 요구를 처리했으나 전송할 데이터가 없음
+		}
+		
+		return entity;
+	}
+	
 }

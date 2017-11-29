@@ -20,10 +20,10 @@ import kr.or.kosta.semicolon.member.service.MemberService;
 
 /**
  * @packgename        kr.or.kosta.semicolon.common.interceptor
- * @filename        LoginInterceptor.java
- * @author             박주연
- * @since            2017. 11. 9.
- * @see                로그인 처리를 하기 위한 인터셉터
+ * @filename          LoginInterceptor.java
+ * @author            박주연
+ * @since             2017. 11. 9.
+ * @see               로그인 처리를 하기 위한 인터셉터
  *
  * == Modification Infomation (수정 이력) ==
  * 
@@ -35,8 +35,6 @@ import kr.or.kosta.semicolon.member.service.MemberService;
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private static final String LOGIN = "no";
-    
-    Logger logger = Logger.getLogger(LoginInterceptor.class);
     
     @Inject
     private MemberService memberService;
@@ -51,7 +49,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-    	logger.debug("prehandle");
         HttpSession session = request.getSession();
         if(session.getAttribute(LOGIN) != null) {
             session.removeAttribute(LOGIN);
@@ -75,22 +72,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         Member member = (Member) modelAndView.getModel().get("mem");
 
-//       logger.debug("postHandle");
-//       logger.debug("member:"+member);
-
-        
+        //Login 성공
         if(member != null) {
-//            logger.debug("login성공");
             session.setAttribute(LOGIN, member.getMemberNo());
             
             //자동 로그인 체크시
             if(modelAndView.getModel().get("autologin") != null) {
-//            	logger.debug("자동로그인처리");
                 String sessionId = session.getId();
                 int days = 60 * 60 * 24 * 14; //14일간 저장
                 Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * days));
                 
-                logger.debug("session_limit : " + sessionLimit.toString());
                 
                 // 사용자 테이블의 sessionid와 sessionlimt 컬럼 수정
                 Member newM = new Member();
@@ -100,7 +91,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 memberService.updateLogin(newM);
                 
                 //세션아이디 저장 사용자 쿠키 생성
-                Cookie autoLoginCookie = new Cookie("autoLoginCookie", session.getId());
+                Cookie autoLoginCookie = new Cookie("autoLoginCookie", sessionId);
                 autoLoginCookie.setPath("/");
                 autoLoginCookie.setMaxAge(60 * 60 * 24 * 7); 
                 response.addCookie(autoLoginCookie);

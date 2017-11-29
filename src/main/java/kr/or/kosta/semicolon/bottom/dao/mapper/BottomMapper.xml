@@ -44,6 +44,7 @@
 		FROM  bottom
 		WHERE types = #{types} 
 				AND sizes = #{sizes}
+				AND goods_no is null
 	</select> 
 	
 	<select id="selectByGoodsNum" parameterType="int" resultType="Bottom">
