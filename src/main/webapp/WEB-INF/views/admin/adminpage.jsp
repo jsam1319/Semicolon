@@ -17,8 +17,10 @@
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
-						<a class="title" href="#">lalala</a>
-						<div class="description">lalala</div>
+						<div class="title">Push Alarm</div>
+						<a class="description" href="/admin/push">Push Alarm Customizing
+                        <i class="fa fa-angle-right"></i><br>
+                        </a>
 					</div>
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">
