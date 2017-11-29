@@ -111,8 +111,7 @@ var inputData = function(data){
         <div class="sale-entry">
 	        <div class="sale-price"><span>INFO</span></div>
 	        <div class="sale-description" style="color:#000000">여러분의 상세 사이즈 정보를 입력해주세요. <br>
-		        	귀하의 소중한 정보를 이용해 체형별로 맞춤 제품을 추천해주기 위해서 사용할 예정입니다.<br>
-					자신의 정확한 사이즈를 모른다면 원하는 대략의 사이즈를 입력해주세요 :)	
+		        	귀하의 소중한 정보를 체형별로 맞춤 제품을 추천해주기 위해서 사용할 예정입니다 :)<br>
 			</div>
 			 <div class="sale-description" style="color:#ff0000">
 					바지·상의·치마 사이즈를 선택하시면 자동으로 상세 사이즈가 입력됩니다. <br>

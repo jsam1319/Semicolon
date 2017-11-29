@@ -116,16 +116,18 @@
 	                            	<span id="id-span" class="red-span"></span>
                             	
                             		<br>
-                            		<label>PASSWORD</label>
                             		<div class="row" >
                             			<div class="col-sm-6">
+                            				<label>PASSWORD</label>
 	                            			<input class="simple-field" type="password" name="password1" id="password1" placeholder="PASSWORD" required/>
 	                            		</div>
+	                            			
 	                            		<div class="col-sm-6">
+	                            			<label>CONFIRM PASSWORD</label>
 	                            			<input class="simple-field" type="password" name="password" id="password2" placeholder="PASSWORD" required/>
 	                            		</div>
                             		</div>
-                            		<span class="pw-span" class="red-span"></span>
+                            		<span class="pw-span red-span"></span>
                             		<br>
                             		
                             		<label>NAME</label>
