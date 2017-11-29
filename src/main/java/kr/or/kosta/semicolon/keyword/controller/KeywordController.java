@@ -39,16 +39,10 @@ public class KeywordController {
 	public int insert(Keyword keyword) {
 		return keywordService.insert(keyword);
 	}
-	
-	@RequestMapping(value = "/keyword", method = RequestMethod.GET)
-	public List<Goods> listByKeyword(String keyword) {
-			return keywordService.listByKeyword(keyword);
-	}
-	
+
 	@RequestMapping(value = "/keyword/auto", method = RequestMethod.GET)
 	@ResponseBody
 	public List<String> autoComplete(String keyword) {
-		System.out.println(keyword);
 		return keywordService.autoComplete(keyword);
 	}
 }

@@ -29,7 +29,7 @@
 			gpurchase_no, goods_no, min, end_date, start_date, price, likecnt, status, pnum
 		FROM gpurchase
 		WHERE 
-			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{value} )
+			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{keyword} )
 	</select>
 	 
 	 
@@ -41,7 +41,7 @@
 
 
 	<select id="autoComplete" parameterType="string" resultType="string">
-		SELECT keyword_name keywordName
+		SELECT DISTINCT keyword_name keywordName
 		FROM keyword
 		WHERE keyword_name like '%${value}%'
 	

@@ -740,17 +740,19 @@
 
 
   <div class="search-box popup">
-    <form>
+    
      	<div class="input-group">
-						<input class="form-control" type="text" id="keyword" placeholder="검색어를 입력하세요!">
+						<input class="form-control" type="text" id="keyword" placeholder="검색어를 입력하세요!" autocomplete="off">
 						<span class="input-group-btn">
-			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+						<form action="#" id="searchForm">
+			      	<button type="submit" class="btn btn-primary" id="searchBtn"><i class="fa fa-search"></i></button>
+						</form>
 			      </span>
 			  </div>
 			  <ul class="list-group" id="autocomplete">
 
 				</ul>
-    </form>
+    
   </div>
 
   <div class="cart-box popup">
@@ -1006,6 +1008,12 @@ $(document).ready(function() {
 			}
 		})
 		
+	})
+	
+	$("#searchBtn").click(function() {
+		var keyword = $("#keyword").val();
+		
+		$("#searchForm").attr("action", "/product/search/" + keyword);
 	})
 })
 

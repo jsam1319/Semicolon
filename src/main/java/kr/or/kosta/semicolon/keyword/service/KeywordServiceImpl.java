@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.keyword.dao.KeywordDao;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
 import kr.or.kosta.semicolon.keyword.util.HangulSeperator;
@@ -25,9 +26,9 @@ public class KeywordServiceImpl implements KeywordService {
 	}
 
 	@Override
-	public List<Goods> listByKeyword(String keyword) {
+	public List<Gpurchase> listByKeyword(String keyword) {
 		// TODO Auto-generated method stub
-		return keywordDao.listByKeyword(keyword);
+		return keywordDao.listByKeyword(HangulSeperator.seperate(keyword));
 	}
 
 	@Override
