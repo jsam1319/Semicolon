@@ -152,8 +152,7 @@
 					</form>
 				
 					<label> 파일로 검색 </label>
-					<form action="http://localhost:8000/polls/search/" method="post" enctype="Multipart/form-data" >
-						
+					<form action="/image/search" method="post" enctype="Multipart/form-data" >
 							<div class="fileinput fileinput-new" data-provides="fileinput" style="margin: auto">
 						  	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 250px;"></div>
 						  	<div>

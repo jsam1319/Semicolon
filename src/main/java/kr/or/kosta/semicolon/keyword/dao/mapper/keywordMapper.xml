@@ -24,12 +24,54 @@
 	</insert>
 
 
-	<select id="listByKeyword" parameterType="string" resultType="Gpurchase">
-		SELECT 
-			gpurchase_no, goods_no, min, end_date, start_date, price, likecnt, status, pnum
-		FROM gpurchase
-		WHERE 
-			goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{keyword} )
+	<select id="listByKeyword" parameterType="kr.or.kosta.semicolon.common.KeywordParameter" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
+		SELECT goodsno, 
+		       category, 
+		       gname, 
+		       frongimg, 
+		       toggleimg, 
+		       gpurchaseno, 
+		       min, 
+		       enddate, 
+		       startdate, 
+		       price, 
+		       likecnt, 
+		       status, 
+		       pnum
+		FROM   (SELECT Ceil (rownum / 12) page, 
+		               goodsno, 
+		               category, 
+		               gname, 
+		               frongimg, 
+		               toggleimg, 
+		               gpurchaseno, 
+		               min, 
+		               enddate, 
+		               startdate, 
+		               price, 
+		               likecnt, 
+		               status, 
+		               pnum
+                    FROM   (SELECT g.goods_no      goodsNo, 
+                                   g.category      category, 
+                                   g.NAME          gname, 
+                                   g.front_img     frongImg, 
+                                   g.toggle_img    toggleImg, 
+                                   gp.gpurchase_no gpurchaseNo, 
+                                   gp.min          min, 
+                                   To_char(gp.end_date, 'yyyy-MM-DD')     endDate,
+                                   To_char(gp.start_date, 'yyyy-MM-DD')   startDate, 
+                                   gp.price        price, 
+                                   gp.likecnt      likecnt, 
+                                   gp.status       status, 
+                                   gp.pnum         pnum
+                            FROM   goods g, 
+                                   gpurchase gp 
+                            WHERE  g.goods_no in (SELECT goods_no FROM keyword WHERE keyword_name = #{keywordName}) 
+                                   AND gp.goods_no = g.goods_no
+                                   AND gp.status = #{status}        
+		                ))
+		WHERE  page = #{page}
 	</select>
 	 
 	 

@@ -22,47 +22,13 @@
           <input type="hidden" id="category" value="${category}">
 
           <div class="information-blocks">
-            <div class="tabs-container style-1">
-              <div class="swiper-tabs tabs-switch">
-                <div class="title">Gpurchase info</div>
-                <div class="list">
-                  <a class="tab-switcher goingTab active">진행중인 공구</a>
-                   <a class="tab-switcher endTab">마감된 공구</a>
-                  <div class="clear"></div>
-                </div>
-              </div>
+          
               <div>
 
 
                 <!-- /.ongoing Gpurchase -->
                 <div class="tabs-entry ongoinGpurchase">
-                  <!-- Top Menu -->
-                  <div class="page-selector">
-                    <div class="shop-grid-controls">
-                      <div class="entry">
-                        <div class="inline-text">Sorty by</div>
-                        <div class="simple-drop-down">
-                          <select id="productOrder">
-                            <option value='newProduct' selected>등록순</option>
-                            <option value='endDate'>마감날짜순</option>
-                            <option value='deadline'>참여많은순</option>
-                            <option value='lowPrice'>낮은가격순</option>
-                            <option value='highPrice'>높은가격순</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="entry">
-                        <div class="view-button active grid">
-                          <i class="fa fa-th"></i>
-                        </div>
-                        <div class="view-button list">
-                          <i class="fa fa-list"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                  <!-- /.Top Menu -->
+                 
                   
                   <!-- Gpurchase List -->
                   <div class="row shop-grid grid-view listView" id="goingList"></div>
@@ -80,70 +46,20 @@
                 <!-- /.ongoing Gpurchase -->
 
 
-                <!-- End Gpurchase -->
-                <div class="tabs-entry">
-                  <!-- Top Menu -->
-                  <div class="page-selector">
-                    <div class="shop-grid-controls">
-                      <div class="entry">
-                        <div class="inline-text">Sorty by</div>
-                        <div class="simple-drop-down">
-                          <select id="endproductOrder">
-                            <option value='newProduct' selected>등록순</option>
-                            <option value='endDate'>마감날짜순</option>
-                            <option value='deadline'>참여많은순</option>
-                            <option value='lowPrice'>낮은가격순</option>
-                            <option value='highPrice'>높은가격순</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="entry">
-                        <div class="view-button active grid">
-                          <i class="fa fa-th"></i>
-                        </div>
-                        <div class="view-button list">
-                          <i class="fa fa-list"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                  <!-- /.Top Menu -->
-
                   <!-- Gpurchase List -->
-                  <div class="row shop-grid grid-view endlistView" id="endList"></div>
 
-                  <div class="page-selector">
-                      <a class="moreView"><i
-                        class="fa fa-angle-down"></i></a>
-                    <div class="pages-box">
-                      <a href="#" class="square-button"><i
-                        class="fa fa-angle-up"></i></a>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                  <!-- /.Gpurchase List -->
                 </div>
-              </div>
-            </div>
           </div>
           <!-- /.End Gpurchase -->
-
-
-
-
-
         </div>
-
-
-
+        
         <!-- Left Side Menu -->
         <div
           class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
           <div class="information-blocks categories-border-wrapper">
-            <div class="block-title size-3"> 검색 결과 </div>
+            <div class="block-title size-3"> 검색 사진 </div>
             <div class="accordeon">
-             	<div class="accordeon-title"> <font style="font-weight: bold">${keyword}</font> 로 검색한 결과입니다.</div>
+             	<div> <img src="/resources/images/${imageName}" style="width : 200px; height: 250px"></div>
             </div>
           </div>
 
@@ -156,6 +72,31 @@
   <div class="clear"></div>
 
 
+<script>
+
+$(document).ready(function() {
+	
+	$.ajax({
+		url : "http://localhost:8000/polls/search/",
+		dataType : 'json',
+		type : 'POST',
+		data : {
+			image : "http://localhost:8081/resources/images/${imageName}",
+		},
+		success : function(data) {
+			console.log(data);
+		},
+		error : function(data) {
+			console.log(data);
+		}
+	})
+})
+
+
+
+
+</script>
+<!-- 
 <script>
 var goingPage = 1;
 var endPage = 1;
@@ -282,7 +223,7 @@ function endListLoad() {
 /** 가격 데이터 포맷 */
 function numberfmt(value){
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+} -->
 
 </script>
 </body>

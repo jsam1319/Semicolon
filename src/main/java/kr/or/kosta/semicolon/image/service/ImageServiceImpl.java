@@ -22,6 +22,8 @@ public class ImageServiceImpl implements ImageService {
 
 	@Override
 	public void insert(Image image) {
+		System.out.println(image);
+		
 		String feature = "";
 		
 		try {

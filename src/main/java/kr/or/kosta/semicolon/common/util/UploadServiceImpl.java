@@ -46,7 +46,7 @@ public class UploadServiceImpl implements UploadService {
 	
 	Logger logger = Logger.getLogger(UploadServiceImpl.class);
 	
-	private final static String UPLOAD_PATH = "C:/Users/kosta/git/Semicolon/src/main/webapp/resources/images/";
+	private final static String UPLOAD_PATH = "/home/jaehyun/git/Semicolon/src/main/webapp/resources/images/";
 	
 	public String uploadFile(String originalName, byte[] fileData) throws Exception{
 		
@@ -83,8 +83,8 @@ public class UploadServiceImpl implements UploadService {
 	
 	public String ckeditorInsert(Image image, HttpServletRequest request) throws Exception {
 		
-		String attachPath = "C:/Users/kosta/git/Semicolon/src/main/webapp/resources/images/";
-		String attachUrl = "http://localhost/resources/images/";
+		String attachPath = "/home/jaehyun/git/Semicolon/src/main/webapp/resources/images/";
+		String attachUrl = "http://localhost:8081/resources/images/";
 		
 		MultipartFile upload = image.getUpload();
 		
@@ -101,6 +101,8 @@ public class UploadServiceImpl implements UploadService {
 		
 		String attachFile = attachPath + originalFileName;
 		String url = attachUrl + originalFileName;
+		
+		logger.info("FileOriginalName : " + originalFileName);
 		
 		request.setAttribute("url", url);
 		

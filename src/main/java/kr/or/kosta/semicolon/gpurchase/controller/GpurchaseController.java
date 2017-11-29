@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.askresale.service.askResaleService;
+import kr.or.kosta.semicolon.common.KeywordParameter;
 import kr.or.kosta.semicolon.common.UseParameter;
+import kr.or.kosta.semicolon.common.enumtype.LogType;
 import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
@@ -31,6 +33,9 @@ import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
 import kr.or.kosta.semicolon.gwish.service.gwishService;
+import kr.or.kosta.semicolon.keyword.service.KeywordService;
+import kr.or.kosta.semicolon.log.domain.Log;
+import kr.or.kosta.semicolon.log.service.LogService;
 import kr.or.kosta.semicolon.member.service.MemberService;
 import kr.or.kosta.semicolon.push.domain.PushToken;
 import kr.or.kosta.semicolon.push.service.PushTokenService;
@@ -73,6 +78,12 @@ public class GpurchaseController {
 	
 	@Inject
 	private PushTokenService pushService;
+	
+	@Inject
+	private KeywordService keywordService;
+	
+	@Inject
+	private LogService logService;
 	
 	@RequestMapping(value="/insert/{goodsNo}", method=RequestMethod.GET)
 	public String insert(@PathVariable("goodsNo") int goodsNo, Model model) throws Exception {
@@ -348,6 +359,42 @@ public class GpurchaseController {
 
 	}
 	
+	@RequestMapping(value = "/search/{keyword}", method = RequestMethod.GET)
+	public String search(@PathVariable("keyword") String keyword, HttpServletRequest request) throws Exception {
+		int memberNo = (int)request.getSession().getAttribute("no");
+		
+		Log log = new Log();
+		log.setMemberNo(memberNo);
+		log.setType(LogType.SEARCH.name());
+		log.setContent(keyword);
+		logService.insert(log);
+		
+		request.setAttribute("keyword", keyword);
+		
+		return "product/search";
+	}
+	
+	@RequestMapping(value = "/search/{keywordName}", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> selectSearch(@PathVariable("keywordName") String keywordName, KeywordParameter keyword) throws Exception {
+		keyword.setKeywordName(keywordName);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<GpurchaseInfo> purchases = keywordService.listByKeyword(keyword);
+
+		if(purchases.isEmpty()) {
+			resultMap.put("ResponseCode", -1);
+			resultMap.put("ResponseMessage", "결과가 없습니다.");
+		}
+		
+		else {
+			resultMap.put("ResponseCode", 1);
+			resultMap.put("ResponseMessage", purchases.size() + "개의 결과가 있습니다.");
+		
+			resultMap.put("list", purchases);
+		}
+		
+		return resultMap;
+	}
 	
 
 	/**

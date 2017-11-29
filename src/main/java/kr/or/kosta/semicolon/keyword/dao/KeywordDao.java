@@ -3,7 +3,9 @@ package kr.or.kosta.semicolon.keyword.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.or.kosta.semicolon.common.KeywordParameter;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
 
 /**
@@ -25,7 +27,7 @@ public interface KeywordDao {
 
 	public int insert(Keyword keyword);
 	
-	public List<Gpurchase> listByKeyword(String keyword);
+	public List<GpurchaseInfo> listByKeyword(KeywordParameter keyword);
 	
 	public List<HashMap<String, String>> selectName(int goodsNo) throws Exception;
 	
