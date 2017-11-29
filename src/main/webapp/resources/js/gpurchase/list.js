@@ -74,44 +74,38 @@ $(document).ready(function(){
 		/** 붙이는 html String */
 	  function returnStr(data) {
 	  	var str = "";
-	  	 
-	  	$(data.gplist).each(function(){
-	  	      var gpurchase = this;
-	  	      $(data.glist).each(function(){
-	  	        var goods = this;
-	  	        if (gpurchase.goodsNo == goods.goodsNo) {
-	  	              str += "  <div class='col-md-3 col-sm-4 shop-grid-item'>"
-	  	              str += "    <div class='product-slide-entry shift-image'>"
-	  	              str += "      <div class='product-image'>"
-	  	              str += "		<img src='/resources/images/"+goods.frontImg+"' alt='image' /></a>"
-		  	          str += "		<img src='/resources/images/"+goods.toggleImg+"' alt='image' /></a>"
-	  	              str += "      </div>"
-	  	            	  
-	  	            	// 해당 공구 상품의 회사 이름 가져오기
-			  	          for (var i in data.comlist) {
-			  			  	if(data.comlist[i].GOODSNO == goods.goodsNo) {
-			  			  		str += "<a class='tag'>"+data.comlist[i].NAME+"</a>"
-			  			  	}
-			  			  }
-	  	              
-		  	         // 회원 로그인 했는지 체크 - 
-		  	              if(!memberNo){
-		  	            	str += "<a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
-		  	              } else {
-		  	            	str += "<a href='/product/gpurchase/"+gpurchase.gpurchaseNo+"' class='title loginTitle' title='"+gpurchase.gpurchaseNo+"'>"+goods.name+"</a>"
-		  	              }
-	  	              
-	  	              str += "      <div class='price gpurchasePrice'>"
-	  	              str += "        <div class='current gpurchasePrice'>￦"+numberfmt(gpurchase.price)+"</div>"
-	  	              str += "      </div>"
-	  	              str += "		<div class='date'>"
-	  	              str += " 			<div>"+gpurchase.startDate+" ~ "+gpurchase.endDate+"</div>"
-	  	              str += "		</div>"
-	  	              str += "      <div class='list-buttons'>"
-	  	              str += "      </div></div><div class='clear'></div></div>"
-	  	        }
-	  	      })
-	  	    });
+	  	
+	  	$(data).each(function(){
+	  		var list = this;
+	  		
+	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
+	        str += "	<div class='product-slide-entry shift-image'>"
+	        str += "		<div class='product-image'>"
+	        str += "			<img src='/resources/images/"+list.frontImg+"' alt='image' />"
+	  	    str += "			<img src='/resources/images/"+list.toggleImg+"' alt='image' />"
+	        str += "		</div>"
+	        str += "		<a class='tag'>"+list.cname+"</a>"
+	        
+     // 회원 로그인 했는지 체크 - 
+          if(!memberNo){
+        	str += "		<a class='title nloginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+list.gname+"</a>"
+          } else {
+        	str += "		<a href='/product/gpurchase/"+list.gpurchaseNo+"' class='title loginTitle' title='"+list.gpurchaseNo+"'>"+list.gname+"</a>"
+          }
+	  		
+	  		str += "		<div class='price gpurchasePrice'>"
+	        str += "        	<div class='current gpurchasePrice'>￦"+numberfmt(list.price)+"</div>"
+	        str += "		</div>"
+	        str += "		<div class='date'>"
+	        str += " 			<div>"+list.startDate+" ~ "+list.endDate+"</div>"
+	        str += "		</div>"
+	        str += "		<div class='list-buttons'>"
+	        str += "		</div>"
+	        str += "	</div>"
+	        str += "	<div class='clear'></div>"
+	        str += "</div>"
+	        	
+	  	})
 	  	
 	  	return str;
 	  	

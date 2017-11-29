@@ -79,90 +79,22 @@
 
 
         <!-- Left Side Menu -->
-        <div
-          class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
+        <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
           <div class="information-blocks categories-border-wrapper">
             <div class="block-title size-3">Categories</div>
-            <div class="accordeon">
-              <div class="accordeon-title">Bags &amp; Accessories</div>
-              <div class="accordeon-entry">
+            <div class="enterContent-2"></div>
                 <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
+                <ul>
+                    <li><a href="/product/research/110"> COAT</a></li>
+                    <li><a href="/product/research/120"> JACKET</a></li>
+                    <li><a href="/product/research/130"> DRESS</a></li>
+                    <li><a href="/product/research/140"> SWEATER</a></li>
+                    <li><a href="/product/research/150"> KNIT</a></li>
+                    <li><a href="/product/research/210"> SKIRT</a></li>
+                    <li><a href="/product/research/220"> SHORT PANTS</a></li>
+                    <li><a href="/product/research/230"> PANTS</a></li>
+                    </ul>
                 </div>
-              </div>
-              <div class="accordeon-title">Man's Products</div>
-              <div class="accordeon-entry">
-                <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="accordeon-title">Woman's Products</div>
-              <div class="accordeon-entry">
-                <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="accordeon-title">Top Brands</div>
-              <div class="accordeon-entry">
-                <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="accordeon-title">Special Offer</div>
-              <div class="accordeon-entry">
-                <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="accordeon-title">Leather's Products</div>
-              <div class="accordeon-entry">
-                <div class="article-container style-1">
-                  <ul>
-                    <li><a href="#">Bags &amp; Accessories</a></li>
-                    <li><a href="#">Man's Products</a></li>
-                    <li><a href="#">Woman's Products</a></li>
-                    <li><a href="#">Top Brands</a></li>
-                    <li><a href="#">Special Offer</a></li>
-                    <li><a href="#">Leather's Products</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- /.Left Side Menu -->

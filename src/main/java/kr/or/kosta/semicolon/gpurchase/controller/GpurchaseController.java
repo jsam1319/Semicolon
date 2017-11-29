@@ -124,33 +124,6 @@ public class GpurchaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	/*@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> researchList(UseParameter params, @PathVariable("category") int category,
-			@PathVariable("page") int page,
-			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
-		logger.info("gpurchaseController research 접근");
-
-		ResponseEntity<Map<String, Object>> entity = null;
-		try {
-			params.setPage(page);
-			params.setProductOrder(productOrder);
-
-			Map<String, Object> map = gpService.listAll(params, category);
-
-			// 공구 조사 페이지에서 공구 리스트 페이지로 넘어가는 데이터 가져오기
-			List<Integer> golist = gpService.selectGolist();
-			map.put("golist", golist);
-
-			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
-	}*/
-	
 	@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> researchList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
@@ -168,7 +141,7 @@ public class GpurchaseController {
 			// 공구 조사 페이지에서 공구 리스트 페이지로 넘어가는 데이터 가져오기
 			List<Integer> golist = gpService.selectGolist();
 			map.put("golist", golist);
-logger.info(map);
+			
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -297,32 +270,21 @@ logger.info(map);
 	 * @param params : 페이징에 필요한 파라미터들을 저장하기 위한 JavaBean
 	 * @param page : 요청받은 페이지
 	 * @param productOrder : 요청받은 페이지 정렬 value
-	 * @return
+	 * @return List<Gpurchase>
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> gpurchaseList(UseParameter params, Model model,
-			@PathVariable("category") int category, @PathVariable("page") int page,
+	public List<GpurchaseInfo> gpurchaseList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController gpurchaseList 접근");
+		
+		UseParameter parameter = new UseParameter(page, productOrder, 1, category);
+		
+		List<GpurchaseInfo> list = gpService.ListAll(parameter);
+		logger.info(list);
+		return list;
 
-		ResponseEntity<Map<String, Object>> entity = null;
-
-		try {
-			params.setPage(page);
-			params.setProductOrder(productOrder);
-
-			Map<String, Object> map = gpService.glistAll(params, category);
-
-			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
 	}
 	
 	
@@ -332,39 +294,27 @@ logger.info(map);
 	 * 2. 처리내용 : 끝난 공구 리스트 출력
 	 * </pre>
 	 * @Method Name : endList
-	 * @param params
-	 * @param model
-	 * @param category
-	 * @param page
-	 * @param productOrder
-	 * @return
+	 * @param category : 상품 분류 카테고리 번호
+	 * @param page : 요청받은 페이지
+	 * @param productOrder : 요청받은 정렬 순서
+	 * @return List<Gpurchase>
 	 * @throws Exception
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> endList(UseParameter params, Model model,
-			@PathVariable("category") int category, @PathVariable("page") int page,
+	public List<GpurchaseInfo> endList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
 		logger.info("gpurchaseController endList 접근");
+		
+		UseParameter parameter = new UseParameter(page, productOrder, 2, category);
+		
+		List<GpurchaseInfo> list = gpService.ListAll(parameter);
+		
+		return list;
 
-		ResponseEntity<Map<String, Object>> entity = null;
-
-		try {
-			params.setPage(page);
-			params.setProductOrder(productOrder);
-			
-			Map<String, Object> map = gpService.endlistAll(params, category);
-
-			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
 	}
 
+	
 	
 	/**
 	 * <pre>
@@ -389,10 +339,8 @@ logger.info(map);
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
 		int askCnt = askService.selectCnt(askResale);
 		
-		model.addAttribute("gpurchase", (Gpurchase) map.get("gpurchase"));
-		model.addAttribute("goods", (Goods) map.get("goods"));
+		model.addAttribute("gpurchase", (GpurchaseInfo) map.get("gpurchase"));
 		model.addAttribute("keyword", map.get("keyword"));
-		model.addAttribute("companyName", map.get("companyName"));
 		model.addAttribute("size", map.get("size"));
 		model.addAttribute("askCnt", askCnt);
 		

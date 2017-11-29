@@ -36,6 +36,7 @@ import kr.or.kosta.semicolon.tops.dao.TopsDao;
  * 2017. 11. 10.     박연주   	최초 생성
  * 2017. 11. 23.	 박주연	    getSalesByCategory 추가
  * 2017. 11. 28.	 박연주		updateResearchCancle 추가
+ * 2017. 11. 29.	 박연주		listAll, glistAll, endlistAll 삭제, ListAll 추가
  */
 @Service
 public class gpurchaseServiceImpl implements gpurchaseService {
@@ -65,30 +66,24 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	
 	@Override
 	public Map<String, Object> select(int gpurchaseNo) throws Exception {
-//		공구 정보 불러오기
-		Gpurchase gpurchase = new Gpurchase();
+		
+		// 공구 정보 불러오기
+		GpurchaseInfo gpurchase = new GpurchaseInfo();
 		gpurchase = gpdao.select(gpurchaseNo);
 		
-//		상품 정보 불러오기
-		Goods goods = new Goods();
-		goods = goodsDao.select(gpurchase.getGoodsNo());
-		
-//		회사명 불러오기
-		String companyName = comDao.selectCName(gpurchase.getGoodsNo());
-		
-//		상품 키워드 불러오기
+		// 상품 키워드 불러오기
 		List<HashMap<String, String>> keywordList;
-		keywordList = keyworddao.selectName(goods.getGoodsNo());
+		keywordList = keyworddao.selectName(gpurchase.getGoodsNo());
 		
 		List<String> keyword = new ArrayList<>();
 		for (HashMap<String, String> kw : keywordList) {
 			keyword.add(kw.get("KEYWORDNAME"));
 		}
 		
-//		상품 사이즈 카테고리별 분리 및 불러오기
+		// 상품 사이즈 카테고리별 분리 및 불러오기
 		List<HashMap<String, Object>> sizeList;
 		
-		if (goods.getCategory() < 200) {
+		if (gpurchase.getCategory() < 200) {
 			sizeList = topsdao.selectSize(gpurchaseNo);
 		} else {
 			sizeList = bottomDao.selectSize(gpurchaseNo);
@@ -102,9 +97,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
-		map.put("goods", goods);
 		map.put("keyword", keyword);
-		map.put("companyName", companyName);
 		map.put("size", size);
 
 		return map;
@@ -129,20 +122,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	
 	@Override
-	public Map<String, Object> listAll(UseParameter params, int category) throws Exception {
-		List<Gpurchase> gplist = gpdao.listAll(params);
-		List<Goods> glist = goodsDao.categoryListAll(category);
-		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("gplist", gplist);
-		map.put("glist", glist);
-		map.put("comlist", comlist);
-		
-		return map;
-	}
-	
-	@Override
 	public void delete(int gpurchaseNo) throws Exception {
 		gpdao.delete(gpurchaseNo);
 	}
@@ -158,38 +137,8 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	}
 	
 	@Override
-	public Map<String, Object> glistAll(UseParameter params, int category) throws Exception {
-		List<Gpurchase> gplist = gpdao.glistAll(params);
-		List<Goods> glist = goodsDao.categoryListAll(category);
-		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("gplist", gplist);
-		map.put("glist", glist);
-		map.put("comlist", comlist);
-		
-		return map;
-	}
-	
-	@Override
-	public Map<String, Object> endlistAll(UseParameter params, int category) throws Exception {
-		List<Gpurchase> gplist = gpdao.endlistAll(params);
-		List<Goods> glist = goodsDao.categoryListAll(category);
-		List<Map<String, Object>> comlist = comDao.selectCNameListAll();
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("gplist", gplist);
-		map.put("glist", glist);
-		map.put("comlist", comlist);
-		
-		return map;
-	}
-	
-	@Override
 	public List<Integer> selectGolist() throws Exception {
-		List<Integer> list = gpdao.selectGolist();
-		
-		return list;
+		return gpdao.selectGolist();
 	}
 	
 	@Override

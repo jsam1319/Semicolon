@@ -5,6 +5,7 @@ public class GpurchaseInfo {
 	private int goodsNo;
 	private int category;
 	private String gname;
+	private String detail;
 	private String frontImg;
 	private String toggleImg;
 	private int gpurchaseNo;
@@ -19,14 +20,16 @@ public class GpurchaseInfo {
 	
 	
 	public GpurchaseInfo() {}
-	
-	
-	public GpurchaseInfo(int goodsNo, int category, String gname, String frontImg, String toggleImg, int gpurchaseNo,
-			int min, String endDate, String startDate, int price, int likecnt, int status, int pnum, String cname) {
+
+
+	public GpurchaseInfo(int goodsNo, int category, String gname, String detail, String frontImg, String toggleImg,
+			int gpurchaseNo, int min, String endDate, String startDate, int price, int likecnt, int status, int pnum,
+			String cname) {
 		super();
 		this.goodsNo = goodsNo;
 		this.category = category;
 		this.gname = gname;
+		this.detail = detail;
 		this.frontImg = frontImg;
 		this.toggleImg = toggleImg;
 		this.gpurchaseNo = gpurchaseNo;
@@ -68,6 +71,16 @@ public class GpurchaseInfo {
 
 	public void setGname(String gname) {
 		this.gname = gname;
+	}
+
+
+	public String getDetail() {
+		return detail;
+	}
+
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 
@@ -183,10 +196,10 @@ public class GpurchaseInfo {
 
 	@Override
 	public String toString() {
-		return "GpurchaseInfo [goodsNo=" + goodsNo + ", category=" + category + ", gname=" + gname + ", frontImg="
-				+ frontImg + ", toggleImg=" + toggleImg + ", gpurchaseNo=" + gpurchaseNo + ", min=" + min + ", endDate="
-				+ endDate + ", startDate=" + startDate + ", price=" + price + ", likecnt=" + likecnt + ", status="
-				+ status + ", pnum=" + pnum + ", cname=" + cname + "]";
+		return "GpurchaseInfo [goodsNo=" + goodsNo + ", category=" + category + ", gname=" + gname + ", detail="
+				+ detail + ", frontImg=" + frontImg + ", toggleImg=" + toggleImg + ", gpurchaseNo=" + gpurchaseNo
+				+ ", min=" + min + ", endDate=" + endDate + ", startDate=" + startDate + ", price=" + price
+				+ ", likecnt=" + likecnt + ", status=" + status + ", pnum=" + pnum + ", cname=" + cname + "]";
 	}
 	
 	
