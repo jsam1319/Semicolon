@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 
 public interface gpurchaseService {
 	
@@ -31,6 +32,8 @@ public interface gpurchaseService {
 	
 	// 공구 완료(end) 리스트
 	public Map<String, Object> endlistAll(UseParameter params, int category) throws Exception;
+	
+	public List<GpurchaseInfo> ListAll(UseParameter parameter) throws Exception;
 	
 	// 조사 공구 카운트 +/-
 	public void updateCntP(int gpurchaseNo) throws Exception;

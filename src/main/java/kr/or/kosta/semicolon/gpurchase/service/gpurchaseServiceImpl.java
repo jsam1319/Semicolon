@@ -17,6 +17,7 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.keyword.dao.KeywordDao;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
@@ -119,6 +120,13 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return gpdao.gpListAll();
 	}
 	
+	
+	@Override
+	public List<GpurchaseInfo> ListAll(UseParameter parameter) throws Exception {
+		List<GpurchaseInfo> list = gpdao.ListAll(parameter);
+		
+		return list;
+	}
 	
 	@Override
 	public Map<String, Object> listAll(UseParameter params, int category) throws Exception {

@@ -8,15 +8,24 @@ public class UseParameter {
 	private int page;         
 	private String value;    
 	private String productOrder;
+	private int status;
+	private int category;
 	
 	
 	public UseParameter() {}
 	
-	public UseParameter(int page, String value, String productOrder) {
+	public UseParameter(int page, String productOrder, int status, int category) {
+		this(page, null, productOrder, status, category);
+	}
+
+
+	public UseParameter(int page, String value, String productOrder, int status, int category) {
 		super();
 		this.page = page;
 		this.value = value;
 		this.productOrder = productOrder;
+		this.status = status;
+		this.category = category;
 	}
 
 
@@ -34,9 +43,11 @@ public class UseParameter {
 		return value;
 	}
 
+
 	public void setValue(String value) {
 		this.value = value;
 	}
+
 
 	public String getProductOrder() {
 		return productOrder;
@@ -47,11 +58,34 @@ public class UseParameter {
 		this.productOrder = productOrder;
 	}
 
-	@Override
-	public String toString() {
-		return "Params [page=" + page + ", value=" + value + ", productOrder=" + productOrder + "]";
+
+	public int getStatus() {
+		return status;
 	}
 
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+	public int getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+
+	@Override
+	public String toString() {
+		return "UseParameter [page=" + page + ", value=" + value + ", productOrder=" + productOrder + ", status="
+				+ status + ", category=" + category + "]";
+	}
+	
+	
 
 	
 	

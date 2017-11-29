@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 
 /**
  * 
@@ -47,6 +48,8 @@ public interface gpurchaseDao {
 	public List<Gpurchase> glistAll(UseParameter params) throws Exception;
 	
 	public List<Gpurchase> endlistAll(UseParameter params) throws Exception;
+	
+	public List<GpurchaseInfo> ListAll(UseParameter parameter) throws Exception;
 	
 	
 	// 기한 내에 목표 인원 채운 조사 공구 리스트

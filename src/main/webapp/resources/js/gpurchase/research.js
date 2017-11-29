@@ -34,7 +34,7 @@ $(document).ready(function(){
 	  function printList(data){
 		var str = returnStr(data)
 	    $(".researchView").html(str);
-		
+		console.log(str)
 		modalSelect();
 	  }
 	  
@@ -77,54 +77,35 @@ $(document).ready(function(){
 	  function returnStr(data) {
 	  	var str = "";
 	  	
-	  	$(data.gplist).each(function(){
-	  	      var gpurchase = this;
-	  	      $(data.glist).each(function(){
-	  	    	var goods = this;
-	  	    	console.log(goods)
-	  	    	
-	  	    	// 공구 번호와 상품 번호를 비교해 같은 데이터 출력
-	  	        if (gpurchase.goodsNo == goods.goodsNo) {
-	  	              str += "  <div class='col-md-3 col-sm-4 shop-grid-item'>"
-	  	              str += "    <div class='product-slide-entry shift-image'>"
-	  	              str += "      <div class='product-image'>"
+	  	$(data.list).each(function(){
+	  		var list = this;
+	  		
+	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
+	        str += "	<div class='product-slide-entry shift-image'>"
+	        str += "		<div class='product-image'>"
+	        str += "			<img src='/resources/images/"+list.frontImg+"'/>"
+  			str += "			<img src='/resources/images/"+list.toggleImg+"'/>"
+  			str += "		</div>"
+  			str += "		<a class='tag'>"+list.cname+"</a>"
+  			str += "		<a class='title loginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+list.gname+"</a>"
+  			str += "		<div class='price gpurchasePrice'>"
+	  	    str += "        	<div class='current gpurchasePrice'> ￦"+numberfmt(list.price)+"</div>"
+	  	    str += "      	</div>"
+	  	    str += "		<div class='date'>"
+	  	    str += " 			<div>"+list.startDate+" ~ "+list.endDate+"</div>"
+	  	    str += "		</div>"
+	  	    str += "      	<div class='list-buttons'>"
+	  	    str += "      	</div> ";
+	  	    str += "	</div>"
+	  	    str += "	<div class='clear'></div>"
+	  	    str += "</div>"
 	  	            	  
-	  	            	  
-	  	          // 공구 리스트에 등록된 상품 데이터 출력
-	  	            // 진행 공구로 이동할 상품 데이터 출력 및 이미지 별도 표시	  
-	  	            var flag = false;
-	  	            
-	  	            for(var i in data.golist) {
-	  	            	if(data.golist[i] == gpurchase.gpurchaseNo) {
-	  	            		flag = true;
-	  	            		break;
-	  	            	}
-	  	            }
-	  	            
-	  	            
-	  	          if (flag) {
-		  		  	    str += "<img src='/resources/images/"+goods.frontImg+"' class='imgcl'/>"
-		  		  	    str += "<img src='/resources/images/"+goods.toggleImg+"' class='imgcl'/>"
-		  		  	    str += "<div class='bottom-line'>"
-			  	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
-			  	        str += "</div>"
-		  			} else {
-		  				str += "<img src='/resources/images/"+goods.frontImg+"'/>"
-		  			  	str += "<img src='/resources/images/"+goods.toggleImg+"'/>"
-		  			}
-	  	            
-	  	              str += "      </div>"
-	  	            	  
-	  	            	  
-	  	            	  
-	  	           // 해당 공구 상품의 회사 이름 가져오기
-		  	          for (var i in data.comlist) {
-		  			  	if(data.comlist[i].GOODSNO == goods.goodsNo) {
-		  			  		str += "<a class='tag'>"+data.comlist[i].NAME+"</a>"
-		  			  	}
-		  			  }
-	  	            	
-	  	              
+	  	    
+	  	})
+	  	return str;
+	  };
+	  	
+	  	              /*
 	  	              
 	  	              // 회원 로그인 했는지 체크
 	  	              if(!memberNo){
@@ -146,9 +127,42 @@ $(document).ready(function(){
 	  	      })
 	  	    });
 	  	
-	  	return str;
+	  		return str;
 	  	
 	  }	
+	  
+	  */
+	  
+	  
+	  
+	// 공구 리스트에 등록된 상품 데이터 출력
+        // 진행 공구로 이동할 상품 데이터 출력 및 이미지 별도 표시	  
+      /*  var flag = false;
+        
+        for(var i in data.golist) {
+        	if(data.golist[i] == gpurchase.gpurchaseNo) {
+        		flag = true;
+        		break;
+        	}
+        }
+        
+        
+      if (flag) {
+	  	    str += "<img src='/resources/images/"+goods.frontImg+"' class='imgcl'/>"
+	  	    str += "<img src='/resources/images/"+goods.toggleImg+"' class='imgcl'/>"
+	  	    str += "<div class='bottom-line'>"
+	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
+	        str += "</div>"
+		} else {
+			str += "<img src='/resources/images/"+goods.frontImg+"'/>"
+		  	str += "<img src='/resources/images/"+goods.toggleImg+"'/>"
+		}
+        
+          str += "      </div>"
+        	  
+        	  
+	  */
+	  
 	  
 	  
 	  
