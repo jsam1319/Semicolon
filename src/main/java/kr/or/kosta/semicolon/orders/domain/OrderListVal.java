@@ -1,5 +1,20 @@
 package kr.or.kosta.semicolon.orders.domain;
 
+/**
+ * @packgename  	 kr.or.kosta.semicolon.orders.domain
+ * @filename         OrderListVal.java
+ * @author           박주연
+ * @since            2017. 11. 29.
+ * @see
+ *
+ * == Modification Infomation (수정 이력) ==
+ * 
+ *   DATE        AUTHOR       NOTE
+ * --------      -----------   ---------------------------------------
+ * 2017. 11. 27.       박주연        최초 생성
+ * 2017. 11. 29.	   박주연		 gpurchaseNo추가
+ *
+ */
 public class OrderListVal {
 	private int ordersNo;/** 주문번호 */
 	private String img;/** 이미지 경로 */
@@ -9,11 +24,12 @@ public class OrderListVal {
 	private int totalPrice; /** 총 가격 */
 	private int qty; /** 갯수 */
 	private String status; /** 주문상태 */
+	private int gpurchaseNo; /** 공구 번호 */
 	
 	public OrderListVal() { }
 	
 	public OrderListVal(int ordersNo, String img, String sizes, String name, int unitPrice, int totalPrice, int qty,
-			String status) {
+			String status, int gpurchaseNo) {
 		super();
 		this.ordersNo = ordersNo;
 		this.img = img;
@@ -23,7 +39,10 @@ public class OrderListVal {
 		this.totalPrice = totalPrice;
 		this.qty = qty;
 		this.status = status;
+		this.gpurchaseNo = gpurchaseNo;
 	}
+
+
 
 	public int getOrdersNo() {
 		return ordersNo;
@@ -89,11 +108,20 @@ public class OrderListVal {
 		this.status = status;
 	}
 
+	public int getGpurchaseNo() {
+		return gpurchaseNo;
+	}
+
+	public void setGpurchaseNo(int gpurchaseNo) {
+		this.gpurchaseNo = gpurchaseNo;
+	}
+
 	@Override
 	public String toString() {
-		return "OrdersList [ordersNo=" + ordersNo + ", img=" + img + ", sizes=" + sizes + ", name=" + name
+		return "OrderListVal [ordersNo=" + ordersNo + ", img=" + img + ", sizes=" + sizes + ", name=" + name
 				+ ", unitPrice=" + unitPrice + ", totalPrice=" + totalPrice + ", qty=" + qty + ", status=" + status
-				+ "]";
+				+ ", gpurchaseNo=" + gpurchaseNo + "]";
 	}
+
 	
 }

@@ -1,4 +1,4 @@
-package kr.or.kosta.semicolon.gwish.dao.controller;
+package kr.or.kosta.semicolon.gwish.controller;
 
 import java.util.HashMap;
 import java.util.List;

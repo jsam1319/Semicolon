@@ -8,6 +8,7 @@
 	  font-size: 80px;
 	  color: black;
 	}
+	
 	</style>
 	
 	<script>
@@ -58,28 +59,33 @@
 		      },
 		    dataType : "json",
 		    success : function(data){
-		        console.log("data:"+data);
-		        if(data == ""){
+		        
+		         if(data == "" && page == 1){
 		            print +=
 		            '<div class="col-sm-12 information-blocks">'+
 			    		'<div class="table-responsive col-sm-12">'+
 			    			'<div class="letter">'+
 			    				'<div class="container-404">'+
-			    					'<div class="description">찜목록이 없습니다.</div>'+
+			    					'<div class="description">목록이 없습니다.</div>'+
 			    				'</div>'+
 			    			'</div>'+
 			    		'</div>'+
 		    		'</div>';
+		    		
+		            $(".listview").html(print); 
 		        }
 		        
+		        
+		        
+		       
 		        $.each(data, function(index, item){
 		            print +=
 		                '<div class="col-sm-4 portfolio-entry" >'+
 							'<div class="image" style="height:20rem">'+
-								'<img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/>'+
+								'<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/></a>'+
 							'</div>'+
 							'<div style="display:inline;">'+
-								'<a class="title" href="#"style="display:inline;">'+item.name+'</a>'+
+								'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>'+
 								'<button class="deletebtn button style-14" style="display:inline; float:right; background:#f6b7b7; border-color:#FFFFFF;" value='+item.gwishNo+'><i class="fa fa-times"></i></button>'+
 							'</div>'+
 							'<div class="subtitle">'+
@@ -91,7 +97,10 @@
 						'</div>'; 
 								 
 		        });
+		        
+		       
 		        $(".listview").append(print);
+		        
 		       
 		    }//end success
 		}); //end ajax

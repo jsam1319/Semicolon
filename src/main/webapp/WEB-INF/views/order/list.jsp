@@ -107,7 +107,7 @@ $(document).ready(function() {
 	        printHtml += 
 				   '<tr>'+
 						'<th class="column-3">Number</th>'+
-						'<th class="column-2">Product Name</th>'+
+						'<th class="column-1">Product Name</th>'+
 						'<th class="column-5">Size</th>'+
 						'<th class="column-2">Unit Price</th>'+
 						'<th class="column-4">Qty</th>'+
@@ -128,11 +128,11 @@ $(document).ready(function() {
 	                     '<div class="wishlist-entry">'+
 	                        '<div class="column-1">'+
 	    					'<div class="traditional-cart-entry">'+
-	    						'<a class="image" href="#"><img src="/resources/images/'+item.img+'"alt=""></a>'+
+	    						'<a class="image" href="/product/gpurchase/'+item.gpurchaseNo+'"><img src="/resources/images/'+item.img+'"alt=""></a>'+
 	    						 '<div class="content">'+
 	    							'<div class="cell-view">'+
 	    								'<a class="tag" href="/order/'+item.ordersNo+'">'+item.ordersNo+'</a>'+
-	    								'<a class="title" href="#">'+item.name+'</a>';
+	    								'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'">'+item.name+'</a>';
 	    								
 	                    if(list.length > 1) {
 	                        printHtml += 
@@ -145,10 +145,10 @@ $(document).ready(function() {
 	        	        	'</td>'+
 	        	        	'<td rowspan="'+list.length+'">'+	
 	        	        		'<div class="traditional-cart-entry">'+	
-	        	        			'<a href="#" class="image"><img src="/resources/images/'+item.img+'"alt=""></a>'+
+	        	        			'<a href="/product/gpurchase/'+item.gpurchaseNo+'" class="image"><img src="/resources/images/'+item.img+'"alt=""></a>'+
 	        	        				'<div class="content">'+
 	        	        				'<div class="cell-view">'+
-	        	        					'<a href="#" class="title">'+item.name+'</a>'+
+	        	        					'<a href="/product/gpurchase/'+item.gpurchaseNo+'" class="title">'+item.name+'</a>'+
 	        	        				'</div>'+
 	        	        			'</div>'+
 	        	        		'</div>'+
