@@ -81,6 +81,7 @@ $(document).ready(function(){
 	  	      var gpurchase = this;
 	  	      $(data.glist).each(function(){
 	  	    	var goods = this;
+	  	    	console.log(goods)
 	  	    	
 	  	    	// 공구 번호와 상품 번호를 비교해 같은 데이터 출력
 	  	        if (gpurchase.goodsNo == goods.goodsNo) {
@@ -89,7 +90,8 @@ $(document).ready(function(){
 	  	              str += "      <div class='product-image'>"
 	  	            	  
 	  	            	  
-	  	            // 공구 리스트에 등록된 상품 데이터 출력
+	  	          // 공구 리스트에 등록된 상품 데이터 출력
+	  	            // 진행 공구로 이동할 상품 데이터 출력 및 이미지 별도 표시	  
 	  	            var flag = false;
 	  	            
 	  	            for(var i in data.golist) {
@@ -98,20 +100,22 @@ $(document).ready(function(){
 	  	            		break;
 	  	            	}
 	  	            }
-		  		  	 	
-	  	            if (flag) {
-		  		  	    str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' class='imgcl' alt='totoro' />"
-		  		  	    str += "<img src='/resources/img/ex/cat.jpg' class='imgcl' alt='image' />"
+	  	            
+	  	            
+	  	          if (flag) {
+		  		  	    str += "<img src='/resources/images/"+goods.frontImg+"' class='imgcl'/>"
+		  		  	    str += "<img src='/resources/images/"+goods.toggleImg+"' class='imgcl'/>"
 		  		  	    str += "<div class='bottom-line'>"
 			  	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
 			  	        str += "</div>"
 		  			} else {
-		  				str += "<img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
-		  			  	str += "<img src='/resources/img/ex/cat.jpg' alt='image' />"
+		  				str += "<img src='/resources/images/"+goods.frontImg+"'/>"
+		  			  	str += "<img src='/resources/images/"+goods.toggleImg+"'/>"
 		  			}
-	  	        	
 	  	            
 	  	              str += "      </div>"
+	  	            	  
+	  	            	  
 	  	            	  
 	  	           // 해당 공구 상품의 회사 이름 가져오기
 		  	          for (var i in data.comlist) {
@@ -120,6 +124,8 @@ $(document).ready(function(){
 		  			  	}
 		  			  }
 	  	            	
+	  	              
+	  	              
 	  	              // 회원 로그인 했는지 체크
 	  	              if(!memberNo){
 	  	            	str += "      <a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
@@ -171,7 +177,7 @@ $(document).ready(function(){
 			  str += "</div>";
 			  str += "<div class='modal-body'>";
 			  str += "	<div class='form-group'>";
-			  str += "		<img class='modal-image' src='/resources/img/ex/cat.jpg' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
+			  str += "		<img class='modal-image' src='/resources/images/"+goods.frontImg+"' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
 			  str += "		<div class='product-detail-box'>"
 			  str += "			<div class='price detail-info-entry modal-price'>";
 			  str += "				<div class='current'>￦"+numberfmt(gpurchase.price)+"</div>";

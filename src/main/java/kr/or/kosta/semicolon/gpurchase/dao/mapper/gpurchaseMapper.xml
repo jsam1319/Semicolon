@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.or.kosta.semicolon.gpurchase.dao.gpurchaseDao">
-
+ 
 	<insert id="insert" parameterType="Gpurchase">
 		<selectKey keyProperty="gpurchaseNo" resultType="int" order="BEFORE">
 			SELECT SEQ_GPURCHASE.nextval as gpurchaseNo from dual

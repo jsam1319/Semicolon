@@ -10,7 +10,7 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 public interface gpurchaseService {
 	
 	public void insert(Gpurchase gpurchase) throws Exception;
-	
+	 
 	public List<Gpurchase> gpListAll() throws Exception;
 	
 	public Map<String, Object> select(int gpurchaseNo) throws Exception;

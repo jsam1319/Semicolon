@@ -32,7 +32,7 @@ public interface gpurchaseDao {
 	
 	public int selectGoodsNo(int gpurchaseNo) throws Exception;
 	
-	
+	 
 	// 조사 공구 카운트 +/-
 	public void updateCntP(int gpurchaseNo) throws Exception;
 	

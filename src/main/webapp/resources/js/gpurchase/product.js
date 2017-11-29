@@ -3,13 +3,12 @@
 		   var no = 0;
 		   var gpurchaseNo = $("#gpurchaseNo").val()
 		   var memberNo = $("#memberNo").val()
-		   var goodsNo = $("#goodsNo").val();
-		   var status = 1;
+		   var goodsNo = $("#goodsNo").val()
+		   var askCnt = $("#askCnt").val()
+           var status = $("#status").val()
 		   
 		   /** 구매 / 공구재요청 버튼 */
            var string = "";
-           var status = $("#status").val()
-           var askCnt = $("#askCnt").val()
            
          	  if(status == 1) {
          		  string += "<a class='button style-15 purchaseBtn'><i class='fa fa-heart'></i>구매하기"
@@ -17,7 +16,6 @@
          		  
          		  $(".btnDiv").html(string)
          	  } else {
-         		  status = 2;
          		  askBtn(askCnt)
          	  }
            
@@ -66,52 +64,57 @@
 		            	
 		   /** 주문항목 추가 */
 		   $(".size").on("click", function(){
-		     var pSize = $(this).html()	// size 이름 (ex XS/S/M...)
-		     var pNum = $(this).attr("id")	// 상의/하의 PK
-		            		
-		     $(this).addClass("active")
-		            		
-		     var str = "";
-		     no -= 0
-		            		
-		     /** 이미 선택한 사이즈인지 체크 / 선택한 사이즈면 return */
-		     if ($("#"+pNum+"qt").length == 1) {
-				return;
-		            			
-			 } else {
-								
-		        str += "<div class='article-container style-1' id='"+no+"'>"
-		        str += "	<div class='col-sm-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
-		        str += "	<div class='col-sm-6 checkDiv2'>"
-		        str += "		<div class='quantity-selector detail-info-entry qtnChoice'>"
-		        str += "			<div class='entry number-minus minus'>&nbsp;</div>"
-		        str += "			<div class='entry number quantity' name='quantity' id='"+pNum+"qt'>1</div>"
-		        str += "			<div class='entry number-plus plus'>&nbsp;</div>"
-		        str += "		</div>"
-		        str += "	</div>"
-		        str += "	<div class='col-sm-1 xMark'>"
-		        str += "		<i class='fa fa-times '></i>"
-		        str += "	</div>"
-		        str += "</div>"
-		            		
-		        $(".orderItem").append(str)
-		            		
-		            		
-		        var hiddenStr = "";
-		        var qtP = $("#"+pNum+"qt").html()
-		                    
-		        if ($(".size").attr("name") == 'TOP') {
-		            hiddenStr += "<input type='hidden' name='topsNo' value='"+pNum+"'>"
-				} else {
-		            hiddenStr += "<input type='hidden' name='bottomNo' value='"+pNum+"'>"
-				}
-		                    
-		        hiddenStr += "<input type='hidden' class='"+pNum+"qt' name='qty' value='"+qtP+"'>"
-		        hiddenStr += "<input type='hidden' name='sizes' value='"+pSize+"'>"
-		            		
-		        $("#"+no+"").append(hiddenStr)
-		            		
-		  		}
+			   // 진행중인 공구이면 주문항목 추가 가능 / 마감공구라면 return
+			   if (status == 1) {
+				   var pSize = $(this).html()	// size 이름 (ex XS/S/M...)
+				     var pNum = $(this).attr("id")	// 상의/하의 PK
+				            		
+				     $(this).addClass("active")
+				            		
+				     var str = "";
+				     no = no-1
+				            		
+				     // 이미 선택한 사이즈인지 체크 / 선택한 사이즈면 return
+				     if ($("#"+pNum+"qt").length == 1) {
+						return;
+						
+					 } else {
+				        str += "<div class='article-container style-1' id='"+no+"'>"
+				        str += "	<div class='col-sm-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
+				        str += "	<div class='col-sm-6 checkDiv2'>"
+				        str += "		<div class='quantity-selector detail-info-entry qtnChoice'>"
+				        str += "			<div class='entry number-minus minus'>&nbsp;</div>"
+				        str += "			<div class='entry number quantity' name='quantity' id='"+pNum+"qt'>1</div>"
+				        str += "			<div class='entry number-plus plus'>&nbsp;</div>"
+				        str += "		</div>"
+				        str += "	</div>"
+				        str += "	<div class='col-sm-1 xMark'>"
+				        str += "		<i class='fa fa-times '></i>"
+				        str += "	</div>"
+				        str += "</div>"
+				            		
+				        $(".orderItem").append(str)
+				            		
+				            		
+				        var hiddenStr = "";
+				        var qtP = $("#"+pNum+"qt").html()
+				                    
+				        if ($(".size").attr("name") == 'TOP') {
+				            hiddenStr += "<input type='hidden' name='topsNo' value='"+pNum+"'>"
+						} else {
+				            hiddenStr += "<input type='hidden' name='bottomNo' value='"+pNum+"'>"
+						}
+				                    
+				        hiddenStr += "<input type='hidden' class='"+pNum+"qt' name='qty' value='"+qtP+"'>"
+				        hiddenStr += "<input type='hidden' name='sizes' value='"+pSize+"'>"
+				            		
+				        $("#"+no+"").append(hiddenStr)
+				            		
+				  		}
+			} else {
+					return
+			}
+		     
 		            		
 		   })
 		            	
@@ -197,6 +200,8 @@
 		            		
 		   })
 		   
+		   
+		   /** 사용자 체형 비교 추천 이벤트 호출 */
 		   $(".compare").append();   
 		    matchBest();
 		    
@@ -206,8 +211,6 @@
 		    
 		    
 		    
-		    /** ----------- 리뷰 ------------- */
-			
 			$.getJSON("/review/" + goodsNo, function(data){
 		        
 				var str = '';
@@ -228,14 +231,16 @@
 				$("#avgGrade").html(str);
 		    });
 			
-			var page = 1;
-		    
-		    
 		    $('#targetType').raty({
 				cancel     : true,
 				target     : '#targetType-hint',
 				targetType : 'score'
 			});
+		    
+		    
+		    
+		    
+		    var page = 1;
 		      
 			$.getJSON("/review/" + goodsNo + "/" + page, function(data){
 		        
@@ -410,11 +415,11 @@
 		  return str;
 		}
 		    
-		    
-		    
 		            	 
 	}); //end ready
 		
+	
+	
 	//회원의 사이즈와 가장 적합한 사이즈를 반환
     function matchBest(){
          $.ajax({

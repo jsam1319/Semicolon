@@ -106,26 +106,8 @@ public class GpurchaseController {
 
 		return "/product/research";
 	}
-	/*
-	@RequestMapping(value="/research", method=RequestMethod.GET)
-	public String researchPage(int category) {
-		logger.info("rp 접근");
-		
-		return "forward:/product/research/"+category;
-	}
 	
-	@RequestMapping(value="/research/{category}", method=RequestMethod.POST)
-	public String research() {
-		logger.info("research 접근");
-		
-		return "/product/research";
-	}
-*/
-	/*
-	 * @RequestMapping(value="/research", method=RequestMethod.POST) public void
-	 * researchPagePost(RedirectAttributes rttr, int category) throws Exception {
-	 * logger.info("POSTcategory : " +category); }
-	 */
+	
 	/**
 	 * <pre>
 	 * 1. 개      요 : 공구 조사 리스트 

@@ -92,7 +92,8 @@
   	<select id="selectOrderItem" parameterType="int" resultType="map">
   		SELECT c.NAME CNAME, 
 		       gp.price, 
-		       g.NAME GNAME 
+		       g.NAME GNAME,
+		       g.front_img frontImg
 		FROM   company c, 
 		       nego n, 
 		       nego_list ne, 

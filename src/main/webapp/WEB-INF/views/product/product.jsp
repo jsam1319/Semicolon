@@ -48,14 +48,12 @@ var bestSize = new Object;
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/img/ex/cat.jpg" alt=""
-                      data-zoom="/resources/img/ex/cat-zoom.png" />
+                    <img src="/resources/images/${goods.frontImg}" alt="" data-zoom="/resources/img/ex/cat-zoom.png" />
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/img/ex/dog.jpg" alt=""
-                      data-zoom="/resources/img/ex/dog-zoom.png" />
+                    <img src="/resources/images/${goods.toggleImg}" alt="" data-zoom="/resources/img/ex/dog-zoom.png" />
                   </div>
                 </div>
               </div>
@@ -66,10 +64,8 @@ var bestSize = new Object;
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
-                  <img class="default-image"
-                    src="/resources/img/product-main-1.jpg" alt="" /> <img
-                    class="zoomed-image"
-                    src="/resources/img/product-main-1-zoom.jpg" alt="" />
+                  <img class="default-image" src="/resources/img/product-main-1.jpg" alt="" />
+                  <img class="zoomed-image" src="/resources/img/product-main-1-zoom.jpg" alt="" />
                 </div>
                 <div class="zoom-area"></div>
               </div>

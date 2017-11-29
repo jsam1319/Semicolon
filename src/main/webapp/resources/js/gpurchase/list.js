@@ -83,8 +83,8 @@ $(document).ready(function(){
 	  	              str += "  <div class='col-md-3 col-sm-4 shop-grid-item'>"
 	  	              str += "    <div class='product-slide-entry shift-image'>"
 	  	              str += "      <div class='product-image'>"
-	  	              str += "        <img src='/resources/img/ex/KakaoTalk_20171115_220127147.jpg' alt='totoro' />"
-	  	              str += "        <img src='/resources/img/ex/cat.jpg' alt='image' />"
+	  	              str += "		<img src='/resources/images/"+goods.frontImg+"' alt='image' /></a>"
+		  	          str += "		<img src='/resources/images/"+goods.toggleImg+"' alt='image' /></a>"
 	  	              str += "      </div>"
 	  	            	  
 	  	            	// 해당 공구 상품의 회사 이름 가져오기

@@ -102,12 +102,7 @@ public class OrdersController {
 			orders.add(mapper.readValue(new ObjectMapper().writeValueAsString(list.get(i)), OrderList.class));
 		}
 		
-		for (OrderList orderlist : orders) {
-			logger.info(orderlist);
-		}
-		
 		Map<String, Object> map = orderListService.selectOrderItem(orders.get(0).getGpurchaseNo());
-		
 		
 		/** Cookie 생성 및 주문항목(JSON) set */
 		Cookie cookie = new Cookie("orderlist", orderList);
