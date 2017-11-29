@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.or.kosta.semicolon.negolist.dao.NegoListDao">
+
+       <insert id="insert" parameterType="NegoList">
+        <selectKey  keyProperty="negoListNo" order="BEFORE" resultType="int">    
+            SELECT SEQ_nego_list.nextval FROM DUAL
+        </selectKey>
+
+       INSERT INTO nego_list 
+		            (nego_list_no, 
+		             goods_no, 
+		             nego_no, 
+		             price, 
+		             min) 
+		VALUES      (#{negoListNo}, 
+		             #{goodsNo}, 
+		             (SELECT nego_no 
+		              FROM   nego 
+		              WHERE  company_no = #{companyNo}), 
+		             #{negoPrice}, 
+		             #{negoMin})
+    </insert>
+
+        
+</mapper>
