@@ -18,7 +18,8 @@
 		            member_no, 
 		            attach_file, 
 		            content,
-		            grade
+		            grade,
+		            regdate
 		        ) 
 				VALUES      
 				(
@@ -27,7 +28,8 @@
 		            #{memberNo}, 
 		            #{attachFile}, 
 		            #{content},
-		            #{grade}
+		            #{grade},
+		            sysdate
 		        )
 	</insert>
 	

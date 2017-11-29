@@ -48,12 +48,12 @@ var bestSize = new Object;
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/images/${goods.frontImg}" alt="" data-zoom="/resources/img/ex/cat-zoom.png" />
+                    <img src="/resources/images/${gpurchase.frontImg}" alt="" />
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/images/${goods.toggleImg}" alt="" data-zoom="/resources/img/ex/dog-zoom.png" />
+                    <img src="/resources/images/${gpurchase.toggleImg}" alt="" />
                   </div>
                 </div>
               </div>
@@ -76,8 +76,8 @@ var bestSize = new Object;
         <!-- 상품 정보 -->
           <div class="col-sm-7 col-md-4 information-entry">
             <div class="product-detail-box">
-              <h1 class="product-title">${goods.name}</h1>
-              <h3 class="product-subtitle">${companyName}</h3>
+              <h1 class="product-title">${gpurchase.gname}</h1>
+              <h3 class="product-subtitle">${gpurchase.cname}</h3>
 
               <div class="rating-box" id="avgGrade"></div>
 
@@ -112,7 +112,7 @@ var bestSize = new Object;
               
               <div class="col-sm-12 enterContent-3"></div>
               <div class="purchaseNum">
-                <div class="col-sm-5 pNumDiv">(${gpurchase.pNum} / ${gpurchase.min}) 참여</div>
+                <div class="col-sm-5 pNumDiv">(${gpurchase.pnum} / ${gpurchase.min}) 참여</div>
                 <div class="detail-info-entry btnDiv">
                   <div class="clear"></div>
                 </div>
@@ -135,7 +135,7 @@ var bestSize = new Object;
 
         <!-- js 사용을 위한 hidden Value -->
         <input type="hidden" id="gpurchaseNo" value="${gpurchase.gpurchaseNo}">
-        <input type="hidden" id="goodsNo" value="${goods.goodsNo}">
+        <input type="hidden" id="goodsNo" value="${gpurchase.goodsNo}">
         <input type="hidden" id="memberNo" value="${no}">
         <input type="hidden" id="status" value="${gpurchase.status}">
         <input type="hidden" id="askCnt" value="${askCnt}">
@@ -235,7 +235,7 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <div class="inline-product-entry">${goods.detail}</div>
+      <div class="inline-product-entry">${gpurchase.detail}</div>
 
       <div id="productInfo2"></div>
       
@@ -247,8 +247,6 @@ var bestSize = new Object;
       </div>
 
 
-      <c:choose>
-        <c:when test="${gpurchase.status == 1}">
           <div class="inline-product-entry">
             <form id="replyform" method="post"
               enctype="multipart/form-data">
@@ -275,8 +273,6 @@ var bestSize = new Object;
               </div>
             </form>
           </div>
-        </c:when>
-      </c:choose>
 
       <div id="reviewList"></div>
 

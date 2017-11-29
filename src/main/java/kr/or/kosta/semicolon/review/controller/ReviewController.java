@@ -29,6 +29,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.common.util.UploadService;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
+import kr.or.kosta.semicolon.member.domain.Member;
+import kr.or.kosta.semicolon.member.service.MemberService;
 import kr.or.kosta.semicolon.review.domain.Review;
 import kr.or.kosta.semicolon.review.service.ReviewService;
 
@@ -62,6 +64,9 @@ public class ReviewController {
 	@Inject
 	UploadService uploadService;
 	
+	@Inject
+	MemberService memberService;
+	
 	
 	/**
 	 * <pre>
@@ -89,10 +94,19 @@ public class ReviewController {
 		
 		review.setAttachFile(savedName);
 		reviewService.insert(review);
+		review = reviewService.select(review.getReviewNo());
+		
 		List<Review> list = new ArrayList<>();
 		list.add(0, review);
+		
 		Map<String, Object> map = new HashMap<>();
+		
 		map.put("list", list);
+		logger.info(list);
+		
+		Member member = new Member();
+		member = memberService.select(Integer.parseInt(multi.getParameter("memberNo")));
+		map.put("mlist", member);
 		
 		entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 		

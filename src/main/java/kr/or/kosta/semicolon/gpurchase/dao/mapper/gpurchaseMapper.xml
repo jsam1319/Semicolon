@@ -37,7 +37,35 @@
 		FROM   gpurchase 
 		ORDER  BY gpurchase_no DESC
 	</select>
-	 
+	
+	<select id="select" parameterType="int" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
+		SELECT g.goods_no                           goodsNo, 
+		       g.category                           category, 
+		       g.NAME                               gname, 
+		       g.detail								detail,
+		       g.front_img                          frongImg, 
+		       g.toggle_img                         toggleImg, 
+		       gp.gpurchase_no                      gpurchaseNo, 
+		       gp.min                               min, 
+		       To_char(gp.end_date, 'yyyy-MM-DD')   endDate, 
+		       To_char(gp.start_date, 'yyyy-MM-DD') startDate, 
+		       gp.price                             price, 
+		       gp.likecnt                           likecnt, 
+		       gp.status                            status, 
+		       gp.pnum                              pnum, 
+		       c.NAME                               cname 
+		FROM   goods g, 
+		       gpurchase gp, 
+		       nego n, 
+		       nego_list ne, 
+		       company c 
+		WHERE  gp.goods_no = g.goods_no 
+		       AND c.company_no = n.company_no 
+		       AND n.nego_no = ne.nego_no 
+		       AND ne.goods_no = g.goods_no 
+		       AND gp.gpurchase_no = #{gpurchaseNo}
+	</select>
+	 <!-- 
 	<select id="select" parameterType="int" resultType="Gpurchase">
 		SELECT gpurchase_no                      AS gpurchaseNo, 
 		       goods_no                          AS goodsNo, 
@@ -51,7 +79,7 @@
 		FROM   gpurchase 
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</select>
-	
+	 -->
 	<select id="selectGoodsNo" parameterType="int" resultType="int">
 		SELECT goods_no 
 		FROM   gpurchase 
@@ -80,7 +108,7 @@
 		SELECT goodsno, 
 		       category, 
 		       gname, 
-		       frongimg, 
+		       frontImg, 
 		       toggleimg, 
 		       gpurchaseno, 
 		       min, 
@@ -95,7 +123,7 @@
 		               goodsno, 
 		               category, 
 		               gname, 
-		               frongimg, 
+		               frontImg, 
 		               toggleimg, 
 		               gpurchaseno, 
 		               min, 
@@ -109,7 +137,7 @@
 		        FROM   (SELECT g.goods_no      goodsNo, 
 		                       g.category      category, 
 		                       g.NAME          gname, 
-		                       g.front_img     frongImg, 
+		                       g.front_img     frontImg, 
 		                       g.toggle_img    toggleImg, 
 		                       gp.gpurchase_no gpurchaseNo, 
 		                       gp.min          min, 
@@ -325,9 +353,10 @@
 	
 	
 	<select id="selectGolist" resultType="int">
-	SELECT gpurchase_no
+	SELECT gpurchase_no 
 	FROM   gpurchase 
-	WHERE  likecnt >= min
+	WHERE  likecnt >= min 
+	       AND status = 0
 	</select>
 	
 	 <update id="statusUpdate" parameterType="Gpurchase">

@@ -318,7 +318,7 @@
 						  url: "/review/" + gpurchaseNo + "/" + page,
 						  dataType: "json",
 						  success: function(data){
-							   console.log(data); 
+							  
 							  var str = printList(data)
 							  $("#reviewList").append(str);
 						  },
@@ -354,9 +354,8 @@
 		function printList(data) {
 		  
 		  var str = "";
-		  
+console.log(data)		  
 		  $(data.list).each( function(){
-			  
 			  var regdate = this.regdate == undefined ? '' : this.regdate.trim();	
 				
 			  var date = regdate.split(" ")[0];

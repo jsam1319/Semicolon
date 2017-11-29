@@ -3,8 +3,6 @@ $(document).ready(function(){
 	var memberNo = $("#loginMemberNo").val()
 	var category = $("#category").val()
 	
-	console.log("category : "+category)
-	
 	/** 글 정렬 후 처음 리스트 붙이기 .html */
 	$.post("/product/research/"+category+"/"+page, function(data){
 		printList(data)
@@ -34,7 +32,7 @@ $(document).ready(function(){
 	  function printList(data){
 		var str = returnStr(data)
 	    $(".researchView").html(str);
-		console.log(str)
+		
 		modalSelect();
 	  }
 	  
@@ -83,11 +81,38 @@ $(document).ready(function(){
 	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
 	        str += "	<div class='product-slide-entry shift-image'>"
 	        str += "		<div class='product-image'>"
-	        str += "			<img src='/resources/images/"+list.frontImg+"'/>"
-  			str += "			<img src='/resources/images/"+list.toggleImg+"'/>"
+	        	
+	            // 진행 공구로 이동할 상품 데이터 출력 및 이미지 별도 표시	  
+	            var flag = false;
+	            
+	            for(var i in data.golist) {
+	            	if(data.golist[i] == list.gpurchaseNo) {
+	            		flag = true;
+	            		break;
+	            	}
+	            }
+	            
+	          if (flag) {
+	    	  	    str += "<img src='/resources/images/"+list.frontImg+"' class='imgcl'/>"
+	    	  	    str += "<img src='/resources/images/"+list.toggleImg+"' class='imgcl'/>"
+	    	  	    str += "<div class='bottom-line'>"
+	    	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
+	    	        str += "</div>"
+	    		} else {
+	    			str += "<img src='/resources/images/"+list.frontImg+"'/>"
+	    		  	str += "<img src='/resources/images/"+list.toggleImg+"'/>"
+	    		}
+	            
   			str += "		</div>"
   			str += "		<a class='tag'>"+list.cname+"</a>"
-  			str += "		<a class='title loginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+list.gname+"</a>"
+  			
+  				// 회원 로그인 했는지 체크
+              if(!memberNo){
+            	str += "      <a class='title nloginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+list.gname+"</a>"
+              } else {
+            	str += "      <a class='title loginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+list.gname+"</a>"
+              }
+  			
   			str += "		<div class='price gpurchasePrice'>"
 	  	    str += "        	<div class='current gpurchasePrice'> ￦"+numberfmt(list.price)+"</div>"
 	  	    str += "      	</div>"
@@ -100,70 +125,11 @@ $(document).ready(function(){
 	  	    str += "	<div class='clear'></div>"
 	  	    str += "</div>"
 	  	            	  
-	  	    
 	  	})
+	  	
 	  	return str;
 	  };
 	  	
-	  	              /*
-	  	              
-	  	              // 회원 로그인 했는지 체크
-	  	              if(!memberNo){
-	  	            	str += "      <a class='title nloginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+goods.name+"</a>"
-	  	              } else {
-	  	            	str += "      <a class='title loginTitle' title='"+gpurchase.gpurchaseNo+"' data-toggle='modal' data-target='#gpurchaseInfo'>"+goods.name+"</a>"
-	  	              }
-	  	              
-	  	              str += "      <div class='price gpurchasePrice'>"
-	  	              str += "        <div class='current gpurchasePrice'> ￦"+numberfmt(gpurchase.price)+"</div>"
-	  	              str += "      </div>"
-	  	              str += "		<div class='date'>"
-	  	              str += " 			<div>"+gpurchase.startDate+" ~ "+gpurchase.endDate+"</div>"
-	  	              str += "		</div>"
-	  	              str += "      <div class='list-buttons'>"
-	  	              str += "      </div></div><div class='clear'></div></div>"
-	  	        }
-	  	    	
-	  	      })
-	  	    });
-	  	
-	  		return str;
-	  	
-	  }	
-	  
-	  */
-	  
-	  
-	  
-	// 공구 리스트에 등록된 상품 데이터 출력
-        // 진행 공구로 이동할 상품 데이터 출력 및 이미지 별도 표시	  
-      /*  var flag = false;
-        
-        for(var i in data.golist) {
-        	if(data.golist[i] == gpurchase.gpurchaseNo) {
-        		flag = true;
-        		break;
-        	}
-        }
-        
-        
-      if (flag) {
-	  	    str += "<img src='/resources/images/"+goods.frontImg+"' class='imgcl'/>"
-	  	    str += "<img src='/resources/images/"+goods.toggleImg+"' class='imgcl'/>"
-	  	    str += "<div class='bottom-line'>"
-	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
-	        str += "</div>"
-		} else {
-			str += "<img src='/resources/images/"+goods.frontImg+"'/>"
-		  	str += "<img src='/resources/images/"+goods.toggleImg+"'/>"
-		}
-        
-          str += "      </div>"
-        	  
-        	  
-	  */
-	  
-	  
 	  
 	  
 	  /** 가격 데이터 포맷 */
@@ -178,8 +144,8 @@ $(document).ready(function(){
 		  var gpurchaseNo = $(this).attr("title")
 		  
 		  $.getJSON("/product/"+gpurchaseNo, function(data){
+			  console.log(data.gpurchase)
 			  var gpurchase = data.gpurchase;
-			  var goods = data.goods;
 			  var gwishCheck = data.gwishCheck;
 			  var size = data.size;
 			  
@@ -187,11 +153,11 @@ $(document).ready(function(){
 			  
 			  str += "<div class='modal-header'>";
 			  str += "	<button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
-			  str += "	<h4 class='modal-title goods-name'>"+goods.name+"</h4>";
+			  str += "	<h4 class='modal-title goods-name'>"+gpurchase.gname+"</h4>";
 			  str += "</div>";
 			  str += "<div class='modal-body'>";
 			  str += "	<div class='form-group'>";
-			  str += "		<img class='modal-image' src='/resources/images/"+goods.frontImg+"' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
+			  str += "		<img class='modal-image' src='/resources/images/"+gpurchase.frontImg+"' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
 			  str += "		<div class='product-detail-box'>"
 			  str += "			<div class='price detail-info-entry modal-price'>";
 			  str += "				<div class='current'>￦"+numberfmt(gpurchase.price)+"</div>";

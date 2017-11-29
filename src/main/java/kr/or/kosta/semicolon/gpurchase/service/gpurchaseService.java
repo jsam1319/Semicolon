@@ -24,15 +24,7 @@ public interface gpurchaseService {
 	
 //	public List<Gpurchase> listAll(Params params) throws Exception;
 	
-	// 공구 조사(research) 리스트
-	public Map<String, Object> listAll(UseParameter params, int category) throws Exception;
-	
-	// 공구 진행(ongoing) 리스트
-	public Map<String, Object> glistAll(UseParameter params, int category) throws Exception;
-	
-	// 공구 완료(end) 리스트
-	public Map<String, Object> endlistAll(UseParameter params, int category) throws Exception;
-	
+	// 공구 리스트
 	public List<GpurchaseInfo> ListAll(UseParameter parameter) throws Exception;
 	
 	// 조사 공구 카운트 +/-
