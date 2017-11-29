@@ -54,9 +54,9 @@ public class PushController {
 	public String index(PushToken pushToken) throws Exception {
 		logger.info("message컨트롤러 들어옴");
 		
-		String token = memberService.selectToken(1);
+		//String token = memberService.selectToken(1);
 		
-		pushTokenService.pushToken(token);
+		//pushTokenService.pushToken(token);
 		
 		//List<PushToken> tokenList; // = 서비스.loadFCMInfoList(pushToken);
 		

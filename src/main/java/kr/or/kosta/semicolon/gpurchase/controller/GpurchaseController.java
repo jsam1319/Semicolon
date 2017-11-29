@@ -29,6 +29,7 @@ import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
 import kr.or.kosta.semicolon.gwish.service.gwishService;
 import kr.or.kosta.semicolon.member.service.MemberService;
+import kr.or.kosta.semicolon.push.domain.PushToken;
 import kr.or.kosta.semicolon.push.service.PushTokenService;
 
 /**
@@ -467,8 +468,11 @@ public class GpurchaseController {
 						for(Gwish gwish : memberNo) {
 							int memNo = gwish.getMemberNo();
 							
-							String token = memService.selectToken(memNo);
-							pushService.pushToken(token);
+							PushToken push = new PushToken();
+							push.setTitle("Semicolon_공구등록 알림");
+							push.setMessage("NEW 공구 뙇!! 어맛!! 이건 사야됭!!");
+							push.setPushToken(memService.selectToken(memNo));
+							pushService.pushToken(push);
 						}
 					} 
 					

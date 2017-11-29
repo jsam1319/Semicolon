@@ -11,6 +11,8 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import kr.or.kosta.semicolon.push.domain.PushToken;
+
 
 @Service
 public class PushTokenServiceImple implements PushTokenService {
@@ -19,7 +21,7 @@ public class PushTokenServiceImple implements PushTokenService {
 	
 
 	@Override
-	public void pushToken(String token) throws Exception {
+	public void pushToken(PushToken token) throws Exception {
 		
 		logger.info("message서비스 들어옴");
 		logger.info(token);
@@ -37,7 +39,7 @@ public class PushTokenServiceImple implements PushTokenService {
         
         con.setDoOutput(true);
         
-        String input = "{\"data\" : {\"title\" : \"semicolon \", \"body\" : \"NEW 공구 등장! 어맛! 이건 사야돼!\"}, \"to\":\"" + token + "\"}";
+        String input = "{\"data\" : {\"title\" : \"" + token.getTitle() + " \", \"body\" : \"" + token.getMessage() + "\"}, \"to\":\"" + token.getPushToken() + "\"}";
         
         OutputStream os = con.getOutputStream();
         
