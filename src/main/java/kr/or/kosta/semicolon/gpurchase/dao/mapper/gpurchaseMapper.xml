@@ -75,6 +75,88 @@
 		WHERE  gpurchase_no = #{gpurchaseNo} 
 	</delete>
 	
+	
+	<select id="ListAll" parameterType="UseParameter" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
+		SELECT goodsno, 
+		       category, 
+		       gname, 
+		       frongimg, 
+		       toggleimg, 
+		       gpurchaseno, 
+		       min, 
+		       enddate, 
+		       startdate, 
+		       price, 
+		       likecnt, 
+		       status, 
+		       pnum, 
+		       cname 
+		FROM   (SELECT Ceil (rownum / 12) page, 
+		               goodsno, 
+		               category, 
+		               gname, 
+		               frongimg, 
+		               toggleimg, 
+		               gpurchaseno, 
+		               min, 
+		               enddate, 
+		               startdate, 
+		               price, 
+		               likecnt, 
+		               status, 
+		               pnum, 
+		               cname 
+		        FROM   (SELECT g.goods_no      goodsNo, 
+		                       g.category      category, 
+		                       g.NAME          gname, 
+		                       g.front_img     frongImg, 
+		                       g.toggle_img    toggleImg, 
+		                       gp.gpurchase_no gpurchaseNo, 
+		                       gp.min          min, 
+		                       To_char(gp.end_date, 'yyyy-MM-DD')     endDate,
+                           	   To_char(gp.start_date, 'yyyy-MM-DD')   startDate, 
+		                       gp.price        price, 
+		                       gp.likecnt      likecnt, 
+		                       gp.status       status, 
+		                       gp.pnum         pnum, 
+		                       c.NAME          cname 
+		                FROM   goods g, 
+		                       gpurchase gp, 
+		                       nego n, 
+		                       nego_list ne, 
+		                       company c 
+		                WHERE  gp.goods_no = g.goods_no 
+		                       AND c.company_no = n.company_no 
+		                       AND n.nego_no = ne.nego_no 
+		                       AND ne.goods_no = g.goods_no 
+		                       AND gp.status = #{status}
+		                       AND g.category = #{category}
+		                       
+		                <if test="productOrder != null">
+		                	<choose>
+		                		<when test="productOrder == 'newProduct'">
+		                			ORDER BY gpurchase_no DESC
+		                		</when>
+		                		<when test="productOrder == 'lowPrice'">
+		                			ORDER BY price ASC
+		                		</when>
+		                		<when test="productOrder == 'highPrice'">
+		                			ORDER BY price DESC
+		                		</when>
+		                		<when test="productOrder == 'endDate'">
+		                			ORDER BY end_date ASC
+		                		</when>
+		                		<when test="productOrder == 'deadline'">
+		                			ORDER BY likecnt DESC
+		                		</when>
+		                	</choose>
+		                </if>
+		                )) 
+		WHERE  page = #{page}
+	</select>
+	
+	
+	
 	<select id="listAll" parameterType="UseParameter" resultType="Gpurchase">
 		SELECT gpurchaseno, 
 		       goodsno, 

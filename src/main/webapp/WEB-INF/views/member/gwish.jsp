@@ -8,7 +8,6 @@
 	  font-size: 80px;
 	  color: black;
 	}
-	
 	</style>
 	
 	<script>
@@ -26,8 +25,11 @@
 		})
 	}); //end ready
 	
+	//삭제
 	$(document).on("click",'.deletebtn',function(){
-		      $.ajax({
+	    var removeDiv = $(this).parent().parent();
+	    console.log("delete btn : "+$(this).val());
+		       $.ajax({
 		      url : "/gwish/"+$(this).val(),
 		      type : "delete",
 		      headers : {
@@ -36,12 +38,14 @@
 		      },
 		   	  dataType:"text",
 		   	  success: function(data){
-		   	   $(this).parent().parent().remove();
+		   	  	removeDiv.remove();
+		   		//$("#confirm-modal").modal();
 		   	  }
 		   });   
 		   
-		   $("#confirm-modal").modal();
+		   
 	});
+
 	
 	function getAppendData(page){
         var print = "";
@@ -55,19 +59,24 @@
 		    dataType : "json",
 		    success : function(data){
 		        console.log("data:"+data);
+		        if(data == ""){
+		            print +=
+		            '<div class="col-sm-12 information-blocks">'+
+			    		'<div class="table-responsive col-sm-12">'+
+			    			'<div class="letter">'+
+			    				'<div class="container-404">'+
+			    					'<div class="description">찜목록이 없습니다.</div>'+
+			    				'</div>'+
+			    			'</div>'+
+			    		'</div>'+
+		    		'</div>';
+		        }
+		        
 		        $.each(data, function(index, item){
 		            print +=
 		                '<div class="col-sm-4 portfolio-entry" >'+
 							'<div class="image" style="height:20rem">'+
-							'<img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/>'+
-								'<div class="hover-layer">'+
-									'<div class="info">'+
-										'<div class="actions">'+
-											'<a class="action-button open-image" href="#"><i class="fa fa-heart"></i></a>'+
-											'<a class="action-button" href="/"><i class="fa fa-search"></i></a>'+
-										'</div>'+
-									'</div>'+
-								'</div>'+
+								'<img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/>'+
 							'</div>'+
 							'<div style="display:inline;">'+
 								'<a class="title" href="#"style="display:inline;">'+item.name+'</a>'+
@@ -86,13 +95,15 @@
 		       
 		    }//end success
 		}); //end ajax
-		
-		function numberfmt(value){
-		    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
 		    
-    }
-   
+    }//end appendData
+    
+    //숫자 세자리단위로 , 찍기
+    function numberfmt(value){
+	    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+    
+	
 	</script>
 	
 	<%-- Modal --%>
@@ -116,6 +127,7 @@
     </div>
   </div>
 		
+	<%-- 리스트 동적으로 생기는 부분 --%>	
 	<div class="row listview">
 	 </div>
 

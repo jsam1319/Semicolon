@@ -1,5 +1,6 @@
 package kr.or.kosta.semicolon.gpurchase.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.askresale.service.askResaleService;
@@ -25,6 +27,7 @@ import kr.or.kosta.semicolon.common.util.CompareTime;
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
 import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
 import kr.or.kosta.semicolon.gwish.domain.Gwish;
 import kr.or.kosta.semicolon.gwish.service.gwishService;
@@ -121,7 +124,7 @@ public class GpurchaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> researchList(UseParameter params, @PathVariable("category") int category,
 			@PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
@@ -146,7 +149,37 @@ public class GpurchaseController {
 		}
 
 		return entity;
+	}*/
+	
+	@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> researchList(@PathVariable("category") int category, @PathVariable("page") int page,
+			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
+		logger.info("gpurchaseController research 접근");
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		try {
+			Map<String, Object> map = new HashMap<>();
+			
+			UseParameter parameter = new UseParameter(page, productOrder, 0, category);
+
+			List<GpurchaseInfo> list = gpService.ListAll(parameter);
+			map.put("list", list);
+
+			// 공구 조사 페이지에서 공구 리스트 페이지로 넘어가는 데이터 가져오기
+			List<Integer> golist = gpService.selectGolist();
+			map.put("golist", golist);
+logger.info(map);
+			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
 	}
+	
+	
 
 	/**
 	 * <pre>
