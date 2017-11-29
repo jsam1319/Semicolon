@@ -54,31 +54,80 @@
                                                 <label>글 제목 <span>*</span></label>
                                                 <input class="simple-field" type="text" name="title" placeholder="글 제목 (입력)" value="" />
                                             </div>    
-                                            <!-- <div class="col-md-3">    
-                                                <label>상품번호 <span>*</span></label>
-                                                <input class="simple-field" type="text" name="goodsNo" placeholder="상품번호 (입력)" value="" />
-                                                <div class="clear"></div>
-                                            </div> -->
                                             <div class="col-md-3">
-                                              <label>상품검색 <span>*</span></label>
-                                              <div class="ui inline dropdown button" id="dropdown">
-                                                <span class="text" id="choose">Choose Category</span>
-                                                <i class="dropdown icon"></i>
-                                                <div class="menu">
-                                                  <div class="item">
-                                                    <i class="dropdown icon"></i>
-                                                    <span class="text">Tops</span>
-                                                    <div class="menu" id="topsMenu"></div>
-                                                  </div>
-                                                  <div class="item">
-                                                    <i class="dropdown icon"></i> 
-                                                    <span class="text">Bottom</span>
-                                                    <div class="menu" id="bottomMenu"></div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              <div class="clear"></div>
-                                            </div>
+                    <label>상품검색 <span>*</span></label>
+                    <div class="ui inline dropdown button" id="dropdown">
+                      <span class="text" id="choose">Choose Category</span>
+                      <i class="dropdown icon"></i>
+                      <div class="menu">
+                        <div class="item">
+                          <i class="dropdown icon"></i>
+                          <span class="text">Tops</span>
+                          
+                          <div class="menu">
+                          
+                            <div class="ui scrolling dropdown item">
+                              <i class="dropdown icon" ></i>
+                              <span class="text">Coat</span>
+                              <div class="menu" id="coatMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                              <i class="dropdown icon"></i>
+                              <span class="text">Jacket</span>
+                              <div class="menu" id="jacketMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                              <i class="dropdown icon"></i>
+                              <span class="text">Dress</span>
+                              <div class="menu" id="dressMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                              <i class="dropdown icon"></i>
+                              <span class="text">Knit</span>
+                              <div class="menu" id="knitMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                              <i class="dropdown icon"></i>
+                              <span class="text">sweatShirt </span>
+                              <div class="menu" id="sweatMenu"></div>
+                            </div>
+                            
+                          </div>
+                          
+                        </div>
+                        <div class="item">
+                          <i class="dropdown icon"></i> 
+                          <span class="text">Bottom</span>
+                          <div class="menu">
+                          
+                            <div class="ui scrolling dropdown item">
+                            <i class="dropdown icon"></i>
+                            <span class="text">Skirt</span>
+                              <div class="menu" id="skirtMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                            <i class="dropdown icon"></i>
+                            <span class="text">Shorts</span>
+                              <div class="menu" id="shortsMenu"></div>
+                            </div>
+                          
+                            <div class="ui scrolling dropdown item">
+                            <i class="dropdown icon"></i>
+                            <span class="text">Pants</span>
+                              <div class="menu" id="pantsMenu"></div>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
                                             <div class="col-sm-12">
                                                 <label>글 내용 <span>*</span></label>
                                                 <textarea class="simple-field" name="content" placeholder="무엇을 도와드릴까요? (입력)"></textarea>
@@ -132,24 +181,72 @@
     		$("#preview").remove();
     	});
     	
-		$.getJSON("/goods/list", function(data){
+$.getJSON("/goods/list", function(data){
             
     		var str = "";
     		
             $(data).each(function(){
-				if(this.category == 1){
+				if(this.category == 110){
 					str += '<a class="item" id="' + this.goodsNo + '" ><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
 				}
             });
-            $("#topsMenu").html(str);
+            $("#coatMenu").html(str);
             
             str = "";
             $(data).each(function(){
-            	if(this.category == 2){
+            	if(this.category == 120){
     				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
-            $("#bottomMenu").html(str);
+            $("#jacketMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 130){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#dressMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 140){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#knitMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 150){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#sweatMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 210){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#skirtMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 220){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#shortsMenu").html(str);
+            
+            str = "";
+            $(data).each(function(){
+            	if(this.category == 230){
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+  				}
+            });
+            $("#pantsMenu").html(str);
         });
     	
     });

@@ -76,8 +76,6 @@ public class ReviewController {
 	@ResponseBody
 	public ResponseEntity<Map<String,Object>> reviewInsert(MultipartHttpServletRequest multi) throws Exception{
 		
-		logger.info("Insert컨트롤 들어옴!");
-		
 		ResponseEntity<Map<String,Object>> entity = null;
 		
 		Review review = new Review();
@@ -118,14 +116,12 @@ public class ReviewController {
 	public ResponseEntity<Map<String, Object>> reivewList(@PathVariable("page") int page, @PathVariable("goodsNo")int goodsNo, UseParameter useparam) throws Exception{
 		ResponseEntity<Map<String, Object>> entity = null;
 		
-		logger.info("List컨트롤 들어옴!");
-		
 		try {
 			useparam.setPage(page);
 			useparam.setValue(Integer.toString(goodsNo)); 
+			
 			Map<String, Object> map = reviewService.listAll(useparam);
-			logger.info(useparam);
-			logger.info(map);
+			
 			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 			
 		} catch (Exception e) {

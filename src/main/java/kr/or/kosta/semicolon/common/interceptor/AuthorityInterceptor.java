@@ -15,10 +15,10 @@ import kr.or.kosta.semicolon.member.service.MemberService;
 
 /**
  * @packgename        kr.or.kosta.semicolon.common.interceptor
- * @filename        AuthorityInterceptor.java
- * @author             박주연
- * @since            2017. 11. 9.
- * @see                현재 사용자가 로그인을 한 상태인지 아닌지 체크하는 인터셉터
+ * @filename          AuthorityInterceptor.java
+ * @author            박주연
+ * @since             2017. 11. 9.
+ * @see               현재 사용자가 로그인을 한 상태인지 아닌지 체크하는 인터셉터
  *
  * == Modification Infomation (수정 이력) ==
  * 

@@ -8,6 +8,7 @@
 	  font-size: 80px;
 	  color: black;
 	}
+	
 	</style>
 	
 	<script>
@@ -46,15 +47,19 @@
         var print = "";
 		$.ajax({
 		    url : "/gwish/"+page,
-		    type : "post",
+		    type : "put",		      
+		    headers : {
+		          "Content-Type": "text/html; charset=utf-8",
+		          "X-HTTP-Method-Override" : "PUT"
+		      },
 		    dataType : "json",
 		    success : function(data){
 		        console.log("data:"+data);
 		        $.each(data, function(index, item){
 		            print +=
-		                '<div class="col-sm-4 portfolio-entry">'+
-							'<div class="image">'+
-							'<img alt="" src="/resources/images/'+item.img+'"/>'+
+		                '<div class="col-sm-4 portfolio-entry" >'+
+							'<div class="image" style="height:20rem">'+
+							'<img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/>'+
 								'<div class="hover-layer">'+
 									'<div class="info">'+
 										'<div class="actions">'+
