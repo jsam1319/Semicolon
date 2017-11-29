@@ -32,7 +32,7 @@ public interface gwishService {
 	
 	public int delete(int gwishNo) throws Exception;
 	
-	public int selectMemNo(int gpurchaseNo) throws Exception;
+	public List<Gwish> selectMemNo(int gpurchaseNo) throws Exception;
 	
 	public List<Gwish> selectByMemNo(int gwishNo) throws Exception;
 	

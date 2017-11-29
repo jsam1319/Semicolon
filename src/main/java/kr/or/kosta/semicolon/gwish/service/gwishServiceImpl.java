@@ -55,7 +55,7 @@ public class gwishServiceImpl implements gwishService {
 	}
 	
 	@Override
-	public int selectMemNo(int gpurchaseNo) throws Exception {
+	public List<Gwish> selectMemNo(int gpurchaseNo) throws Exception {
 		return dao.selectMemNo(gpurchaseNo);
 	}
 

@@ -462,9 +462,14 @@ public class GpurchaseController {
 					
 					if (status == 0) {
 						// 안드로이드 푸쉬 알림
-						int memberNo = wishService.selectMemNo(gpurchaseNo);
-						String token = memService.selectToken(memberNo);
-						pushService.pushToken(token);
+						List<Gwish> memberNo = wishService.selectMemNo(gpurchaseNo);
+						
+						for(Gwish gwish : memberNo) {
+							int memNo = gwish.getMemberNo();
+							
+							String token = memService.selectToken(memNo);
+							pushService.pushToken(token);
+						}
 					} 
 					
 				} else if (likeCnt < min && status == 0) {
