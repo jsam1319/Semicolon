@@ -21,7 +21,7 @@
 				#{logNo},
 				#{memberNo},
 				#{type},
-				#{content},
+				#{content}
 			)
 	</insert>
 

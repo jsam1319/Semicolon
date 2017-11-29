@@ -421,6 +421,29 @@ $(document).ready(function(){
 	    }
   }); 
   
+  /* 회사 SelectBox 선택시 <input type="hidden" name="CompanyNo"> 동적 생성 */
+  $("#companySelect").on("change", function(){
+	  var companyValue = $("#companySelect").val();
+	  var str = "";
+	  
+	  switch(companyValue){
+		case 'unni': 
+			str += "<input type='hidden' name='companyNo' value='1'></input>"
+			break;
+		case 'common':
+			str += "<input type='hidden' name='companyNo' value='2'></input>"
+			break;
+		case 'jy': 
+			str += "<input type='hidden' name='companyNo' value='3'></input>"
+			break;
+		case 'yj': 
+			str += "<input type='hidden' name='companyNo' value='4'></input>"
+			break;	
+	  }
+	  $(".hiddenSize").html(str);
+  
+  });
+  
   /* 최종 submit버튼 */
   $("#registerForm").submit(function(event){
 		event.preventDefault();  

@@ -7,11 +7,8 @@
 			<div class="row nopadding">
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
-						<div class="title">Modify My Information</div>
-						<a class="description" href="#">회원 정보 수정 <i
-							class="fa fa-angle-right"></i> <br></a> <a class="description"
-							href="/member/size">체형 정보 수정 <i class="fa fa-angle-right"></i>
-							<br></a>
+						<a class="title" href="/member/size" >Modify My Information</a> 
+						<div class="description" >체형 정보 수정<br></div>
 					</div>
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">
