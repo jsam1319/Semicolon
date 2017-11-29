@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.common.UseParameter;
+import kr.or.kosta.semicolon.member.dao.MemberDao;
+import kr.or.kosta.semicolon.member.domain.Member;
 import kr.or.kosta.semicolon.qna.domain.Qna;
 import kr.or.kosta.semicolon.review.dao.ReviewDao;
 import kr.or.kosta.semicolon.review.domain.Review;
@@ -33,6 +35,9 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Inject
 	ReviewDao reviewDao;
+	
+	@Inject
+	MemberDao memberDao;
 
 	@Override
 	public List<Review> allList() {
@@ -68,9 +73,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public Map<String, Object> listAll(UseParameter params) throws Exception {
 		
 		List<Review> list = reviewDao.listAll(params);
+		List<Member> mlist = memberDao.listAll();
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", list);
+		map.put("mlist", mlist);
 		
 		return map;
 	}

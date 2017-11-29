@@ -373,44 +373,51 @@
 		      if( (date1 - date2 - 86400000) > 0) timeString = time;
 		      else								  timeString = moment(regdate).fromNow();
 		      
-		    str += '<div class="wishlist-entry">';
-		    str += '<div class="column-1">';
-		    str += '<div class="comment">';
-		    str += '<a class="comment-image" href="#"><img src="/resources/images/' + this.attachFile + '" /></a>';
-		    str += '<div class="comment-content">';
-		    str += '<div class="comment-title"><span>' + this.memberNo + '</span> Posted ' + timeString + ', ' + date + '</div>';
+		      str += '<div class="wishlist-entry">';
+			  str += '<div class="column-1">';
+			  str += '<div class="comment">';
+			  str += '<a class="comment-image" href="#"><img src="/resources/images/' + this.attachFile + '" /></a>';
+			  str += '<div class="comment-content">';
+			  str += '<div class="comment-title"><span>';
+			    
+			  var memNo = this.memberNo;
+			  $(data.mlist).each( function(){
+				  if(memNo == this.memberNo) str += this.id;
+			  });
+			    
+			  str += '</span> Posted ' + timeString + ', ' + date + '</div>';
 		    
-		    var grade = this.grade;
-		    var staro = 5 - grade;
+			  var grade = this.grade;
+			  var staro = 5 - grade;
 		    
-		    str += '<div class="rating-box">';
+			  str += '<div class="rating-box">';
 		    
-		    for(var i = 0; i < grade; i++){
+			  for(var i = 0; i < grade; i++){
 		    	
 		    	str += '<div class="star">';
 		        str += '<i class="fa fa-star"></i>';
 		        str += '</div>';
 		        
-		    }
+			  }
 		    
-		    for(var i = 0; i < staro; i++){
+			  for(var i = 0; i < staro; i++){
 		    	str += '<div class="star">';
 		        str += '<i class="fa fa-star-o"></i>';
 		        str += '</div>';
-		    }
+			  }
 		    
-		    str += '</div>';
+			  str += '</div>';
 		    
-		    str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
-		    str += '</div>';
-		    str += '</div>';
-		    str += '</div>';
-		    str += '<div class="column-2">';
-		    str += '<a class="button style-14">더보기</a>';
-		    str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
-		    str += '</div> ';
-		    str += '</div>';
-		  });
+			  str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
+			  str += '</div>';
+			  str += '</div>';
+			  str += '</div>';
+		      str += '<div class="column-2">';
+		      str += '<a class="button style-14">더보기</a>';
+		      str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
+		      str += '</div> ';
+		      str += '</div>';
+		  	});
 
 		  return str;
 		}
