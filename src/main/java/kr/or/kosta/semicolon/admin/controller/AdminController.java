@@ -1,12 +1,17 @@
 package kr.or.kosta.semicolon.admin.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.goods.service.GoodsService;
 import kr.or.kosta.semicolon.push.domain.PushToken;
 import kr.or.kosta.semicolon.push.service.PushTokenService;
 
@@ -18,6 +23,9 @@ public class AdminController {
 	
 	@Inject
 	PushTokenService pushService;
+	
+	@Inject
+	GoodsService goodsService;
 	
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
@@ -39,6 +47,21 @@ public class AdminController {
 		
 		
 		return "redirect:/admin/adminpage";
+	}
+	
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String listAll() {
+		
+		return "/admin/productList";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/goods", method=RequestMethod.POST)
+	public List<Goods> goodsList() {
+		List<Goods> goods = goodsService.allList();
+		
+		return goods;
 	}
 	
 }

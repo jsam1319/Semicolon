@@ -31,6 +31,8 @@ import kr.or.kosta.semicolon.image.domain.Image;
 import kr.or.kosta.semicolon.image.service.ImageService;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
 import kr.or.kosta.semicolon.keyword.service.KeywordService;
+import kr.or.kosta.semicolon.negolist.domain.NegoList;
+import kr.or.kosta.semicolon.negolist.service.NegoListService;
 import kr.or.kosta.semicolon.tops.domain.Tops;
 import kr.or.kosta.semicolon.tops.service.TopsService;
 
@@ -72,6 +74,9 @@ public class GoodsController {
 	
 	@Inject
 	ImageService imageService;
+	
+	@Inject
+	NegoListService negoListService;
 	
 	
 	/**
@@ -118,7 +123,7 @@ public class GoodsController {
 	 */
 	@Transactional
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String insert(TakeAllThings all, HttpServletRequest request) {
+	public String insert(TakeAllThings all, HttpServletRequest request, NegoList negoList) {
 		logger.info("상품등록..POST");
 		
 		// 상품 등록
@@ -191,6 +196,11 @@ public class GoodsController {
 			
 			imageService.insert(image);
 		}
+		
+		//협상목록 등록
+		negoList.setGoodsNo(goodsNo);
+		negoListService.insert(negoList);
+		
 		
 		return "redirect:/";
 	}
