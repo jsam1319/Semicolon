@@ -61,14 +61,11 @@ public class OrdersRestController {
 	 * @return ResponseEntity<Object>
 	 * @throws ParseException 
 	 */
-	//HttpServletRequest request, String start, String end
 	@RequestMapping(value="/order/{start}/{end}", method= {RequestMethod.PUT})
 	public ResponseEntity<Object> getOrders(HttpServletRequest request,@PathVariable("start") String start, @PathVariable("end")String end) throws ParseException{
-//		logger.debug(request.getQueryString());
 		
 		start = start.replace("-", "/");
 		end = end.replace("-", "/");
-		logger.debug("start:"+start+",end:"+end);
 		
 		ResponseEntity<Object> entity = null;
 		 
