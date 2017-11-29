@@ -163,5 +163,14 @@
 		       AND g.goods_no = gp.goods_no 
 		       AND gp.gpurchase_no = #{gpurchaseNo}
 	</select>
+	
+	<select id="SelectOrderCheck" parameterType="AskResale" resultType="int">
+		SELECT Count(o.orders_no) count 
+		FROM   orders o, 
+		       order_list ol 
+		WHERE  o.orders_no = ol.orders_no 
+		       AND o.member_no = #{memberNo}
+		       AND ol.gpurchase_no = #{gpurchaseNo}
+	</select>
 	 
 </mapper>

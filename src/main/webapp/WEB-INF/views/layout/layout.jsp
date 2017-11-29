@@ -262,12 +262,7 @@
 
               </div>
               <div class="middle-line"></div>
-              <div class="line-entry">
-                <a href="#" class="header-functionality-entry"><i
-                  class="fa fa-copy"></i><span>Compare</span></a> <a
-                  href="#" class="header-functionality-entry"><i
-                  class="fa fa-heart-o"></i><span>Wishlist</span></a> 
-              </div>
+              
             </div>
           </div>
 
@@ -678,9 +673,7 @@
                 </ul>
 
                 <ul>
-                  <li class="fixed-header-visible"><a
-                    class="fixed-header-square-button open-cart-popup"><i
-                      class="fa fa-shopping-cart"></i></a> <a
+                  <li class="fixed-header-visible"> <a
                     class="fixed-header-square-button open-search-popup"><i
                       class="fa fa-search"></i></a></li>
                 </ul>
@@ -724,14 +717,14 @@
     <!-- FOOTER -->
     <footer class="type-2">
       <div class="position-center">
-        <img class="footer-logo" src="/resources/img/logo-6.png" alt="" />
+        <img class="footer-logo" src="/resources/img/footer-logo.PNG" alt="" />
         <div class="footer-links">
           <a href="#">Site Map</a> <a href="#">Search</a> <a href="#">Terms</a>
           <a href="#">Advanced Search</a> <a href="#">Orders and
             Returns</a> <a href="#">Contact Us</a>
         </div>
         <div class="copyright">
-          Created with by <a href="#">8theme</a>. All right reserved
+          Created with by <a href="#">Undefined</a>. All right reserved
         </div>
       </div>
     </footer>
@@ -902,7 +895,7 @@
                       <i class="fa fa-star"></i>
                     </div>
                     <div class="star">
-                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>커
                     </div>
                     <div class="star">
                       <i class="fa fa-star"></i>

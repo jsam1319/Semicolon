@@ -17,7 +17,7 @@ import kr.or.kosta.semicolon.goods.domain.Goods;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 10.      세종         최초 생성
- * 2017. 11. 11.	  연주			listAll(Params params),categoryListAll 추가
+ * 2017. 11. 11.	  연주			listAll(UseParameter params) 추가
  *
  */
 public interface GoodsDao {
@@ -34,5 +34,4 @@ public interface GoodsDao {
 	
 	public int listCount() throws Exception;
 	
-	public List<Goods> categoryListAll(int category) throws Exception;
 }

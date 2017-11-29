@@ -187,7 +187,7 @@ public class GpurchaseController {
 		ResponseEntity<Map<String, Object>> entity = null;
 
 		try {
-			Map<String, Object> map = gpService.select(gpurchaseNo);
+			Map<String, Object> map = gpService.select(gpurchaseNo, memberNo);
 
 			Gwish gwish = new Gwish(gpurchaseNo, memberNo);
 			
@@ -345,7 +345,7 @@ public class GpurchaseController {
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 		
-		Map<String, Object> map = gpService.select(gpurchaseNo);
+		Map<String, Object> map = gpService.select(gpurchaseNo, memberNo);
 		
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
 		int askCnt = askService.selectCnt(askResale);

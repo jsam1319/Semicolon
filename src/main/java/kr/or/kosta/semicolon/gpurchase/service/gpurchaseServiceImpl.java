@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.bottom.dao.BottomDao;
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.company.dao.CompanyDao;
@@ -20,6 +21,7 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.keyword.dao.KeywordDao;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
+import kr.or.kosta.semicolon.orders.dao.OrdersDao;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
  
 /**
@@ -45,12 +47,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	private gpurchaseDao gpdao;
 	
 	@Inject
-	private GoodsDao goodsDao;
-	
-	@Inject
-	private CompanyDao comDao;
-	
-	@Inject
 	private BottomDao bottomDao;
 	
 	@Inject
@@ -59,13 +55,16 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Inject
 	private KeywordDao keyworddao;
 	
+	@Inject
+	private OrdersDao ordersDao;
+	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
 		gpdao.insert(gpurchase);
 	}
 	
 	@Override
-	public Map<String, Object> select(int gpurchaseNo) throws Exception {
+	public Map<String, Object> select(int gpurchaseNo, int memberNo) throws Exception {
 		
 		// 공구 정보 불러오기
 		GpurchaseInfo gpurchase = new GpurchaseInfo();
@@ -93,12 +92,17 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		for (HashMap<String, Object> list : sizeList) {
 			size.add(list);
 		}
+		
+		// 회원 주문 여부 반환
+		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
+		int orderCheck = ordersDao.SelectOrderCheck(askResale);
 	
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
 		map.put("keyword", keyword);
 		map.put("size", size);
+		map.put("orderCheck", orderCheck);
 
 		return map;
 	}
@@ -121,10 +125,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		return list;
 	}
 	
-	@Override
-	public void delete(int gpurchaseNo) throws Exception {
-		gpdao.delete(gpurchaseNo);
-	}
 	
 	@Override
 	public void updateCntP(int gpurchaseNo) throws Exception {
