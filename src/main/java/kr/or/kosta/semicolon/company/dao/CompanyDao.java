@@ -27,8 +27,6 @@ public interface CompanyDao {
 	public void update(Company company);
 	public void delete(int no);
 	public List<Company> listAll();
-	public List<Map<String, Object>> selectCNameListAll();
-	public String selectCName(int goodsNo);
 	public int count();
 	
 }

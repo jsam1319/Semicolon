@@ -43,19 +43,6 @@
 		FROM goods
 	</select>
 	
-	<select id="categoryListAll" parameterType="int" resultType="Goods">
-		SELECT goods_no, 
-			   name, 
-			   price, 
-			   detail, 
-			   front_img,
-			   toggle_img,
-			   category 
-		FROM   goods
-		WHERE  category = #{category}
-	</select>
-	 
-	
 	<select id="select" resultType="Goods">
 		SELECT goods_no AS goodsNo, 
 		       name, 

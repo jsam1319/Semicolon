@@ -64,8 +64,7 @@ var bestSize = new Object;
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
-                  <img class="default-image" src="/resources/img/product-main-1.jpg" alt="" />
-                  <img class="zoomed-image" src="/resources/img/product-main-1-zoom.jpg" alt="" />
+                  <img class="default-image" src="/resources/images/${gpurchase.frontImg}" alt="" />
                 </div>
                 <div class="zoom-area"></div>
               </div>
@@ -235,7 +234,7 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <div class="inline-product-entry">${gpurchase.detail}</div>
+      <div class="inline-product-entry">${gpurchase.detail}<br>${orderCheck}</div>
 
       <div id="productInfo2"></div>
       
@@ -246,7 +245,7 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-
+      <c:if test="${orderCheck > 0}">
           <div class="inline-product-entry">
             <form id="replyform" method="post"
               enctype="multipart/form-data">
@@ -273,6 +272,7 @@ var bestSize = new Object;
               </div>
             </form>
           </div>
+          </c:if>
 
       <div id="reviewList"></div>
 

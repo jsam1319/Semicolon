@@ -354,7 +354,7 @@
 		function printList(data) {
 		  
 		  var str = "";
-console.log(data)		  
+		  
 		  $(data.list).each( function(){
 			  var regdate = this.regdate == undefined ? '' : this.regdate.trim();	
 				
@@ -420,6 +420,34 @@ console.log(data)
 
 		  return str;
 		}
+		
+		
+		/** 상품 이미지 자동 슬라이드 */
+		var mySwiper = new Swiper('.swiper-container', {
+			pagination : '.swiper-pagination',
+			nextButton : '.swiper-button-next',
+			prevButton : '.swiper-button-prev',
+			paginationClickable : true,
+			spaceBetween : 30,
+			centeredSlides : true,
+			autoplay : 3000,
+			autoplayDisableOnInteraction : true, 
+			loop : true
+		});
+	 
+		/** 웹에서의 자동 슬라이드 */
+		$(".swiper-container").on("focusout", function() {
+			setTimeout(function() {
+				if ($(this).find(":focus").length === 0) {
+					mySwiper.startAutoplay();
+				}
+			}, 100);
+		});
+	
+		/** 모바일에서의 자동 슬라이드 */
+		$(document).on("touchmove", function() {
+			mySwiper.startAutoplay();
+		});
 		    
 		            	 
 	}); //end ready
@@ -487,33 +515,3 @@ console.log(data)
     }
     
     
-		
-		/** 상품 이미지 자동 슬라이드 */
-		jQuery(function($) {
-			var mySwiper = new Swiper('.swiper-container', {
-				pagination : '.swiper-pagination',
-				nextButton : '.swiper-button-next',
-				prevButton : '.swiper-button-prev',
-				paginationClickable : true,
-				spaceBetween : 30,
-				centeredSlides : true,
-				autoplay : 3000,
-				autoplayDisableOnInteraction : true, 
-				loop : true
-			});
-		 
-			/** 웹에서의 자동 슬라이드 */
-			$(".swiper-container").on("focusout", function() {
-				setTimeout(function() {
-					if ($(this).find(":focus").length === 0) {
-						mySwiper.startAutoplay();
-					}
-				}, 100);
-			});
-		
-			/** 모바일에서의 자동 슬라이드 */
-			$(document).on("touchmove", function() {
-				mySwiper.startAutoplay();
-			});
-		
-		});

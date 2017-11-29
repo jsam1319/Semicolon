@@ -14,21 +14,16 @@ public interface gpurchaseService {
 	 
 	public List<Gpurchase> gpListAll() throws Exception;
 	
-	public Map<String, Object> select(int gpurchaseNo) throws Exception;
+	public Map<String, Object> select(int gpurchaseNo, int memberNo) throws Exception;
 	
 	public int selectGoodsNo(int gpurchaseNo) throws Exception;
-	
-//	public void update(Gpurchase gpurchase) throws Exception;
-	
-	public void delete(int gpurchaseNo) throws Exception;
-	
-//	public List<Gpurchase> listAll(Params params) throws Exception;
 	
 	// 공구 리스트
 	public List<GpurchaseInfo> ListAll(UseParameter parameter) throws Exception;
 	
 	// 조사 공구 카운트 +/-
 	public void updateCntP(int gpurchaseNo) throws Exception;
+	
 	public void updateCntM(int gpurchaseNo) throws Exception;
 
 	// 기한 내에 목표 인원 채운 조사 공구 리스트
