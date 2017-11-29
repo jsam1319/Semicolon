@@ -29,6 +29,14 @@ $(document).ready(function(){
 
 	$.getJSON("/after/" + memberNo + "/" + page , function(data){
 		var str = afterList(data);
+		//$("#afterDiv").append(str);
+		if(str == ""){
+			str += 
+	        	'<div class="container-404">'+
+	       		 	'<div class="description hidden-xs" >이력이 없습니다.</div>'+
+	       		 	'<div class="text">글을 작성하여 주십시오.</div>'
+	       		 '</div>';
+		}
 		$("#afterDiv").append(str);
 	});
 	
@@ -66,7 +74,9 @@ $(document).ready(function(){
 
 function afterList(data){
 	var str = '';
-	console.log(data);
+	
+	
+	
 	$(data.list).each(
 			function(){
 				
