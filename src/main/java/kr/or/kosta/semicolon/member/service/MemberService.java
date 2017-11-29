@@ -37,4 +37,6 @@ public interface MemberService{
     
     /** 공구 주문하는 사람 기본 정보 */
     public Member selectOrderInfo(int memberNo) throws Exception;
+    
+    public String selectName(int memberNo) throws Exception;
 }

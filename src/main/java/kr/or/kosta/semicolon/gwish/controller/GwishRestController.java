@@ -27,9 +27,6 @@ public class GwishRestController {
 	Logger logger = Logger.getLogger(GwishRestController.class);
 	
 	@Inject
-	gwishService gService;
-	
-	@Inject
 	gwishService gwService;
 	
 	@RequestMapping(value="/{gpurchaseNo}", method=RequestMethod.DELETE)
@@ -63,7 +60,7 @@ public class GwishRestController {
 		map.put("memberNo", memNo);
 		map.put("page", page);
 		
-		List<GwishDetail> list = gService.getListByMemNo(map);
+		List<GwishDetail> list = gwService.getListByMemNo(map);
 		
 		if(list!=null) {
 			entity = new ResponseEntity<Object>(list, HttpStatus.OK);

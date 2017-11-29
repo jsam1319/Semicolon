@@ -24,7 +24,7 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
  * 2017. 11. 15.	   박주연		isMember, selectById, updateLogin, readLogin, isId 추가
  * 2017. 11. 24.	   박연주		selectOrderInfo 추가
  * 2017. 11. 28.	   Sejong		selectAppToken, updateToken 추가
- * 	
+ * 2017. 11. 29.	   박연주		selectName 추가
  */
 
 @Service
@@ -165,5 +165,12 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     public Member selectOrderInfo(int memberNo) throws Exception {
     	return memberDao.selectOrderInfo(memberNo);
     }
+    
+    @Override
+    public String selectName(int memberNo) throws Exception {
+    	return memberDao.selectName(memberNo);
+    }
+    
+    
 }
     

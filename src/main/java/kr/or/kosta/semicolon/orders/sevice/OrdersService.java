@@ -25,11 +25,9 @@ import kr.or.kosta.semicolon.payment.domain.Payment;
  * 2017. 11. 23.	   박연주		 selectOrderInfo 추가
  * 2017. 11. 24.	   박주연		 selectByMemNo, getOrdersByMem 추가
  * 2017. 11. 27.	   박주연		 selectDetail추가
- *
+ * 2017. 11. 28.	   박연주		 insertOrder 추가
  */
 public interface OrdersService {
-	
-	public int insert(Orders orders);
 	
 	public Orders select(int ordersNo);
 	

@@ -114,7 +114,7 @@
                   <div class="row shop-grid grid-view endlistView"></div>
 
                   <div class="page-selector">
-                      <a class="moreView"><i
+                      <a class="endMoreView"><i
                         class="fa fa-angle-down"></i></a>
                     <div class="pages-box">
                       <a href="#" class="square-button"><i

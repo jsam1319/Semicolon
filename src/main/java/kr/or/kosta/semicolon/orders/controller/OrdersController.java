@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.or.kosta.semicolon.member.domain.Member;
 import kr.or.kosta.semicolon.member.service.MemberService;
 import kr.or.kosta.semicolon.orderlist.domain.OrderList;
 import kr.or.kosta.semicolon.orderlist.service.OrderListService;
@@ -121,10 +122,8 @@ public class OrdersController {
 	
 	
 	
-	
-	
 	@RequestMapping(value="/orders", method=RequestMethod.POST)
-	public String Order(HttpServletRequest request, Payment payment, Orders orders) throws Exception {
+	public String Order(HttpServletRequest request, Payment payment, Orders orders, Model model) throws Exception {
 		logger.info("Order POST 컨트롤러 접근");
 		
 		/** Cookie에 담겨있는 주문목록 출력 */
@@ -137,6 +136,13 @@ public class OrdersController {
 			}
 		}
 		
+		// 전체 쿠키 삭제하기
+	    if(cookies != null){
+	        for(int i=0; i < cookies.length; i++){
+	            cookies[i].setMaxAge(0) ;
+	        }
+	    }
+
 		
 		/** 주문목록(JSON -> Object) 변환 */
 		ObjectMapper mapper = new ObjectMapper();
@@ -155,20 +161,20 @@ public class OrdersController {
 		}
 		
 		
-		
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 		
 		orders.setMemberNo(memberNo);
 		
-		logger.info(orders);
-		logger.info(payment);
-		logger.info(orderItems);
-		
 		ordersService.insertOrder(orders, orderItems, payment);
 		
-		return "/";
+		String name = memberService.selectName(memberNo);
+		
+		model.addAttribute("orders", orders);
+		model.addAttribute("name", name);
+		
+		return "/order/result";
 	
 	}
-
+	
 }

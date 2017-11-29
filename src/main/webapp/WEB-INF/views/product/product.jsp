@@ -33,7 +33,7 @@ var bestSize = new Object;
   <div class="content-push container">
 
     <div class="breadcrumb-box">
-      <a href="#">Home</a> <a href="#">Shop</a> <a href="#">T-shirts</a>
+      <a href="/">Home</a> <a href="#">Shop</a> <a href="#">T-shirts</a>
       <a href="#">Careers</a> <a href="#">T-shirt Stampata</a>
     </div>
     
@@ -109,10 +109,12 @@ var bestSize = new Object;
                 </div>
               </div>
               
-              <div class="col-sm-12 enterContent-3"></div>
+              <div class="enterContent-3"></div>
               <div class="purchaseNum">
-                <div class="col-sm-5 pNumDiv">(${gpurchase.pnum} / ${gpurchase.min}) 참여</div>
-                <div class="detail-info-entry btnDiv">
+              <c:if test="${gpurchase.status == 1}">
+                <div class="col-xs-5 pNumDiv">(${gpurchase.pnum} / ${gpurchase.min}) 참여</div>
+              </c:if>
+                <div class="detail-info-entry col-xs-7 btnDiv">
                   <div class="clear"></div>
                 </div>
               </div>

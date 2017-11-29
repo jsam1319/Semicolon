@@ -23,9 +23,9 @@
          	  var str = "";
          	  
          	  if(askCheck == 0) {
-         		  str += "<a class='button style-10 askresale'>재공구요청</a>"
+         		  str += "<a class='button style-14 askresale'>재공구요청</a>"
          	  } else {
-         		  str += "<a class='button style-10 askcancle'>요청취소</a>"
+         		  str += "<a class='button style-14 askcancle'>요청취소</a>"
          	  }
          	  
          	  $(".buttonDiv").html(str)
@@ -80,15 +80,15 @@
 						
 					 } else {
 				        str += "<div class='article-container style-1' id='"+no+"'>"
-				        str += "	<div class='col-sm-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
-				        str += "	<div class='col-sm-6 checkDiv2'>"
+				        str += "	<div class='col-xs-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
+				        str += "	<div class='col-xs-6 checkDiv2'>"
 				        str += "		<div class='quantity-selector detail-info-entry qtnChoice'>"
 				        str += "			<div class='entry number-minus minus'>&nbsp;</div>"
 				        str += "			<div class='entry number quantity' name='quantity' id='"+pNum+"qt'>1</div>"
 				        str += "			<div class='entry number-plus plus'>&nbsp;</div>"
 				        str += "		</div>"
 				        str += "	</div>"
-				        str += "	<div class='col-sm-1 xMark'>"
+				        str += "	<div class='col-xs-2 xMark'>"
 				        str += "		<i class='fa fa-times '></i>"
 				        str += "	</div>"
 				        str += "</div>"

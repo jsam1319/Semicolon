@@ -275,9 +275,9 @@
             <div class="nav-overflow">
               <nav>
                 <ul>
-                  <li class="full-width"><a href="#">Home</a></li>
+                  <li class="full-width"><a href="/">Home</a></li>
 
-                  <li class="full-width"><a href="#">공동구매 조사</a><i
+                  <li class="full-width"><a href="/product/research/110">공동구매 조사</a><i
                     class="fa fa-chevron-down"></i>
                     <div class="submenu">
                       <div class="full-width-menu-items-right">
@@ -466,7 +466,7 @@
                     </div></li>
 
 
-                  <li class="full-width"><a href="#">공동구매</a><i
+                  <li class="full-width"><a href="/product/list/110">공동구매</a><i
                     class="fa fa-chevron-down"></i>
                     <div class="submenu">
                       <div class="full-width-menu-items-right">

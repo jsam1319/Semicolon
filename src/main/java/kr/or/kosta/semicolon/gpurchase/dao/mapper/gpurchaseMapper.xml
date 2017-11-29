@@ -25,18 +25,22 @@
 
  
 	<select id="gpListAll" resultType="Gpurchase">
+		<![CDATA[
 		SELECT gpurchase_no                      AS gpurchaseNo, 
 		       goods_no                          AS goodsNo, 
 		       min, 
 		       To_char(end_date, 'yyyy-MM-DD')   endDate, 
 		       To_char(start_date, 'yyyy-MM-DD') startDate, 
 		       price, 
-		       status,
-		       likecnt							AS likeCnt,
+		       status, 
+		       likecnt                           AS likeCnt, 
 		       pnum 
 		FROM   gpurchase 
-		ORDER  BY gpurchase_no DESC
+		WHERE  status < 2 
+		       AND status >= 0
+		]]>
 	</select>
+	
 	
 	<select id="select" parameterType="int" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
 		SELECT g.goods_no                           goodsNo, 
@@ -203,4 +207,8 @@
 		SET    status = -1 
 		WHERE  gpurchase_no = #{gpurchaseNo}
 	</update>
+	
+	
+	
+	
 </mapper>
