@@ -63,3 +63,8 @@
 #replyDiv{
     text-align: left;
 }
+
+#contentinmodal, #commentsinmodal{
+	height:50%;
+	
+}
