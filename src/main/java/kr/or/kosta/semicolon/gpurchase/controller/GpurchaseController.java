@@ -380,6 +380,7 @@ public class GpurchaseController {
 		model.addAttribute("keyword", map.get("keyword"));
 		model.addAttribute("size", map.get("size"));
 		model.addAttribute("askCnt", askCnt);
+		model.addAttribute("orderCheck", map.get("orderCheck"));
 		
 		return "product/product";
 
