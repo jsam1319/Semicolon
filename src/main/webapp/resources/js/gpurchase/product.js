@@ -334,20 +334,27 @@
 				var reviewNo = $(this).attr("title");
 				
 				var removetag = $(this).parent().parent().parent();
+				var memNo = $(this).attr("name");
+				console.log(memNo);
+				console.log(memberNo);
 				
-				$.ajax({
-			        type:'delete',
-			        url:'/review/'+reviewNo,	
-			        headers: { 
-			              "Content-Type": "application/json",
-			              "X-HTTP-Method-Override": "DELETE" },
-			        dataType:'text', 
-			        success:function(result){
-			          console.log(result);
-			          if(result == 'SUCCESS'){
-			            removetag.remove();
-			          }
-			      }});
+				if(memNo == memberNo){
+					$.ajax({
+				        type:'delete',
+				        url:'/review/'+reviewNo,	
+				        headers: { 
+				              "Content-Type": "application/json",
+				              "X-HTTP-Method-Override": "DELETE" },
+				        dataType:'text', 
+				        success:function(result){
+				          console.log(result);
+				          if(result == 'SUCCESS'){
+				            removetag.remove();
+				          }
+				      }});
+				  }else{
+					  alert("자신의 리뷰가 아닙니다!");
+				  }
 			});
 		      
 		  
@@ -406,14 +413,14 @@
 			  }
 		    
 			  str += '</div>';
-		    
+			  
 			  str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
 			  str += '</div>';
 			  str += '</div>';
 			  str += '</div>';
 		      str += '<div class="column-2">';
-		      str += '<a class="button style-14">더보기</a>';
-		      str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
+		      //str += '<a class="button style-14">더보기</a>';
+		      str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn" name="' + this.memberNo + '"></i></a>';
 		      str += '</div> ';
 		      str += '</div>';
 		  	});
