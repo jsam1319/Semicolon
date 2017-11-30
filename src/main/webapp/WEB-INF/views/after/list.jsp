@@ -12,13 +12,6 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
     <link href="/resources/css/style.css" rel="stylesheet" type="text/css" />
     
-<style>
-.moreView {
-    font-size:80px;
-    color: black;
-    text-align: center;
-}
-</style>
 <script>
 $(document).ready(function(){
 	
@@ -102,7 +95,7 @@ function afterList(data){
 				
                 
 				str += '<div class="accordeon-title" id="afterText">' + this.regdate + status;
-				if(${no} == 1){
+				if(${no} == -1){
 					str += '<p>회원번호 : ' + this.memberNo + '</p>';
 				}
 				str += '</div>';
@@ -118,7 +111,7 @@ function afterList(data){
     				str += '<footer><cite><이 재 삼 대표> 010-7574-7591</cite></footer>';
     				str += '</blockquote>';
 				}else{
-					if(${no} == 1){
+					if(${no} == -1){
 						str += '<a class="button style-7" href="/after/' + this.aftersalesNo + '">자세히보기</a>';
 					}
 				}
@@ -146,18 +139,22 @@ function afterList(data){
 
                 <div class="breadcrumb-box">
                     <a href="/">홈</a>
-                    <a href="/">마이페이지</a>
-                    <a href="#">A / S 리스트</a>
+                    <a href="/admin/">마이페이지</a>
+                    <a href="/after/list">A / S 리스트</a>
                 </div>
-                <div class="col-md-2"><a class="button style-10" href="/after/regist">작성하기</a></div>
-                <div class="information-blocks">
+                <div class="col-md-5 EnterDiv"></div>
+                
+                <div class="information-blocks col-md-10 RequestDiv">
                     <div class="row">
-                        <div class="col-md-2 "></div>
-                        <div class="col-md-7 information-entry">
+                        <div class="information-entry">
                         <div class="blog-landing-box type-2">
-                         <div class="accordeon" id="afterDiv"> </div>
+                         <div class="accordeon" id="afterDiv"></div>
+                            <c:if test="${no != -1 }">
+                                <a class="button style-10 RequestBtn" href="/after/regist">작성하기</a>
+                                <div class="enterContent-6"></div>
+                            </c:if>
                          <div class="page-selector">
-                           <center><a class="moreView"><i class="fa fa-angle-down"></i></a></center>
+                           <a class="moreView"><i class="fa fa-angle-down"></i></a>
                          </div>
                         </div>
                       </div>

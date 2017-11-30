@@ -187,7 +187,7 @@ $.getJSON("/goods/list", function(data){
     		
             $(data).each(function(){
 				if(this.category == 110){
-					str += '<a class="item" id="' + this.goodsNo + '" ><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+					str += '<a class="item" id="' + this.goodsNo + '" ><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
 				}
             });
             $("#coatMenu").html(str);
@@ -195,7 +195,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 120){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#jacketMenu").html(str);
@@ -203,7 +203,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 130){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#dressMenu").html(str);
@@ -211,7 +211,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 140){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#knitMenu").html(str);
@@ -219,7 +219,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 150){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#sweatMenu").html(str);
@@ -227,7 +227,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 210){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#skirtMenu").html(str);
@@ -235,7 +235,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 220){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#shortsMenu").html(str);
@@ -243,7 +243,7 @@ $.getJSON("/goods/list", function(data){
             str = "";
             $(data).each(function(){
             	if(this.category == 230){
-    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="/resources/img/ex/' + this.frontImg + '">' + this.name + '</a>';
+    				str += '<a class="item" id="' + this.goodsNo + '"><img class="ui avatar image" src="' + this.frontImg + '">' + this.name + '</a>';
   				}
             });
             $("#pantsMenu").html(str);
