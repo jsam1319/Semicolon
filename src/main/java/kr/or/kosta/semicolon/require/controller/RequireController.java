@@ -52,13 +52,6 @@ public class RequireController {
 	@Inject
 	UploadService uploadService;
 	
-	@RequestMapping(value="/test", method=RequestMethod.GET)
-	public String test(){
-		logger.info("결제 후 list 컨트롤러.. GET");
-		
-		return "/require/insert2";
-	}
-	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String insert() {
 		logger.info("공구요청 컨트롤러.. GET");

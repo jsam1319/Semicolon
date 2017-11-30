@@ -86,18 +86,11 @@
 											<div class="swiper-slide">
 												<div class="paddings-container">
 													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/index/merciCardigan2.PNG" alt="" /> <img
-																src="/resources/img/product-minimal-11.jpg" alt="" /> <a
-																class="top-line-a left"><i class="fa fa-retweet"></i></a>
-															<a class="top-line-a right"><i class="fa fa-heart"></i></a>
-															<div class="bottom-line">
-																<a class="bottom-line-a"><i
-																	class="fa fa-shopping-cart"></i> Add to cart</a>
-															</div>
+														<div class="" style="height:16rem;">
+															<img id="imageSizing" src="/resources/img/index/brownCoat3.PNG" alt=""  style="height:100%;"/> 
 														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
+														<a class="tag" href="#"># COAT</a> <a class="title"
+															href="#">Brown Wool Coat</a>
 														<div class="rating-box">
 															<div class="star">
 																<i class="fa fa-star"></i>
@@ -112,199 +105,139 @@
 																<i class="fa fa-star"></i>
 															</div>
 															<div class="star">
-																<i class="fa fa-star"></i>
+																<i class="fa fa-star-o"></i>
 															</div>
 														</div>
 														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
+															<div class="current">￦80,000</div>
 														</div>
 													</div>
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-2.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-12.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
+                                              <div class="paddings-container">
+                                                <div class="product-slide-entry shift-image">
+                                                  <div class="" style="height:16rem;">
+                                                    <img id="imageSizing" src="/resources/img/index/burgundyCoat2.PNG" alt=""  style="height:100%;"/> 
+                                                  </div>
+                                                  <a class="tag" href="#"># COAT</a> <a class="title"
+                                                    href="#">Burgundy Wool Coat</a>
+                                                  <div class="rating-box">
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                  </div>
+                                                  <div class="price">
+                                                    <div class="current">￦75,000</div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-3.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-11.jpg" alt="" />
-															<div class="bottom-line left-attached">
-																<a class="bottom-line-a square"><i
-																	class="fa fa-shopping-cart"></i></a> <a
-																	class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-																<a class="bottom-line-a square"><i
-																	class="fa fa-retweet"></i></a> <a
-																	class="bottom-line-a square open-product"><i
-																	class="fa fa-expand"></i></a>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
+                                              <div class="paddings-container">
+                                                <div class="product-slide-entry shift-image">
+                                                  <div class="" style="height:16rem;">
+                                                    <img id="imageSizing" src="/resources/img/index/mintCoat4.PNG" alt=""  style="height:100%;"/> 
+                                                  </div>
+                                                  <a class="tag" href="#"># COAT</a> <a class="title"
+                                                    href="#">Mint Short Coat</a>
+                                                  <div class="rating-box">
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star-half"></i>
+                                                    </div>
+                                                  </div>
+                                                  <div class="price">
+                                                    <div class="current">￦68,000</div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-4.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-12.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
+                                              <div class="paddings-container">
+                                                <div class="product-slide-entry shift-image">
+                                                  <div class="" style="height:16rem;">
+                                                    <img id="imageSizing" src="/resources/img/index/mustang2.PNG" alt=""  style="height:100%;"/> 
+                                                  </div>
+                                                  <a class="tag" href="#"># COAT</a> <a class="title"
+                                                    href="#">Mustang</a>
+                                                  <div class="rating-box">
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                  </div>
+                                                  <div class="price">
+                                                    <div class="current">￦77,000</div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-5.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-11.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
+                                              <div class="paddings-container">
+                                                <div class="product-slide-entry shift-image">
+                                                  <div class="" style="height:16rem;">
+                                                    <img id="imageSizing" src="/resources/img/index/shortCoat2.PNG" alt=""  style="height:100%;"/>
+                                                    </div>
+                                                  <a class="tag" href="#"># COAT</a> <a class="title"
+                                                    href="#">Short Wool Coat</a>
+                                                  <div class="rating-box">
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star-half"></i>
+                                                    </div>
+                                                    <div class="star">
+                                                      <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                  </div>
+                                                  <div class="price">
+                                                    <div class="current">￦65,000</div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 										</div>
 										<div class="pagination"></div>
 									</div>

@@ -21,6 +21,6 @@ public interface NegoListService {
 	
 	public void insert(NegoList negoList);
 	
-	public int select(int goodsNo);
+	public NegoList select(int goodsNo);
 
 }

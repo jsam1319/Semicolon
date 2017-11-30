@@ -24,8 +24,9 @@
 		             #{negoMin})
     </insert>
     
-    <select id="select" parameterType="int" resultType="int">
-	    SELECT min 
+    <select id="select" parameterType="int" resultType="NegoList">
+	    SELECT min negoMin,
+	    	   price negoPrice
 		FROM   nego_list 
 		WHERE  goods_no = #{goodsNo} 
     </select>

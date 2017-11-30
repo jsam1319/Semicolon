@@ -42,12 +42,12 @@
                                       
                                       <div class="col-sm-6">
                                           <label>최소인원 <span>*</span></label>
-                                          <input class="simple-field" type="number" name="min" placeholder="최소인원" value="${min}"  required/>
+                                          <input class="simple-field" type="number" name="min" placeholder="최소인원" value="${negoList.negoMin}"  required/>
                                           <div class="clear"></div>
                                       </div>
                                       <div class="col-sm-6">
                                           <label>가격(￦) <span>*</span></label>
-                                          <input class="simple-field" type="number" name="price" value="" required />
+                                          <input class="simple-field" type="number" name="price" value="${negoList.negoPrice}" required />
                                           <div class="clear"></div>
                                       </div>
                                     <input type="hidden" name="goodsNo" value="${goods.goodsNo }">
