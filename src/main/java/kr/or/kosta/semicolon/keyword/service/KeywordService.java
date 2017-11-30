@@ -15,4 +15,6 @@ public interface KeywordService {
 	public List<GpurchaseInfo> listByKeyword(KeywordParameter keyword);
 	
 	public List<String> autoComplete(String keyword);
+	
+	public List<String> listByCount();
 }

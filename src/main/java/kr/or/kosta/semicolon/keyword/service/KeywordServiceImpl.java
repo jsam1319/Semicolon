@@ -45,6 +45,18 @@ public class KeywordServiceImpl implements KeywordService {
 
 		return strings;
 	}
+
+	@Override
+	public List<String> listByCount() {
+		// TODO Auto-generated method stub
+		List<String> list = keywordDao.listByCount();
+		for(int i=0; i<list.size(); i++) 
+			list.set(i, HangulSeperator.conHangul(list.get(i)));
+		
+		return list;
+	}
+	
+	
 	
 	
 }
