@@ -165,45 +165,6 @@ var bestSize = new Object;
                 
                 <br><br>
                 
-                <div class="information-entry products-list">
-                  <h3 class="block-title inline-product-column-title">Featured
-                    products</h3>
-                  <div class="inline-product-entry">
-                    <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-1.jpg"></a>
-                    <div class="content">
-                      <div class="cell-view">
-                        <a href="#" class="title">Pullover Batwing
-                          Sleeve Zigzag</a>
-                        <div class="price">
-                          <div class="prev">$199,99</div>
-                          <div class="current">$119,99</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-
-                  <div class="inline-product-entry">
-                    <a href="#" class="image"><img alt=""
-                      src="/resources/img/product-image-inline-2.jpg"></a>
-                    <div class="content">
-                      <div class="cell-view">
-                        <a href="#" class="title">Pullover Batwing
-                          Sleeve Zigzag</a>
-                        <div class="price">
-                          <div class="prev">$199,99</div>
-                          <div class="current">$119,99</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                </div>
-                
-               
-                
-                
               </div>
             </div>
           </div>
@@ -218,7 +179,7 @@ var bestSize = new Object;
         <div class="detail-info-entry-title">Tags: </div>
        <c:forEach var="keyword" items="${keyword}">
           <a href="#">${keyword}</a>&nbsp;
-          <c:if test="${not status.last }">/&nbsp; </c:if>
+          <c:if test="${not status.last}">/&nbsp; </c:if>
        </c:forEach>
       </div>
       <!-- /.상품 Keyword(Tag) -->

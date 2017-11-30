@@ -92,11 +92,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 			sizeList = bottomDao.selectSize(gpurchaseNo);
 		}
 		
-		List<Object> size = new ArrayList<>(); 
-		for (HashMap<String, Object> list : sizeList) {
-			size.add(list);
-		}
-		
 		// 회원 주문 여부 반환
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
 		int orderCheck = ordersDao.SelectOrderCheck(askResale);
@@ -104,7 +99,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);
 		map.put("keyword", keyword);
-		map.put("size", size);
+		map.put("size", sizeList);
 		map.put("orderCheck", orderCheck);
 
 		return map;
