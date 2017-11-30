@@ -187,7 +187,7 @@
               <a href="/" id="logo"><img alt=""
                 src="/resources/img/logo-9.png"></a>
             </div>
-            <div class="product-header-content">
+            <div class="product-header-content" id="headerDiv">
 							<div class="line-entry">
 								<div class="menu-button responsive-menu-toggle-class">
 									<i class="fa fa-reorder"></i>
@@ -261,7 +261,6 @@
 
 
               </div>
-              <div class="middle-line"></div>
               
             </div>
           </div>
@@ -656,20 +655,8 @@
 
 
 
-                  <li class="simple-list"><a href="shop.html">공동구매 요청</a><i
-                    class="fa fa-chevron-down"></i>
-                    <div class="submenu">
-                      <ul class="simple-menu-list-column">
-                        <li><a href="/product/research"><i
-                            class="fa fa-angle-right"></i>공동구매 조사</a></li>
-                        <li><a href="/product/list"><i
-                            class="fa fa-angle-right"></i>공동구매</a></li>
-                        <li><a href="product-nosidebar.html"><i
-                            class="fa fa-angle-right"></i>No Sidebar</a></li>
-                        <li><a href="product-tabnosidebar.html"><i
-                            class="fa fa-angle-right"></i>Tab No Sidebar</a></li>
-                      </ul>
-                    </div></li>
+                  <li class="simple-list"><a href="/require/insert">공동구매 요청</a>
+                    
                 </ul>
 
                 <ul>
@@ -695,7 +682,7 @@
                   <div class="clear"></div>
                 </div>
                 <div class="navigation-copyright">
-                  Created by <a href="#">8theme</a>. All rights reserved
+                  Created by <a href="#">Semicolon</a>. All rights reserved
                 </div>
               </div>
             </div>
