@@ -18,8 +18,7 @@
 		            member_no, 
 		            attach_file, 
 		            content,
-		            grade,
-		            regdate
+		            grade
 		        ) 
 				VALUES      
 				(
@@ -28,8 +27,7 @@
 		            #{memberNo}, 
 		            #{attachFile}, 
 		            #{content},
-		            #{grade},
-		            sysdate
+		            #{grade}
 		        )
 	</insert>
 	
@@ -40,7 +38,7 @@
                member_no		memberNo,
                attach_file		attachFile,
                content,
-               TO_CHAR(regdate, 'YYYY-MM-DD')		regdate,
+               TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:ss')		regdate,
                grade 
 		FROM   review 
 		WHERE  review_no = #{reviewNo}
