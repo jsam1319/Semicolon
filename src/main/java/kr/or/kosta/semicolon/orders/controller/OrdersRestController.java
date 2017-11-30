@@ -75,6 +75,9 @@ public class OrdersRestController {
 		 // bottomNo, topsNo, ordersNo을 저장하는 map 
 		 Map<String, Object> map;
 		
+		 //END_DATE 수정
+		 end += " 23:59:59";
+		 
 		 // 회원번호
 		 int no = (Integer)request.getSession().getAttribute("no");
 		 map  =  new HashMap<String, Object>();
