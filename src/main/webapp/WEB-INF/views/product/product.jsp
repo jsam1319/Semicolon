@@ -48,12 +48,12 @@ var bestSize = new Object;
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/images/${gpurchase.frontImg}" alt="" />
+                    <img src="${gpurchase.frontImg}" alt="" />
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="/resources/images/${gpurchase.toggleImg}" alt="" />
+                    <img src="${gpurchase.toggleImg}" alt="" />
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@ var bestSize = new Object;
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
-                  <img class="default-image" src="/resources/images/${gpurchase.frontImg}" alt="" />
+                  <img class="default-image" src="${gpurchase.frontImg}" alt="" />
                 </div>
                 <div class="zoom-area"></div>
               </div>
