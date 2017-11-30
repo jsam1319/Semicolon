@@ -172,7 +172,7 @@
                 src="/resources/img/logo-9.png"></a>
             </div>
             <div class="product-header-content" id="headerDiv">
-							<div>
+							<div class="line-entry">
 								<div class="menu-button responsive-menu-toggle-class">
 									<i class="fa fa-reorder"></i>
 								</div>
@@ -245,7 +245,7 @@
 
 
               </div>
-              
+              <div class="middle-line"></div>
             </div>
           </div>
 
@@ -940,16 +940,40 @@
 $(document).ready(function() {
 	$("#keyword").focus(function() {
 		if($("#keyword").val().trim() == "") {
-			$("#autocomplete").html('<li class="list-group-item">Cras justo odio</li>' +
-															'<li class="list-group-item">Dapibus ac facilisis in</li>' +
-															'<li class="list-group-item">Morbi leo risus</li>' +
-															'<li class="list-group-item">Porta ac consectetur ac</li>' +
-															'<li class="list-group-item">Vestibulum at eros</li>');
+			$.ajax({
+				url : '/keyword/count',
+				dataType : 'json',
+				success : function(data) {
+					if(data.length == 0) {
+						$("#autocomplete").html('<li class="list-group-item">추천 검색어가 존재하지 않습니다.</li>');
+					}
+					
+					$("#autocomplete").html('<li class="list-group-item"> 인기 검색어 TOP 5 </li>' )
+					for (var i = 0; i < data.length; i++) {
+						$("#autocomplete").append(liListGroup(data[i], data[i]));
+					}
+				},
+				error : function(data) {
+					$("#autocomplete").html('<li class="list-group-item">추천 검색어가 존재하지 않습니다.</li>');
+				}
+			})
 			
 		}
 	})
 	
-	$("#keyword").keyup(function() {
+	$("#keyword").keyup(function(event) {
+		if(event.key == 'Enter') {
+			var keyword = $("#keyword").val();
+			
+			$("#searchForm").attr("action", "/product/search/" + keyword);
+			$("#searchForm").submit();
+		}
+		
+		if($(this).val().trim().length == 0) {
+			$("#autocomplete").html('<li class="list-group-item"> 검색어를 입력하세요 </li>' )
+			return;
+		}
+		
 		$("#autocomplete").html('');
 		$.ajax({
 			url : '/keyword/auto',
@@ -957,17 +981,15 @@ $(document).ready(function() {
 			dataType : 'json',
 			success : function(data) {
 				if(data.length == 0) {
-					$("#autocomplete").html('');
-					$("#autocomplete").append(liListGroup("추천 검색어가 존재하지 않습니다.", $("#keyword").val())) ;
+					$("#autocomplete").html('<li class="list-group-item">추천 검색어가 존재하지 않습니다.</li>');
 				}
 				
 				for (var i = 0; i < data.length; i++) {
-					$("#autocomplete").append(liListGroup(data[i], $("#keyword").val())) ;
+					$("#autocomplete").append(liListGroup(data[i], $("#keyword").val()));
 				}
 			},
 			error : function(data) {
-				$("#autocomplete").html('');
-				$("#autocomplete").append(liListGroup("추천 검색어가 존재하지 않습니다.", $("#keyword").val())) ;
+				$("#autocomplete").html('<li class="list-group-item">추천 검색어가 존재하지 않습니다.</li>');
 			}
 		})
 		
@@ -982,8 +1004,7 @@ $(document).ready(function() {
 
 function liListGroup(value, keyword) {
 	value = value.replace(keyword, '<font color="blue" style="font-weight:bold">' + keyword + '</font>')
-	console.log(keyword + " " + value)
-	return '<li class="list-group-item">' + value + '</li>'
+	return '<li class="list-group-item"><a href="/product/search/' + keyword + '">' + value + '</a></li>'
 }
 
 

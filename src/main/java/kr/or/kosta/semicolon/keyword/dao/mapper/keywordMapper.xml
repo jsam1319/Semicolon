@@ -28,9 +28,9 @@
 		SELECT goodsno, 
 		       category, 
 		       gname, 
-		       frongimg, 
-		       toggleimg, 
-		       gpurchaseno, 
+		       frontImg, 
+		       toggleImg, 
+		       gpurchaseNo, 
 		       min, 
 		       enddate, 
 		       startdate, 
@@ -42,9 +42,9 @@
 		               goodsno, 
 		               category, 
 		               gname, 
-		               frongimg, 
-		               toggleimg, 
-		               gpurchaseno, 
+		               frontImg, 
+		               toggleImg, 
+		               gpurchaseNo, 
 		               min, 
 		               enddate, 
 		               startdate, 
@@ -55,7 +55,7 @@
                     FROM   (SELECT g.goods_no      goodsNo, 
                                    g.category      category, 
                                    g.NAME          gname, 
-                                   g.front_img     frongImg, 
+                                   g.front_img     frontImg, 
                                    g.toggle_img    toggleImg, 
                                    gp.gpurchase_no gpurchaseNo, 
                                    gp.min          min, 
@@ -75,7 +75,7 @@
 	</select>
 	 
 	 
-	 <select id="selectName" parameterType="int" resultType="HashMap">
+	 <select id="selectName" parameterType="int" resultType="string">
 		 	SELECT keyword_name keywordName
 			FROM   keyword 
 			WHERE  goods_no = #{goodsNo}
@@ -86,6 +86,18 @@
 		SELECT DISTINCT keyword_name keywordName
 		FROM keyword
 		WHERE keyword_name like '%${value}%'
+	</select>
 	
+	<select id="listByCount" resultType="string">
+		SELECT keyword_name
+		FROM   (SELECT keyword_name, 
+               		 Count(keyword_name) 
+        		FROM   keyword 
+        		WHERE  keyword_name IN (SELECT content 
+                                		FROM   log 
+                                		WHERE  TYPE = 'SEARCH') 
+        		GROUP  BY keyword_name 
+        		ORDER  BY Count(keyword_name) DESC) 
+		WHERE  ROWNUM &lt;= 5
 	</select>
 </mapper>

@@ -29,8 +29,10 @@ public interface KeywordDao {
 	
 	public List<GpurchaseInfo> listByKeyword(KeywordParameter keyword);
 	
-	public List<HashMap<String, String>> selectName(int goodsNo) throws Exception;
+	public List<String> selectName(int goodsNo) throws Exception;
 	
 	public List<String> autoComplete(String keyword);
+	
+	public List<String> listByCount();
 	
 }

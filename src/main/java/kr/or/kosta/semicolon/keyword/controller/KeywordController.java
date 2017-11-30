@@ -45,4 +45,10 @@ public class KeywordController {
 	public List<String> autoComplete(String keyword) {
 		return keywordService.autoComplete(keyword);
 	}
+	
+	@RequestMapping(value = "/keyword/count", method = RequestMethod.GET)
+	@ResponseBody
+	public List<String> popularList() {
+		return keywordService.listByCount();
+	}
 }
