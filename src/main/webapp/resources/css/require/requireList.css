@@ -9,7 +9,7 @@
     height:auto;
 }
 
-.imageClass{
+.imageClass{ 
     width:68px;
     height:124px;
     margin:2%;
@@ -62,4 +62,9 @@
 
 #replyDiv{
     text-align: left;
+}
+
+#contentinmodal, #commentsinmodal{
+	height:50%;
+	
 }

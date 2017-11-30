@@ -62,9 +62,8 @@
                    </div>
                   
                   <div class="col-sm-12">
-                    <div class="button style-10 btnDiv" id="sendBtn">
-                      Send <input type="submit" value="" />
-                    </div>
+                    <div class="button style-10 btnDiv" id="sendBtn" > Send <input type="submit" value="" /> </div> 
+                    <div class="button style-10 btnDiv"><a href="/require/list">GO LIST </a></div> 
                   </div>
                 </div>
               </form>

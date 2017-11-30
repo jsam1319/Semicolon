@@ -12,9 +12,8 @@ $(document).ready(function(){
     $("input[type=file]").change(function(event) {
     	
     	var formData = new FormData();
-    	
-    	var file = $('input[type=file]')[0].files[0];
-    	fileName = $('input[type=file]')[0].files[0].name;
+    	var file = document.getElementById("fileUpload").files[0];
+    	fileName = document.getElementById("fileUpload").files[0].name;
     	
     	formData.append("file", file);
     	

@@ -36,24 +36,23 @@
               <div class="col-sm-12">
                 <label>상품이미지</label><img id="imageinmodal" src="">
                 <label>제목</label><input class="simple-field" type="text"
-                  id="titleinmodal" value="" />
+                  id="titleinmodal" value="" readonly />
                 <div class="col-sm-12 Outer">
                   <div class="col-sm-6 priceDiv">
                     <input type="hidden" id="requireNo" value="" /> <label>희망가격</label><input
-                      class="simple-field" type="text" id="priceinmodal"
-                      value="" />
+                      class="simple-field" type="text" id="priceinmodal" value="" readonly />
                   </div>
                   <div class="col-sm-6 companyDiv">
                     <label>회사명(제조사)</label><input class="simple-field"
-                      type="text" id="companyinmodal" value="" />
+                      type="text" id="companyinmodal" value="" readonly />
                   </div>
                 </div>
-                <label>요청내용</label><input class="simple-field"
-                  type="text" id="contentinmodal" value="" /> <label>관리자
-                  답변내용</label><input class="simple-field" type="text"
-                  id="commentsinmodal" value="" />
+                <label>요청내용</label>
+                  <textarea class="simple-field" id="contentinmodal" readonly></textarea>
+                  <label>관리자 답변내용</label>
+                  <textarea class="simple-field" id="commentsinmodal" readonly></textarea>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
         <c:if test="${no eq -1}">
