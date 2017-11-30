@@ -54,14 +54,14 @@ public class RequireController {
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String insert() {
-		logger.info("공구요청 컨트롤러.. GET");
+		//logger.info("공구요청 컨트롤러.. GET");
 		
 		return "/require/insert";
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(Require require, HttpServletRequest request) {
-		logger.info("공구요청 컨트롤러.. POST");
+		//logger.info("공구요청 컨트롤러.. POST");
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 		
@@ -74,13 +74,13 @@ public class RequireController {
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public void list(){
-		logger.info("공구요청 list 컨트롤러.. GET");
+		//logger.info("공구요청 list 컨트롤러.. GET");
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/list/{page}", method=RequestMethod.POST)
 	public List<Require> list(@PathVariable("page") int page){
-		logger.info("공구요청 list 컨트롤러.. POST");
+		//logger.info("공구요청 list 컨트롤러.. POST");
 		List<Require> list;
 		
 		list = requireService.listAll(page);
@@ -92,7 +92,7 @@ public class RequireController {
 	@ResponseBody
 	@RequestMapping(value="/modal/{requireNo}", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	public String readOne(@PathVariable("requireNo")int requireNo) {
-		logger.info("modal-- 컨트롤러 ReadOne... ");
+		//logger.info("modal-- 컨트롤러 ReadOne... ");
 		
 		Require require = new Require();
 		
@@ -116,7 +116,7 @@ public class RequireController {
 	@ResponseBody
 	@RequestMapping(value="/reply/{requireNo}", method= {RequestMethod.PUT, RequestMethod.PATCH})
 	public Require insert(@PathVariable("requireNo")int requireNo, @RequestBody Require require) {
-		logger.info("modal--  컨트롤러 Reply... update");
+		//logger.info("modal--  컨트롤러 Reply... update");
 		
 		require.setRequireNo(requireNo);
 		requireService.update(require);
@@ -129,7 +129,7 @@ public class RequireController {
 	@ResponseBody
 	@RequestMapping(value="/upload", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
 	public String insert(MultipartFile file, Model model) throws Exception {
-		logger.info("파일 이름:" + file.getOriginalFilename());
+		//logger.info("파일 이름:" + file.getOriginalFilename());
 		
 		String savedName = uploadService.uploadFile(file.getOriginalFilename(), file.getBytes());
 		String thumbnail = uploadService.makeThumbnail(savedName);
@@ -137,7 +137,7 @@ public class RequireController {
 		model.addAttribute("savedName", savedName);
 		model.addAttribute("thumbnail", thumbnail);
 		
-		logger.info("저장 이름:" + savedName);
+		//logger.info("저장 이름:" + savedName);
 		
 		return "/resources/images/"+thumbnail;
 		

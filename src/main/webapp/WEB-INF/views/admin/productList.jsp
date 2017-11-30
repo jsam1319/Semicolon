@@ -117,10 +117,16 @@ $(document).ready(function(){
  				
  			});
  			
- 			$("a[name='regist']").click(function(){
- 				var tableNo = table.row($(this).parents('tr')).data()[4];
- 				$(this).attr("href","/product/insert/"+tableNo);
- 			})
+ 				/* $("a[name='regist']").click(function(){
+ 	 				var tableNo = table.row($(this).parents('tr')).data()[4];
+ 	 				//$(this).attr("href","/product/insert/"+tableNo);
+ 			}) */
+ 			
+ 			$('#productTable tbody').on( 'click', "a[name='regist']", function () {
+ 		        var data = table.row( $(this).parents('tr') ).data();
+ 		       $(this).attr("href","/product/insert/"+data[4])
+ 		    } );
+ 			
  			
 		}
 	})

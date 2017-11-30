@@ -42,6 +42,7 @@ $(document).ready(function(){
 			data:JSON.stringify({requireNo:requireNum,comments:re}),
 			success:function(data){
 				$("#commentsinmodal").val(data.comments)
+				$("#leaveComments").val("");
 			}
 		}) 
 	})
