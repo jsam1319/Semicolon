@@ -49,9 +49,9 @@
                   </div>
                 </div>
                 <label>요청내용</label><input class="simple-field"
-                  type="text" id="contentinmodal" value="" /> <label>관리자
-                  답변내용</label><input class="simple-field" type="text"
-                  id="commentsinmodal" value="" />
+                  type="text" id="contentinmodal" value="" /> 
+                  <label>관리자 답변내용</label><input class="simple-field" type="text"
+                  id="commentsinmodal" value="" readonly />
               </div>
             </div>
           </div>
