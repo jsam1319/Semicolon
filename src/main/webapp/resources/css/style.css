@@ -302,7 +302,8 @@ nav>ul:nth-child(2){float: right;}
     .submenu.right-align{left: auto!important; right: 0; margin: 0!important;}
 }
 .submenu .row{position: relative;}
-nav .full-width .submenu{padding: 50px 0; max-width: 1310px;}
+/* nav .full-width .submenu{padding: 50px 0; max-width: 1310px;} */
+nav .full-width .submenu{padding: 50px 0; max-width: 500px;}
 .full-width-menu-items-right{width: 540px; margin-right: 50px; float: right;}
 .full-width-menu-items-right .submenu-list-title{margin-right: 50px;}
 .menu-slider-out{overflow: hidden;}
@@ -316,7 +317,8 @@ nav .full-width .submenu{padding: 50px 0; max-width: 1310px;}
 .menu-slider-arrows a{font-size: 13px; line-height: 22px; display: inline-block; width: 22px; text-align: center;}
 #content-block .menu-slider-arrows a .fa{color: #cacaca;}
 #content-block .menu-slider-arrows a:hover .fa{color: #2e2e2e;}
-.full-width-menu-items-left{margin-right: 615px; margin-left: 45px;}
+/* .full-width-menu-items-left{margin-right: 615px; margin-left: 45px;} */
+.full-width-menu-items-left{margin-right: 0px; margin-left: 45px;}
 .submenu-list-title{font-size: 16px; line-height: 22px; color: #2e2e2e; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px;}
 .submenu-list-title a{color: #2e2e2e;}
 #content-block .submenu-list-title a:hover{text-decoration: underline; color: #2e2e2e;}
