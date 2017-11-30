@@ -37,7 +37,7 @@ import kr.or.kosta.semicolon.payment.domain.Payment;
  * 2017. 11. 23.	   박연주		 selectOrderInfo 추가
  * 2017. 11. 24.	   박주연		 selectByMemNo
  * 2017. 11. 27.	   박주연		 selectDetail추가
- *
+ * 2017. 11. 28.	   박연주		 insertOrder 추가
  */
 @Service
 public class OrdersServiceImpl implements OrdersService {
@@ -61,36 +61,26 @@ public class OrdersServiceImpl implements OrdersService {
 	@Transactional
 	public void insertOrder(Orders order, ArrayList<OrderList> orderItems, Payment payment) throws Exception {
 		
-		/** orders 생성 */
+		// orders 생성
 		dao.insert(order);
 		
-		logger.info("insert 전 orderlist : "+orderItems);
-		
-		/** orderList 생성 */
+		// orderList 생성
 		for (OrderList orderlist : orderItems) {
 			orderlist.setOrdersNo(order.getOrdersNo());
 			orderListdao.insert(orderlist);
 		}
-		logger.info("insert 후 orderlist : "+orderItems);
-		logger.info("setOrdersNo 전 payment : "+payment);
+		
+		// payment 생성
 		payment.setOrdersNo(order.getOrdersNo());
-		logger.info("setOrdersNo 후 payment : "+payment);
 		paymetdao.insert(payment);
 		
+		// 구매인원 증가
 		int gpurchaseNo = orderItems.get(0).getGpurchaseNo();
 		gpurchasedao.updatePnum(gpurchaseNo);
 		
-		logger.info("gpurchaseNo : "+gpurchaseNo);
-		// 주문 insert -> +주문pk : 주문List insert -> 결제 insert -> gpurchase pNum+
 	}
 	
 	
-	
-	@Override
-	public int insert(Orders orders) {
-		return dao.insert(orders);
-	}
- 
 	@Override
 	public Orders select(int ordersNo) {
 		return dao.select(ordersNo);

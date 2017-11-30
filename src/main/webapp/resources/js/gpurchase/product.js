@@ -23,9 +23,9 @@
          	  var str = "";
          	  
          	  if(askCheck == 0) {
-         		  str += "<a class='button style-10 askresale'>재공구요청</a>"
+         		  str += "<a class='button style-14 askresale'>재공구요청</a>"
          	  } else {
-         		  str += "<a class='button style-10 askcancle'>요청취소</a>"
+         		  str += "<a class='button style-14 askcancle'>요청취소</a>"
          	  }
          	  
          	  $(".buttonDiv").html(str)
@@ -80,15 +80,15 @@
 						
 					 } else {
 				        str += "<div class='article-container style-1' id='"+no+"'>"
-				        str += "	<div class='col-sm-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
-				        str += "	<div class='col-sm-6 checkDiv2'>"
+				        str += "	<div class='col-xs-4 checkDiv1 inline-product-column-title'> - "+pSize+" </div>"
+				        str += "	<div class='col-xs-6 checkDiv2'>"
 				        str += "		<div class='quantity-selector detail-info-entry qtnChoice'>"
 				        str += "			<div class='entry number-minus minus'>&nbsp;</div>"
 				        str += "			<div class='entry number quantity' name='quantity' id='"+pNum+"qt'>1</div>"
 				        str += "			<div class='entry number-plus plus'>&nbsp;</div>"
 				        str += "		</div>"
 				        str += "	</div>"
-				        str += "	<div class='col-sm-1 xMark'>"
+				        str += "	<div class='col-xs-2 xMark'>"
 				        str += "		<i class='fa fa-times '></i>"
 				        str += "	</div>"
 				        str += "</div>"
@@ -334,20 +334,27 @@
 				var reviewNo = $(this).attr("title");
 				
 				var removetag = $(this).parent().parent().parent();
+				var memNo = $(this).attr("name");
+				console.log(memNo);
+				console.log(memberNo);
 				
-				$.ajax({
-			        type:'delete',
-			        url:'/review/'+reviewNo,	
-			        headers: { 
-			              "Content-Type": "application/json",
-			              "X-HTTP-Method-Override": "DELETE" },
-			        dataType:'text', 
-			        success:function(result){
-			          console.log(result);
-			          if(result == 'SUCCESS'){
-			            removetag.remove();
-			          }
-			      }});
+				if(memNo == memberNo){
+					$.ajax({
+				        type:'delete',
+				        url:'/review/'+reviewNo,	
+				        headers: { 
+				              "Content-Type": "application/json",
+				              "X-HTTP-Method-Override": "DELETE" },
+				        dataType:'text', 
+				        success:function(result){
+				          console.log(result);
+				          if(result == 'SUCCESS'){
+				            removetag.remove();
+				          }
+				      }});
+				  }else{
+					  alert("자신의 리뷰가 아닙니다!");
+				  }
 			});
 		      
 		  
@@ -406,14 +413,14 @@
 			  }
 		    
 			  str += '</div>';
-		    
+			  
 			  str += '<div class="comment-text">' + this.content.replace(/\n/gi, "<br>") + ' </div>';
 			  str += '</div>';
 			  str += '</div>';
 			  str += '</div>';
 		      str += '<div class="column-2">';
-		      str += '<a class="button style-14">더보기</a>';
-		      str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn"></i></a>';
+		      //str += '<a class="button style-14">더보기</a>';
+		      str += '<a class="remove-button"><i class="fa fa-times" title="' + this.reviewNo + '" id="removeBtn" name="' + this.memberNo + '"></i></a>';
 		      str += '</div> ';
 		      str += '</div>';
 		  	});

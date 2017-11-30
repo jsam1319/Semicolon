@@ -59,4 +59,6 @@ public interface gpurchaseDao {
 	// 목표 인원을 채우지 못한 조사 공구 상태 업데이트(-1)
 	public void updateResearchCancle(int gpurchaseNo) throws Exception;
 	
+	
+	
 }

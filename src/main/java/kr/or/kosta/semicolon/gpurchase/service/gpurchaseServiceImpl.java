@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.kosta.semicolon.askresale.dao.AskresaleDao;
 import kr.or.kosta.semicolon.askresale.domain.AskResale;
 import kr.or.kosta.semicolon.bottom.dao.BottomDao;
 import kr.or.kosta.semicolon.common.UseParameter;
@@ -58,6 +59,10 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	@Inject
 	private OrdersDao ordersDao;
 	
+	@Inject
+	private AskresaleDao resaleDao;
+	
+	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
 		gpdao.insert(gpurchase);
@@ -96,7 +101,6 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		// 회원 주문 여부 반환
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
 		int orderCheck = ordersDao.SelectOrderCheck(askResale);
-	
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("gpurchase", gpurchase);

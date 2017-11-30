@@ -12,12 +12,12 @@ package kr.or.kosta.semicolon.gwish.domain;
  *   DATE        AUTHOR       NOTE
  * --------      -----------   ---------------------------------------
  * 2017. 11. 27.       박주연        최초 생성
- *
+ * 2017. 11. 29.	   박주연		 gpurchaseNo추가
  *
  */
 public class GwishDetail {
 	
-	//8개
+	//9개
 	private String img; /** 이미지 경로 */
 	private String company; /** 회사이름 */
 	private String name;/** 상품명 */
@@ -26,11 +26,14 @@ public class GwishDetail {
 	private String startDate;/** 공구 시작 날짜 */
 	private String regdate; /** 공구찜 날짜 */
 	private int gwishNo; /** 공구찜 번호 */
+	private int gpurchaseNo; /** 공구번호 */
+	
 	
 	public GwishDetail() {}
 
+
 	public GwishDetail(String img, String company, String name, String price, String endDate, String startDate,
-			String regdate) {
+			String regdate, int gwishNo, int gpurchaseNo) {
 		super();
 		this.img = img;
 		this.company = company;
@@ -39,7 +42,10 @@ public class GwishDetail {
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.regdate = regdate;
+		this.gwishNo = gwishNo;
+		this.gpurchaseNo = gpurchaseNo;
 	}
+
 
 
 
@@ -79,25 +85,18 @@ public class GwishDetail {
 		return endDate;
 	}
 
-
-
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-
-
 
 	public String getStartDate() {
 		return startDate;
 	}
 
 
-
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-
-
 
 	public String getRegdate() {
 		return regdate;
@@ -115,10 +114,27 @@ public class GwishDetail {
 		this.gwishNo = gwishNo;
 	}
 
+	
+	public int getGpurchaseNo() {
+		return gpurchaseNo;
+	}
+
+
+	public void setGpurchaseNo(int gpurchaseNo) {
+		this.gpurchaseNo = gpurchaseNo;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "GwishDetail [img=" + img + ", company=" + company + ", name=" + name + ", price=" + price + ", endDate="
-				+ endDate + ", startDate=" + startDate + ", regdate=" + regdate + ", gwishNo=" + gwishNo + "]";
+				+ endDate + ", startDate=" + startDate + ", regdate=" + regdate + ", gwishNo=" + gwishNo
+				+ ", gpurchaseNo=" + gpurchaseNo + "]";
 	}
+
+
+
 
 }

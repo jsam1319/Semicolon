@@ -162,7 +162,7 @@ $(document).ready(function(){
 		  }
 		  
 		/** 글 정렬 후 더보기 버튼 클릭 시 완료된 공구리스트 붙이기 .append  */
-		  $('.moreView').each(function(){
+		  $('.endMoreView').each(function(){
 			  $(this).click(function(e){
 				  e.preventDefault();
 				  page += 1;

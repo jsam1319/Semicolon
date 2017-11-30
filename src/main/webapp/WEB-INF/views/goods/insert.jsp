@@ -72,7 +72,8 @@
         <form id="registerForm" role="form" method="post">
           <div class="col-md-12 information-entry">
             <h3 class="block-title main-heading">Upload the Goods</h3>
-            <div class="row">
+            <div class="row" id="firstRow">
+            
               <div class="col-sm-6" id="dropDiv">
                 <label>상품이름 <span>*</span></label> <input
                   class="simple-field" type="text" name="name" required />
@@ -82,8 +83,27 @@
                   class="simple-field" type="number" name="price" required />
                 <div class="clear"></div>
               </div>
-
-
+              <div class="col-sm-4" id="dropDiv">
+                <label>상품 회사명 <span>*</span></label>
+                <div class='simple-drop-down simple-field companySelect'>
+                  <select id="companySelect" required>
+                    <option>협약회사 선택</option>
+                    <option value="unni">언니옷</option>
+                    <option value="common">Common-Unique</option>
+                    <option value="jy">JYClothes</option>
+                    <option value="yj">YJShop</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4" id="dropDiv">
+                <label>협상 가격 <span>*</span></label> <input
+                  class="simple-field" type="number" name="negoPrice" required />
+              </div>
+              <div class="col-sm-4" id="dropDiv">
+                <label>최소 인원 <span>*</span></label> <input
+                  class="simple-field" type="number" name="negoMin" required />
+              </div>
+             
             </div>
 
             <div class="row">
@@ -120,7 +140,6 @@
   <div class="clear"></div>
 
 <%-- Main 영역 종료 --%>
-
 
 </body>
 

@@ -52,8 +52,8 @@ import kr.or.kosta.semicolon.push.service.PushTokenService;
  * 	  DATE 			AUTHOR 			NOTE 
  *  --------      -----------   ---------------------------------------
  * 2017. 11. 14. 	   박연주 			최초 생성
- *
- *
+ * 2017. 11. 15.	   김미소			insert 추가
+ * 
  */
 @Controller
 @RequestMapping("/product")
@@ -293,7 +293,7 @@ public class GpurchaseController {
 		UseParameter parameter = new UseParameter(page, productOrder, 1, category);
 		
 		List<GpurchaseInfo> list = gpService.ListAll(parameter);
-		logger.info(list);
+		
 		return list;
 
 	}
@@ -452,7 +452,7 @@ public class GpurchaseController {
 	 * @Method Name : updateStatus
 	 * @throws Exception
 	 */
-	@Scheduled(cron = "59 59 23 * * *")
+	@Scheduled(cron = "00 00 00 * * *")
 	public void updateStatus() throws Exception {
 		logger.info("updateStatus 들어옴");
 		List<Gpurchase> list = gpService.gpListAll();
@@ -468,7 +468,7 @@ public class GpurchaseController {
 			
 			// 공구의 endDate가 현재 날짜보다 과거라면 조건 만족
 			if (compare != null) {
-				if (likeCnt >= min && status <2) {
+				if (likeCnt >= min) {
 					gpService.statusUpdate(gpurchase);
 					
 					if (status == 0) {
@@ -477,8 +477,8 @@ public class GpurchaseController {
 						
 						for(Gwish gwish : memberNo) {
 							int memNo = gwish.getMemberNo();
-							
 							PushToken push = new PushToken();
+							
 							push.setTitle("Semicolon_공구등록 알림");
 							push.setMessage("NEW 공구 뙇!! 어맛!! 이건 사야됭!!");
 							push.setPushToken(memService.selectToken(memNo));

@@ -85,7 +85,8 @@
 		       gp.price AS unit_price, 
 		       o.price  AS total_price, 
 		       ol.qty, 
-		       o.status 
+		       o.status,
+		       ol.gpurchase_no
 		FROM   orders o, 
 		       goods g, 
 		       <if test="topsNo==0"> bottom b, </if>

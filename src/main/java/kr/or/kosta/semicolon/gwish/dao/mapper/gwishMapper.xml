@@ -45,8 +45,8 @@
 	WHERE	member_no = #{value}
 </select>
 
-<select id="selectMemNo" parameterType="int" resultType="int">
-	SELECT 	member_no
+<select id="selectMemNo" parameterType="int" resultType="Gwish">
+	SELECT 	member_no memberNo
 	FROM	gwish
 	WHERE	gpurchase_no = #{value}
 </select>
@@ -59,7 +59,8 @@ SELECT 		regdate,
 	       price, 
 	       front_img AS "img", 
 	       company,
-         	gwish_no
+         	gwish_no,
+         	gpurchase_no
 	FROM   (SELECT Ceil(ROWNUM / 6) AS page, 
 	               gw.regdate, 
 	               gp.start_date, 
@@ -68,7 +69,8 @@ SELECT 		regdate,
 	               g.price, 
 	               g.front_img, 
 	               c.name           AS company,
-                 gw.gwish_no
+                 gw.gwish_no,
+                   gp.gpurchase_no
 	        FROM   gwish gw, 
 	               gpurchase gp, 
 	               goods g, 

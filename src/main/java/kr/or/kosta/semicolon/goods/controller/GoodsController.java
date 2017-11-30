@@ -202,7 +202,7 @@ public class GoodsController {
 		negoListService.insert(negoList);
 		
 		
-		return "redirect:/";
+		return "/admin/productList";
 	}
 	
 	/**

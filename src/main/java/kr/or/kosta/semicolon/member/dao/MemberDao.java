@@ -26,7 +26,7 @@ import kr.or.kosta.semicolon.member.domain.Member;
  * 2017. 11. 9.     박주연         crud 추가
  * 2017. 11. 24.    박연주			selectOrderInfo 추가
  * 2017. 11. 28.	Sejong			selectToken, updateToken 추가
- * 
+ * 2017. 11. 29.	박연주			selectName 추가
  */
 
 public interface MemberDao {
@@ -66,5 +66,7 @@ public interface MemberDao {
     
     /** 공구 주문하는 사람 기본 정보 */
     public Member selectOrderInfo(int memberNo) throws Exception;
+    
+    public String selectName(int memberNo) throws Exception;
 
 }

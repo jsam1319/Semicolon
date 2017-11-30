@@ -60,4 +60,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public int listCount() throws Exception {
 		return goodsDao.listCount();
 	}
+
+	@Override
+	public List<Goods> adminGoodsList() {
+		return goodsDao.adminGoodsList();
+	}
 }

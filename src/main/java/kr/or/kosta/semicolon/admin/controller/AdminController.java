@@ -45,7 +45,6 @@ public class AdminController {
 		
 		pushService.pushToken(pushToken);
 		
-		
 		return "redirect:/admin/adminpage";
 	}
 	
@@ -59,7 +58,7 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value="/goods", method=RequestMethod.POST)
 	public List<Goods> goodsList() {
-		List<Goods> goods = goodsService.allList();
+		List<Goods> goods = goodsService.adminGoodsList();
 		
 		return goods;
 	}

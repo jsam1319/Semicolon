@@ -182,5 +182,11 @@
 		FROM   member 
 		WHERE  member_no = #{memberNo}
     </select>
+    
+    <select id="selectName" parameterType="int" resultType="String">
+    	SELECT name
+		FROM   member 
+		WHERE  member_no = #{memberNo}
+    </select>
         
 </mapper>
