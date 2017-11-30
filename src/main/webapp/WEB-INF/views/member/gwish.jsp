@@ -81,36 +81,41 @@
 		        $.each(data, function(index, item){
 		            var status;
 					
-		            print +=
-		                '<div class="col-sm-4 portfolio-entry" >'+
-							'<div class="image" style="height:20rem">';
+		            if(item.status == -1){ //공구 완료
+		                print += "";
+		            }
+		            else{
+			            print +=
+			                '<div class="col-sm-4 portfolio-entry" >'+
+								'<div class="image" style="height:20rem">';
+									
+									  
+									if(item.status == 0){
+									    print += '<a href="#" data-toggle="modal" data-target="#research-modal"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
+											    '</div>'+
+												'<div style="display:inline;">'+
+													'<a class="title" href="#" data-toggle="modal" data-target="#research-modal" style="display:inline;">'+item.name+'</a>';
+									    status = "공구 조사 중";
+									}else{
+									    print += '<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
+											    '</div>'+
+												'<div style="display:inline;">'+
+													'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>';
+										status = "공구 진행 중";
+									}
+									
+							print +=			
 								
-								  
-								if(item.status == 0){
-								    print += '<a href="#" data-toggle="modal" data-target="#research-modal"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
-										    '</div>'+
-											'<div style="display:inline;">'+
-												'<a class="title" href="#" data-toggle="modal" data-target="#research-modal" style="display:inline;">'+item.name+'</a>';
-								    status = "공구 조사 중";
-								}else{
-								    print += '<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
-										    '</div>'+
-											'<div style="display:inline;">'+
-												'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>';
-									status = "공구 진행 중";
-								}
-								
-					print +=			
-							
-								'<button class="deletebtn button style-14" style="display:inline; float:right; background:#f6b7b7; border-color:#FFFFFF;" value='+item.gwishNo+'><i class="fa fa-times"></i></button>'+
-							'</div>'+
-							'<div class="subtitle">'+
-								'<div class="tag">'+item.company+' / '+numberfmt(item.price)+'</div>'+
-								'<div class="description" style="color:#ff0000;">'+status+'</div>'+
-								'<div class="tag">내가 찜한 날짜:'+item.regdate+'</div>'+
-								'<span class="comments-number">'+ item.startDate +'~'+ item.endDate +'</span>'+
-							'</div>'+
-						'</div>'; 
+									'<button class="deletebtn button style-14" style="display:inline; float:right; background:#f6b7b7; border-color:#FFFFFF;" value='+item.gwishNo+'><i class="fa fa-times"></i></button>'+
+								'</div>'+
+								'<div class="subtitle">'+
+									'<div class="tag">'+item.company+' / '+numberfmt(item.price)+'</div>'+
+									'<div class="description" style="color:#ff0000;">'+status+'</div>'+
+									'<div class="tag">내가 찜한 날짜:'+item.regdate+'</div>'+
+									'<span class="comments-number">'+ item.startDate +'~'+ item.endDate +'</span>'+
+								'</div>'+
+							'</div>'; 
+		            }
 								 
 		        });
 		        

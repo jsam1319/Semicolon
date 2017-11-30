@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import kr.or.kosta.semicolon.askresale.dao.AskresaleDao;
@@ -64,6 +65,8 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 	private AskresaleDao resaleDao;
 	
 	
+	Logger logger = Logger.getLogger(gpurchaseServiceImpl.class);
+	
 	@Override
 	public void insert(Gpurchase gpurchase) throws Exception {
 		gpdao.insert(gpurchase);
@@ -90,6 +93,27 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 			sizeList = topsdao.selectSize(gpurchaseNo);
 		} else {
 			sizeList = bottomDao.selectSize(gpurchaseNo);
+			HashMap<String,Object> map ;
+			
+			//size정렬
+			for(int i=0; i<sizeList.size(); i++) {
+				for(int j=i; j<sizeList.size(); j++) {
+					String cmpI = sizeList.get(i).get("SIZES").toString();
+					String cmpJ = sizeList.get(j).get("SIZES").toString();
+					
+					if( cmpI.compareTo(cmpJ) > 0 ) {
+						HashMap<String,Object> tmp ;
+						
+						tmp = sizeList.get(i);
+						
+						map = sizeList.get(j);
+						sizeList.set(i,map);
+						
+						sizeList.set(j, tmp);
+					}
+					
+				}//end inner for
+			}//end outer for
 		}
 		
 		// 회원 주문 여부 반환
@@ -101,7 +125,7 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		map.put("keyword", keyword);
 		map.put("size", sizeList);
 		map.put("orderCheck", orderCheck);
-
+		
 		return map;
 	}
 	
