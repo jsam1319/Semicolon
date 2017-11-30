@@ -657,7 +657,15 @@
 
 
 
-                  <li class="simple-list"><a href="/require/insert">공동구매 요청</a>
+                  <li class="simple-list"><a>공동구매 요청</a>
+                    <i class="fa fa-chevron-down"></i>
+                    <div class="submenu" style="display: none; opacity: 1;">
+                      <ul class="simple-menu-list-column">
+                        <li><a href="/require/insert"><i class="fa fa-angle-right"></i> 공동구매 요청</a></li>
+                        <li><a href="/require/list"><i class="fa fa-angle-right"></i> 공동구매 요청 목록</a></li>
+                      </ul>
+                    </div> 
+                  </li>  
                     
                 </ul>
 

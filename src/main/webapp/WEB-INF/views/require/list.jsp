@@ -52,7 +52,7 @@
                   <label>관리자 답변내용</label>
                   <textarea class="simple-field" id="commentsinmodal" readonly></textarea>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
         <c:if test="${no eq -1}">
