@@ -69,13 +69,10 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 		int sum = 0; //사이즈 차의 합
 		Clothing minObj = null; 
 		
-		logger.debug("memberSize:"+size);
-		
 		for (Object object : goods) {
 			sum = 0;
 			
 			if(object instanceof Tops) {
-				logger.debug("tops:"+object);
 				sum += ((Tops) object).getSleeveLength() - size.getSleeve(); 
 				sum += ((Tops) object).getFullLength() - size.getTop(); 
 			}else {
@@ -85,14 +82,12 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 					sum += ((Bottom)object).getFullLength() - size.getSkirt();
 				}else {
 					sum += ((Bottom)object).getFullLength() - size.getPants();
-					sum += ((Bottom)object).getHip() - size.getHip()*2;
+					sum += ((Bottom)object).getHip() - size.getHip();
 					sum += ((Bottom)object).getRise() - size.getRise();
 					sum += ((Bottom)object).getThigh() - size.getThigh();
-					sum += ((Bottom)object).getWaist() - size.getWaist()*2;
+					sum += ((Bottom)object).getWaist() - size.getWaist();
 				}
 			}
-			
-			logger.debug("sum:"+sum);
 			
 			//sum 중 가장 작은 값을 구함
 			if(min > Math.abs(sum)) {
@@ -115,10 +110,10 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 						}
 						else {
 							((Bottom)minObj).setFullLength(((Bottom)object).getFullLength() - size.getPants());
-							((Bottom)minObj).setHip(((Bottom)object).getHip() - size.getHip()*2);
+							((Bottom)minObj).setHip(((Bottom)object).getHip() - size.getHip());
 							((Bottom)minObj).setRise(((Bottom)object).getRise() - size.getRise());
 							((Bottom)minObj).setThigh(((Bottom)object).getThigh() - size.getThigh());
-							((Bottom)minObj).setWaist(((Bottom)object).getWaist() - size.getWaist()*2);
+							((Bottom)minObj).setWaist(((Bottom)object).getWaist() - size.getWaist());
 						}
 						((Bottom)minObj).setSizes(((Bottom)object).getSizes());
 						((Bottom)minObj).setTypes(((Bottom)object).getTypes());

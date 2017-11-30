@@ -68,7 +68,6 @@ public class MemberSizeController {
 	public ModelAndView insert(MemberSize size){
 		
 		MemberSize isSize = sizeService.select(size.getMemberNo());
-		logger.debug("size:"+size);
 		int result = 0;
 		if(isSize == null) { result  = sizeService.insert(size); }
 		else { result = sizeService.update(size); }
@@ -118,9 +117,6 @@ public class MemberSizeController {
 	@ResponseBody
 	public Tops getTopsDetail(@PathVariable String size, Model model) {
 		Tops tops = topsService.getBySize(size);
-		logger.debug(tops);
-		
-		
 		return tops;
 	}
 	

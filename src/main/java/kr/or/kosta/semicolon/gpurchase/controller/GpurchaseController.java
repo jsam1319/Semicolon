@@ -92,15 +92,13 @@ public class GpurchaseController {
 	
 	@RequestMapping(value="/insert/{goodsNo}", method=RequestMethod.GET)
 	public String insert(@PathVariable("goodsNo") int goodsNo, Model model) throws Exception {
-		logger.info("Product Insert...GET");
+//		logger.info("Product Insert...GET");
 		
 		Goods goods = new Goods();
 		goods = goodsService.select(goodsNo);
 		
 		NegoList negoList = new NegoList();
 		negoList = negoListService.select(goodsNo);
-		
-		System.out.println(negoList);
 		
 		model.addAttribute("goods", goods);
 		model.addAttribute("negoList", negoList);
@@ -110,7 +108,7 @@ public class GpurchaseController {
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(Gpurchase gpurchase, int category) throws Exception {
-		logger.info("Product Insert...POST");
+//		logger.info("Product Insert...POST");
 		
 		gpService.insert(gpurchase);
 		
@@ -127,7 +125,7 @@ public class GpurchaseController {
 	 */
 	@RequestMapping(value = "/research/{category}", method = RequestMethod.GET)
 	public String researchPage(@PathVariable("category") int category) throws Exception {
-		logger.info("researchPage 접근");
+//		logger.info("researchPage 접근");
 
 		return "/product/research";
 	}
@@ -149,7 +147,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/research/{category}/{page}", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> researchList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
-		logger.info("gpurchaseController research 접근");
+//		logger.info("gpurchaseController research 접근");
 		
 		ResponseEntity<Map<String, Object>> entity = null;
 		try {
@@ -190,7 +188,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/{gpurchaseNo}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> researchSelect(@PathVariable("gpurchaseNo") int gpurchaseNo,
 			HttpServletRequest request) throws Exception {
-		logger.info("gpurchaseController researchSelect 접근");
+//		logger.info("gpurchaseController researchSelect 접근");
 		Log log = new Log();
 
 		HttpSession session = request.getSession();
@@ -235,7 +233,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/{gwishCheck}/{gpurchaseNo}", method = RequestMethod.POST)
 	public ResponseEntity<Integer> wishCheck(@PathVariable("gwishCheck") int wishck,
 			@PathVariable("gpurchaseNo") int gpurchaseNo, HttpServletRequest request) throws Exception {
-		logger.info("gpurchaseController wishCheck 접근");
+//		logger.info("gpurchaseController wishCheck 접근");
 
 		ResponseEntity<Integer> entity = null;
 		
@@ -290,7 +288,7 @@ public class GpurchaseController {
 	 */
 	@RequestMapping(value = "/list/{category}", method = RequestMethod.GET)
 	public String listPage(@PathVariable("category") int category) throws Exception {
-		logger.info("listPage 접근");
+//		logger.info("listPage 접근");
 		return "/product/list";
 	}
 
@@ -312,7 +310,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.POST)
 	public List<GpurchaseInfo> gpurchaseList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
-		logger.info("gpurchaseController gpurchaseList 접근");
+//		logger.info("gpurchaseController gpurchaseList 접근");
 		
 		UseParameter parameter = new UseParameter(page, productOrder, 1, category);
 		
@@ -339,7 +337,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/list/{category}/{page}", method = RequestMethod.GET)
 	public List<GpurchaseInfo> endList(@PathVariable("category") int category, @PathVariable("page") int page,
 			@RequestParam(value = "productOrder", defaultValue = "newProduct") String productOrder) throws Exception {
-		logger.info("gpurchaseController endList 접근");
+//		logger.info("gpurchaseController endList 접근");
 		
 		UseParameter parameter = new UseParameter(page, productOrder, 2, category);
 		
@@ -364,7 +362,7 @@ public class GpurchaseController {
 	 */
 	@RequestMapping(value = "/gpurchase/{gpurchaseNo}", method = RequestMethod.GET) 
 	public String select(@PathVariable("gpurchaseNo") int gpurchaseNo, Model model, HttpServletRequest request) throws Exception {
-		logger.info("gpurchaseselect 들어옴");
+//		logger.info("gpurchaseselect 들어옴");
 		
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
@@ -443,7 +441,7 @@ public class GpurchaseController {
 	@RequestMapping(value = "/askck/{gaskCheck}/{gpurchaseNo}", method = RequestMethod.POST)
 	public ResponseEntity<Integer> askCheck(@PathVariable("gaskCheck") int askck,
 			@PathVariable("gpurchaseNo") int gpurchaseNo, int memberNo) throws Exception {
-		logger.info("gpurchaseController askCheck 접근");
+//		logger.info("gpurchaseController askCheck 접근");
 
 		ResponseEntity<Integer> entity = null;
 
@@ -492,7 +490,7 @@ public class GpurchaseController {
 	 */
 	@Scheduled(cron = "00 00 00 * * *")
 	public void updateStatus() throws Exception {
-		logger.info("updateStatus 들어옴");
+//		logger.info("updateStatus 들어옴");
 		List<Gpurchase> list = gpService.gpListAll();
 
 		for (Gpurchase gpurchase : list) {
