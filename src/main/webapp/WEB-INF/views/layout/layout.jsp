@@ -172,7 +172,7 @@
                 src="/resources/img/logo-9.png"></a>
             </div>
             <div class="product-header-content" id="headerDiv">
-							<div>
+							<div class="line-entry">
 								<div class="menu-button responsive-menu-toggle-class">
 									<i class="fa fa-reorder"></i>
 								</div>
@@ -245,7 +245,7 @@
 
 
               </div>
-              
+              <div class="middle-line"></div>
             </div>
           </div>
 
