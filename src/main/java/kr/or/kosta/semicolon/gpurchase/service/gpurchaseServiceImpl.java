@@ -22,6 +22,7 @@ import kr.or.kosta.semicolon.gpurchase.domain.Gpurchase;
 import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.keyword.dao.KeywordDao;
 import kr.or.kosta.semicolon.keyword.domain.Keyword;
+import kr.or.kosta.semicolon.keyword.util.HangulSeperator;
 import kr.or.kosta.semicolon.orders.dao.OrdersDao;
 import kr.or.kosta.semicolon.tops.dao.TopsDao;
  
@@ -76,12 +77,10 @@ public class gpurchaseServiceImpl implements gpurchaseService {
 		gpurchase = gpdao.select(gpurchaseNo);
 		
 		// 상품 키워드 불러오기
-		List<HashMap<String, String>> keywordList;
-		keywordList = keyworddao.selectName(gpurchase.getGoodsNo());
-		
-		List<String> keyword = new ArrayList<>();
-		for (HashMap<String, String> kw : keywordList) {
-			keyword.add(kw.get("KEYWORDNAME"));
+		List<String> keyword;
+		keyword = keyworddao.selectName(gpurchase.getGoodsNo());
+		for(int i=0; i<keyword.size(); i++) {
+			keyword.set(i,HangulSeperator.conHangul(keyword.get(i)));
 		}
 		
 		// 상품 사이즈 카테고리별 분리 및 불러오기

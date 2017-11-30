@@ -968,6 +968,7 @@ $(document).ready(function() {
 			$("#searchForm").attr("action", "/product/search/" + keyword);
 			$("#searchForm").submit();
 		}
+		
 		if($(this).val().trim().length == 0) {
 			$("#autocomplete").html('<li class="list-group-item"> 검색어를 입력하세요 </li>' )
 			return;
