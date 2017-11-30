@@ -27,7 +27,7 @@ public class ImageServiceImpl implements ImageService {
 		String feature = "";
 		
 		try {
-			URL url = new URL("http://localhost:8000/polls/feature/");
+			URL url = new URL("http://192.168.0.82:8000/polls/feature/");
 			URLConnection con = url.openConnection();
 			
 			con.setDoOutput(true);

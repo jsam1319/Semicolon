@@ -78,7 +78,7 @@ $(document).ready(function(){
 		  if(front) {
 			   /* 파이썬 미들 서버 호출 (분류기)*/
 			   $.ajax({
-					  url : 'http://localhost:8000/polls/',
+					  url : 'http://192.168.0.82:8000/polls/',
 					  data : formData,
 					  dataType : 'JSON',
 					  crossDomain: true,
@@ -383,6 +383,15 @@ $(document).ready(function(){
 			 			
 			 			str += "<input type='hidden' name='types' value='"+type+"'></input>";
 			 			str += "<input type='hidden' name='sizes' value='"+size+"'></input>";
+			 			
+			 			if(rise == null){
+			 				rise=0;
+			 			}
+			 			
+			 			if(thigh == null){
+			 				thigh=0;
+			 			}
+			 			
 			 			str += "<input type='hidden' name='waist' value='"+waist+"'></input>";
 			 			str += "<input type='hidden' name='rise' value='"+rise+"'></input>";
 			 			str += "<input type='hidden' name='hip' value='"+hip+"'></input>";
@@ -466,7 +475,6 @@ $(document).ready(function(){
 		for(i=0; i<imageValue.length; i++){
 			imageSrc = imageValue[i].split("/");
 			imageName = imageSrc[imageSrc.length-1]
-			alert(imageName)
 			
 			str += "<input type='hidden' name='attachFile' value='"+imageName+"'>";
 	  	}
@@ -480,21 +488,20 @@ $(document).ready(function(){
 		
 		console.log(str);
 		
-		that.get(0).submit();  
+		that.get(0).submit();
 	});
   
   function getImageLink(imgPath){
 	  
 	  var front = imgPath.substr(0, 18);
 	  var end = imgPath.substr(20);
-	  alert("front : " + front)
-	  alert("end : " + end)
+	  
 	  return front + end;
   }
   
   function getRealLink(path){
 	  var real = path.split("/");
-	   alert(real[real.length-1])
+	  
 	  return real[real.length-1];
   }
   

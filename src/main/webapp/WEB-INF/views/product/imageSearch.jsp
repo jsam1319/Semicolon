@@ -80,12 +80,12 @@ $(document).ready(function() {
 	if('${method}' == 'get')
 		image = '${imageName}';
 	else
-		image = "http://localhost:8081/resources/images/${imageName}";	
+		image = "http://localhost/resources/images/${imageName}";	
 	
 	$("#inputImage").attr("src", image);
 
 	$.ajax({
-		url : "http://localhost:8000/polls/search/",
+		url : "http://192.168.0.82:8000/polls/search/",
 		dataType : 'json',
 		type : 'POST',
 		data : {
