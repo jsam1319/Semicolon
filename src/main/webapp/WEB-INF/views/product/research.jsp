@@ -88,8 +88,8 @@
                     <li><a href="/product/research/110"> COAT</a></li>
                     <li><a href="/product/research/120"> JACKET</a></li>
                     <li><a href="/product/research/130"> DRESS</a></li>
-                    <li><a href="/product/research/140"> SWEATER</a></li>
-                    <li><a href="/product/research/150"> KNIT</a></li>
+                    <li><a href="/product/research/140"> KNIT</a></li>
+                    <li><a href="/product/research/150"> SWEATSHIRT</a></li>
                     <li><a href="/product/research/210"> SKIRT</a></li>
                     <li><a href="/product/research/220"> SHORT PANTS</a></li>
                     <li><a href="/product/research/230"> PANTS</a></li>

@@ -147,8 +147,8 @@
                     <li><a href="/product/list/110"> COAT</a></li>
                     <li><a href="/product/list/120"> JACKET</a></li>
                     <li><a href="/product/list/130"> DRESS</a></li>
-                    <li><a href="/product/list/140"> SWEATER</a></li>
-                    <li><a href="/product/list/150"> KNIT</a></li>
+                    <li><a href="/product/list/140"> KNIT</a></li>
+                    <li><a href="/product/list/150"> SWEATSHIRT</a></li>
                     <li><a href="/product/list/210"> SKIRT</a></li>
                     <li><a href="/product/list/220"> SHORT PANTS</a></li>
                     <li><a href="/product/list/230"> PANTS</a></li>

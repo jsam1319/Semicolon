@@ -303,10 +303,10 @@
                                   class="fa fa-angle-right"></i>DRESS</a></li>
                               <li><a
                                 href="/product/research/140"><i
-                                  class="fa fa-angle-right"></i>SWEATER</a></li>
+                                  class="fa fa-angle-right"></i>KNIT</a></li>
                               <li><a
                                 href="/product/research/150"><i
-                                  class="fa fa-angle-right"></i>KNIT</a></li>
+                                  class="fa fa-angle-right"></i>SWEATSHIRT</a></li>
                             </ul>
                             
                           </div>
@@ -353,10 +353,10 @@
                                   class="fa fa-angle-right"></i>DRESS</a></li>
                               <li><a
                                 href="/product/list/140"><i
-                                  class="fa fa-angle-right"></i>SWEATER</a></li>
+                                  class="fa fa-angle-right"></i>KNIT</a></li>
                               <li><a
                                 href="/product/list/150"><i
-                                  class="fa fa-angle-right"></i>KNIT</a></li>
+                                  class="fa fa-angle-right"></i>SWEATSHIRT</a></li>
                             </ul>
                             
                             
