@@ -45,7 +45,7 @@ public class AdminController {
 		
 		pushService.pushToken(pushToken);
 		
-		return "redirect:/admin/adminpage";
+		return "redirect:/admin/";
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

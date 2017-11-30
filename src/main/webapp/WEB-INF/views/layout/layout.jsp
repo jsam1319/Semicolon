@@ -54,33 +54,17 @@
 			}
 			
 		   	no = ${no};
-		   	//window.mJSInterface.setAutoLogin("true");
-		   	//window.mJSInterface.setLoginInfo(paramId);
-		   	
 		   	
 		}else{		// 간단 로그인
 			//alert("~~");
-			//window.mJSInterface.setAutoLogin("true");
 		}
 					 
 	  });
   
-  function setMessage(token) {
-	  $.ajax({
-		  url : "/push/token",
-		  type : 'post',
-		  data : {
-			  token : token, no : no
-		  },
-		  success : function(data) {
-			  console.log(data);
-		  },
-		  error : function(data, a, b) {
-			  console.log(data);
-			  console.log(a);
-			  console.log(b);
-		  }
-	  })
+  function sideMenu(){
+	  $("body").removeClass("opened-menu");
+	  $("header").removeClass("opened");
+	  $(".close-header-layer").css("display", "none");
   }
 		</script>
 
