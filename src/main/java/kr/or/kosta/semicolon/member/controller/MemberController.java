@@ -121,7 +121,6 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/regist", method = RequestMethod.POST)
 	public void regist(Member member, Model model) {
-		logger.debug("regist member:"+member);
 		if(memberService.insert(member) == 1) {
 			model.addAttribute("mem",member);
 			model.addAttribute("autologin",null);

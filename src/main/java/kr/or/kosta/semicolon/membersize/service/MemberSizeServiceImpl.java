@@ -69,7 +69,7 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 		int sum = 0; //사이즈 차의 합
 		Clothing minObj = null; 
 		
-		logger.debug("compare[tops:"+goods+",size:"+size+"]");
+		logger.debug("memberSize:"+size);
 		
 		for (Object object : goods) {
 			sum = 0;
@@ -79,17 +79,23 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 				sum += ((Tops) object).getSleeveLength() - size.getSleeve(); 
 				sum += ((Tops) object).getFullLength() - size.getTop(); 
 			}else {
-				sum += ((Bottom)object).getFullLength() - size.getPants();
-				sum += ((Bottom)object).getHip() - size.getHip()*2;
-				sum += ((Bottom)object).getRise() - size.getRise();
-				sum += ((Bottom)object).getThigh() - size.getThigh();
-				sum += ((Bottom)object).getWaist() - size.getWaist()*2;
+				if(((Bottom)object).getTypes().equals("skirt")){
+					sum += ((Bottom)object).getWaist() - size.getWaist()/2;
+					sum += ((Bottom)object).getHip() - size.getHip()/2;
+					sum += ((Bottom)object).getFullLength() - size.getSkirt();
+				}else {
+					sum += ((Bottom)object).getFullLength() - size.getPants();
+					sum += ((Bottom)object).getHip() - size.getHip()*2;
+					sum += ((Bottom)object).getRise() - size.getRise();
+					sum += ((Bottom)object).getThigh() - size.getThigh();
+					sum += ((Bottom)object).getWaist() - size.getWaist()*2;
+				}
 			}
 			
 			logger.debug("sum:"+sum);
 			
 			//sum 중 가장 작은 값을 구함
-			if(min > sum) {
+			if(min > Math.abs(sum)) {
 				if(sum > -5  && sum <20) {
 					min = sum;
 					if(object instanceof Tops) {
@@ -101,11 +107,19 @@ public class MemberSizeServiceImpl implements MemberSizeService {
 					}
 					else {
 						minObj = new Bottom();
-						((Bottom)minObj).setFullLength(((Bottom)object).getFullLength() - size.getPants());
-						((Bottom)minObj).setHip(((Bottom)object).getHip() - size.getHip()*2);
-						((Bottom)minObj).setRise(((Bottom)object).getRise() - size.getRise());
-						((Bottom)minObj).setThigh(((Bottom)object).getThigh() - size.getThigh());
-						((Bottom)minObj).setWaist(((Bottom)object).getWaist() - size.getWaist()*2);
+						
+						if(((Bottom)object).getTypes().equals("skirt")){
+							((Bottom)minObj).setHip(((Bottom)object).getHip() - size.getHip()/2);
+							((Bottom)minObj).setWaist(((Bottom)object).getWaist() - size.getWaist()/2);
+							((Bottom)minObj).setFullLength(((Bottom)object).getFullLength() - size.getSkirt());
+						}
+						else {
+							((Bottom)minObj).setFullLength(((Bottom)object).getFullLength() - size.getPants());
+							((Bottom)minObj).setHip(((Bottom)object).getHip() - size.getHip()*2);
+							((Bottom)minObj).setRise(((Bottom)object).getRise() - size.getRise());
+							((Bottom)minObj).setThigh(((Bottom)object).getThigh() - size.getThigh());
+							((Bottom)minObj).setWaist(((Bottom)object).getWaist() - size.getWaist()*2);
+						}
 						((Bottom)minObj).setSizes(((Bottom)object).getSizes());
 						((Bottom)minObj).setTypes(((Bottom)object).getTypes());
 					}

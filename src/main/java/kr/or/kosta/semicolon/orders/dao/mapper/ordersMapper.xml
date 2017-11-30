@@ -122,7 +122,7 @@
 		FROM  orders
 		WHERE member_no = #{memberNo}	
 		AND odate >= TO_DATE(#{start},'YY/MM/DD') 
-		AND odate <=  TO_DATE(#{end}, 'YY/MM/DD') 
+		AND odate <=  TO_DATE(#{end}, 'YY/MM/DD HH24:MI:SS') 
 		]]>
 	</select>
 	
