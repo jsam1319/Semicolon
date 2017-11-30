@@ -82,7 +82,7 @@
 		            print +=
 		                '<div class="col-sm-4 portfolio-entry" >'+
 							'<div class="image" style="height:20rem">'+
-								'<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="/resources/images/'+item.img+'" style="height:100%;"/></a>'+
+								'<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
 							'</div>'+
 							'<div style="display:inline;">'+
 								'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>'+
