@@ -20,5 +20,7 @@ import kr.or.kosta.semicolon.negolist.domain.NegoList;
 public interface NegoListService {
 	
 	public void insert(NegoList negoList);
+	
+	public int select(int goodsNo);
 
 }

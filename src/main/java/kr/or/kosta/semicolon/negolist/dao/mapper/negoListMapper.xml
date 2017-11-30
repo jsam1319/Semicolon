@@ -23,6 +23,12 @@
 		             #{negoPrice}, 
 		             #{negoMin})
     </insert>
+    
+    <select id="select" parameterType="int" resultType="int">
+	    SELECT min 
+		FROM   nego_list 
+		WHERE  goods_no = #{goodsNo} 
+    </select>
 
         
 </mapper>

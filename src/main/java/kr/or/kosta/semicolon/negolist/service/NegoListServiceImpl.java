@@ -33,4 +33,9 @@ public class NegoListServiceImpl implements NegoListService {
 		dao.insert(negoList);
 	}
 
+	@Override
+	public int select(int goodsNo) {
+		return dao.select(goodsNo);
+	}
+
 }

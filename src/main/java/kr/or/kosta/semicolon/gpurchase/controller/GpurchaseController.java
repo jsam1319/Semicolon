@@ -37,6 +37,7 @@ import kr.or.kosta.semicolon.keyword.service.KeywordService;
 import kr.or.kosta.semicolon.log.domain.Log;
 import kr.or.kosta.semicolon.log.service.LogService;
 import kr.or.kosta.semicolon.member.service.MemberService;
+import kr.or.kosta.semicolon.negolist.service.NegoListService;
 import kr.or.kosta.semicolon.push.domain.PushToken;
 import kr.or.kosta.semicolon.push.service.PushTokenService;
 
@@ -85,6 +86,9 @@ public class GpurchaseController {
 	@Inject
 	private LogService logService;
 	
+	@Inject
+	private NegoListService negoListService;
+	
 	@RequestMapping(value="/insert/{goodsNo}", method=RequestMethod.GET)
 	public String insert(@PathVariable("goodsNo") int goodsNo, Model model) throws Exception {
 		logger.info("Product Insert...GET");
@@ -92,7 +96,10 @@ public class GpurchaseController {
 		Goods goods = new Goods();
 		goods = goodsService.select(goodsNo);
 		
+		int negoMin = negoListService.select(goodsNo);
+		
 		model.addAttribute("goods", goods);
+		model.addAttribute("min", negoMin);
 		
 		return "/product/insert";
 	}

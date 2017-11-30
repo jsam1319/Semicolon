@@ -42,7 +42,7 @@
                                       
                                       <div class="col-sm-6">
                                           <label>최소인원 <span>*</span></label>
-                                          <input class="simple-field" type="number" name="min" placeholder="최소인원" value=""  required/>
+                                          <input class="simple-field" type="number" name="min" placeholder="최소인원" value="${min}"  required/>
                                           <div class="clear"></div>
                                       </div>
                                       <div class="col-sm-6">
