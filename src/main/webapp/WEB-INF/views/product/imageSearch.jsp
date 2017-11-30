@@ -59,7 +59,7 @@
           <div class="information-blocks categories-border-wrapper">
             <div class="block-title size-3"> 검색 사진 </div>
             <div class="accordeon">
-             	<div> <img src="/resources/images/${imageName}" style="width : 200px; height: 250px"></div>
+             	<div> <img id="inputImage" style="width : 200px; height: 250px"></div>
             </div>
           </div>
 
@@ -75,13 +75,21 @@
 <script>
 
 $(document).ready(function() {
+	var image = "";
 	
+	if('${method}' == 'get')
+		image = '${imageName}';
+	else
+		image = "http://localhost:8081/resources/images/${imageName}";	
+	
+	$("#inputImage").attr("src", image);
+
 	$.ajax({
 		url : "http://localhost:8000/polls/search/",
 		dataType : 'json',
 		type : 'POST',
 		data : {
-			image : "http://localhost:8081/resources/images/${imageName}",
+			image : image,
 		},
 		success : function(data) {
 			console.log(data);

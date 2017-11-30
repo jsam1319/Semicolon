@@ -20,6 +20,17 @@ public class ImageController {
 	public String imageSearch(MultipartFile image, Model model) throws Exception {
 		
 		String imageName = uploadService.uploadFile(image.getOriginalFilename(), image.getBytes());
+		
+		model.addAttribute("method", "post");
+		model.addAttribute("imageName", imageName);
+		
+		return "/product/imageSearch";
+	}
+	
+	@RequestMapping(value="/image/search", method=RequestMethod.GET)
+	public String imageSearchUrl(String imageName, Model model) throws Exception {
+		
+		model.addAttribute("method", "get");
 		model.addAttribute("imageName", imageName);
 		
 		return "/product/imageSearch";
