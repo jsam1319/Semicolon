@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.or.kosta.semicolon.member.domain.Member;
+import kr.or.kosta.semicolon.common.enumtype.LogType;
+import kr.or.kosta.semicolon.log.domain.Log;
+import kr.or.kosta.semicolon.log.service.LogService;
 import kr.or.kosta.semicolon.member.service.MemberService;
 import kr.or.kosta.semicolon.orderlist.domain.OrderList;
 import kr.or.kosta.semicolon.orderlist.service.OrderListService;
@@ -57,6 +59,9 @@ public class OrdersController {
 	
 	@Inject
 	private OrderListService orderListService;
+	
+	@Inject
+	private LogService logService;
 	
 	
 	@RequestMapping("/order")
@@ -167,6 +172,12 @@ public class OrdersController {
 		orders.setMemberNo(memberNo);
 		
 		ordersService.insertOrder(orders, orderItems, payment);
+		
+		Log log = new Log();
+		log.setMemberNo(memberNo);
+		log.setContent(String.valueOf(orders.getOrdersNo()));
+		log.setType(LogType.AFTERLIKE.name());
+		logService.insert(log);
 		
 		String name = memberService.selectName(memberNo);
 		

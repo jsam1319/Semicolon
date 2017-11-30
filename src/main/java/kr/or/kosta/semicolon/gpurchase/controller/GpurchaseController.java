@@ -180,10 +180,16 @@ public class GpurchaseController {
 	public ResponseEntity<Map<String, Object>> researchSelect(@PathVariable("gpurchaseNo") int gpurchaseNo,
 			HttpServletRequest request) throws Exception {
 		logger.info("gpurchaseController researchSelect 접근");
-		
+		Log log = new Log();
+
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 
+		log.setMemberNo(memberNo);
+		log.setContent(String.valueOf(gpurchaseNo));
+		log.setType(LogType.VIEW.name());
+		logService.insert(log);
+		
 		ResponseEntity<Map<String, Object>> entity = null;
 
 		try {
@@ -232,6 +238,13 @@ public class GpurchaseController {
 			if (wishck == 0) {
 				wishService.insert(gwish);
 				gpService.updateCntP(gpurchaseNo);
+				
+				Log log = new Log();
+				log.setMemberNo(memberNo);
+				log.setContent(String.valueOf(gpurchaseNo));
+				log.setType(LogType.BEFORELIKE.name());
+				logService.insert(log);
+				
 
 				// 취소버튼, 공구조사참여했을 때
 			} else {
@@ -345,6 +358,12 @@ public class GpurchaseController {
 		HttpSession session = request.getSession();
 		int memberNo = (int)session.getAttribute("no");
 		
+		Log log = new Log();
+		log.setMemberNo(memberNo);
+		log.setContent(String.valueOf(gpurchaseNo));
+		log.setType(LogType.VIEW.name());
+		logService.insert(log);
+		
 		Map<String, Object> map = gpService.select(gpurchaseNo, memberNo);
 		
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
@@ -418,6 +437,13 @@ public class GpurchaseController {
 
 		AskResale askResale = new AskResale(gpurchaseNo, memberNo);
 
+		Log log = new Log();
+		log.setMemberNo(memberNo);
+		log.setContent(String.valueOf(gpurchaseNo));
+		log.setType(LogType.AFTERLIKE.name());
+		logService.insert(log);
+		
+		
 		try {
 			// 공구재요청버튼 클릭시, 공구재요청을 하지 않았을 때
 			if (askck == 0) {
