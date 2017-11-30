@@ -13,7 +13,7 @@ margin-bottom:10%;
 	<div class="information-blocks" id="outerDiv">
 		<div class="column-article-wrapper">
 			<div class="row nopadding">
-				<div class="col-sm-4 information-entry left-border nopadding">
+				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
 						<a class="title" href="/chart/mul">Statistics</a>
 						<a class="description" href="/chart/mul"> 회사 매출액 통계 & 카테고리 매출액 통계
@@ -24,7 +24,7 @@ margin-bottom:10%;
 						</a>
 					</div>
 				</div>
-				<div class="col-sm-4 information-entry left-border nopadding">
+				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
 						<a class="title" href="/admin/push">Push Alarm</a>
 						<a class="description" href="/admin/push">Push Alarm Customizing
@@ -32,12 +32,19 @@ margin-bottom:10%;
                         </a>
 					</div>
 				</div>
-				<div class="col-sm-4 information-entry left-border nopadding">
+				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
 						<a class="title" href="/admin/list">Product</a>
 						<a class="description" href="/admin/list">Product List <i class="fa fa-angle-right"></i></a>
 					</div>
 				</div>
+                <div class="col-sm-6 information-entry left-border nopadding">
+                  <div class="column-article-entry">
+                    <a class="title">REQUEST & ANSWER</a>
+                    <a class="description" href="/qna/list">GOODS REQUEST & ANSWER <i class="fa fa-angle-right"></i></a><br>
+                    <a class="description" href="/after/list">A/S REQUEST & ANSWER <i class="fa fa-angle-right"></i></a>
+                  </div>
+                </div>
 			</div>
 		</div>
 	</div>

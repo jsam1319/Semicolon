@@ -80,7 +80,7 @@
 		                       status,
 		                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate
 		                FROM   aftersales
-		                <if test="value != 1">
+		                <if test="value != -1">
 		                WHERE  member_no = #{value}
 		                </if>
 		                ORDER  BY regdate DESC)) 

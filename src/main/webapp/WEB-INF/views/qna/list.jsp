@@ -18,13 +18,6 @@
     <![endif]-->
     <link rel="shortcut icon" href="/resources/img/favicon-6.ico" />
   	<title></title>
-<style>
-.moreView {
-font-size:80px;
-color: black;
-text-align: center;
-}
-</style>   
 <script>
 $(document).ready(function(){	
 	
@@ -95,11 +88,17 @@ function printList(data) {
                 else								timeString = moment(regdate).fromNow();
                 
                 var answer = "";
-                if( this.answerContent == null ) answer = "아직 읽지 않았습니다.. 잠시만 기다려주세요.. <a class='style-19' href='/qna/rewrite/" + this.qnaNo + "' id='rewrite'>답변작성</a>";
-                else answer = this.answerContent.replace(/\n/gi, "<br>");
+                if( this.answerContent == null ) {
+                	answer = "아직 읽지 않았습니다.. 잠시만 기다려주세요.."; 
+                	if (${no }== -1) {
+						answer = "<a class='style-19' href='/qna/rewrite/" + this.qnaNo + "' id='rewrite'>답변작성</a>";
+					} 
+                } else {
+                	answer = this.answerContent.replace(/\n/gi, "<br>");
+                }
                 
       			str += '<div class="blog-entry" id="qnalist">';
-      			str += '<div class="date" id="date">' + day + '<span>' + mon + '</span></div>';
+      			str += '<div class="date hidden-xs" id="date">' + day + '<span>' + mon + '</span></div>';
       			str += '<div class="content">';
       			str += '<a class="title" href="/qna/read/' + this.qnaNo + '">' + this.title + '</a>';
       			str += '<div class="subtitle">' + timeString + '  /  ';
@@ -137,26 +136,30 @@ function printList(data) {
 
                 <div class="breadcrumb-box">
                     <a href="/">홈</a>
-                    <a href="#">문의 리스트</a>
+                    <a href="/qna/list">문의 리스트</a>
                 </div>
-                
-                <div class="col-md-2"><a class="button style-10" href="/qna/regist">작성하기</a></div>
-                
-                <div class="information-blocks">
+                <div class="col-md-5 EnterDiv"></div>
+
+                <div class="information-blocks col-md-10 RequestDiv">
                     <div class="row">
                         
-                        <div class="col-md-9 information-entry">
+                        <div class="information-entry">
                             <div class="blog-landing-box type-2">
                               <div class="accordeon" id="replies"></div>
+                                <c:if test="${no != -1 }">
+                                    <a class="button style-14 RequestBtn" href="/qna/regist">문의 작성</a>
+                                    <div class="enterContent-6"></div>
+                                </c:if>
                               <div class="page-selector">
-                                 <center><a class="moreView"><i class="fa fa-angle-down"></i></a></center>
+                                 <a class="moreView"><i class="fa fa-angle-down"></i></a>
                             </div>
                            </div> 
                         </div>
 
                     </div>
                 </div>
-
+                
+                <div class="enterContent-2"></div>
             </div>
 
         <div class="clear"></div>

@@ -83,15 +83,15 @@ public class AfterSalesController {
 		
 		afterSalesService.insert(afterSales);
 		
-		return "redirect:/after/result";
+		return "/after/result";
 	}
-	
+	/*
 	@RequestMapping(value = "/result")
 	public String afterResult() { 
 		
 		return "after/result";
 	}
-	
+	*/
 	@RequestMapping(value = "/list")
 	public String afterListAll() { 
 		

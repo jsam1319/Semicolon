@@ -19,7 +19,6 @@ $(document).ready(function(){
   var formObj = $("form[role='form']");
   
   $("#goListBtn").on("click", function() {
-    alert("클릭");
     formObj.attr("method", "get");
     formObj.attr("action", "/qna/list");
     formObj.submit();
