@@ -93,14 +93,14 @@ $(document).ready(function(){
 	            }
 	            
 	          if (flag) {
-	    	  	    str += "<img src='/resources/images/"+list.frontImg+"' class='imgcl'/>"
-	    	  	    str += "<img src='/resources/images/"+list.toggleImg+"' class='imgcl'/>"
+	    	  	    str += "<img src='"+list.frontImg+"' class='imgcl'/>"
+	    	  	    str += "<img src='"+list.toggleImg+"' class='imgcl'/>"
 	    	  	    str += "<div class='bottom-line'>"
 	    	        str += "	<a class='bottom-line-a square2'>Research Complete</a>"
 	    	        str += "</div>"
 	    		} else {
-	    			str += "<img src='/resources/images/"+list.frontImg+"'/>"
-	    		  	str += "<img src='/resources/images/"+list.toggleImg+"'/>"
+	    			str += "<img src='"+list.frontImg+"'/>"
+	    		  	str += "<img src='"+list.toggleImg+"'/>"
 	    		}
 	            
   			str += "		</div>"
@@ -157,7 +157,7 @@ $(document).ready(function(){
 			  str += "</div>";
 			  str += "<div class='modal-body'>";
 			  str += "	<div class='form-group'>";
-			  str += "		<img class='modal-image' src='/resources/images/"+gpurchase.frontImg+"' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
+			  str += "		<img class='modal-image' src='"+gpurchase.frontImg+"' alt='' data-zoom='/resources/img/ex/cat-zoom.png' />";
 			  str += "		<div class='product-detail-box'>"
 			  str += "			<div class='price detail-info-entry modal-price'>";
 			  str += "				<div class='current'>￦"+numberfmt(gpurchase.price)+"</div>";

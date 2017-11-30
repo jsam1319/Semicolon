@@ -81,8 +81,8 @@ $(document).ready(function(){
 	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
 	        str += "	<div class='product-slide-entry shift-image'>"
 	        str += "		<div class='product-image'>"
-	        str += "			<img src='/resources/images/"+list.frontImg+"' alt='image' />"
-	  	    str += "			<img src='/resources/images/"+list.toggleImg+"' alt='image' />"
+	        str += "			<img src='"+list.frontImg+"' alt='image' />"
+	  	    str += "			<img src='"+list.toggleImg+"' alt='image' />"
 	        str += "		</div>"
 	        str += "		<a class='tag'>"+list.cname+"</a>"
 	        

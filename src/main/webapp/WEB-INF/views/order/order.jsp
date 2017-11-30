@@ -31,7 +31,7 @@
           <c:forEach items="${orderList}" var="order">
             <div class="traditional-cart-entry style-1">
               <a href="#" class="image"><img class="order-image"
-                src="/resources/images/${map.FRONTIMG}" alt=""></a>
+                src="${map.FRONTIMG}" alt=""></a>
               <div class="content">
                 <div class="cell-view" name="dataset">
                   <a class="tag" href="#">${map.CNAME}</a> 
