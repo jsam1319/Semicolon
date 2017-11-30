@@ -40,7 +40,7 @@
 		   	  dataType:"text",
 		   	  success: function(data){
 		   	  	removeDiv.remove();
-		   		//$("#confirm-modal").modal();
+		   		$("#confirm-modal").modal();
 		   	  }
 		   });   
 		   
@@ -79,21 +79,37 @@
 		        
 		       
 		        $.each(data, function(index, item){
+		            var status;
+					
 		            print +=
 		                '<div class="col-sm-4 portfolio-entry" >'+
-							'<div class="image" style="height:20rem">'+
-								'<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
-							'</div>'+
-							'<div style="display:inline;">'+
-								'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>'+
+							'<div class="image" style="height:20rem">';
+								
+								  
+								if(item.status == 0){
+								    print += '<a href="#" data-toggle="modal" data-target="#research-modal"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
+										    '</div>'+
+											'<div style="display:inline;">'+
+												'<a class="title" href="#" data-toggle="modal" data-target="#research-modal" style="display:inline;">'+item.name+'</a>';
+								    status = "공구 조사 중";
+								}else{
+								    print += '<a href="/product/gpurchase/'+item.gpurchaseNo+'"><img alt="" src="'+item.img+'" style="height:100%;"/></a>'+
+										    '</div>'+
+											'<div style="display:inline;">'+
+												'<a class="title" href="/product/gpurchase/'+item.gpurchaseNo+'"style="display:inline;">'+item.name+'</a>';
+									status = "공구 진행 중";
+								}
+								
+					print +=			
+							
 								'<button class="deletebtn button style-14" style="display:inline; float:right; background:#f6b7b7; border-color:#FFFFFF;" value='+item.gwishNo+'><i class="fa fa-times"></i></button>'+
 							'</div>'+
 							'<div class="subtitle">'+
-								'<a class="tag">'+item.company+'</a>'+
-								'<div class="current gpurchasePrice">'+numberfmt(item.price)+'</div>'+
+								'<div class="tag">'+item.company+' / '+numberfmt(item.price)+'</div>'+
+								'<div class="description" style="color:#ff0000;">'+status+'</div>'+
+								'<div class="tag">내가 찜한 날짜:'+item.regdate+'</div>'+
 								'<span class="comments-number">'+ item.startDate +'~'+ item.endDate +'</span>'+
 							'</div>'+
-							'<div class="description">내가 찜한 날짜:'+item.regdate+'</div>'+
 						'</div>'; 
 								 
 		        });
@@ -115,7 +131,7 @@
 	
 	</script>
 	
-	<%-- Modal --%>
+	<%-- 삭제 Modal --%>
 	<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog modal-sm">
 
@@ -126,6 +142,27 @@
         
         <div class="modal-body">
           <p style="text-align:center;"> 삭제되었습니다 </p>
+        </div>
+
+        <div class="modal-footer">
+	       <button type="button" class="button style-10" data-dismiss="modal" style="text-align:center">Close</button>
+	    </div>
+       
+      </div>
+    </div>
+  </div>
+  
+  <%-- 공구조사중 알림 Modal --%>
+	<div class="modal fade" id="research-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align:center">알림</h4>
+        </div>
+        
+        <div class="modal-body">
+          <p style="text-align:center;"> 아직 공구 조사 중 입니다. </p>
         </div>
 
         <div class="modal-footer">

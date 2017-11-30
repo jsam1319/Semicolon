@@ -17,7 +17,7 @@ package kr.or.kosta.semicolon.gwish.domain;
  */
 public class GwishDetail {
 	
-	//9개
+	//10개
 	private String img; /** 이미지 경로 */
 	private String company; /** 회사이름 */
 	private String name;/** 상품명 */
@@ -27,13 +27,13 @@ public class GwishDetail {
 	private String regdate; /** 공구찜 날짜 */
 	private int gwishNo; /** 공구찜 번호 */
 	private int gpurchaseNo; /** 공구번호 */
+	private int status; /** 공구상태번호 */
 	
 	
 	public GwishDetail() {}
 
-
 	public GwishDetail(String img, String company, String name, String price, String endDate, String startDate,
-			String regdate, int gwishNo, int gpurchaseNo) {
+			String regdate, int gwishNo, int gpurchaseNo, int status) {
 		super();
 		this.img = img;
 		this.company = company;
@@ -44,9 +44,8 @@ public class GwishDetail {
 		this.regdate = regdate;
 		this.gwishNo = gwishNo;
 		this.gpurchaseNo = gpurchaseNo;
+		this.status = status;
 	}
-
-
 
 
 	public String getImg() {
@@ -124,17 +123,19 @@ public class GwishDetail {
 		this.gpurchaseNo = gpurchaseNo;
 	}
 
+	public int getStatus() {
+		return status;
+	}
 
-
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "GwishDetail [img=" + img + ", company=" + company + ", name=" + name + ", price=" + price + ", endDate="
 				+ endDate + ", startDate=" + startDate + ", regdate=" + regdate + ", gwishNo=" + gwishNo
-				+ ", gpurchaseNo=" + gpurchaseNo + "]";
+				+ ", gpurchaseNo=" + gpurchaseNo + ", status=" + status + "]";
 	}
-
-
-
 
 }
