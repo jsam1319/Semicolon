@@ -125,10 +125,10 @@
 				</div>
 				<div class="modal-body">
 		
-					<form>
+					<form action="/image/search">
 						<label> URL로 검색 </label>
 							<div class="input-group">
-						<input class="form-control" type="text" placeholder="URL을 입력하세요!">
+						<input class="form-control" name="imageName" type="text" placeholder="URL을 입력하세요!">
 						<span class="input-group-btn">
 			      	<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
 			      </span>
