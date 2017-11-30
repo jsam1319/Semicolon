@@ -18,4 +18,7 @@ public interface GoodsService {
 	public List<Goods> listAll(UseParameter params) throws Exception;
 	
 	public int listCount() throws Exception;
+	
+	public List<Goods> adminGoodsList();
+	
 }
