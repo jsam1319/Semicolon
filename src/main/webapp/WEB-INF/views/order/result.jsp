@@ -23,7 +23,8 @@
                             
                             <div class="enterContent-1"></div>
                         </div>
-                        <a href="/order/" class="button style-10">주문내역 보러가기</a>
+                        <a href="/order/" class="button style-14">주문내역 보러가기</a>
+                        <a href="/" class="button style-14">메인페이지</a>
                     </div>
                 </div>
                 <div class="col-sm-3 information-entry">
