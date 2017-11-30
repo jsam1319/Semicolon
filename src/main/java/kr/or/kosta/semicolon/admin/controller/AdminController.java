@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.kosta.semicolon.goods.domain.Goods;
 import kr.or.kosta.semicolon.goods.service.GoodsService;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 import kr.or.kosta.semicolon.push.domain.PushToken;
 import kr.or.kosta.semicolon.push.service.PushTokenService;
 
@@ -57,8 +58,8 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value="/goods", method=RequestMethod.POST)
-	public List<Goods> goodsList() {
-		List<Goods> goods = goodsService.adminGoodsList();
+	public List<GpurchaseInfo> goodsList() {
+		List<GpurchaseInfo> goods = goodsService.adminGoodsList();
 		
 		return goods;
 	}

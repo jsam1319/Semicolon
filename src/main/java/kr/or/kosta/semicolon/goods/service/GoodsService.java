@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 
 public interface GoodsService {
 	
@@ -19,6 +20,6 @@ public interface GoodsService {
 	
 	public int listCount() throws Exception;
 	
-	public List<Goods> adminGoodsList();
+	public List<GpurchaseInfo> adminGoodsList();
 	
 }

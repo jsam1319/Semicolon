@@ -43,6 +43,19 @@
 		FROM goods
 	</select>
 	
+	<select id="categoryListAll" parameterType="int" resultType="Goods">
+		SELECT goods_no, 
+			   name, 
+			   price, 
+			   detail, 
+			   front_img,
+			   toggle_img,
+			   category 
+		FROM   goods
+		WHERE  category = #{category}
+	</select>
+	 
+	
 	<select id="select" resultType="Goods">
 		SELECT goods_no AS goodsNo, 
 		       name, 
@@ -94,6 +107,22 @@
 	<select id="listCount" resultType="int">
 		SELECT Count(goods_no) count 
 		FROM   goods
+	</select>
+	
+	<select id="adminGoodsList" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
+		SELECT c.NAME cname,
+			   g.goods_no goodsNo, 
+		       g.NAME gname, 
+		       g.price, 
+		       g.front_img, 
+		       g.category 
+		FROM   company c, 
+		       nego n, 
+		       nego_list ne, 
+		       goods g 
+		WHERE  c.company_no = n.company_no 
+		       AND n.nego_no = ne.nego_no 
+		       AND ne.goods_no = g.goods_no
 	</select>
 	
 

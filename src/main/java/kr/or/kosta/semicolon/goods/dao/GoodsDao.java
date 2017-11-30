@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.kosta.semicolon.common.UseParameter;
 import kr.or.kosta.semicolon.goods.domain.Goods;
+import kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo;
 
 /**
  * @packgename   kr.or.kosta.semicolon.goods.dao
@@ -36,6 +37,6 @@ public interface GoodsDao {
 	
 	public int listCount() throws Exception;
 	
-	public List<Goods> adminGoodsList();
+	public List<GpurchaseInfo> adminGoodsList();
 	
 }
