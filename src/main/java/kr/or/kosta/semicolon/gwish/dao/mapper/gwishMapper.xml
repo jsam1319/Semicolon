@@ -53,8 +53,8 @@
 
 <select id="getListByMemNo" parameterType="map" resultType="GwishDetail">
 SELECT 		regdate, 
-	       start_date, 
-	       end_date, 
+	      	To_char(start_date, 'yyyy-MM-DD') start_date, 
+	       To_char(end_date, 'yyyy-MM-DD') end_date, 
 	       name, 
 	       price, 
 	       front_img AS "img", 
