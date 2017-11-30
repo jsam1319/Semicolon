@@ -52,15 +52,16 @@
 </select>
 
 <select id="getListByMemNo" parameterType="map" resultType="GwishDetail">
-SELECT 		regdate, 
+SELECT 		To_char(regdate, 'yyyy-MM-DD') regdate, 
 	      	To_char(start_date, 'yyyy-MM-DD') start_date, 
-	       To_char(end_date, 'yyyy-MM-DD') end_date, 
-	       name, 
-	       price, 
-	       front_img AS "img", 
-	       company,
+	       	To_char(end_date, 'yyyy-MM-DD') end_date, 
+	       	name, 
+	      	price, 
+	       	front_img AS "img", 
+	       	company,
          	gwish_no,
-         	gpurchase_no
+         	gpurchase_no,
+          	status
 	FROM   (SELECT Ceil(ROWNUM / 6) AS page, 
 	               gw.regdate, 
 	               gp.start_date, 
@@ -69,8 +70,9 @@ SELECT 		regdate,
 	               g.price, 
 	               g.front_img, 
 	               c.name           AS company,
-                 gw.gwish_no,
-                   gp.gpurchase_no
+                   gw.gwish_no,
+                   gp.gpurchase_no,
+                   gp.status 
 	        FROM   gwish gw, 
 	               gpurchase gp, 
 	               goods g, 
