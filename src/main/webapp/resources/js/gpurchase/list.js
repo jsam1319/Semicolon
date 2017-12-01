@@ -85,14 +85,7 @@ $(document).ready(function(){
 	  	    str += "			<img src='"+list.toggleImg+"' alt='image' />"
 	        str += "		</div>"
 	        str += "		<a class='tag'>"+list.cname+"</a>"
-	        
-     // 회원 로그인 했는지 체크 - 
-          if(!memberNo){
-        	str += "		<a class='title nloginTitle' title='"+list.gpurchaseNo+"' data-toggle='modal' data-target='#login-modal'>"+list.gname+"</a>"
-          } else {
-        	str += "		<a href='/product/gpurchase/"+list.gpurchaseNo+"' class='title loginTitle' title='"+list.gpurchaseNo+"'>"+list.gname+"</a>"
-          }
-	  		
+	        str += "		<a href='/product/gpurchase/"+list.gpurchaseNo+"' class='title loginTitle' title='"+list.gpurchaseNo+"'>"+list.gname+"</a>"
 	  		str += "		<div class='price gpurchasePrice'>"
 	        str += "        	<div class='current gpurchasePrice'>￦"+numberfmt(list.price)+"</div>"
 	        str += "		</div>"

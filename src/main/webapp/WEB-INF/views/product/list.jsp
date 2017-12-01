@@ -1,6 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <body class="style-10">
-
+<style>
+.goods-regdate{
+  font-size: 13px; 
+  line-height: 14px; 
+  color: #8b8b8b; 
+  text-transform: uppercase; 
+  display: block; 
+  font-weight: 500; 
+  margin-bottom: 7px;
+}
+</style>
   <!-- LOADER -->
   <div id="loader-wrapper">
     <div class="bubbles">
