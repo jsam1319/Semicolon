@@ -86,6 +86,7 @@
 		WHERE  B.goods_no = G.goods_no 
 		       AND G.goods_no = GP.goods_no 
 		       AND GP.gpurchase_no = #{gpurchaseNo}
+		       ORDER BY SIZES ASC
 	</select>
 	
 	<select id="selectOrderSizes" parameterType="int" resultType="String">
