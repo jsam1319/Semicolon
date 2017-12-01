@@ -710,8 +710,7 @@ footer{position: relative;}
 .product-slide-entry>img:first-child{margin-bottom: 15px;}
 .product-slide-entry .product-image:hover img{transform: scale(1.1); -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -ms-transform: scale(1.1);}
 .product-slide-entry.shift-image .product-image:hover img{transform: scale(1) translateX(-100%); -moz-transform: scale(1) translateX(-100%); -webkit-transform: scale(1) translateX(-100%); -ms-transform: scale(1) translateX(-100%);}
-.product-slide-entry.shift-image .product-image img{position: absolute; left: 100%; top: 0; width: 100%; height: 180px;}
-/* .product-slide-entry.shift-image .product-image img{position: absolute; left: 100%; top: 0; width: 100%; height: auto;} */
+.product-slide-entry.shift-image .product-image img{position: absolute; left: 100%; top: 0; width: 100%; height: auto;}
 .product-slide-entry.shift-image .product-image img:first-child{position: relative; left: 0;}
 .product-slide-entry .product-image .bottom-line{position: absolute; left: 0; bottom: -35px; width: 100%; background: rgba(28,28,28,0.9); text-align: center; font-size: 11px; line-height: 35px; font-weight: 600;}
 .product-slide-entry .product-image:hover .bottom-line{bottom: 0;}
@@ -737,7 +736,6 @@ footer{position: relative;}
 .product-image .top-line-a.right{right: -100px;}
 .product-image:hover .top-line-a.right{right: 10px;}
 .product-slide-entry .tag{font-size: 10px; line-height: 14px; color: #8b8b8b; text-transform: uppercase; display: block; font-weight: 500; margin-bottom: 7px;}
-.product-slide-entry .goods-regdate{font-size: 13px; line-height: 14px; color: #8b8b8b; text-transform: uppercase; display: block; font-weight: 500; margin-bottom: 7px;}
 .product-slide-entry .tag:hover{color: #2e2e2e;}
 .product-slide-entry .title{display: block; font-size: 15px; line-height: 18px; color: #2e2e2e; font-weight: 600; margin-bottom: 10px;}
 .product-slide-entry .title b{font-weight: 700;}
@@ -2539,9 +2537,7 @@ header.type-4 .header-top:before{background: #2e2e2e; position: absolute; width:
     header.type-4 .header-top-entry .title .fa:last-child{color: #6c6c6c;}
     header.type-4 .header-top-entry.hidden-xs{color: #8c8c8c;}
     header.type-4 .header-top-entry.hidden-xs a{color: #fff;}
-    header.type-4 .header-top-entry.hidden-md{color: #8c8c8c;}
-    header.type-4 .header-top-entry.hidden-md a{color: #fff;}
-
+}
 
 /* 29.02 - content styles */
 body.style-11 .sidebar-navigation .title{background: #dc42b2;}
