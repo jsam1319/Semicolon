@@ -96,14 +96,6 @@ public class CompareTime {
 			month = "0"+month;
 		}
 		
-		// year 형태 변환(2017->17)
-		String changeYear[] = year.split("");
-		
-		year = "";
-		for (int i = 2; i < changeYear.length; i++) {
-			year += changeYear[i];
-		}
-		
 		// 현재 날짜
 		currentTime = year + month + date;
 		
