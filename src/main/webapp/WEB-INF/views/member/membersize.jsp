@@ -121,7 +121,7 @@ var inputData = function(data){
     	<br>
     	
     	<hr>
-    	<div class="col-sm-12" style="padding-left:17%">
+    	<div class="col-sm-12 hidden-xs" style="padding-left:17%;">
     		<img src="/resources/img/size.JPG"  align="center">
     		<hr><br>
     	</div>
@@ -147,8 +147,8 @@ var inputData = function(data){
 		                <div class="clear"></div>
 	                </div>
 	                <div class="col-sm-6">
-						<div class="simple-drop-down simple-field ">
 						<label>치마사이즈</label>
+						<div class="simple-drop-down simple-field ">
 		                     <select id="skirt">
 		                     	<option value="none">None</option>
 		                        <option value="xs">xs</option>
