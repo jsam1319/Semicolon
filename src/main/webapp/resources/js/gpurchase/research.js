@@ -117,11 +117,9 @@ $(document).ready(function(){
   			str += "		<div class='price gpurchasePrice'>"
 	  	    str += "        	<div class='current gpurchasePrice'> ￦"+numberfmt(list.price)+"</div>"
 	  	    str += "      	</div>"
-	  	    str += "		<div class='date'>"
-	  	    str += " 			<div>"+list.startDate+" ~ "+list.endDate+"</div>"
-	  	    str += "		</div>"
+	  	    str += "		<a class='goods-regdate'>"+list.startDate+" ~ "+list.endDate+"</a>"
 	  	    str += "      	<div class='list-buttons'>"
-	  	    str += "      	</div> ";
+	  	    str += "      	</div> "
 	  	    str += "	</div>"
 	  	    str += "	<div class='clear'></div>"
 	  	    str += "</div>"

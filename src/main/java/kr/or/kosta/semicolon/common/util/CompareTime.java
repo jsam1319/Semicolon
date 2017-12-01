@@ -86,17 +86,38 @@ public class CompareTime {
 	}
 	
 	public String timeCount() {
+		// return 변수
 		String compare = null;
 		
+		// 월, 일의 숫자가 10미만일 경우 앞에 0 더해주기
+		if (Integer.parseInt(date) < 10) {
+			date = "0"+date;
+		} else if (Integer.parseInt(month) < 10) {
+			month = "0"+month;
+		}
+		
+		// year 형태 변환(2017->17)
+		String changeYear[] = year.split("");
+		
+		year = "";
+		for (int i = 2; i < changeYear.length; i++) {
+			year += changeYear[i];
+		}
+		
+		// 현재 날짜
 		currentTime = year + month + date;
+		
+		// 비교할 기준 날짜 데이터 -을 기준으로 재조립
 		String date[] = standardTime.split("-");
+		
 		standardTime="";
 		
 		for (int i = 0; i < date.length; i++) {
 			standardTime += date[i];
 		}
 		
-		if(currentTime.compareTo(standardTime) >= 0) {
+		// 기준 날짜가 현재 날짜보다 과거인지 비교
+		if(currentTime.compareTo(standardTime) > 0) {
 			compare = "past";
 		}
 		

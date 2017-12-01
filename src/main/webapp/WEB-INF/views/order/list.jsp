@@ -128,7 +128,7 @@ $(document).ready(function() {
 	                     '<div class="wishlist-entry">'+
 	                        '<div class="column-1">'+
 	    					'<div class="traditional-cart-entry">'+
-	    						'<a class="image" href="/product/gpurchase/'+item.gpurchaseNo+'"><img src="/resources/images/'+item.img+'"alt=""></a>'+
+	    						'<a class="image" href="/product/gpurchase/'+item.gpurchaseNo+'"><img src="'+item.img+'"alt=""></a>'+
 	    						 '<div class="content">'+
 	    							'<div class="cell-view">'+
 	    								'<a class="tag" href="/order/'+item.ordersNo+'">'+item.ordersNo+'</a>'+
@@ -145,7 +145,7 @@ $(document).ready(function() {
 	        	        	'</td>'+
 	        	        	'<td rowspan="'+list.length+'">'+	
 	        	        		'<div class="traditional-cart-entry">'+	
-	        	        			'<a href="/product/gpurchase/'+item.gpurchaseNo+'" class="image"><img src="/resources/images/'+item.img+'"alt=""></a>'+
+	        	        			'<a href="/product/gpurchase/'+item.gpurchaseNo+'" class="image"><img src="'+item.img+'"alt=""></a>'+
 	        	        				'<div class="content">'+
 	        	        				'<div class="cell-view">'+
 	        	        					'<a href="/product/gpurchase/'+item.gpurchaseNo+'" class="title">'+item.name+'</a>'+
