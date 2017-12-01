@@ -125,11 +125,6 @@ var bestSize = new Object;
               </div>
 
 
-              <script>
-              
-              </script>
-
-
             </div>
           </div>
         <!-- /.상품 정보 -->

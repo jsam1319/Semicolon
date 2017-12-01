@@ -78,6 +78,7 @@ $(document).ready(function(){
 	  	$(data.list).each(function(){
 	  		var list = this;
 	  		
+	  		
 	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
 	        str += "	<div class='product-slide-entry shift-image'>"
 	        str += "		<div class='product-image'>"
@@ -144,7 +145,6 @@ $(document).ready(function(){
 		  var gpurchaseNo = $(this).attr("title")
 		  
 		  $.getJSON("/product/"+gpurchaseNo, function(data){
-			  console.log(data.gpurchase)
 			  var gpurchase = data.gpurchase;
 			  var gwishCheck = data.gwishCheck;
 			  var size = data.size;
@@ -162,13 +162,13 @@ $(document).ready(function(){
 			  str += "			<div class='price detail-info-entry modal-price'>";
 			  str += "				<div class='current'>￦"+numberfmt(gpurchase.price)+"</div>";
 			  str += "			</div>";
-			  str += "			<div class='size-selector detail-info-entry'>";
+			  str += "		<div class='size-selector detail-info-entry'>";
 			  str += "				<div class='detail-info-entry-title size-text'>구입 가능 사이즈</div>";
-			  
+				  str += "<center>"
 			  for (var i = 0; i < size.length; i++) {
 				  str += "<div class='entry'>"+size[i].SIZES+"</div>"; 
 			}
-			  
+			  str += "</center>"
 			  str += "			</div>";
 			  str += "		</div>";
 			  str += "	</div>";
