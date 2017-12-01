@@ -78,7 +78,7 @@
   <div class="content-push">
 
     <div class="breadcrumb-box">
-      <a href="/">Home</a> <a href="#">공구조사</a>
+      <a href="/">Home</a> <a href="#">공구 요청</a>
     </div>
 
     <div class="information-blocks">

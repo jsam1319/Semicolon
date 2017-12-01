@@ -76,9 +76,9 @@ $(document).ready(function(){
 			str += "<a class='title toModal' data-toggle='modal' data-target='#titleModal'>"+data[i].title+"</a>";
 			str += "<input type='hidden' name='requireNo' value='"+data[i].requireNo+"'>";
 			if(data[i].comments != null){  //관리자 댓글이 달렸을 경우
-				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 1 comment</span></div>";
+				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 답변 완료 </span></div>";
 			}else{	//관리자 댓글이 달리지 않았을 경우
-				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 0 comment</span></div>";
+				str += "<div class='subtitle'>"+data[i].regdate+"<span class='comments-number'> 답변 대기중 </span></div>";
 			}
 			
 			str += "<div class='description'>희망가격 : "+data[i].price+" <br> 회사명(제조사) : "+data[i].company+"</div>";
