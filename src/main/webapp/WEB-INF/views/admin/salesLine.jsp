@@ -71,15 +71,11 @@
         
         //차트 업데이트
         function update(){
-            alert("update");
             myChart.update({
                 xAxis: {
                     categories:xAxisData  
                 },
                 series: seriesData
-                    /* [{
-                }] */
-                    
             });
         }
         
@@ -111,9 +107,11 @@
         
         //종료 날짜 증가
         $(".end.implove").click(function(){
-            $("#end").text(changeDate($("#end").text(), 1));
-            getData(); 
-            update();
+            if( moment($("#end").text()).isBefore(moment().calendar()) ){ //오늘보다 증가되는 것을 막기 위해
+	            $("#end").text(changeDate($("#end").text(), 1));
+	            getData(); 
+	            update();
+            }
          });
         
     }); //end ready

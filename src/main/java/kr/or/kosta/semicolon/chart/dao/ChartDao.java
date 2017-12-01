@@ -26,5 +26,5 @@ public interface ChartDao {
 	public List<Chart> getSalesbyCompany();
 	
 	/** 달별로 매출액 반환 */
-	public Chart getSalesbyMon(Map<String, Object> map);
+	public List<Chart> getSalesbyMon(Map<String, Object> map);
 }
