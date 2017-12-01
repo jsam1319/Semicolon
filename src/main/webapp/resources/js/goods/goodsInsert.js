@@ -402,7 +402,7 @@ $(document).ready(function(){
     		 				case 'skirt': 
     		 					str += "<input type='hidden' name='category' value='210'></input>"
     		 					break;
-    		 				case 'shortPants':
+    		 				case 'shortpants':
     		 					str += "<input type='hidden' name='category' value='220'></input>"
     		 					break;
     		 				case 'pants': 
@@ -537,7 +537,7 @@ $(document).ready(function(){
 		  
 		  value = "        <option>종류 선택</option>" +
 		  		  "        <option value='skirt'>Skirt</option>" +
-		  		  "        <option value='shortPants'>Shorts</option>" +
+		  		  "        <option value='shortpants'>Shorts</option>" +
 		  		  "        <option value='pants'>Pants</option>";
 		  
 		  add = addingOp(value);
