@@ -21,6 +21,7 @@ import kr.or.kosta.semicolon.chart.domain.Chart;
 import kr.or.kosta.semicolon.chart.service.ChartService;
 import kr.or.kosta.semicolon.common.enumtype.Category;
 import kr.or.kosta.semicolon.common.util.CategoryName;
+import kr.or.kosta.semicolon.company.domain.Company;
 import kr.or.kosta.semicolon.company.service.CompanyService;
 import kr.or.kosta.semicolon.gpurchase.domain.CategorySales;
 import kr.or.kosta.semicolon.gpurchase.service.gpurchaseService;
@@ -82,10 +83,20 @@ public class ChartController {
 		JSONObject obj;
 		JSONArray array = new JSONArray();
 
-		for (Chart chart : list) {
+		//행에 들어갈 데이터 베이스에 저장되어 있는 모든 company 반환 
+		List<Company> companies = comService.listAll();
+				
+		
+		for (Company company : companies) {
+			int sales = 0;//매출액
+			for (Chart chart : list) {
+				if(company.getName().equals(chart.getName())) {
+					sales += chart.getSales();
+				}
+			}
 			obj = new JSONObject();
-			obj.put("name", chart.getName());
-			obj.put("y", chart.getSales());
+			obj.put("name", company.getName());
+			obj.put("y", sales);
 
 			array.add(obj);
 		}
@@ -115,19 +126,22 @@ public class ChartController {
 		
 		JSONObject obj;
 		JSONArray array = new JSONArray();
+		Category[] categories = Category.values();
 		
-		CategoryName cat = new CategoryName();
-
-		for (CategorySales cs : list) {
+		for (int i = 0; i < categories.length; i++) {
+			int price = 0;
+			for (CategorySales cs : list) {
+				if( categories[i].equals(Category.valueOfNo( cs.getCategory() )) ){
+					price += cs.getPrice();
+				}
+			}
 			obj = new JSONObject();
-			
-			
-			Category name = cat.getCategoryName(cs.getCategory());
-			obj.put("name",name.toString());
-			obj.put("y", cs.getPrice());
+			obj.put("name",categories[i].toString());
+			obj.put("y", price);
 
 			array.add(obj);
 		}
+		
 
 		JSONObject sendObj = new JSONObject();
 		sendObj.put("array", array);
