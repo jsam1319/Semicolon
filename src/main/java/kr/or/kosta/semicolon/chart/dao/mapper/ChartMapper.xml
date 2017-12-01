@@ -25,7 +25,8 @@
   	
   	<select id="getSalesbyMon" resultType="Chart" parameterType="map">
   	<![CDATA[
-  	SELECT SUM(list.price * g.pnum) AS sales, 
+  	SELECT distinct
+  			SUM(list.price * g.pnum) AS sales, 
 		       company.company_no, 
 		       company.name 
 		FROM   gpurchase g, 

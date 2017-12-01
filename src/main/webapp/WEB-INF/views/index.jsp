@@ -11,7 +11,6 @@
 <body class="style-10">
 
 <div class="content-push">
-
 				<div class="parallax-slide fullwidth-block small-slide"
 					style="margin-bottom: 30px; margin-top: -25px;">
 					<div class="swiper-container" data-autoplay="5000" data-loop="1"
@@ -69,8 +68,8 @@
 						<div class="swiper-tabs tabs-switch">
 							<div class="title">Products</div>
 							<div class="list">
-								<a class="block-title tab-switcher active">Featured Products</a>
-								<a class="block-title tab-switcher">Popular Products</a> 
+							<a class="block-title tab-switcher active" id="recommandTab">회원님의 연관 상품</a>
+								<a class="block-title tab-switcher" id="popularTab">최고 인기상품</a> 
 								<div class="clear"></div>
 							</div>
 						</div>
@@ -82,397 +81,25 @@
 										data-slides-per-view="responsive" data-xs-slides="2"
 										data-int-slides="2" data-sm-slides="3" data-md-slides="4"
 										data-lg-slides="5" data-add-slides="5">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="" style="height:16rem;">
-															<img id="imageSizing" src="/resources/img/index/brownCoat3.PNG" alt=""  style="height:100%;"/> 
-														</div>
-														<a class="tag" href="#"># COAT</a> <a class="title"
-															href="#">Brown Wool Coat</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star-o"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="current">￦80,000</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-slide">
-                                              <div class="paddings-container">
-                                                <div class="product-slide-entry shift-image">
-                                                  <div class="" style="height:16rem;">
-                                                    <img id="imageSizing" src="/resources/img/index/burgundyCoat2.PNG" alt=""  style="height:100%;"/> 
-                                                  </div>
-                                                  <a class="tag" href="#"># COAT</a> <a class="title"
-                                                    href="#">Burgundy Wool Coat</a>
-                                                  <div class="rating-box">
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                  </div>
-                                                  <div class="price">
-                                                    <div class="current">￦75,000</div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-											<div class="swiper-slide">
-                                              <div class="paddings-container">
-                                                <div class="product-slide-entry shift-image">
-                                                  <div class="" style="height:16rem;">
-                                                    <img id="imageSizing" src="/resources/img/index/mintCoat4.PNG" alt=""  style="height:100%;"/> 
-                                                  </div>
-                                                  <a class="tag" href="#"># COAT</a> <a class="title"
-                                                    href="#">Mint Short Coat</a>
-                                                  <div class="rating-box">
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star-half"></i>
-                                                    </div>
-                                                  </div>
-                                                  <div class="price">
-                                                    <div class="current">￦68,000</div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-											<div class="swiper-slide">
-                                              <div class="paddings-container">
-                                                <div class="product-slide-entry shift-image">
-                                                  <div class="" style="height:16rem;">
-                                                    <img id="imageSizing" src="/resources/img/index/mustang2.PNG" alt=""  style="height:100%;"/> 
-                                                  </div>
-                                                  <a class="tag" href="#"># COAT</a> <a class="title"
-                                                    href="#">Mustang</a>
-                                                  <div class="rating-box">
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                  </div>
-                                                  <div class="price">
-                                                    <div class="current">￦77,000</div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-											<div class="swiper-slide">
-                                              <div class="paddings-container">
-                                                <div class="product-slide-entry shift-image">
-                                                  <div class="" style="height:16rem;">
-                                                    <img id="imageSizing" src="/resources/img/index/shortCoat2.PNG" alt=""  style="height:100%;"/>
-                                                    </div>
-                                                  <a class="tag" href="#"># COAT</a> <a class="title"
-                                                    href="#">Short Wool Coat</a>
-                                                  <div class="rating-box">
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star-half"></i>
-                                                    </div>
-                                                    <div class="star">
-                                                      <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                  </div>
-                                                  <div class="price">
-                                                    <div class="current">￦65,000</div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
+										<div class="swiper-wrapper" id="recommand">
 										</div>
+										
 										<div class="pagination"></div>
+										
 									</div>
 								</div>
 							</div>
-							<div class="tabs-entry">
+							<div class="tabs-entry" id="popularEntry">
 								<div class="products-swiper">
 									<div class="swiper-container" data-autoplay="0" data-loop="0"
 										data-speed="500" data-center="0"
 										data-slides-per-view="responsive" data-xs-slides="2"
 										data-int-slides="2" data-sm-slides="3" data-md-slides="4"
 										data-lg-slides="5" data-add-slides="5">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-6.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-12.jpg" alt="" /> <a
-																class="top-line-a left"><i class="fa fa-retweet"></i></a>
-															<a class="top-line-a right"><i class="fa fa-heart"></i></a>
-															<div class="bottom-line">
-																<a class="bottom-line-a"><i
-																	class="fa fa-shopping-cart"></i> Add to cart</a>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-7.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-11.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-8.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-12.jpg" alt="" />
-															<div class="bottom-line left-attached">
-																<a class="bottom-line-a square"><i
-																	class="fa fa-shopping-cart"></i></a> <a
-																	class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-																<a class="bottom-line-a square"><i
-																	class="fa fa-retweet"></i></a> <a
-																	class="bottom-line-a square open-product"><i
-																	class="fa fa-expand"></i></a>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-9.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-11.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="swiper-slide">
-												<div class="paddings-container">
-													<div class="product-slide-entry shift-image">
-														<div class="product-image">
-															<img id="imageSizing" src="/resources/img/product-minimal-10.jpg" alt="" /> <img
-																src="/resources/img/product-minimal-12.jpg" alt="" /> <a
-																class="top-line-a right open-product"><i
-																class="fa fa-expand"></i> <span>Quick View</span></a>
-															<div class="bottom-line">
-																<div class="right-align">
-																	<a class="bottom-line-a square"><i
-																		class="fa fa-retweet"></i></a> <a
-																		class="bottom-line-a square"><i
-																		class="fa fa-heart"></i></a>
-																</div>
-																<div class="left-align">
-																	<a class="bottom-line-a"><i
-																		class="fa fa-shopping-cart"></i> Add to cart</a>
-																</div>
-															</div>
-														</div>
-														<a class="tag" href="#">Men clothing</a> <a class="title"
-															href="#">Blue Pullover Batwing Sleeve Zigzag</a>
-														<div class="rating-box">
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-															<div class="star">
-																<i class="fa fa-star"></i>
-															</div>
-														</div>
-														<div class="price">
-															<div class="prev">$199,99</div>
-															<div class="current">$119,99</div>
-														</div>
-													</div>
-												</div>
-											</div>
+										<div class="swiper-wrapper" id="popular">
+											
+											
+											
 										</div>
 										<div class="pagination"></div>
 									</div>
@@ -486,5 +113,86 @@
 
 			</div>
 	
+	
+<script>
+$(document).ready(function() {
+	if("${no}".trim() == "") {
+		$("#recommandTab").hide();
+		$("#popularTab").attr("class", "block-title tab-switcher active");
+		$("#popularEntry").toggle();
+	}
+	
+	else {
+		$.ajax({
+			url : "/log/recommand/${no}",
+			dataType : "json",
+			success : function(data) {
+				if(data.list.length == 0) {
+					$("#recommandTab").hide();
+					$("#popularTab").attr("class", "block-title tab-switcher active");
+					$("#popularEntry").toggle();
+				}
+				
+				console.log(data);
+				$("#recommand").html(slideString(data))
+			}, 
+			error : function(data, a, b) {
+				console.log(data);
+				console.log(a);
+				console.log(b);
+			}
+		})
+	}
+	
+	$.ajax({
+		url : "/log/popular",
+		dataType : "json",
+		success : function(data) {
+			console.log(data);
+			$("#popular").html(slideString(data))
+		}, 
+		error : function(data, a, b) {
+			console.log(data);
+			console.log(a);
+			console.log(b);
+		}
+	})
+
+	
+})
+
+
+function slideString(data) {
+	str = "";
+	list = data.list;
+	for(var i in list) {
+		
+		str = str + "<div class=\"swiper-slide\">\n" + 
+								"	<div class=\"paddings-container\">\n" + 
+								"		<div class=\"product-slide-entry shift-image\">\n" + 
+								"			<div class=\"\" style=\"height:16rem;\">\n" + 
+								"				<img id=\"imageSizing\" src=\" "+ list[i].toggleImg + "\" alt=\"\"  style=\"height:100%;\"/> \n" + 
+								"			</div>\n" + 
+								"			<a class=\"tag\" href=\"#\"># COAT</a> <a class=\"title\"\n" + 
+								"			href=\"#\">" + list[i].gname+ "</a>\n" + 
+								"			<div class=\"price\">\n" + 
+								"		<div class=\"current\">￦" + list[i].price+ "</div>\n" + 
+								"		</div>\n" + 
+								"	</div>\n" + 
+								"</div>\n" + 
+								"</div>"
+
+					
+	}
+	
+	return str;
+}
+
+
+
+
+</script>
 </body>
+
+
 </html>

@@ -184,7 +184,7 @@ public class ChartController {
 		
 		if (result != null) {
 			for(int i=0; i<companyNum; i++) {
-				for(int j=0; j<size; j++) {
+				for(int j=0; j<size-1; j++) {
 						array[i][j] = result.get(j).get(i).getSales();
 				}
 			}

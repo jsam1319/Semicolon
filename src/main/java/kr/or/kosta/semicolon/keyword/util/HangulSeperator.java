@@ -124,9 +124,11 @@ public class HangulSeperator {
 		ArrayList<Character> stack = new ArrayList<Character>();
 		String result = "";
 		int tempCh = 0;
+		boolean isStack = false;
 		
 		
 		for(int i=0; i<sep.length(); i++) {
+			
 			/* 자음일 경우 */
 			if((int)'ㄱ' <= sep.charAt(i) && (int)'ㅎ' >= sep.charAt(i) ) {
 				
@@ -143,7 +145,7 @@ public class HangulSeperator {
 
 			else {
 				if(stack.size() == 1) {
-					if(tempCh != 0) {
+					if(isStack) {
 						result = result + Character.toString((char)(tempCh + '가'));
 						
 						/* ( (초성 * 21) + 중성 ) * 28 + 종성 */
@@ -160,6 +162,7 @@ public class HangulSeperator {
 						
 						tempCh = ((getChoIdx(ch) * 21) + getJungIdx(sep.charAt(i))) * 28;
 						stack.clear();
+						isStack = true;
 					}
 				}
 				

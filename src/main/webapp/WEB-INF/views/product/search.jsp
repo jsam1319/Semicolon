@@ -205,14 +205,14 @@ function returnStr(data) {
 	  	
 	  	$(data.list).each(function(){
 	  		var list = this;
+	  		console.log(list);
 	  		
 	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
 	      str += "	<div class='product-slide-entry shift-image'>"
 	      str += "		<div class='product-image'>"
-	      str += "			<img src='/resources/images"+list.frontImg+"'/>"
-  			str += "			<img src='/resources/images"+list.toggleImg+"'/>"
+	      str += "			<img src='" +list.frontImg+ "'/>"
+  			str += "			<img src='"+list.toggleImg+"'/>"
   			str += "		</div>"
-  			str += "		<a class='tag' href='/product/gpurchase/" + list.gpurchaseNo + "'>"+list.cname+"</a>"
   			str += "		<a class='title' href='/product/gpurchase/" + list.gpurchaseNo + "' title='"+list.gpurchaseNo+"'>"+list.gname+"</a>"
   			str += "		<div class='price gpurchasePrice'>"
 	  	  str += "        	<div class='current gpurchasePrice'> ￦"+numberfmt(list.price)+"</div>"

@@ -80,12 +80,13 @@ $(document).ready(function() {
 	if('${method}' == 'get')
 		image = '${imageName}';
 	else
-		image = "http://localhost/resources/images/${imageName}";	
+		image = "http://localhost:8081/resources/images/${imageName}";	
 	
 	$("#inputImage").attr("src", image);
 
 	$.ajax({
-		url : "http://192.168.0.82:8000/polls/search/",
+		/* url : "http://192.168.0.82:8000/polls/search/", */
+		url : "http://localhost:8000/polls/search/",
 		dataType : 'json',
 		type : 'POST',
 		data : {
@@ -93,6 +94,7 @@ $(document).ready(function() {
 		},
 		success : function(data) {
 			console.log(data);
+			$("#goingList").append(returnStr(data))
 		},
 		error : function(data) {
 			console.log(data);
@@ -101,6 +103,29 @@ $(document).ready(function() {
 })
 
 
+function returnStr(data) {
+	  	var str = "";
+	  	
+	  	$(data).each(function(){
+	  		var list = this;
+	  		
+	  		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
+	      str += "	<div class='product-slide-entry shift-image'>"
+	      str += "			<img src='/resources/images/"+list.name+"'/>"
+  			str += "		<div class='price gpurchasePrice'>"
+	  	  str += "      	</div>"
+	  	  str += "		<div class='date'>"
+	  	  str += "		</div>"
+	  	  str += "      	<div class='list-buttons'>"
+	  	  str += "      	</div> ";
+		    str += "	</div>"
+	  	  str += "	<div class='clear'></div>"
+		    str += "</div>"
+	  	            	  
+	  	    
+	  	})
+	  	return str;
+	  };
 
 
 </script>

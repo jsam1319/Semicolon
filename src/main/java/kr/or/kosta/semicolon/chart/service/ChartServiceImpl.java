@@ -66,6 +66,8 @@ public class ChartServiceImpl implements ChartService {
 	public List<List<Chart>> getSalesbyMon(Date start, Date end, int size) {
 		//행 수 : companyNo, 열 수 : size 
 		List<List<Chart>> result = new ArrayList<List<Chart>>();
+		
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM");
 		Date date;
 		Calendar cal;
@@ -105,18 +107,28 @@ public class ChartServiceImpl implements ChartService {
 				//회사별로 수익을 구한다
 				for (Company company : companies) {
 					map.put("company", company.getName());
-					Chart chart = dao.getSalesbyMon(map);
-					if(chart != null) {
-						chartList.add(chart);
+					List<Chart> chartes = dao.getSalesbyMon(map);
+					
+					Chart saveChart = new Chart();
+					int sales = 0;
+					String name = "";
+					int companyNo = 0;
+				
+					if(chartes != null) {
+						for (Chart chart : chartes) {
+							sales = chart.getSales();
+						}
 					}else {
 						//선택한 달에 수입이 0원이라면 null값으로 나오기 때문에 새로 chart를 추가해준다
-						chart = new Chart();
-						chart.setSales(0);
-						chart.setName(company.getName());
-						chart.setCompanyNo(company.getCompanyNo());
-						chartList.add(chart);
+						sales = 0;
 					}
-				}
+					
+					saveChart.setSales(sales);
+					saveChart.setName(company.getName());
+					saveChart.setCompanyNo(company.getCompanyNo());
+					
+					chartList.add(saveChart);
+				}//end for
 				
 				result.add(chartList);
 				
@@ -124,7 +136,7 @@ public class ChartServiceImpl implements ChartService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return result;
 	}
 	
