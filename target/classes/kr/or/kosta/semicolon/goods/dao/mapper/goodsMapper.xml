@@ -15,9 +15,7 @@
 				name,
 				price,
 				detail,
-				front_img,
-				toggle_img,
-				category
+				front_img
 			)
 			VALUES 
 			(
@@ -25,105 +23,12 @@
 				#{name},
 				#{price},
 				#{detail},
-				#{frontImg},
-				#{toggleImg},
-				#{category}
+				#{frontImg}
 			)
 	</insert>
 
-
-	<select id="allList" resultType="Goods">
-		SELECT goods_no, 
-		       name, 
-		       price, 
-		       detail, 
-		       front_img,
-		       toggle_img,
-		       category 
-		FROM goods
+	<select id="listAll" resultType="kr.or.kosta.semicolon.goods.domain.Goods">
+		SELECT * FROM goods
 	</select>
-	
-	<select id="categoryListAll" parameterType="int" resultType="Goods">
-		SELECT goods_no, 
-			   name, 
-			   price, 
-			   detail, 
-			   front_img,
-			   toggle_img,
-			   category 
-		FROM   goods
-		WHERE  category = #{category}
-	</select>
-	 
-	
-	<select id="select" resultType="Goods">
-		SELECT goods_no AS goodsNo, 
-		       name, 
-		       price, 
-		       detail, 
-		       front_img AS frontImg,
-			   toggle_img As toggleImg,
-			   category
-		FROM   goods
-		WHERE  goods_no = #{goodsNo}
-	</select>
-	
-	
-	<select id="selectNo" resultType="int">
-		SELECT goods_no
-		FROM   goods
-		WHERE  name = #{name}
-	</select>
-	
-	
-	<select id="listAll" parameterType="int" resultType="Goods">
-		SELECT goodsno, 
-		       NAME, 
-		       price, 
-		       detail, 
-		       frontimg,
-			   toggle_img,
-			   category 
-		FROM   (SELECT Ceil (rownum / 10) page, 
-		               goodsno, 
-		               NAME, 
-		               price, 
-		               detail, 
-		               frontimg,
-					   toggle_img,
-					   category 
-		        FROM   (SELECT goods_no  goodsNo, 
-		                       NAME, 
-		                       price, 
-		                       detail, 
-		                       front_img,
-							   toggle_img,
-							   category 
-		                FROM   goods 
-		                ORDER  BY goods_no DESC)) 
-		WHERE  page = #{page}
-	</select>
-	
-	<select id="listCount" resultType="int">
-		SELECT Count(goods_no) count 
-		FROM   goods
-	</select>
-	
-	<select id="adminGoodsList" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
-		SELECT c.NAME cname,
-			   g.goods_no goodsNo, 
-		       g.NAME gname, 
-		       g.price, 
-		       g.front_img, 
-		       g.category 
-		FROM   company c, 
-		       nego n, 
-		       nego_list ne, 
-		       goods g 
-		WHERE  c.company_no = n.company_no 
-		       AND n.nego_no = ne.nego_no 
-		       AND ne.goods_no = g.goods_no
-	</select>
-	
 
 </mapper>

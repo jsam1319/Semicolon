@@ -25,48 +25,6 @@
 			)
 	</insert>
 
-<select id="mostCategory" parameterType="int" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
-SELECT gpurchase_no, o.goods_no, front_img, toggle_img,	 g.price, o.name AS gname
-FROM   gpurchase g, 
-       goods o 
-WHERE  g.goods_no = o.goods_no 
-       AND ROWNUM &lt;= 5 
-       AND o.category = (SELECT category 
-                         FROM   goods 
-                         WHERE  goods_no = (SELECT goods_no 
-                                            FROM   gpurchase 
-                                            WHERE  gpurchase_no IN (SELECT 
-                                                   content 
-                                                                    FROM 
-                                                   (SELECT content 
-                                                    FROM   log 
-                                                    WHERE  TYPE != 'SEARCH' 
-                                                           AND member_no = #{value} 
-                                                           AND ROWNUM = 1 
-                                                    GROUP  BY content 
-                                                    ORDER  BY Count(content) 
-                                                              DESC)))) 
-                                                  
-</select>
-
-<select id="popularPurchase" resultType="kr.or.kosta.semicolon.gpurchase.domain.GpurchaseInfo">
-SELECT gpurchase_no, 
-       o.goods_no, 
-       front_img, 
-       toggle_img, 
-       g.price,
-       o.name AS gname
-FROM   gpurchase g, 
-       goods o 
-WHERE  g.goods_no = o.goods_no 
-       AND ROWNUM &lt;= 5 
-       AND o.goods_no IN (SELECT content 
-                          FROM   (SELECT content 
-                                  FROM   log 
-                                  WHERE  TYPE != 'SEARCH' 
-                                  GROUP  BY content 
-                                  ORDER  BY Count(*) DESC)) 
-</select>
 
 
 </mapper>

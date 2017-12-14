@@ -61,7 +61,7 @@
         FROM member
     </select>
     
-    <select id="select" resultType="Member">
+    <select id="select" resultType="Member" parameterType="String">
         SELECT  member_no    AS     "memberNo",
                 id,
                 password,    
@@ -79,13 +79,7 @@
                 private_encoded	AS	"privateEncoded",
                 public_encoded	AS	"publicEncoded"
         FROM member
-        WHERE member_no = #{value}
-    </select>
-    
-    <select id="selectToken" resultType="String">
-        SELECT  app_token
-        FROM member
-        WHERE member_no = #{value}
+        WHERE id = #{value}
     </select>
     
     <update id="update" parameterType="Member">
@@ -126,9 +120,8 @@
     </select> 
     
      <select id="readLogin" parameterType="string" resultType="Member">
-        SELECT  member_no,
-        		id,
-                password
+        SELECT  id,
+                password,    
         FROM   member
         WHERE  session_id = #{value} 
                AND session_limit > SYSDATE
@@ -139,12 +132,6 @@
         SET    session_id = #{sessionId}, 
                session_limit = #{sessionLimit} 
         WHERE  id = #{id}
-    </update>
-    
-    <update id="updateToken" parameterType="Member">
-        UPDATE member
-        SET    app_token = #{appToken} 
-        WHERE  member_no = #{memberNo} 
     </update>
     
     <select id="isId" parameterType="String" resultType="String">
@@ -172,21 +159,6 @@
                 public_encoded	AS	"publicEncoded"
         FROM	member
         WHERE	id = #{value}
-    </select>
-    
-    <select id="selectOrderInfo" parameterType="int" resultType="Member">
-    	SELECT NAME, 
-		       address, 
-		       postcode, 
-		       phone 
-		FROM   member 
-		WHERE  member_no = #{memberNo}
-    </select>
-    
-    <select id="selectName" parameterType="int" resultType="String">
-    	SELECT name
-		FROM   member 
-		WHERE  member_no = #{memberNo}
     </select>
         
 </mapper>
