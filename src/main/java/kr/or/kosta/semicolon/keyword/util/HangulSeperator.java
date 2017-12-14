@@ -152,8 +152,6 @@ public class HangulSeperator {
 						char ch = stack.get(0);
 						stack.clear();
 						
-						
-						
 						tempCh = ((getChoIdx(ch) * 21) + getJungIdx(sep.charAt(i))) * 28;
 					}
 					
@@ -205,8 +203,6 @@ public class HangulSeperator {
 	}
 	
 	private static int getJongIdx(char ch) {
-//		System.out.println("ch : " + ch);
-		
 		for(int i=1; i<jong.length; i++) {
 			if(jong[i].charAt(0) == ch) return i;
 		}
