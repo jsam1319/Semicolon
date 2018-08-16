@@ -15,7 +15,7 @@ Made By KOSTA 164th TEAM "Undefined"
 > - <i class="icon-user"></i> LEE JaeHyun(Project Manager) [GitHub](https://github.com/jsam1319)
 > -  <i class="icon-user"></i> JEON Sejong [GitHub](https://github.com/Jeonsejong)
 > -  <i class="icon-user"></i> PARK YeonJu [GitHub](https://github.com/yeonjju)
-> -  <i class="icon-user"></i> PARK JuYeon [GitHub](https://github.com/jsam1319)
+> -  <i class="icon-user"></i> PARK JooYeon [GitHub](https://github.com/JooYeonPark)
 > -  <i class="icon-user"></i> KIM MiSo  [GitHub](https://github.com/jsam1319)
 
 
