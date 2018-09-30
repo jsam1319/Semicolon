@@ -2,6 +2,8 @@ package kr.or.kosta.semicolon.member.service;
 
 
 import java.util.List;
+
+import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -44,12 +46,12 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	rsaUtil = new RSAUtil();
     	String rawPassword = member.getPassword();
     	String encodedPassword = rsaUtil.encrypte(rawPassword);
-    	
+
     	member.setPassword(encodedPassword);
     	member.setPublicEncoded(rsaUtil.getPublicEncoded());
     	member.setPrivateEncoded(rsaUtil.getPrivateEncoded());
     	
-        return memberDao.insert(member);
+      return memberDao.insert(member);
         
     }
     
@@ -95,7 +97,6 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	
     	if (rsM!=null) {
     		try {
-    			Decoder decoder = Base64.getDecoder();
     			rsaUtil.setPrivateKey(rsM.getPrivateEncoded());
     			rsaUtil.setPublicKey(rsM.getPublicEncoded());
     			String decrypted = rsaUtil.decrypte(rsM.getPassword());

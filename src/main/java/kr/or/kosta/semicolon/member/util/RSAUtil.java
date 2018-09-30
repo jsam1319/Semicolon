@@ -55,26 +55,28 @@ public class RSAUtil {
 			privateKey = keyPair.getPrivate(); // 개인키
 			cipher = Cipher.getInstance("RSA");
 			encoder = Base64.getEncoder();
-            decoder = Base64.getDecoder();
+            		decoder = Base64.getDecoder();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void setPublicKey(byte[] bytes) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	public void setPublicKey(String str) throws InvalidKeySpecException, NoSuchAlgorithmException {
+		byte[] bytes = decoder.decode(str);
 		publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(bytes));
 	}
 	
-	public void setPrivateKey(byte[] bytes) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	public void setPrivateKey(String str) throws InvalidKeySpecException, NoSuchAlgorithmException {
+		byte[] bytes = decoder.decode(str);
 		privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(bytes));
 	}
 	
-	public byte[] getPublicEncoded() {
-		return publicKey.getEncoded();
+	public String getPublicEncoded() {
+		return encoder.encodeToString(publicKey.getEncoded());
 	}
 	
-	public byte[] getPrivateEncoded() {
-		return privateKey.getEncoded();
+	public String getPrivateEncoded() {
+		return encoder.encodeToString(privateKey.getEncoded());
 	}
 
 	/**
