@@ -1,8 +1,5 @@
 package kr.or.kosta.semicolon.member.service;
 
-import java.util.Base64;
-import java.util.Base64.Decoder;
-import java.util.Base64.Encoder;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,12 +44,10 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	rsaUtil = new RSAUtil();
     	String rawPassword = member.getPassword();
     	String encodedPassword = rsaUtil.encrypte(rawPassword);
-    	
-    	Encoder encoder = Base64.getEncoder();
-    	
+	
     	member.setPassword(encodedPassword);
-    	member.setPublicEncoded(encoder.encodeToString(rsaUtil.getPublicEncoded()));
-    	member.setPrivateEncoded(encoder.encodeToString(rsaUtil.getPrivateEncoded()));
+    	member.setPublicEncoded(rsaUtil.getPublicEncoded());
+    	member.setPrivateEncoded(rsaUtil.getPrivateEncoded());
     	
         return memberDao.insert(member);
         
@@ -100,9 +95,8 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	
     	if (rsM!=null) {
     		try {
-    			Decoder decoder = Base64.getDecoder();
-    			rsaUtil.setPrivateKey(decoder.decode(rsM.getPrivateEncoded()));
-    			rsaUtil.setPublicKey(decoder.decode(rsM.getPublicEncoded()));
+    			rsaUtil.setPrivateKey(rsM.getPrivateEncoded());
+    			rsaUtil.setPublicKey(rsM.getPublicEncoded());
     			String decrypted = rsaUtil.decrypte(rsM.getPassword());
     			if(inputM.getPassword().equals(decrypted)) {
     				return rsM;
