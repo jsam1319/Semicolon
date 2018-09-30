@@ -61,11 +61,13 @@ public class RSAUtil {
 		}
 	}
 	
-	public void setPublicKey(byte[] bytes) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	public void setPublicKey(String str) throws InvalidKeySpecException, NoSuchAlgorithmException {
+		byte[] bytes = decoder.decode(str);
 		publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(bytes));
 	}
 	
-	public void setPrivateKey(byte[] bytes) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	public void setPrivateKey(String str) throws InvalidKeySpecException, NoSuchAlgorithmException {
+		byte[] bytes = decoder.decode(str);
 		privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(bytes));
 	}
 	
