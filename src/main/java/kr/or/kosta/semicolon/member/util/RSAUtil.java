@@ -55,7 +55,7 @@ public class RSAUtil {
 			privateKey = keyPair.getPrivate(); // 개인키
 			cipher = Cipher.getInstance("RSA");
 			encoder = Base64.getEncoder();
-            decoder = Base64.getDecoder();
+            		decoder = Base64.getDecoder();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,12 +69,12 @@ public class RSAUtil {
 		privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(bytes));
 	}
 	
-	public byte[] getPublicEncoded() {
-		return publicKey.getEncoded();
+	public String getPublicEncoded() {
+		return encoder.encodeToString(publicKey.getEncoded());
 	}
 	
-	public byte[] getPrivateEncoded() {
-		return privateKey.getEncoded();
+	public String getPrivateEncoded() {
+		return encoder.encodeToString(privateKey.getEncoded());
 	}
 
 	/**
