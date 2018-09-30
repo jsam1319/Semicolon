@@ -96,8 +96,8 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	if (rsM!=null) {
     		try {
     			Decoder decoder = Base64.getDecoder();
-    			rsaUtil.setPrivateKey(decoder.decode(rsM.getPrivateEncoded()));
-    			rsaUtil.setPublicKey(decoder.decode(rsM.getPublicEncoded()));
+    			rsaUtil.setPrivateKey(rsM.getPrivateEncoded());
+    			rsaUtil.setPublicKey(rsM.getPublicEncoded());
     			String decrypted = rsaUtil.decrypte(rsM.getPassword());
     			if(inputM.getPassword().equals(decrypted)) {
     				return rsM;
