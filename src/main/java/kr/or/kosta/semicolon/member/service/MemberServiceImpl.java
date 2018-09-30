@@ -1,10 +1,7 @@
 package kr.or.kosta.semicolon.member.service;
 
-import java.util.Base64;
-import java.util.Base64.Decoder;
-import java.util.Base64.Encoder;
-import java.util.List;
 
+import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -48,11 +45,9 @@ import kr.or.kosta.semicolon.member.util.RSAUtil;
     	String rawPassword = member.getPassword();
     	String encodedPassword = rsaUtil.encrypte(rawPassword);
     	
-    	Encoder encoder = Base64.getEncoder();
-    	
     	member.setPassword(encodedPassword);
-    	member.setPublicEncoded(encoder.encodeToString(rsaUtil.getPublicEncoded()));
-    	member.setPrivateEncoded(encoder.encodeToString(rsaUtil.getPrivateEncoded()));
+    	member.setPublicEncoded(rsaUtil.getPublicEncoded());
+    	member.setPrivateEncoded(rsaUtil.getPrivateEncoded());
     	
         return memberDao.insert(member);
         
